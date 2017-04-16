@@ -6,7 +6,7 @@
 	{% for v in elements %}
     <a href="{% url 'video' v.id %}">
         <figure style="display:table-cell">
-            <img width="300px" src="{{v.url}}.png"/>
+            <img src="{{v.url}}.png"/>
             <figcaption style="font-size:20px">{{v.titre}}</figcaption>
         </figure>
     </a>

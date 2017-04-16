@@ -156,7 +156,7 @@ def remove_favorite(request, video_id):
         video = get_object_or_404(Video, pk=video_id)
         user = request.user
         c = Favorite.objects.filter(user = user, video = video).delete()
-    return HttpResponseRedirect(reverse('videos:video', args=(video.id,)))
+    return HttpResponseRedirect(reverse('video', args=(video.id,)))
 
 def add_favorite(request, video_id):
     if request.user.is_authenticated:
@@ -164,7 +164,7 @@ def add_favorite(request, video_id):
         user = request.user
         c = Favorite(user = user, video = video)
         c.save()
-    return HttpResponseRedirect(reverse('videos:video', args=(video.id,)))
+    return HttpResponseRedirect(reverse('video', args=(video.id,)))
 
 def comment_video(request, video_id):
     if request.user.is_authenticated:
@@ -173,7 +173,7 @@ def comment_video(request, video_id):
         user = request.user
         c = Relation_comment(author = user, video = video, comment = comment)
         c.save()
-    return HttpResponseRedirect(reverse('videos:video', args=(video.id,)))
+    return HttpResponseRedirect(reverse('video', args=(video.id,)))
 
 def comment_proj(request, proj_id):
     if request.user.is_authenticated:
@@ -182,7 +182,7 @@ def comment_proj(request, proj_id):
         user = request.user
         c = Relation_comment_proj(author = user, proj = proj, comment = comment)
         c.save()
-    return HttpResponseRedirect(reverse('videos:proj', args=(proj.id,)))
+    return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
 
 def populate_bdd(request):
     files = [f for f in listdir("/home/thibault/.banque/site/videos/static/videos")]

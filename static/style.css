@@ -1,57 +1,65 @@
 * {
-  font-family: Arial;
+    font-family: Muli;
 }
 
 #lateral_bar {
-  position: absolute;
-  top:0;
-  bottom:0;
-  width:250px;
-  background-color: #AAAAAA;
-  padding-left: 20px;
+    position: absolute;
+    top:0;
+    bottom:0;
+    width:250px;
+    background-color: #ffffff;
+    margin-top:-21px;
+    text-align:center;
+    position: fixed;
 }
 
 #central {
-  position: absolute;
-  top: 0;
-  bottom:0;
-	margin-left: 270px;
+    position: absolute;
+    top: 0;
+    bottom:0;
+    margin-left: 250px;
 }
 
 #body {
-  float: right;
-  margin-top:30px;
-  padding-top: 20px;
-  padding-left: 50px;
+    padding-top: 20px;
+    width:1070px;
+    margin-left:50px;
+    margin-top:30px;
 }
 
+
 body {
-  padding: 0;
-  margin: 0;
-  background-color: #DDDDDD;
+    padding: 0;
+    margin:0;
+    background-color: #f1f1f1;
 }
 
 .tag {
-  font-family: 'Comic Sans MS';
-  font-size: 20px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  padding-left: 10px;
-  padding-right:10px;
-  background-color: yellow;
+    font-family: 'Comic Sans MS';
+    font-size: 20px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    padding-right:10px;
+    background-color: yellow;
 }
 
 h1 {
-  color: blue;
+    color:#444444;
+    background-color:white;
+    text-align:center;
+    border-style: solid;
+    border-width: 1px;
+    border-color:#e8e8e8;
 }
 
 a {
-  color: #3040FF;
-  text-decoration: none;
+    color: #167ac6;
+    text-decoration: none;
 }
 
 a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
 #navigation_bar ul {
@@ -59,10 +67,15 @@ a:hover {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #ffffff;
     position: fixed;
     top: 0;
     width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color:#e8e8e8;
+    border-right-width:0px;
+    border-left-width:0px;
 }
 
 #navigation_bar li {
@@ -71,13 +84,42 @@ a:hover {
 
 #navigation_bar li a {
     display: block;
-    color: white;
+    color: #444444;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    
 }
 
 #navigation_bar li a:hover {
-    background-color: #4CAF50;
-		text_decoration: none;
+    background-color: #444444;
+    color:white;
+    text-decoration: none;
+}
+
+figcaption{
+    color:#167ac6;
+}
+
+img {
+    width:200px;
+}
+
+#lateral_bar h1{
+    font-style:bold;
+    padding-top:4px;
+    padding-bottom:4px;
+    color:#fdc500;
+    border-right-width:0px;
+    border-left-width:0px;
+}
+
+#lateral_bar a{
+    padding-top:5px;
+    padding-bottom:5px;
+}
+
+#body a {
+    margin-left:5px;
+    margin-right:5px;
 }
