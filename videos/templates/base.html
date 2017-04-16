@@ -1,0 +1,75 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <link rel="stylesheet" href="{% static 'style.css' %}"/>
+  <title>JTX</title>
+</head>
+<body>
+<div id="lateral_bar">
+    <h1> JTX </h1>
+    {% if request.user.is_authenticated %}
+        Bonjour {{ request.user.username }}
+        <br/>
+        <a href="{% url 'logout' %}">Se déconnecter</a>
+
+        <br/>
+        <h3>Favoris :</h3>
+        {% for f in request.user.favorite_set.all %}
+        <a href="{% url 'video' f.video.id %}">{{ f.video.titre }}</a>
+        <br/>
+        {% endfor %}
+
+    {% else %}
+        <a href="{% url 'login' %}">Se connecter</a>
+    {% endif %}
+</div>
+
+<div id="central">
+	<div id="navigation_bar">"
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="{% url 'categories' %}">Catégories</a></li>
+        <li><a href="{% url 'projs' 1 %}">Projections</a></li>
+        <li><a href="{% url 'videos' 1 %}">Vidéos</a></li>
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'favorites' 1 %}">Favoris</a></li>
+        {% endif %}
+        <li><a href="{% url 'tags' %}">Tags</a></li>
+    </ul>
+	</div>
+
+	<div id="body">
+    
+    {% if titre_tag %}
+        <span class="tag" style="font-size:30px">{{titre}}</span><br/><br/>
+    {% else %}
+        <h1>{{titre}}</h1>
+    {% endif %}
+
+    {% block body %}
+    {% endblock %}
+
+    {% if pages and page and adress %}
+        <br/>
+        <br/>
+        Page :
+        {% for p in pages %}
+            {% if p != page %}
+                {% if id %}
+                    <a href="{% url adress id p %}">{{p}}</a>
+                {% else %}
+                    <a href="{% url adress p %}">{{p}}</a>
+                {% endif %}
+            {% else %}
+                {{p}}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+	</div>
+</div>
+</body>
+</html>

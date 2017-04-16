@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+{% if categories %}
+<h1>Catégories</h1>
+	<ul>
+	{% for c in categories %}
+    <li><a href="{% url 'category' c.id 1 %}">{{ c.titre }}</a></li>
+	{% endfor %}
+	</ul>
+{% endif %}
+
+{% if projs %}
+<h1>Projs</h1>
+	{% for p in projs %}
+    <a href="{% url 'proj' p.id %}">
+        <figure style="display:table-cell">
+            <img width="300px" src="{{p.image}}"/>
+            <figcaption style="font-size:20px">{{p.titre}}</figcaption>
+        </figure>
+    </a>
+	{% endfor %}
+{% endif %}
+
+{% if videos %}
+<h1>Videos</h1>
+	{% for v in videos %}
+    <a href="{% url 'video' v.id %}">
+        <figure style="display:table-cell">
+            <img width="300px" src="{{v.url}}.png"/>
+            <figcaption style="font-size:20px">{{v.titre}}</figcaption>
+        </figure>
+    </a>
+	{% endfor %}
+{% endif %}
+
+{% endblock %}
