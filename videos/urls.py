@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^test/$', views.populate_bdd, name='test'),
+    url(r'^test/$', views.add_proj, name='add_proj'),
     url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': views.index}, name='logout'),
     url(r'^projs/(?P<page>[0-9]+)/$', views.projs, name='projs'),

@@ -10,12 +10,46 @@ from .models import *
 import random
 from os import listdir
 
+from ffprobe import FFProbe
+
 n_page = 20
 n_index = 5
 n_suggestions = 5
 
 def id(x):
     return x
+
+def add_proj(request):
+    p = request.POST
+    context = {}
+    if 'folder' in p and 'titre' in p:
+
+        #folder = "Evenements/Amphi_presentation_binets/2016/MQ"
+        #folder = "Evenements/Semaine_internationale/Houlgate_2017/MQ"
+        #titre_proj = "Semaine internationale X2016 - Houlgate"
+
+        folder = p['folder']
+        titre_proj = p['titre']
+
+        base_url = "http://binet-jtx.com/videos"
+        base_folder = "/nfs/serveur/ftp"
+        c = Category.objects.get(pk = 10)
+        p = Proj(titre = titre_proj, category = c)
+        p.save()
+        files = [f for f in listdir(base_folder + "/" + folder)]
+        files.sort()
+        i = 1
+        for f in files:
+            base = '.'.join(f.split('.')[:-1])
+            filename = base_folder + "/" + folder + "/" + f
+            d = int(float(FFProbe(filename).video[0].duration))
+            v = Video(titre = base.replace('_', ' '), url = base_url + "/" + folder + "/" + f, duree=d)
+            v.save()
+            r = Relation_proj(proj = p, video = v, ordre = i)
+            r.save()
+            i += 1
+            context['message'] = u'Proj "' + titre_proj + u'" ajoutée avec succès !'
+    return render(request, 'add_proj.html', context)
 
 def index(request):
     projs = Proj.objects.filter(category__public=True)
@@ -185,7 +219,8 @@ def comment_proj(request, proj_id):
     return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
 
 def populate_bdd(request):
-    files = [f for f in listdir("/home/thibault/.banque/site/videos/static/videos")]
+    #files = [f for f in listdir("/home/thibault/.banque/site/videos/static/videos")]
+    files = []
     for f in files:
         l = f.split('.')
         extension = l[-1]

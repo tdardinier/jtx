@@ -11,17 +11,17 @@ class FavoriteInline(admin.TabularInline):
     user = User
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['username', 'email', 'first_name', 'last_name']
+    list_display = ['id', 'username', 'email', 'first_name', 'last_name']
     search_fields = ['username', 'email', 'first_name', 'last_name']
     inlines = [FavoriteInline]
 
 class CommentProjAdmin(admin.ModelAdmin):
-    list_display = ['comment', 'proj', 'date']
+    list_display = ['id', 'comment', 'proj', 'date']
     list_filter = ['proj', 'date']
     search_fields = ['comment', 'proj__titre']
 
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['comment', 'video', 'date']
+    list_display = ['id', 'comment', 'video', 'date']
     list_filter = ['video', 'date']
     search_fields = ['comment', 'video__titre']
 
@@ -40,7 +40,7 @@ class TagInline(admin.TabularInline):
     extra = 0
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ['titre', 'date', 'views', 'public']
+    list_display = ['id', 'titre', 'date', 'views', 'public']
     list_filter = ['date', 'views', 'public']
     search_fields = ['titre']
     inlines = [TagInline]
@@ -58,7 +58,7 @@ class VideoInline(admin.TabularInline):
     extra = 0
 
 class ProjAdmin(admin.ModelAdmin):
-    list_display = ['titre', 'category', 'date', 'views']
+    list_display = ['id', 'titre', 'category', 'date', 'views']
     list_filter = ['category', 'date', 'views']
     search_fields = ['titre', 'category__titre']
     inlines = [VideoInline]
@@ -72,7 +72,7 @@ admin.site.register(Proj, ProjAdmin)
 # --------------------
 
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ['titre', 'public']
+    list_display = ['id', 'titre', 'public']
     list_filter = ['public']
     search_fields = ['titre']
 
