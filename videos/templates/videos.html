@@ -3,11 +3,13 @@
 {% block body %}
 {% if elements %}
 
+{% load app_filters %}
+
 	{% for v in elements %}
     <a href="{% url 'video' v.id %}">
         <figure style="display:table-cell">
             <img src="{{v.url}}.png"/>
-            <figcaption style="font-size:20px">{{v.titre}}</figcaption>
+            <figcaption style="font-size:15">{{v.titre}} : {{v|duration}}</figcaption>
         </figure>
     </a>
 	{% endfor %}

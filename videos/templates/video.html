@@ -29,6 +29,7 @@
     <a class="tag" href="{% url 'tag' r.tag.id 1 %}">{{ r.tag.titre }}</a>
   {% endfor %}
     <br/>
+    <p>{{ video.description }}</p>
     <br/>
     J'aime : {{ nb_jaimes }} <br/>
     Vues : {{ video.views }}
