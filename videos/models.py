@@ -17,6 +17,24 @@ class Video(models.Model):
     def __unicode__(self):
         return self.titre
 
+class Auteur(models.Model):
+    firstname = models.CharField(max_length=100)
+    lastname = models.CharField(max_length=100)
+    promo = models.IntegerField(default=2015)
+
+    @property
+    def name(self):
+        return self.firstname + " " + self.lastname
+
+    def __unicode__(self):
+        return self.name + "(JTX" + str(self.promo) + ")"
+
+class Relation_auteur_video(models.Model):
+    video = models.ForeignKey(Video)
+    auteur = models.ForeignKey(Auteur)
+    def __unicode__(self):
+        return self.video.titre + " - " + self.auteur.name
+
 class Tag(models.Model):
     titre = models.CharField(max_length=100)
     def __unicode__(self):

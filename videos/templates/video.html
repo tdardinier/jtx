@@ -3,6 +3,7 @@
 {% block body %}
 
 {% if video %}
+{% load app_filters %}
 <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:table-row">
 <div style="margin-top:0;display:table-cell;vertical-align:top">
@@ -23,6 +24,9 @@
 {% endif %}
 
   <br/>
+  Durée : {{ video|duration }}
+  <br/>
+  Auteurs : {{ video|auteurs }}
   <br/>
   Tags :
   {% for r in video.relation_tag_set.all %}

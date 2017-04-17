@@ -9,7 +9,13 @@
     <a href="{% url 'video' v.id %}">
         <figure style="display:table-cell">
             <img src="{{v.url}}.png"/>
-            <figcaption style="font-size:15">{{v.titre}} : {{v|duration}}</figcaption>
+            <figcaption style="font-size:15">
+                {{v.titre}}
+                <br/>
+                {{v|duration}}
+                <br/>
+                {{v|auteurs}}
+            </figcaption>
         </figure>
     </a>
 	{% endfor %}

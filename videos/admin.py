@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 admin.site.register(Tag)
 admin.site.register(Relation_proj)
 admin.site.register(Favorite)
+admin.site.register(Auteur)
+admin.site.register(Relation_auteur_video)
 
 class FavoriteInline(admin.TabularInline):
     model = Favorite

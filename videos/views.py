@@ -20,6 +20,11 @@ def id(x):
     return x
 
 def add_proj(request):
+
+    base_url = "http://binet-jtx.com/videos"
+    base_folder = "/nfs/serveur/ftp"
+    extensions_acceptees = ['mp4', 'avi']
+
     p = request.POST
     context = {}
     if 'folder' in p and 'titre' in p:
@@ -28,27 +33,31 @@ def add_proj(request):
         #folder = "Evenements/Semaine_internationale/Houlgate_2017/MQ"
         #titre_proj = "Semaine internationale X2016 - Houlgate"
 
-        folder = p['folder']
+        folder = str(p['folder'])
         titre_proj = p['titre']
 
-        base_url = "http://binet-jtx.com/videos"
-        base_folder = "/nfs/serveur/ftp"
         c = Category.objects.get(pk = 10)
         p = Proj(titre = titre_proj, category = c)
         p.save()
-        files = [f for f in listdir(base_folder + "/" + folder)]
+        files = [str(f) for f in listdir(str(base_folder + "/" + folder)) if str(f)[-3:] in extensions_acceptees]
         files.sort()
         i = 1
         for f in files:
             base = '.'.join(f.split('.')[:-1])
-            filename = base_folder + "/" + folder + "/" + f
-            d = int(float(FFProbe(filename).video[0].duration))
+            filename = str(base_folder + "/" + folder + "/" + f)
+            ld = FFProbe(filename).video
+            d = 0
+            if len(ld) > 0:
+                dd = ld[0].duration
+                d = int(float(dd if dd != "N/A" else "0"))
             v = Video(titre = base.replace('_', ' '), url = base_url + "/" + folder + "/" + f, duree=d)
             v.save()
             r = Relation_proj(proj = p, video = v, ordre = i)
             r.save()
             i += 1
             context['message'] = u'Proj "' + titre_proj + u'" ajoutée avec succès !'
+    else:
+        context['message'] = "Version 1.0.17"
     return render(request, 'add_proj.html', context)
 
 def index(request):
