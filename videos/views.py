@@ -61,9 +61,9 @@ def index(request):
         categories = Category.objects
     context = {
         'request': request,
-        'projs': projs.order_by('date').all()[:n_index],
-        'videos': videos.order_by('date').all()[:n_index],
-        'categories': categories.all()[:n_index],
+        'projs': projs.all()[:n_index],
+        'videos': videos.all()[:n_index],
+        'categories': categories.all(),
     }
     return render(request, 'index.html', context)
 

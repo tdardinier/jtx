@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.db import models
 
 class Video(models.Model):
+    class Meta:
+        ordering = ['-date']
     titre = models.CharField(max_length=100)
     date = models.DateField(default=datetime.date.today)
     url = models.CharField(max_length=1000)
@@ -33,6 +35,8 @@ class Category(models.Model):
         return self.titre
 
 class Proj(models.Model):
+    class Meta:
+        ordering = ['-date']
     titre = models.CharField(max_length=100)
     category = models.ForeignKey(Category)
     date = models.DateField(default=datetime.date.today)
@@ -42,6 +46,8 @@ class Proj(models.Model):
         return self.titre
 
 class Favorite(models.Model):
+    class Meta:
+        ordering = ['-date']
     user = models.ForeignKey(User)
     video = models.ForeignKey(Video)
     date = models.DateTimeField(auto_now_add = True)
@@ -68,6 +74,8 @@ class Relation_tag(models.Model):
         return self.video.titre + u" : " + self.tag.titre
 
 class Relation_comment(models.Model):
+    class Meta:
+        ordering = ['date']
     comment = models.CharField(max_length=1000)
     video = models.ForeignKey(Video)
     date = models.DateTimeField(auto_now_add = True)
@@ -76,6 +84,8 @@ class Relation_comment(models.Model):
         return self.video.titre + u" : " + self.comment
 
 class Relation_comment_proj(models.Model):
+    class Meta:
+        ordering = ['date']
     comment = models.CharField(max_length=1000)
     proj = models.ForeignKey(Proj)
     date = models.DateTimeField(auto_now_add = True)
