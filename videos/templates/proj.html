@@ -57,7 +57,7 @@ Vues : {{ proj.views }}
 <br/>
 {% for r in proj.relation_comment_proj_set.all %}
     <br/>
-    <strong>{{r.author.username }}</strong> : 
+    <strong>{{r.author.username }}</strong> :
     {{ r.comment }}
 {% endfor %}
 
@@ -81,7 +81,7 @@ Vues : {{ proj.views }}
 {% for p in suggestions %}
 <a href="{% url 'proj' p.id %}">
 	<figure style="display:table-cell">
-        <img width="200px" src="{{p.image}}"/>
+        <img class="img_vid" src="{{p.image}}"/>
 		<figcaption style="font-size:20px">{{p.titre}}</figcaption>
 	</figure>
 </a>

@@ -4,10 +4,10 @@
 {% if elements %}
 
 	{% for p in elements %}
-    <a href="{% url 'proj' p.id %}">
+    <a href="{% url 'proj' p.id %}", class="proj">
         <figure style="display:table-cell">
-            <img width="300px" src="{{p.image}}"/>
-            <figcaption style="font-size:20px">{{p.titre}}</figcaption>
+            <img class="proj_image" src="{{p.image}}"/>
+            <figcaption class="legende_proj">{{p.titre}}</figcaption>
         </figure>
     </a>
 	{% endfor %}

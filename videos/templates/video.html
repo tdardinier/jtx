@@ -13,7 +13,7 @@
         <source src="{{video.url}}">
 		Your browser does not support the video tag.
 	</video>
-  
+
 {% if request.user.is_authenticated %}
 <br/>
 {% if favorite %}
@@ -66,8 +66,8 @@
 {% for v in suggestions %}
 <a href="{% url 'video' v.id %}">
 	<figure style="display:table-cell">
-		<img width="200px" src="{{v.url}}.png"/>
-		<figcaption style="font-size:20px">{{v.titre}}</figcaption>
+		<img class="img_vid" src="{{v.url}}.png"/>
+		<figcaption>{{v.titre}}</figcaption>
 	</figure>
 </a>
 <br/><br/>

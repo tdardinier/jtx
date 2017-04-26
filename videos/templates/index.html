@@ -16,7 +16,7 @@
 	{% for p in projs %}
     <a href="{% url 'proj' p.id %}">
         <figure style="display:table-cell">
-            <img width="300px" src="{{p.image}}"/>
+            <img class="proj_image" src="{{p.image}}"/>
             <figcaption>{{p.titre}}</figcaption>
         </figure>
     </a>
@@ -24,12 +24,12 @@
 {% endif %}
 
 {% if videos %}
-<h1>Videos</h1>
+<h1>Vidéos</h1>
 	{% for v in videos %}
     <a href="{% url 'video' v.id %}">
         <figure style="display:table-cell">
-            <img width="300px" src="{{v.url}}.png"/>
-            <figcaption style="font-size:20px">{{v.titre}}</figcaption>
+            <img class="img_vid" src="{{v.url}}.png"/>
+            <figcaption class="legende_vid">{{v.titre}}</figcaption>
         </figure>
     </a>
 	{% endfor %}

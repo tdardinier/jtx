@@ -1,5 +1,5 @@
 * {
-    font-family: Muli;
+    font-family: Roboto;
 }
 
 #lateral_bar {
@@ -35,7 +35,8 @@ body {
 }
 
 .tag {
-    font-family: 'Comic Sans MS';
+    font-family: 'roboto';
+    font-variant: small-caps;
     font-size: 20px;
     padding-top: 3px;
     padding-bottom: 3px;
@@ -54,12 +55,7 @@ h1 {
 }
 
 a {
-    color: #167ac6;
     text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 #navigation_bar ul {
@@ -88,7 +84,7 @@ a:hover {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    
+
 }
 
 #navigation_bar li a:hover {
@@ -97,12 +93,57 @@ a:hover {
     text-decoration: none;
 }
 
-figcaption{
-    color:#167ac6;
+
+
+
+
+/* Concerne l'affichage des images de template des projs que l'on impose à la taille 16/9 */
+.proj_image{
+  max-width:200px;
+  max-height: 113px;
 }
 
-img {
-    width:200px;
+/* Concerne l'affichage des images de template des vidéos que l'on impose à la taille 16/9 */
+.img_vid{
+  max-width:200px;
+  max-height: 113px;
+}
+
+/* Concerne l'affichage des légendes des vidéos */
+.legende_vid_duree{
+  margin-top: -23px;
+  margin-right: 2px;
+  text-align: right;
+  color:white;
+}
+
+.legende_vid_titre{
+  color:#167ac6;
+  width: 200px;
+  max-height: 40px;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.legende_vid_auteur{
+  text-decoration: none;
+  color:grey;
+  width: 200px;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+a:hover{
+  opacity: 0.7;
+}
+
+/* Concerne l'affichage des légendes des projs */
+.legende_proj{
+  color:#167ac6;
+  width: 200px;
+  max-height: 40px;
+  overflow: hidden;
+  text-decoration: none;
 }
 
 #lateral_bar h1{
