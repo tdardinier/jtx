@@ -10,7 +10,7 @@ from .models import *
 import random
 from os import listdir
 
-from ffprobe import FFProbe
+#from ffprobe import FFProbe
 
 n_page = 20
 n_index = 5
@@ -45,7 +45,8 @@ def add_proj(request):
         for f in files:
             base = '.'.join(f.split('.')[:-1])
             filename = str(base_folder + "/" + folder + "/" + f)
-            ld = FFProbe(filename).video
+            #ld = FFProbe(filename).video
+            ld = 0
             d = 0
             if len(ld) > 0:
                 dd = ld[0].duration

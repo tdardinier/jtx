@@ -7,6 +7,7 @@ admin.site.register(Relation_proj)
 admin.site.register(Favorite)
 admin.site.register(Auteur)
 admin.site.register(Relation_auteur_video)
+admin.site.register(Favorite_proj)
 
 class FavoriteInline(admin.TabularInline):
     model = Favorite

@@ -30,6 +30,8 @@ class Auteur(models.Model):
         return self.name + "(JTX" + str(self.promo) + ")"
 
 class Relation_auteur_video(models.Model):
+    class Meta:
+        unique_together = (('video', 'auteur'),)
     video = models.ForeignKey(Video)
     auteur = models.ForeignKey(Auteur)
     def __unicode__(self):
@@ -54,10 +56,11 @@ class Category(models.Model):
 
 class Proj(models.Model):
     class Meta:
-        ordering = ['-date']
+        ordering = ['-promo', '-date']
     titre = models.CharField(max_length=100)
     category = models.ForeignKey(Category)
     date = models.DateField(default=datetime.date.today)
+    promo = models.IntegerField(default=2015)
     views = models.IntegerField(default=0)
     image = models.CharField(max_length=2000, default="http://cdn.wallpapersafari.com/58/12/nyHXSO.jpg")
     def __unicode__(self):
@@ -66,19 +69,29 @@ class Proj(models.Model):
 class Favorite(models.Model):
     class Meta:
         ordering = ['-date']
+        unique_together = (('user', 'video'),)
     user = models.ForeignKey(User)
     video = models.ForeignKey(Video)
     date = models.DateTimeField(auto_now_add = True)
 
-    class Meta:
-        unique_together = (('user', 'video'),)
-
     def __unicode__(self):
         return self.user.username + " : " + self.video.titre
+
+class Favorite_proj(models.Model):
+    class Meta:
+        ordering = ['-date']
+        unique_together = (('user', 'proj'),)
+    user = models.ForeignKey(User)
+    proj = models.ForeignKey(Proj)
+    date = models.DateTimeField(auto_now_add = True)
+
+    def __unicode__(self):
+        return self.user.username + " : " + self.proj.titre
 
 class Relation_proj(models.Model):
     class Meta:
         ordering = ['ordre']
+        unique_together = (('proj', 'video'),)
     proj = models.ForeignKey(Proj)
     video = models.ForeignKey(Video)
     ordre = models.IntegerField(default=0)
@@ -86,6 +99,8 @@ class Relation_proj(models.Model):
         return self.proj.titre + u" : " + self.video.titre
 
 class Relation_tag(models.Model):
+    class Meta:
+        unique_together = (('tag', 'video'),)
     tag = models.ForeignKey(Tag)
     video = models.ForeignKey(Video)
     def __unicode__(self):
