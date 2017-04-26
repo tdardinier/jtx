@@ -3,6 +3,39 @@ import datetime
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models.signals import post_save
+
+class Utilisateur(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    DROITS = (
+        ('0', 'admin'),
+        ('1', 'jtxman'),
+        ('2', 'etudiant'),
+        ('3', 'dfhm'),
+    )
+    profil = models.CharField(max_length=1, choices=DROITS, default='2')
+
+    # Tags, auteurs
+    @property
+    def can_add_info(self):
+        return self.profil == '0' or self.profil == '1'
+
+    # Add une proj, changer l'ordre, les titres
+    @property
+    def can_proj(self):
+        return self.profil == '0'
+
+    def __unicode__(self):
+        return self.user.__unicode__() + u' -> ' + self.profil
+
+#@receiver(post_save, sender=User)
+#def create_utilisateur(sender, instance, created, **kwargs):
+#    if created:
+#        Utilisateur.objects.create(user=instance)
+
+#@receiver(post_save, sender=User)
+#def save_user_utilisateur(sender, instance, **kwargs):
+#    instance.utilisateur.save()
 
 class Video(models.Model):
     class Meta:
