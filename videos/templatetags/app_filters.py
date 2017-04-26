@@ -13,3 +13,11 @@ def auteurs(v):
         return ", ".join([x.auteur.name for x in s])
     else:
         return "Inconnu"
+
+@register.filter(name='short')
+def short(s):
+    n = 30
+    if len(s) <= n:
+        return s
+    else:
+        return s[:(n - 3)] + "..."
