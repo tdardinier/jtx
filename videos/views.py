@@ -12,7 +12,7 @@ from os import listdir
 
 #from ffprobe import FFProbe
 
-n_page = 20
+n_page = 30
 n_index = 5
 n_suggestions = 5
 
