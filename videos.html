@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if elements %}
+
+{% load app_filters %}
+
+	{% for v in elements %}
+				<a href="{% url 'video' v.id %}">
+        <figure style="display:table-cell">
+
+            <img class="img_vid" src="{{v.url}}.png"/>
+
+						<figcaption class="legende_vid_duree">
+                {{v|duration}}
+            </figcaption>
+
+						<figcaption class="legende_vid_titre">
+								{{v.titre}}
+						</figcaption>
+
+						<figcaption class="legende_vid_auteur">
+								{{v|auteurs}}
+						</figcaption>
+        </figure>
+				</a>
+	{% endfor %}
+
+{% endif %}
+{% endblock %}
