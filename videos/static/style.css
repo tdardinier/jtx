@@ -7,20 +7,24 @@
     position: absolute;
     top: 0;
     bottom:0;
-    margin-left: 250px;
+    left: 0;
+    right: 0;
+
 }
 
 #body {
-    padding-top: 20px;
-    width:1070px;
-    margin-left:50px;
-    margin-top:30px;
+    display: table;
+    margin: 0 auto;
+    width: 900px;
+    margin-top:71px;
+
 }
 
+/*
 #body a {
     margin-left:5px;
     margin-right:5px;
-}
+}*/
 
 body {
     background-color: #f1f1f1;
@@ -35,11 +39,14 @@ Style de la bar de navigation
 -----------------------------
 */
 #navigation_bar{
-  margin-left: -8px;
+
 }
-  #navigation_bar ul {
+
+#navigation_bar ul {
     list-style-type: none;
+    float: left;
     margin: 0;
+    margin-left: 250px;
     padding: 0;
     overflow: hidden;
     background-color: #ffffff;
@@ -80,37 +87,70 @@ Style de la bar de navigation
 Style de la Lateral Bar
 -----------------------
 */
+.navigation_bar_titre{
+  float: left;
+
+}
+
+.navigation_bar_menu{
+  float: left;
+
+}
+
+/* Influence de la barre latérale sur le body
+#lateral_bar:hover ~ #body{
+  padding-left: 200px;
+}*/
 
 /* Pour le titre jtx*/
-#lateral_bar h1 {
-    margin-top: 21px;
+#navigation_bar h1 {
+    float: left;
+    position:fixed;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-right: 97px;
+    padding-left: 97px;
+    margin: 0;
+
     height:40px;
-    color:#444444;
+    color:#FDC500;
     background-color:white;
     text-align:center;
     border-style: solid;
     border-width: 1px;
     border-color:#e8e8e8;
+    border-right-width:0px;
+    border-left-width:0px;
+
 }
 
-#lateral_bar {
+#lateral_bar{
+
     border-style: solid;
     border-width: 1px;
     border-color:#e8e8e8;
-    position: absolute;
+    position: fixed;
     overflow: hidden;
-    top:0;
+    top:71px;
     bottom: 0;
     left:0;
     width:250px;
+    margin-left: -200px;
     background-color: #ffffff;
     margin-top:-22px;
     text-align:center;
-    position: fixed;
+    position:fixed;
+    -webkit-transition: margin-left 0.3s; /* Safari */
+    transition: margin-left 0.3s;
+    transition-timing-function: ease-out;
+}
+
+#lateral_bar:hover{
+  margin-left: 0px;
 
 }
 
-#lateral_bar h1{
+#lateral_bar h1 {
     font-style:bold;
     padding-top:4px;
     padding-bottom:4px;
@@ -118,12 +158,43 @@ Style de la Lateral Bar
     border-right-width:0px;
     border-left-width:0px;
 }
-
-#lateral_bar a{
+/*
+#lateral_bar a {
     padding-top:5px;
     padding-bottom:5px;
+    text-decoration: none;
+    color:black;
+}*/
+.lateral_bar_button{
+  width: 200px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  display: table;
+  margin: 0 auto;
 }
 
+.lateral_bar_button_a{
+  text-decoration: none;
+  font-weight: lighter;
+  color: #444444;
+}
+
+.lateral_bar_button_a:hover, .lateral_bar_button_a:hover .lateral_bar_button{
+    background-color: #444444;
+    color:white;
+}
+
+#lateral_bar hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #E2E2E2;
+
+  margin-left: -2px;
+  padding: 0;
+  width:200px;
+  margin-left: 25px;
+}
 
 /*
 ---------------
@@ -252,7 +323,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
   margin-left: -2px;
   padding: 0;
-  width: 880px;
+  width: 720px;
 }
 
 .titre_et_vues_vues_et_jaime{
@@ -359,7 +430,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 textarea{
-  width: 810px;
+  width: 650px;
   height: auto;
 }
 
