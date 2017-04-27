@@ -184,7 +184,7 @@ a:hover{
   margin-top: -25px;
 }
 
-hr {
+#titre_et_vues_id hr {
   display: block;
   height: 1px;
   border: 0;
@@ -209,19 +209,122 @@ hr {
 }
 
 .titre_et_vues_vues_et_jaime_nb_jaime{
+  margin-top: 5px;
   float:left;
   padding: 2px;
   text-align: right;
   /*box-shadow: 0px 0px 3px -1px;*/
   margin-bottom: 5px;
-
+  font-size: 12px;
 }
 
 .titre_et_vues_vues_et_jaime_bouton_jaime{
-  float: right;
+  margin-top: 5px;
   color:white;
+  float:right;
   padding: 2px;
   text-align: center;
   box-shadow: 0px 0px 3px -1px;
+  font-size: 12px;
+}
+
+.titre_et_vues_haut_deuxieme_partie{
 
 }
+
+.titre_et_vues_haut_deuxieme_partie{
+  margin-right: 10px;
+}
+
+.titre_et_vues_duree{
+  float:right;
+}
+
+.titre_et_vues_auteurs{
+  float: left;
+}
+
+.titre_et_vues_tags{
+  font-size: 12px;
+  color:#666666;
+padding-bottom: 5px;
+}
+
+.description_video{
+  font-size: 12px;
+  margin-top: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  padding-left:10px;
+  box-shadow: 0px 0px 3px -1px;
+  margin-bottom: 0px;
+}
+
+.commentaires_video{
+  max-height: 500px;
+  overflow-y: scroll;
+  margin-top: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  padding-left:10px;
+  box-shadow: 0px 0px 3px -1px;
+}
+
+.commentaires_video_titre{
+  color: #666666;
+  font-size: 15px;
+
+}
+
+.commentaires_nom{
+  font-weight: bold;
+  font-variant: small-caps;
+
+}
+
+.commentaires_commentaires{
+    font-size: 12px;
+    width: inherit;
+}
+
+.commentaires_video_faire{
+  margin-top: 20px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #ffffff;
+  padding-left:10px;
+  box-shadow: 0px 0px 3px -1px;
+  height: 50px;
+}
+
+
+textarea{
+  width: 810px;
+  height: auto;
+}
+
+#comment{
+
+  padding: 0px;
+  float: left;
+  margin-bottom: 100px;
+}
+
+#bouton_comment{
+float: right;
+
+}
+
+#commentaires_video_id hr{
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #E2E2E2;
+
+  margin-left: -2px;
+  padding: 0;}

@@ -14,7 +14,7 @@
 	</video>
 
 
-<div class="titre_et_vues">
+<div class="titre_et_vues" id="titre_et_vues_id">
 	<p class="titre_et_vues_titre">{{ video.titre }}</p>
 	<p class="titre_et_vues_date">{{ video.date|date:"d/m/Y" }}</p>
 	<div class="titre_et_vues_vues_et_jaime">
@@ -49,65 +49,72 @@
 			{% endif %}
 
 			</div>
-
 	</div>
+
 	<hr/>
-	<p class="titre_et_vues_duree">Durée : {{ video|duration }}</p>
-	<p class="titre_et_vues_auteurs">	Auteurs : {{ video|auteurs }}</p>
-	<p class="titre_et_vues_tags">
+
+  <div class="titre_et_vues_haut_deuxieme_partie">
+    <div class="titre_et_vues_duree">{{ video|duration }}</div>
+  	<div class="titre_et_vues_auteurs">{{ video|auteurs }}</div>
+  </div>
+
+  <br>
+
+	<div class="titre_et_vues_tags">
 	Tags :
 	{% for r in video.relation_tag_set.all %}
 		<a class="tag" href="{% url 'tag' r.tag.id 1 %}">{{ r.tag.titre }}</a>
 	{% endfor %}
-	</p>
+  </div>
 
 </div>
 
-{% if request.user.is_authenticated %}
-<br/>
-{% if favorite %}
-    <a href="{% url 'remove_favorite' video.id %}">Je n'aime plus</a>
-{% else %}
-    <a href="{% url 'add_favorite' video.id %}">J'aime</a>
-{% endif %}
-{% endif %}
+<div class="description_video">
+  {{ video.description }}
+</div>
 
-  <br/>
-  Durée : {{ video|duration }}
-  <br/>
-  Auteurs : {{ video|auteurs }}
-  <br/>
-  Tags :
-  {% for r in video.relation_tag_set.all %}
-    <a class="tag" href="{% url 'tag' r.tag.id 1 %}">{{ r.tag.titre }}</a>
+
+
+<div class="commentaires_video" id="commentaires_video_id">
+  <div class="commentaires_video_titre">
+    Commentaires
+
+  </div>
+
+
+  {% for r in video.relation_comment_set.all %}
+        <hr/>
+      <div class="commentaires_nom">
+        {{ r.author.username }}
+      </div>
+
+      <div class="commentaires_commentaires">
+        {{ r.comment }}
+      </div>
+
+
+
   {% endfor %}
-    <br/>
-    <p>{{ video.description }}</p>
-    <br/>
-    J'aime : {{ nb_jaimes }} <br/>
-    Vues : {{ video.views }}
 
-  <br/>
-{% for r in video.relation_comment_set.all %}
-    <br/>
-    <strong>{{ r.author.username }}</strong> :
-    {{ r.comment }}
-{% endfor %}
-
-
-{% if request.user.is_authenticated %}
-
-<br/>
-<br/>
-
-<form action="{% url 'comment_video' video.id %}" method="post">
-{% csrf_token %}
-<input type="text" name="comment" id="comment" />
-<input type="submit" value="Poster" />
-</form>
-
-{% endif %}
 </div>
+
+
+<div class="commentaires_video_faire">
+  {% if request.user.is_authenticated %}
+
+  <form action="{% url 'comment_video' video.id %}" method="post">
+  {% csrf_token %}
+  <!-- <input type="text" rows=2 name="comment" id="comment" /> -->
+  <textarea name="comment" rows="3" cols="2000" id="comment"></textarea>
+  <input type="submit" value="Poster" id='bouton_comment'/>
+  </form>
+
+  {% endif %}
+</div>
+
+</div>
+
+
 <div style="vertical-align:top;padding-left:50px;display:table-cell">
 
 <h2>Suggestions</h2>
