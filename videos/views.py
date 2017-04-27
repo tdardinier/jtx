@@ -89,7 +89,7 @@ def index(request):
     context = {
         'request': request,
         'projs': projs.all()[:n_index],
-        'videos': videos.all()[:n_index],
+        'videos': videos.all().order_by('?')[:n_index],
         'categories': categories.all(),
     }
     return render(request, 'index.html', context)
