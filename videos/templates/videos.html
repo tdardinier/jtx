@@ -4,8 +4,9 @@
 {% if elements %}
 
 {% load app_filters %}
-
+<div class="liste_videos">
 	{% for v in elements %}
+
 				<a href="{% url 'video' v.id %}">
         <figure style="display:table-cell">
 
@@ -24,7 +25,8 @@
 						</figcaption>
         </figure>
 				</a>
-	{% endfor %}
 
+	{% endfor %}
+	</div>
 {% endif %}
 {% endblock %}

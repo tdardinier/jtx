@@ -4,15 +4,18 @@
 {% if elements %}
 
 {% load app_filters %}
-
+<div class="liste_proj">
 	{% for p in elements %}
-    <a href="{% url 'proj' p.id %}", class="proj">
+
+		<a href="{% url 'proj' p.id %}", class="proj">
         <figure style="display:table-cell">
             <img class="proj_image" src="{{p.image}}"/>
             <figcaption class="legende_proj">{{p.titre|short}}</figcaption>
         </figure>
     </a>
-	{% endfor %}
 
+
+	{% endfor %}
+</div>
 {% endif %}
 {% endblock %}
