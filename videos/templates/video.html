@@ -6,13 +6,62 @@
 {% load app_filters %}
 <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:table-row">
+
 <div style="margin-top:0;display:table-cell;vertical-align:top">
-	<h1>{{ video.titre }}</h1>
-    <h2>{{ video.date|date:"d/m/Y" }}</h2>
-    <video id="video" width="1008px" height="567px" controls autoplay>
+    <video id="video" width="896px" height="504px" controls autoplay>
         <source src="{{video.url}}">
 		Your browser does not support the video tag.
 	</video>
+
+
+<div class="titre_et_vues">
+	<p class="titre_et_vues_titre">{{ video.titre }}</p>
+	<p class="titre_et_vues_date">{{ video.date|date:"d/m/Y" }}</p>
+	<div class="titre_et_vues_vues_et_jaime">
+
+		<div class="titre_et_vues_vues_et_jaime_vues">
+		 {{ video.views }} vues
+	 	</div>
+
+		<div class="titre_et_vues_vues_et_jaime_vues_jaime">
+
+
+		<div class="titre_et_vues_vues_et_jaime_nb_jaime">
+			 {{ nb_jaimes }} j'aime
+	 	</div>
+
+
+			{% if request.user.is_authenticated %}
+			{% if favorite %}
+			    <a href="{% url 'remove_favorite' video.id %}">
+						<div class="titre_et_vues_vues_et_jaime_bouton_jaime" style="background-color: red;">
+						Je n'aime plus
+						</div>
+					</a>
+			{% else %}
+
+			    <a href="{% url 'add_favorite' video.id %}" >
+						<div class="titre_et_vues_vues_et_jaime_bouton_jaime" style="background-color: #50b649;">
+							J'aime
+						</div>
+					</a>
+			{% endif %}
+			{% endif %}
+
+			</div>
+
+	</div>
+	<hr/>
+	<p class="titre_et_vues_duree">Durée : {{ video|duration }}</p>
+	<p class="titre_et_vues_auteurs">	Auteurs : {{ video|auteurs }}</p>
+	<p class="titre_et_vues_tags">
+	Tags :
+	{% for r in video.relation_tag_set.all %}
+		<a class="tag" href="{% url 'tag' r.tag.id 1 %}">{{ r.tag.titre }}</a>
+	{% endfor %}
+	</p>
+
+</div>
 
 {% if request.user.is_authenticated %}
 <br/>
