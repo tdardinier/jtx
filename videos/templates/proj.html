@@ -7,8 +7,7 @@
 <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:table-row">
 <div style="margin-top:0;display:table-cell;vertical-align:top">
-  <!--> <div style="margin-top:0;display:table-cell;vertical-align:top"></-->
-
+<!--> <div style="margin-top:0;display:table-cell;vertical-align:top"></-->
 
 <video id="video" width="720px" height="405px" controls></video>
 
@@ -27,7 +26,6 @@ playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}']
 function launch(id) {
 	current = id;
 	video.pause();
-	titre.innerHTML = playlist[id][0];
 	source.setAttribute('src', playlist[id][1]);
 	video.load();
 	video.play();
