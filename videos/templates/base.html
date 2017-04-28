@@ -30,9 +30,10 @@
           <a class="lateral_bar_button_a" href="{% url 'video' f.video.id %}">
             <div class="lateral_bar_button">
             {{ f.video.titre }}
+            <a href="{% url 'remove_favorite' video_id=f.video.id home=1 %}" class="lateral_bar_supprimer"> X </a>
             </div>
           </a>
-          <a href="{% url 'remove_favorite' video_id=f.video.id home=1 %}">X</a>
+
 
           {% endfor %}
 
@@ -42,9 +43,10 @@
           <a class="lateral_bar_button_a" href="{% url 'proj' f.proj.id %}">
               <div class="lateral_bar_button">
                   {{ f.proj.titre }}
+                  <a href="{% url 'remove_favorite_proj' proj_id=f.proj.id home=1 %}" class="lateral_bar_supprimer">X</a>
               </div>
           </a>
-          <a href="{% url 'remove_favorite_proj' proj_id=f.proj.id home=1 %}">X</a>
+
 
           {% endfor %}
 

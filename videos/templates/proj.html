@@ -63,15 +63,15 @@ launch(1);
 
 			{% if request.user.is_authenticated %}
 			{% if favorite %}
-			    <a href="{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}">
-						<div class="titre_et_vues_vues_et_jaime_bouton_jaime" style="background-color: red;">
+			    <a href="{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}" class="lien_jaime_rouge">
+						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge" >
 						Je n'aime plus
 						</div>
 					</a>
 			{% else %}
 
-			    <a href="{% url 'add_favorite_proj' proj.id %}" >
-						<div class="titre_et_vues_vues_et_jaime_bouton_jaime" style="background-color: #50b649;">
+			    <a href="{% url 'add_favorite_proj' proj.id %}" class="lien_jaime_vert">
+						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
 							J'aime
 						</div>
 					</a>
@@ -88,12 +88,13 @@ launch(1);
 <div class="description_video">
   <label for="toggle-1">Afficher les vidéos</label>
   <input type="checkbox" id="toggle-1">
+
   <div class="description_video_proj">
     <ol>
       {% for r in proj.relation_proj_set.all %}
       <li>
-  			<a href="{% url 'video' r.video.id %}">{{ r.video.titre }}</a>
-  			<a onclick="launch({{forloop.counter}})" href="#">(Voir)</a>
+  			<a href="{% url 'video' r.video.id %}" class="proj_video_titre">{{ r.video.titre }}</a>
+  			<a onclick="launch({{forloop.counter}})" href="#" class="proj_video_voir">Voir ici</a>
   		</li>
       {% endfor %}
     </ol>
