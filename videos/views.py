@@ -212,12 +212,15 @@ def tag(request, tag_id, page=1):
     }
     return pagination(request, 'videos.html', context, videos, page, 'tag', lambda x: x.video)
 
-def remove_favorite(request, video_id):
+def remove_favorite(request, video_id, home=False):
     if request.user.is_authenticated:
         video = get_object_or_404(Video, pk=video_id)
         user = request.user
         c = Favorite.objects.filter(user = user, video = video).delete()
-    return HttpResponseRedirect(reverse('video', args=(video.id,)))
+    if home:
+        return HttpResponseRedirect(reverse('index'))
+    else:
+        return HttpResponseRedirect(reverse('video', args=(video.id,)))
 
 def add_favorite(request, video_id):
     if request.user.is_authenticated:
@@ -226,6 +229,27 @@ def add_favorite(request, video_id):
         c = Favorite(user = user, video = video)
         c.save()
     return HttpResponseRedirect(reverse('video', args=(video.id,)))
+
+
+
+def remove_favorite_proj(request, proj_id, home=False):
+    if request.user.is_authenticated:
+        proj = get_object_or_404(Proj, pk=proj_id)
+        user = request.user
+        c = Favorite_proj.objects.filter(user = user, proj = proj).delete()
+    if home:
+        return HttpResponseRedirect(reverse('index'))
+    else:
+        return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
+
+def add_favorite_proj(request, proj_id):
+    if request.user.is_authenticated:
+        proj = get_object_or_404(Proj, pk=proj_id)
+        user = request.user
+        c = Favorite_proj(user = user, proj = proj)
+        c.save()
+    return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
+
 
 def comment_video(request, video_id):
     if request.user.is_authenticated:
