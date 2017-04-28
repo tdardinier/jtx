@@ -7,11 +7,10 @@
 <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:table-row">
 <div style="margin-top:0;display:table-cell;vertical-align:top">
-  <h1>{{ proj.titre }}</h1>
-  <h4>{{ proj.date|date:"d/m/Y"  }}</h4>
-	<h2 id="titre_video"></h2>
+  <!--> <div style="margin-top:0;display:table-cell;vertical-align:top"></-->
 
-	<video id="video" width="1008px" height="567px" controls></video>
+
+<video id="video" width="720px" height="405px" controls></video>
 
 <script type="text/javascript">
 var video = document.getElementById('video');
@@ -81,41 +80,64 @@ launch(1);
 
 			</div>
 	</div>
-    <br/>
+
+
+
+</div>
+
+<div class="description_video">
+  <label for="toggle-1">Afficher les vidéos</label>
+  <input type="checkbox" id="toggle-1">
+  <div class="description_video_proj">
+    <ol>
+      {% for r in proj.relation_proj_set.all %}
+      <li>
+  			<a href="{% url 'video' r.video.id %}">{{ r.video.titre }}</a>
+  			<a onclick="launch({{forloop.counter}})" href="#">(Voir)</a>
+  		</li>
+      {% endfor %}
+    </ol>
+  </div>
 </div>
 
 
-  <ol>
-    {% for r in proj.relation_proj_set.all %}
-    <li>
-			<a href="{% url 'video' r.video.id %}">{{ r.video.titre }}</a>
-			<a onclick="launch({{forloop.counter}})" href="#">(Voir)</a>
-		</li>
-    {% endfor %}
-  </ol>
 
-<br/>
-{% for r in proj.relation_comment_proj_set.all %}
-    <br/>
-    <strong>{{r.author.username }}</strong> :
-    {{ r.comment }}
-{% endfor %}
 
-{% if request.user.is_authenticated %}
+<div class="commentaires_video" id="commentaires_video_id">
+  <div class="commentaires_video_titre">
+    Commentaires
+  </div>
 
-<br/>
-<br/>
-
-<form action="{% url 'comment_proj' proj.id %}" method="post">
-{% csrf_token %}
-<input type="text" name="comment" id="comment" />
-<input type="submit" value="Poster" />
-</form>
-
-{% endif %}
+  {% for r in proj.relation_comment_proj_set.all %}
+      <hr/>
+      <div class="commentaires_nom">
+        {{ r.author.username }}
+      </div>
+      <div class="commentaires_commentaires">
+        {{ r.comment }}
+      </div>
+  {% endfor %}
 </div>
+
+
+
+<div class="commentaires_video_faire">
+  {% if request.user.is_authenticated %}
+  <form action="{% url 'comment_proj' proj.id %}" method="post">
+  {% csrf_token %}
+  <!-- <input type="text" rows=2 name="comment" id="comment" /> -->
+    <textarea name="comment" rows="3" id="comment"></textarea>
+  <input type="submit" value="Poster" id='bouton_comment'/>
+  </form>
+  {% endif %}
+</div>
+
+
+
+</div>
+
+
 <div style="vertical-align:top;padding-left:50px;display:table-cell">
-
 <h2>Suggestions</h2>
 
 {% for p in suggestions %}

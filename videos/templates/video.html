@@ -9,6 +9,7 @@
 <div style="margin-top:0;display:table-row">
 
 <div style="margin-top:0;display:table-cell;vertical-align:top">
+
     <video id="video" width="720px" height="405px" controls autoplay>
         <source src="{{video.url}}">
 		Your browser does not support the video tag.
@@ -52,7 +53,7 @@
 			</div>
 	</div>
 
-	<hr/>
+  <hr>
 
   <div class="titre_et_vues_haut_deuxieme_partie">
     <div class="titre_et_vues_duree">{{ video|duration }}</div>
@@ -79,12 +80,9 @@
 <div class="commentaires_video" id="commentaires_video_id">
   <div class="commentaires_video_titre">
     Commentaires
-
   </div>
-
-
   {% for r in video.relation_comment_set.all %}
-        <hr/>
+      <hr>
       <div class="commentaires_nom">
         {{ r.author.username }}
       </div>
@@ -92,11 +90,7 @@
       <div class="commentaires_commentaires">
         {{ r.comment }}
       </div>
-
-
-
   {% endfor %}
-
 </div>
 
 
@@ -105,13 +99,13 @@
 
   <form action="{% url 'comment_video' video.id %}" method="post">
   {% csrf_token %}
-  <!-- <input type="text" rows=2 name="comment" id="comment" /> -->
-  <textarea name="comment" rows="3" cols="2000" id="comment"></textarea>
+  <textarea name="comment" rows="3" id="comment"></textarea>
   <input type="submit" value="Poster" id='bouton_comment'/>
   </form>
 
   {% endif %}
 </div>
+<!-- -->
 
 </div>
 

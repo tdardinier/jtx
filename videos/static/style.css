@@ -130,7 +130,7 @@ Style de la Lateral Bar
     border-width: 1px;
     border-color:#e8e8e8;
     position: fixed;
-    overflow: hidden;
+    overflow-y:scroll;
     top:71px;
     bottom: 0;
     left:0;
@@ -299,15 +299,19 @@ Concerne l'affichage des légendes des projs
 Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 -------------------------------------------------------------------------------
 */
+
 .titre_et_vues{
   background-color: #ffffff;
-  padding-left:10px;
   box-shadow: 0px 0px 3px -1px;
+  padding-left:10px;
+  padding-right:10px;
+  padding-bottom: 1px;
 }
 
 .titre_et_vues_titre{
   padding-top:6px;
   font-size: 28px;
+  max-width:85%;
 }
 
 .titre_et_vues_date{
@@ -320,20 +324,16 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   height: 1px;
   border: 0;
   border-top: 1px solid #E2E2E2;
-
   margin-left: -2px;
   padding: 0;
-  width: 720px;
 }
 
 .titre_et_vues_vues_et_jaime{
   float: right;
   margin-top: -60px;
-  margin-right: 10px;
 }
 
 .titre_et_vues_vues_et_jaime_vues{
-
   color: #666666;
   font-size: 20px;
   text-align: right;
@@ -390,6 +390,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 .commentaires_video{
+
   max-height: 500px;
   overflow-y: scroll;
   margin-top: 20px;
@@ -422,24 +423,29 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   margin-top: 20px;
   padding-right: 10px;
   padding-top: 10px;
-  padding-bottom: 10px;
+
   background-color: #ffffff;
   padding-left:10px;
   box-shadow: 0px 0px 3px -1px;
-  height: 50px;
+  margin-bottom: 50px;
 }
+
 
 textarea{
-  width: 650px;
-  height: auto;
-}
+width: 90%;
+max-width: 90%;
+min-width: 90%;
+height: 100%;
+max-height:  100%;
+min-height:  100%;
+margin-bottom: 5px;
+}/*
 
 #comment{
-
   padding: 0px;
   float: left;
   margin-bottom: 100px;
-}
+}*/
 
 #bouton_comment{
   float: right;
@@ -450,7 +456,6 @@ textarea{
   height: 1px;
   border: 0;
   border-top: 1px solid #E2E2E2;
-
   margin-left: -2px;
   padding: 0;}
 
@@ -459,3 +464,53 @@ textarea{
 Fin du design de l'interface de lecture vidéo
 ----------------------------------------------
 */
+
+/*
+-------------------------------------------
+Design de l'interface de lecture d'une proj
+-------------------------------------------
+*/
+
+.description_video{
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+/* Checkbox Hack */
+/*On cache le petit bouton*/
+input[type=checkbox] {
+   position: absolute;
+   top: -9999px;
+   left: -9999px;
+}
+
+.description_video label {
+/*  -webkit-appearance: square-button;
+  -moz-appearance: button;
+  display: inline-block;*/
+  background-color: white;
+  color: #444444;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.description_video label:hover {
+/*  -webkit-appearance: square-button;
+  -moz-appearance: button;
+  display: inline-block;*/
+  background-color: #444444;
+  color:white ;
+}
+/* Default State */
+.description_video_proj{
+  -webkit-transition: height 0.3s; /* Safari */
+  transition: height 0.3s;
+  transition-timing-function: ease-out;
+  overflow: hidden;
+}
+
+
+/* Toggled State */
+input[type=checkbox]:checked ~ .description_video_proj{
+   height: 0px;
+}
