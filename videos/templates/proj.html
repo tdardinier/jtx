@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block body %}
+
 {% if proj %}
+
 <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:table-row">
 <div style="margin-top:0;display:table-cell;vertical-align:top">
@@ -40,9 +42,48 @@ function next(e) {
 	}
 }
 
-
 launch(1);
 </script>
+
+<div class="titre_et_vues" id="titre_et_vues_id">
+	<p class="titre_et_vues_titre">{{ proj.titre }}</p>
+	<p class="titre_et_vues_date">{{ proj.date|date:"d/m/Y" }}</p>
+	<div class="titre_et_vues_vues_et_jaime">
+
+		<div class="titre_et_vues_vues_et_jaime_vues">
+		 {{ proj.views }} vues
+	 	</div>
+
+		<div class="titre_et_vues_vues_et_jaime_vues_jaime">
+
+
+		<div class="titre_et_vues_vues_et_jaime_nb_jaime">
+			 {{ nb_jaimes }} j'aime
+	 	</div>
+
+
+			{% if request.user.is_authenticated %}
+			{% if favorite %}
+			    <a href="{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}">
+						<div class="titre_et_vues_vues_et_jaime_bouton_jaime" style="background-color: red;">
+						Je n'aime plus
+						</div>
+					</a>
+			{% else %}
+
+			    <a href="{% url 'add_favorite_proj' proj.id %}" >
+						<div class="titre_et_vues_vues_et_jaime_bouton_jaime" style="background-color: #50b649;">
+							J'aime
+						</div>
+					</a>
+			{% endif %}
+			{% endif %}
+
+			</div>
+	</div>
+    <br/>
+</div>
+
 
   <ol>
     {% for r in proj.relation_proj_set.all %}
@@ -53,7 +94,6 @@ launch(1);
     {% endfor %}
   </ol>
 
-Vues : {{ proj.views }}
 <br/>
 {% for r in proj.relation_comment_proj_set.all %}
     <br/>

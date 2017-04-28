@@ -4,6 +4,7 @@
 
 {% if video %}
 {% load app_filters %}
+
 <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:table-row">
 
@@ -33,7 +34,7 @@
 
 			{% if request.user.is_authenticated %}
 			{% if favorite %}
-			    <a href="{% url 'remove_favorite' video.id %}">
+			    <a href="{% url 'remove_favorite' video_id=video.id home=0 %}">
 						<div class="titre_et_vues_vues_et_jaime_bouton_jaime" style="background-color: red;">
 						Je n'aime plus
 						</div>

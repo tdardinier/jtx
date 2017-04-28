@@ -32,6 +32,7 @@
             {{ f.video.titre }}
             </div>
           </a>
+          <a href="{% url 'remove_favorite' video_id=f.video.id home=1 %}">X</a>
 
           {% endfor %}
 
@@ -43,6 +44,7 @@
                   {{ f.proj.titre }}
               </div>
           </a>
+          <a href="{% url 'remove_favorite_proj' proj_id=f.proj.id home=1 %}">X</a>
 
           {% endfor %}
 
