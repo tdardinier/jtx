@@ -247,17 +247,11 @@ Style des listes de vidéos et de projs
   text-decoration: none;
 }
 
-.liste_proj a :hover{
-  opacity: 0.7;
-}
-
 .liste_videos a {
   text-decoration: none;
 }
 
-.liste_videos a :hover{
-  opacity: 0.7;
-}
+
 
 /* Concerne l'affichage des images de template des projs que l'on impose à la taille 16/9 */
 .proj_image{
@@ -610,4 +604,49 @@ padding-top: 5px;
 .proj_video_titre:hover{
   background-color: #444444;
   color:white;
+}
+
+.container{
+  background-color: white;
+  box-shadow: 0px 0px 3px -1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+
+.container h1{
+  padding-top: 5px;
+  font-size:18px;
+  font-weight:bolder;
+}
+
+.container ul{
+  list-style-type: none;
+  display: table;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.container li{
+  display: inline-block;
+}
+
+
+.container li a {
+    display: inline-block;
+    color: #444444;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.container li a:hover {
+    background-color: #444444;
+    color:white;
+    text-decoration: none;
+}
+
+.container figure{
+  display:table-cell;
+  
 }

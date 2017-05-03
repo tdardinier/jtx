@@ -5,36 +5,55 @@
 {% load app_filters %}
 
 {% if categories %}
-<h1>Catégories</h1>
-	<ul>
-	{% for c in categories %}
-    <li><a href="{% url 'category' c.id 1 %}">{{ c.titre|short }}</a></li>
-	{% endfor %}
-	</ul>
+	<div class="container">
+		<h1>Catégories</h1>
+			<ul>
+			{% for c in categories %}
+		    <li><a href="{% url 'category' c.id 1 %}">{{ c.titre|short }}</a></li>
+			{% endfor %}
+			</ul>
+	</div>
 {% endif %}
 
 {% if projs %}
-<h1>Projs</h1>
-	{% for p in projs %}
-    <a href="{% url 'proj' p.id %}">
-        <figure style="display:table-cell">
-            <img class="proj_image" src="{{p.image}}"/>
-            <figcaption>{{p.titre|short}}</figcaption>
-        </figure>
-    </a>
-	{% endfor %}
+<div class="container">
+	<h1>Projs</h1>
+		{% for p in projs %}
+	    <a href="{% url 'proj' p.id %}">
+	        <figure>
+	            <img class="proj_image" src="{{p.image}}"/>
+	            <figcaption>{{p.titre|short}}</figcaption>
+	        </figure>
+	    </a>
+		{% endfor %}
+	</div>
 {% endif %}
 
 {% if videos %}
-<h1>Vidéos</h1>
-	{% for v in videos %}
-    <a href="{% url 'video' v.id %}">
-        <figure style="display:table-cell">
-            <img class="img_vid" src="{{v.url}}.png"/>
-            <figcaption class="legende_vid">{{v.titre|short}}</figcaption>
-        </figure>
-    </a>
-	{% endfor %}
+<div class="container">
+	<h1>Vidéos</h1>
+	<div class="liste_videos">
+		{% for v in videos %}
+		<a href="{% url 'video' v.id %}">
+		<figure style="display:table-cell">
+
+				<img class="img_vid" src="{{v.url}}.png"/>
+
+				<figcaption class="legende_vid_duree">
+						{{v|duration}}
+				</figcaption>
+
+				<figcaption class="legende_vid_titre">
+						{{v.titre|short}}
+				</figcaption>
+
+				<figcaption class="legende_vid_auteur">
+						{{v|auteurs}}
+				</figcaption>
+		</figure>
+		</a>
+		{% endfor %}
+</div>
 {% endif %}
 
 {% endblock %}
