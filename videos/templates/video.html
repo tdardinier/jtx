@@ -8,7 +8,7 @@
 <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:table-row">
 
-<div style="margin-top:0;display:table-cell;vertical-align:top">
+<div style="margin-top:0;display:table-cell;vertical-align:top;">
 
     <video id="video" width="720px" height="405px" controls autoplay>
         <source src="{{video.url}}">
@@ -110,21 +110,43 @@
 </div>
 
 
-<div style="vertical-align:top;padding-left:50px;display:table-cell">
+<div class="suggestion">
+  <div class="container_suggestion">
 
-<h2>Suggestions</h2>
+    <h1>Suggestions</h1>
 
-{% for v in suggestions %}
-<a href="{% url 'video' v.id %}">
-	<figure style="display:table-cell">
-		<img class="img_vid" src="{{v.url}}.png"/>
-		<figcaption>{{v.titre}}</figcaption>
-	</figure>
-</a>
-<br/><br/>
-{% endfor %}
+        <div class="liste_videos">
+            {% for v in suggestions %}
+                <div class="bloc_video">
+                  <a href="{% url 'video' v.id %}">
+                  <figure>
+                      <img class="img_vid" src="{{v.url}}.png"/>
+                      <figcaption class="legende_vid_duree">
+                          {{v|duration}}
+                      </figcaption>
+                  </figure>
+                  </a>
 
-</div>
+                  <a href="{% url 'video' v.id %}">
+                      <div class="legende_vid_titre">
+                          {{v.titre|short}}
+                      </div>
+                  </a>
+
+                  <div class="legende_vid_auteur">
+                        <a href="#">
+                          {{v|auteurs}}
+                        </a>
+                        -
+                        {{v.views}}
+                         vues.
+                  </div>
+                </div>
+              {% endfor %}
+        </div>
+
+      </div>
+    </div>
 </div>
 </div>
 

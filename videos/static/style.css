@@ -724,3 +724,31 @@ padding-top: 5px;
 .choisir_page a:hover{
   text-decoration: underline;
 }
+
+.suggestion{
+  padding-left: 30px;
+  vertical-align:top;
+  display:table-cell;
+  padding-top: 0px;
+  margin-bottom: 50px;
+}
+
+.container_suggestion{
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 1px;
+  margin-top: 0px;
+  background-color: white;
+  box-shadow: 0px 0px 3px -1px;
+
+}
+
+.container_suggestion h1{
+  font-size:18px;
+  font-weight:bolder;
+}
+
+.container_suggestion figure{
+  display:table-cell;
+  width: 200px;
+}

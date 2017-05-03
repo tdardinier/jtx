@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block body %}
-
+{% load app_filters %}
 {% if categories %}
-<h1>Catégories</h1>
-	<ul>
-	{% for c in categories %}
-    <li><a href="{% url 'category' c.id 1 %}">{{ c.titre }}</a></li>
-	{% endfor %}
-	</ul>
-
+<div class="container">
+	<h1>Catégories</h1>
+		<ul>
+		{% for c in categories %}
+			<li><a href="{% url 'category' c.id 1 %}">{{ c.titre|short }}</a></li>
+		{% endfor %}
+		</ul>
+</div>
 {% else %}
     <p>Errors.</p>
 {% endif %}
