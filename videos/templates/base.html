@@ -12,6 +12,28 @@
 
 
 <div id="central">
+
+  <div id="navigation_bar">
+    <div class="navigation_bar_titre">
+      <h1> JTX </h1>
+    </div>
+    <div class="navigation_bar_menu">
+      <ul>
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'categories' %}">Catégories</a></li>
+          <li><a href="{% url 'projs' 1 %}">Projections</a></li>
+          <li><a href="{% url 'videos' 1 %}">Vidéos</a></li>
+          {% if request.user.is_authenticated %}
+              <li><a href="{% url 'favorites' 1 %}">Favoris</a></li>
+          {% endif %}
+          <li><a href="{% url 'tags' %}">Tags</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <label  class="menu_button" for="toggle-2"><img class="menu_button_img" src="http://www.freeiconspng.com/uploads/menu-icon-28.png" alt="Menu" ></label>
+  <input  class ="menu_button" type="checkbox" id="toggle-2">
+
   <div id="lateral_bar">
 
       {% if request.user.is_authenticated %}
@@ -60,24 +82,16 @@
       {% endif %}
   </div>
 
-	<div id="navigation_bar">
-    <div class="navigation_bar_titre">
-      <h1> JTX </h1>
-    </div>
-    <div class="navigation_bar_menu">
-      <ul>
-          <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="{% url 'categories' %}">Catégories</a></li>
-          <li><a href="{% url 'projs' 1 %}">Projections</a></li>
-          <li><a href="{% url 'videos' 1 %}">Vidéos</a></li>
-          {% if request.user.is_authenticated %}
-              <li><a href="{% url 'favorites' 1 %}">Favoris</a></li>
-          {% endif %}
-          <li><a href="{% url 'tags' %}">Tags</a></li>
-      </ul>
-    </div>
 
-	</div>
+
+
+
+
+
+
+
+
+
 
 	<div id="body">
 
