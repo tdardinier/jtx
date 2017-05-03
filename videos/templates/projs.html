@@ -4,18 +4,40 @@
 {% if elements %}
 
 {% load app_filters %}
-<div class="liste_proj">
+<div class="container">
+	<h1>Toutes les proj'</h1>
+	<div class="liste_videos">
 	{% for p in elements %}
+	<div class="bloc_video">
 
-		<a href="{% url 'proj' p.id %}", class="proj">
-        <figure style="display:table-cell">
-            <img class="proj_image" src="{{p.image}}"/>
-            <figcaption class="legende_proj">{{p.titre|short}}</figcaption>
-        </figure>
-    </a>
+		<a href="{% url 'proj' p.id %}">
+				<figure>
+						<img class="proj_image" src="{{p.image}}"/>
+						<figcaption class="legende_vid_duree">
+								1:03:25
+						</figcaption>
+				</figure>
+		</a>
 
+		<a href="{% url 'proj' p.id %}">
+				<div class="legende_vid_titre">
+						{{p.titre|short}}
+				</div>
+		</a>
 
+		<div class="legende_vid_auteur">
+					<a href="#">
+						JTX2015
+					</a>
+					-
+					56
+					 vues.
+		</div>
+
+	</div>
 	{% endfor %}
 </div>
+	</div>
+
 {% endif %}
 {% endblock %}

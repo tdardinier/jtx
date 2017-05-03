@@ -39,7 +39,6 @@ Style de la bar de navigation
 -----------------------------
 */
 #navigation_bar{
-    opacity: 1;
     z-index: 99999;
 }
 
@@ -258,6 +257,10 @@ Style des listes de vidéos et de projs
 .proj_image{
   max-width:200px;
   max-height: 113px;
+  margin-left: auto;
+  margin-right: auto;
+  display: table-cell;
+  margin-bottom: 4px;
 }
 
 /* Concerne l'affichage des images de template des vidéos que l'on impose à la taille 16/9 */
@@ -605,6 +608,23 @@ padding-top: 5px;
   color:white;
 }
 
+@media screen and (max-width: 1000px)  {
+    .container {
+        width: 630px;
+    }
+}
+
+@media screen and (max-width: 1200px)  and (min-width: 1000px) {
+    .container {
+        width: 840px;
+    }
+}
+@media screen and (min-width: 1200px)  {
+    .container {
+          width: 1050px;
+    }
+}
+
 .container{
   background-color: white;
   box-shadow: 0px 0px 3px -1px;
@@ -630,7 +650,6 @@ padding-top: 5px;
   display: inline-block;
 }
 
-
 .container li a {
     display: inline-block;
     color: #444444;
@@ -647,14 +666,9 @@ padding-top: 5px;
 
 .container figure{
   display:table-cell;
+  width: 200px;
 }
 
-.bloc_video{
-  width: 100px;
-}
-.bloc_video a figure:hover{
-  opacity: 0.7;
-}
 
 .legende_vid_titre:hover{
   color :color:#167ac6;
@@ -682,5 +696,31 @@ padding-top: 5px;
 }
 
 .liste_videos{
-  display: table-cell;
+  display: table;
+  margin: 0 auto;
+}
+
+.bloc_video{
+  width: 200px;
+  padding-left: 5px;
+  padding-right: 5px;
+  display: inline-block;
+}
+
+
+/*Numéro de page en dessous des pages*/
+
+.choisir_page{
+  margin: 10px 0px;
+  color:grey;
+  text-align: center;
+}
+
+.choisir_page a{
+  text-decoration: none;
+  color:grey;
+}
+
+.choisir_page a:hover{
+  text-decoration: underline;
 }
