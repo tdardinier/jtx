@@ -34,24 +34,32 @@
 	<h1>Vidéos</h1>
 	<div class="liste_videos">
 		{% for v in videos %}
-		<a href="{% url 'video' v.id %}">
-		<figure style="display:table-cell">
+		<div class="bloc_video">
 
-				<img class="img_vid" src="{{v.url}}.png"/>
+			<a href="{% url 'video' v.id %}">
+			<figure style="display:table-cell">
+					<img class="img_vid" src="{{v.url}}.png"/>
+					<figcaption class="legende_vid_duree">
+							{{v|duration}}
+					</figcaption>
+			</figure>
+			</a>
 
-				<figcaption class="legende_vid_duree">
-						{{v|duration}}
-				</figcaption>
+			<a href="{% url 'video' v.id %}">
+					<div class="legende_vid_titre">
+							{{v.titre|short}}
+					</div>
+			</a>
 
-				<figcaption class="legende_vid_titre">
-						{{v.titre|short}}
-				</figcaption>
-
-				<figcaption class="legende_vid_auteur">
-						{{v|auteurs}}
-				</figcaption>
-		</figure>
-		</a>
+			<div class="legende_vid_auteur">
+						<a href="#">
+							{{v|auteurs}}
+						</a>
+						-
+						{{v.views}}
+						 vues.
+			</div>
+		</div>
 		{% endfor %}
 </div>
 {% endif %}

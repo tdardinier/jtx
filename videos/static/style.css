@@ -39,7 +39,8 @@ Style de la bar de navigation
 -----------------------------
 */
 #navigation_bar{
-
+    opacity: 1;
+    z-index: 99999;
 }
 
 #navigation_bar ul {
@@ -271,10 +272,12 @@ Concerne l'affichage des légendes des vidéos
 ------------------------------------------
  */
 .legende_vid_duree{
-  margin-top: -23px;
-  margin-right: 2px;
+  margin-top: -20px;
+  margin-right: 3px;
   text-align: right;
   color:white;
+  font-size: 13px;
+  text-shadow: 0px 0px 3px black;
 }
 
 .legende_vid_titre{
@@ -283,15 +286,11 @@ Concerne l'affichage des légendes des vidéos
   max-height: 40px;
   overflow: hidden;
   text-decoration: none;
+  font-size: 13px;
+  font-weight: bold;
 }
 
-.legende_vid_auteur{
-  text-decoration: none;
-  color:grey;
-  width: 200px;
-  font-size: 12px;
-  margin-bottom: 15px;
-}
+
 
 
 
@@ -648,5 +647,40 @@ padding-top: 5px;
 
 .container figure{
   display:table-cell;
-  
+}
+
+.bloc_video{
+  width: 100px;
+}
+.bloc_video a figure:hover{
+  opacity: 0.7;
+}
+
+.legende_vid_titre:hover{
+  color :color:#167ac6;
+  text-decoration: underline;
+}
+
+.legende_vid_auteur{
+  text-decoration: none;
+  color:grey;
+  width: 200px;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.legende_vid_auteur a{
+  text-decoration: none;
+  color:grey;
+  width: 200px;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.legende_vid_auteur a:hover{
+  text-decoration: underline;
+}
+
+.liste_videos{
+  display: table-cell;
 }
