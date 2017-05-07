@@ -135,21 +135,46 @@ launch(1);
 
 </div>
 
+<div class="suggestion">
+  <div class="container_suggestion">
 
-<div style="vertical-align:top;padding-left:50px;display:table-cell">
-<h2>Suggestions</h2>
+    <h1>Suggestions</h1>
 
-{% for p in suggestions %}
-<a href="{% url 'proj' p.id %}">
-	<figure style="display:table-cell">
-        <img class="img_vid" src="{{p.image}}"/>
-		<figcaption style="font-size:20px">{{p.titre}}</figcaption>
-	</figure>
-</a>
-<br/><br/>
-{% endfor %}
+        <div class="liste_videos">
+            {% for v in suggestions %}
+                <div class="bloc_video">
+                  <a href="{% url 'video' v.id %}">
+                  <figure>
+                      <img class="proj_image" src="{{v.image}}"/>
+                      <figcaption class="legende_vid_duree">
+                          1:03:56
+                      </figcaption>
+                  </figure>
+                  </a>
 
-</div>
+                  <a href="{% url 'video' v.id %}">
+                      <div class="legende_vid_titre">
+                          {{v.titre}}
+                      </div>
+                  </a>
+
+                  <div class="legende_vid_auteur">
+                        <a href="#">
+                          JTX2015
+                        </a>
+                        -
+                        {{v.views}}
+                         vues.
+                  </div>
+                </div>
+              {% endfor %}
+        </div>
+
+      </div>
+    </div>
+
+
+
 </div>
 </div>
 
