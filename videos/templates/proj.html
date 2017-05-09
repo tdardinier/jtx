@@ -15,7 +15,7 @@
 var video = document.getElementById('video');
 var source = document.createElement('source');
 video.appendChild(source);
-//var titre = document.getElementById('titre_video');
+var titre = document.getElementById('titre_video');
 var current = 0;
 
 var playlist = []
@@ -26,6 +26,7 @@ playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}']
 function launch(id) {
 	current = id;
 	video.pause();
+
 	source.setAttribute('src', playlist[id][1]);
 	video.load();
 	video.play();
@@ -79,6 +80,10 @@ launch(1);
 			</div>
 	</div>
 
+<hr>
+
+	<div class="proj_titre_video">Titre de la vidéo</div>
+	<div class="proj_a_suivre">A venir : <a href="#" class="proj_video_voir">Thierry Lanoo</a> </div>
 
 
 </div>

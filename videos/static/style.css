@@ -775,3 +775,12 @@ padding-top: 5px;
   display:table-cell;
   width: 200px;
 }
+
+.proj_titre_video{
+  float: left;
+}
+
+.proj_a_suivre{
+  padding-bottom: 5px;
+  text-align: right;
+}
