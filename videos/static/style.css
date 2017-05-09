@@ -147,6 +147,9 @@ opacity: 0.6;
   width: 25px;
 }
 
+#lateral_bar::-webkit-scrollbar {
+    display:none;
+}
 
 #lateral_bar{
   display: none;
@@ -159,15 +162,12 @@ opacity: 0.6;
     top:71px;
     bottom: 0;
     left:0;
-    width:250px;
+    width:220px;
 
     background-color: #ffffff;
     margin-top:-22px;
-    text-align:center;
+
     position:fixed;
-    -webkit-transition: margin-left 0.3s; /* Safari */
-    transition: margin-left 0.3s;
-    transition-timing-function: ease-out;
 }
 
 
@@ -182,8 +182,14 @@ opacity: 0.6;
 }
 
 #lateral_bar h3 {
-  color: #444444;
-  font-variant: small-caps;
+  color: #cc181e;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: white;
+  padding-left: 10px;
+  text-align: left;
+  font-size: 12px;
+  margin-bottom:0px;
 }
 
 .lateral_bar_supprimer{
@@ -204,25 +210,28 @@ opacity: 0.6;
   color:white;
 }
 
-/*
-#lateral_bar a {
-    padding-top:5px;
-    padding-bottom:5px;
-    text-decoration: none;
-    color:black;
-}*/
+
+
+
 .lateral_bar_button{
   width: 200px;
   padding-top: 3px;
   padding-bottom: 3px;
+  padding-left: 15px;
+  padding-right: 15px;
   display: table;
   margin: 0 auto;
+}
+
+.lateral_bar_img{
+  margin-top: 2px;
+  max-height:20px;
 }
 
 .lateral_bar_button_a{
   text-decoration: none;
   font-weight: lighter;
-  color: #444444;
+  color: black;
 }
 
 .lateral_bar_button_a:hover, .lateral_bar_button_a:hover .lateral_bar_button{

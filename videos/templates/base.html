@@ -31,6 +31,7 @@
     </div>
   </div>
 
+  <!-- A changer pour mettre un lien absolu! -->
   <label  class="menu_button" for="toggle-2"><img class="menu_button_img" src="http://www.freeiconspng.com/uploads/menu-icon-28.png" alt="Menu" ></label>
   <input  class ="menu_button" type="checkbox" id="toggle-2">
 
@@ -47,12 +48,16 @@
 
           <hr>
 
-          <h3>Vidéos :</h3>
+          <h3>Clips favoris :</h3>
           {% for f in request.user.favorite_set.all %}
           <a class="lateral_bar_button_a" href="{% url 'video' f.video.id %}">
             <div class="lateral_bar_button">
+              <img class="lateral_bar_img" src="{{f.video.url}}.png"/>
             {{ f.video.titre }}
+
+            <!--
             <a href="{% url 'remove_favorite' video_id=f.video.id home=1 %}" class="lateral_bar_supprimer"> X </a>
+            -->
             </div>
           </a>
 
@@ -60,12 +65,15 @@
           {% endfor %}
 
           <hr>
+
           <h3>Projs :</h3>
           {% for f in request.user.favorite_proj_set.all %}
           <a class="lateral_bar_button_a" href="{% url 'proj' f.proj.id %}">
               <div class="lateral_bar_button">
                   {{ f.proj.titre }}
+                  <!--
                   <a href="{% url 'remove_favorite_proj' proj_id=f.proj.id home=1 %}" class="lateral_bar_supprimer">X</a>
+                  -->
               </div>
           </a>
 
