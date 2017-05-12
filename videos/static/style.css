@@ -38,10 +38,11 @@ Style de la bar de navigation
 -----------------------------
 */
 #navigation_bar{
-    z-index: 99999;
+    z-index: 1;
 }
 
 #navigation_bar ul {
+    z-index: 1;
     list-style-type: none;
     float: left;
     margin: 0;
@@ -63,6 +64,7 @@ Style de la bar de navigation
 
 #navigation_bar li {
     float: left;
+    z-index: 1;
 }
 
 #navigation_bar li a {
@@ -71,6 +73,7 @@ Style de la bar de navigation
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    z-index: 1;
 
 }
 
@@ -93,7 +96,7 @@ Style de la Lateral Bar
 
 .navigation_bar_menu{
   float: left;
-
+  z-index: 1;
 }
 
 /* Influence de la barre latérale sur le body
@@ -159,6 +162,7 @@ opacity: 0.6;
     border-color:#e8e8e8;
     position: fixed;
     overflow-y:scroll;
+    overflow-x: hidden;
     top:71px;
     bottom: 0;
     left:0;
@@ -168,6 +172,8 @@ opacity: 0.6;
     margin-top:-22px;
 
     position:fixed;
+
+    z-index: 1;
 }
 
 
@@ -224,11 +230,13 @@ opacity: 0.6;
 }
 
 .lateral_bar_img{
+
   margin-top: 2px;
   max-height:20px;
 }
 
 .lateral_bar_button_a{
+
   text-decoration: none;
   font-weight: lighter;
   color: black;
@@ -473,6 +481,10 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   padding-left:10px;
   box-shadow: 0px 0px 3px -1px;
   margin-bottom: 0px;
+}
+
+.commentaires_video::-webkit-scrollbar {
+    display:none;
 }
 
 .commentaires_video{
