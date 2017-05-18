@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^remove_favorite_proj/(?P<proj_id>[0-9]+)/(?P<home>[0-1])/$', views.remove_favorite_proj, name='remove_favorite_proj'),
     url(r'^comment_video/(?P<video_id>[0-9]+)/$', views.comment_video, name='comment_video'),
     url(r'^comment_proj/(?P<proj_id>[0-9]+)/$', views.comment_proj, name='comment_proj'),
+    url(r'^jtx/(?P<year>[0-9]+)/$', views.jtx, name='jtx'),
 ]

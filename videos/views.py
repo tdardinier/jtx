@@ -94,6 +94,11 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
+def jtx(request, year):
+    context = {
+    }
+    return render(request, 'jtx.html', context)
+
 def categories(request):
     categories = Category.objects.filter(public=True).all()
     if (request.user.is_authenticated):
