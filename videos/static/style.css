@@ -154,6 +154,10 @@ opacity: 0.6;
     display:none;
 }
 
+#lateral_bar::-moz-scrollbar {
+    display:none;
+}
+
 #lateral_bar{
   display: none;
   font-size: 12px;
@@ -653,18 +657,18 @@ padding-top: 5px;
 
 @media screen and (max-width: 1000px)  {
     .container {
-        width: 630px;
+        width: 640px;
     }
 }
 
 @media screen and (max-width: 1200px)  and (min-width: 1000px) {
     .container {
-        width: 840px;
+        width: 855px;
     }
 }
 @media screen and (min-width: 1200px)  {
     .container {
-          width: 1050px;
+          width: 1070px;
     }
 }
 
@@ -804,4 +808,62 @@ padding-top: 5px;
 .proj_a_suivre{
   padding-bottom: 5px;
   text-align: right;
+}
+
+.jtx_titre{
+  text-align: center;
+  font-size: 100px;
+}
+
+.jtx_liste_proj li{
+  width: 200px;
+  text-align: center;
+  height: 200px;
+  background-color: red;
+  border-radius: 3px;
+}
+
+.jtx_liste_evnt{
+  width: 500px;
+  margin: auto;
+}
+
+.jtx_liste_evnt a{
+text-decoration: none;
+color: black;
+}
+
+.jtx_liste_evnt hr{
+display: block;
+height: 1px;
+border: 0;
+border-top: 1px solid #E2E2E2;
+margin-left: -2px;
+}
+
+.jtx_liste_evnt_item div {
+  display: table-cell;
+  padding: 5px;
+}
+
+.jtx_liste_evnt_item:hover {
+  background-color: #E2E2E2;
+  border-radius: 3px;
+}
+
+.jtx_liste_evnt_item_title{
+  width: 200px;
+  font-size: 20px;
+}
+
+.jtx_liste_evnt_item_date{
+  width: 200px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.jtx_liste_evnt_item_vues{
+  width: 100px;
+  text-align: right;
+  vertical-align: middle;
 }

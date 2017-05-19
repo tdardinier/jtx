@@ -1,8 +1,54 @@
 {% extends 'base.html' %}
 {% block body %}
 {% load app_filters %}
+
+<div class="jtx_titre">JTX2015</div>
+
 <div class="container">
-	<h1>JTX 2015</h1>
+	<h1>Projs</h1>
+	<ul class="jtx_liste_proj">
+		<li>Proj de février</li>
+		<li>Proj de juin</li>
+		<li>Proj de novembre</li>
+	</ul>
+
+</div>
+
+<div class="container">
+	<h1>Projs lors d'évènements</h1>
+
+<div class="jtx_liste_evnt">
+
+<a href="#">
+	<div class="jtx_liste_evnt_item">
+		<div class="jtx_liste_evnt_item_title">
+			Raid de l'X
+		</div>
+		<div class="jtx_liste_evnt_item_date">
+			13/05/2017
+		</div>
+		<div class="jtx_liste_evnt_item_vues">
+			Vues : 25
+		</div>
+	</div>
+</a>
+
+<a href="#">
+	<div class="jtx_liste_evnt_item">
+		<div class="jtx_liste_evnt_item_title">
+			WEI
+		</div>
+		<div class="jtx_liste_evnt_item_date">
+			06/05/2017
+		</div>
+		<div class="jtx_liste_evnt_item_vues">
+			Vues : 53
+		</div>
+	</div>
+</a>
+
+</div>
+
 </div>
 
 {% endblock %}
