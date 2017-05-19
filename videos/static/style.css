@@ -811,8 +811,15 @@ padding-top: 5px;
 }
 
 .jtx_titre{
+  margin-top: -30px;
   text-align: center;
   font-size: 100px;
+}
+.jtx_sous_titre{
+  font-style: italic;
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 25px;
 }
 
 .jtx_liste_proj li{
@@ -852,12 +859,12 @@ margin-left: -2px;
 }
 
 .jtx_liste_evnt_item_title{
-  width: 200px;
+  width: 150px;
   font-size: 20px;
 }
 
 .jtx_liste_evnt_item_date{
-  width: 200px;
+  width: 250px;
   vertical-align: middle;
   text-align: center;
 }
