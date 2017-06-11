@@ -494,6 +494,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 .commentaires_video{
 
   max-height: 500px;
+  max-width: 700px;
   overflow-y: scroll;
   margin-top: 20px;
   padding-right: 10px;
@@ -511,13 +512,20 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 .commentaires_nom{
+  color:rgb(18,147,231);
   font-weight: bold;
   font-variant: small-caps;
 
 }
 
+.commentaires_date{
+  font-variant: normal;
+  color:grey;
+  font-size: 9px;
+}
+
 .commentaires_commentaires{
-    font-size: 12px;
+    font-size: 13px;
     width: inherit;
 }
 

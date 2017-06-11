@@ -84,8 +84,15 @@
   {% for r in video.relation_comment_set.all %}
       <hr>
       <div class="commentaires_nom">
+        
         {{ r.author.username }}
+
+        <div class="commentaires_date">
+        le 04/02/2017 à 15h25
+        </div>
       </div>
+
+
 
       <div class="commentaires_commentaires">
         {{ r.comment }}
