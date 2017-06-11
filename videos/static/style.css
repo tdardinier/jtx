@@ -511,7 +511,12 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
 }
 
+.commentaire_nom_date{
+  display: table;
+}
+
 .commentaires_nom{
+  display: table-cell;
   color:rgb(18,147,231);
   font-weight: bold;
   font-variant: small-caps;
@@ -519,9 +524,11 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 .commentaires_date{
+  padding-left: 5px;
+  display: table-cell;
   font-variant: normal;
   color:grey;
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .commentaires_commentaires{
@@ -541,14 +548,14 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 
-textarea{
-width: 90%;
-max-width: 90%;
-min-width: 90%;
-height: 100%;
-max-height:  100%;
-min-height:  100%;
-margin-bottom: 5px;
+#comment{
+  font-size: 13px;
+max-width: 620px;
+min-width: 620px;
+
+max-height:  45px;
+min-height:  45px;
+margin-bottom: 10px;
 }/*
 
 #comment{
@@ -558,7 +565,26 @@ margin-bottom: 5px;
 }*/
 
 #bouton_comment{
-  float: right;
+  margin-top: 10px;
+  margin-right: 9px;
+  color:white;
+  float:right;
+  padding: 8px;
+  text-align: center;
+  box-shadow: 0px 0px 3px -1px;
+  font-size: 12px;
+  border-radius: 6px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: #50b649;
+  background-color: #50b649;
+}
+
+#bouton_comment:hover{
+  background-color: white;
+  border-radius: 6px;
+  color : #50b649;
 }
 
 #commentaires_video_id hr{
