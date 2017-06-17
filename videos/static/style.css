@@ -2,6 +2,9 @@
     font-family: Roboto;
 }
 
+a:-webkit-any-link{
+text-decoration:none !important;
+}
 
 #central {
     position: absolute;
@@ -15,7 +18,7 @@
 #body {
     display: table;
     margin: 0 auto;
-    margin-top:71px;
+    margin-top:37px;
 
 }
 
@@ -468,7 +471,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   display: table-cell;
   margin-top: 5px;
   color:white;
-
+  text-decoration: none;
   padding: 2px;
   padding-top: 3px;
   padding-bottom: 3px;
@@ -484,6 +487,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 .lien_jaime_vert :hover{
+  text-decoration: none;
   background-color: white;
   border-radius: 6px;
   color : #50b649;
@@ -493,7 +497,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   display: table-cell;
   margin-top: 5px;
   color:white;
-
+  text-decoration: none;
   padding: 2px;
   padding-top: 3px;
   padding-bottom: 3px;
@@ -509,6 +513,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 .lien_jaime_rouge :hover{
+  text-decoration:none;
   background-color: white;
   border-radius: 6px;
   color : red;
@@ -549,9 +554,9 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
 .commentaires_video{
 
-  max-height: 500px;
+  /* max-height: 500px;*/
   max-width: 700px;
-  overflow-y: scroll;
+  /*overflow-y: scroll;*/
   margin-top: 10px;
   padding-right: 10px;
   padding-top: 10px;
@@ -595,19 +600,15 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 .commentaires_video_faire{
   margin-top: 10px;
   padding-right: 10px;
-  padding-top: 10px;
-
-  background-color: #ffffff;
   padding-left:10px;
-  box-shadow: 0px 0px 10px -7px;
-
+  margin-bottom: 25px;
 }
 
 
 #comment{
-  font-size: 13px;
-max-width: 620px;
-min-width: 620px;
+font-size: 13px;
+max-width: 100%;
+min-width: 100%;
 
 max-height:  45px;
 min-height:  45px;
@@ -621,11 +622,11 @@ margin-bottom: 10px;
 }*/
 
 #bouton_comment{
-  margin-top: 10px;
-  margin-right: 9px;
+  margin-top: -4px;
+  margin-right: -3px;
   color:white;
   float:right;
-  padding: 8px;
+  padding: 3px;
   text-align: center;
   box-shadow: 0px 0px 2px -1px;
   font-size: 12px;
@@ -641,6 +642,7 @@ margin-bottom: 10px;
   background-color: white;
   border-radius: 6px;
   color : #50b649;
+  cursor: pointer;
 }
 
 #commentaires_video_id hr{
@@ -651,6 +653,96 @@ margin-bottom: 10px;
   margin-left: -2px;
   padding: 0;}
 
+.commentaires_jaime{
+margin-left: 5px;
+display: table;
+background-color: #DDDDDD;
+border-radius: 6px;
+
+}
+
+.petit_titre_et_vues_vues_et_jaime_nb_jaime{
+
+  display: table-cell;
+
+  padding-right: 5px;
+  padding-left: 5px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  text-align: right;
+  /*box-shadow: 0px 0px 2px -1px;*/
+  margin-bottom: 5px;
+
+  font-size: 12px;
+  background-color: #DDDDDD;
+  border-radius: 6px;
+}
+
+.commentaires_jaime:hover  .petit_titre_et_vues_vues_et_jaime_vues_jaime{
+  display: table-cell;
+}
+
+.petit_titre_et_vues_vues_et_jaime_bouton_jaime_vert{
+  display: table-cell;
+
+  color:white;
+  text-decoration: none;
+  padding: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+  box-shadow: 0px 0px 2px -1px;
+  font-size: 12px;
+  border-radius: 6px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: #50b649;
+  background-color: #50b649;
+}
+
+.petit_lien_jaime_vert :hover{
+  text-decoration: none;
+  background-color: white;
+  border-radius: 6px;
+  color : #50b649;
+}
+
+.petit_titre_et_vues_vues_et_jaime_vues_jaime{
+  display: none;
+}
+.petit_titre_et_vues_vues_et_jaime_bouton_jaime_rouge{
+  display: table-cell;
+
+  color:white;
+  text-decoration: none;
+  padding: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  text-align: center;
+  box-shadow: 0px 0px 2px -1px;
+  font-size: 12px;
+  border-radius: 6px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: red;
+  background-color: red;
+}
+
+.petit_lien_jaime_rouge :hover{
+  text-decoration:none;
+  background-color: white;
+  border-radius: 6px;
+  color : red;
+}
+
+.cellule_com_jaime{
+  display: table-cell;
+  text-align: right;
+  padding-top: -10px;
+
+}
 /*
 ----------------------------------------------
 Fin du design de l'interface de lecture vidéo
@@ -863,9 +955,15 @@ padding-top: 5px;
   text-decoration: underline;
 }
 
+.suggestion_titre{
+  font-size: 15px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
 .suggestion{
   width:220px;
-  padding-left: 30px;
+  padding-left: 10px;
   vertical-align:top;
   display:table-cell;
   padding-top: 0px;
@@ -878,7 +976,7 @@ padding-top: 5px;
   padding-top: 1px;
   margin-top: 0px;
   background-color: white;
-  box-shadow: 0px 0px 2px -1px;
+  box-shadow: 0px 0px 10px -7px;
 
 }
 

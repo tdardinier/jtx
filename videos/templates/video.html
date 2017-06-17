@@ -84,23 +84,26 @@
   {{ video.description }}
 </div>
 
-<div class="commentaires_video_faire">
-  {% if request.user.is_authenticated %}
 
-  <form action="{% url 'comment_video' video.id %}" method="post">
-  {% csrf_token %}
-  <textarea name="comment" rows="3" id="comment"></textarea>
-  <input type="submit" value="Poster" id='bouton_comment'/>
-  </form>
-
-  {% endif %}
-</div>
 
 
 <div class="commentaires_video" id="commentaires_video_id">
   <div class="commentaires_video_titre">
     Commentaires
   </div>
+
+  <div class="commentaires_video_faire">
+    {% if request.user.is_authenticated %}
+
+    <form action="{% url 'comment_video' video.id %}" method="post">
+    {% csrf_token %}
+    <textarea name="comment" rows="3" id="comment"></textarea>
+    <input type="submit" value="Poster" id='bouton_comment'/>
+    </form>
+
+    {% endif %}
+  </div>
+
   {% for r in video.relation_comment_set.all %}
       <hr>
       <div class="commentaire_nom_date">
@@ -110,11 +113,41 @@
           <div class="commentaires_date">
           le 04/02/2017 à 15h25
           </div>
+          <div class="cellule_com_jaime">
+
+            <div class="commentaires_jaime">
+
+              <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime">
+                 14
+              </div>
+
+              <div class="petit_titre_et_vues_vues_et_jaime_vues_jaime">
+
+                {% if request.user.is_authenticated %}
+
+                    <a href="" class="petit_lien_jaime_rouge">
+                      <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+                      Je n'aime plus
+                      </div>
+                    </a>
+
+
+                    <!--
+                {% else %}
+
+                    <a href="" class="lien_jaime_vert">
+                      <div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
+                        J'aime
+                      </div>
+                    </a>
+                {% endif %} !-->
+
+
+                </div>
+            </div>
+          </div>
+
       </div>
-
-
-
-
 
       <div class="commentaires_commentaires">
         {{ r.comment }}
@@ -131,7 +164,7 @@
 <div class="suggestion">
   <div class="container_suggestion">
 
-    <h1>Suggestions</h1>
+    <p class="suggestion_titre">À suivre</p>
 
         <div class="liste_videos">
             {% for v in suggestions %}
