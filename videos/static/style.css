@@ -270,14 +270,22 @@ Style des tags
 */
 
 .tag {
-    font-family: 'roboto';
-    font-variant: small-caps;
-    font-size: 20px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 10px;
-    padding-right:10px;
-    background-color: yellow;
+
+    color:black;
+    text-transform:uppercase;
+    font-weight:lighter;
+
+    font-size: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 3px;
+    padding-right:3px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #DDDDDD;
+    color:black;
+    text-decoration: none;
 }
 
 /*
@@ -365,21 +373,53 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
 .titre_et_vues{
   background-color: #ffffff;
-  box-shadow: 0px 0px 3px -1px;
+  box-shadow: 0px 0px 10px -7px;
   padding-left:10px;
   padding-right:10px;
   padding-bottom: 1px;
+  margin-top: 7px;
+}
+
+.bandeau_haut{
+  padding-top: 10px;
+  display: table;
+  width: 100%;
+
+}
+
+.cellule_num_jtx{
+  vertical-align: bottom;
+  width: 60px;
+  display: table-cell;
+}
+
+.numero_jtx{
+
+  background-color: #7FDBFF;
+  color: #ffffff;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+}
+
+.numero_jtx_text{
+  padding-top: 5px;
+  font-size: 32px;
+}
+
+.titre_et_vues_info{
+  font-size: 12px;
 }
 
 .titre_et_vues_titre{
-  padding-top:6px;
-  font-size: 28px;
-  max-width:85%;
+  padding-top: 12px;
+  font-size: 19px;
 }
 
 .titre_et_vues_date{
+  font-weight: bold;
   font-size: 12px;
-  margin-top: -25px;
+
 }
 
 #titre_et_vues_id hr {
@@ -393,33 +433,47 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
 .titre_et_vues_vues_et_jaime{
   float: right;
-  margin-top: -60px;
+  display: table;
+  background-color: #DDDDDD;
+  border-radius: 6px;
+    padding-top: -20px;
 }
 
-.titre_et_vues_vues_et_jaime_vues{
+.nb_vues{
+
   color: #666666;
   font-size: 20px;
   text-align: right;
+  display: table-cell;
+  vertical-align: bottom;
+
 }
 
 .titre_et_vues_vues_et_jaime_nb_jaime{
-  margin-top: 5px;
-  float:left;
-  padding: 2px;
-  padding-right: 15px;
+
+  display: table-cell;
+
+  padding-right: 3px;
+  padding-left: 5px;
   text-align: right;
-  /*box-shadow: 0px 0px 3px -1px;*/
+  /*box-shadow: 0px 0px 2px -1px;*/
   margin-bottom: 5px;
+
   font-size: 12px;
+  background-color: #DDDDDD;
+  border-radius: 6px;
 }
 
 .titre_et_vues_vues_et_jaime_bouton_jaime_vert{
+  display: table-cell;
   margin-top: 5px;
   color:white;
-  float:right;
+
   padding: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   text-align: center;
-  box-shadow: 0px 0px 3px -1px;
+  box-shadow: 0px 0px 2px -1px;
   font-size: 12px;
   border-radius: 6px;
 
@@ -436,12 +490,15 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 .titre_et_vues_vues_et_jaime_bouton_jaime_rouge{
+  display: table-cell;
   margin-top: 5px;
   color:white;
-  float:right;
+
   padding: 2px;
+  padding-top: 3px;
+  padding-bottom: 3px;
   text-align: center;
-  box-shadow: 0px 0px 3px -1px;
+  box-shadow: 0px 0px 2px -1px;
   font-size: 12px;
   border-radius: 6px;
 
@@ -457,33 +514,32 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   color : red;
 }
 
-.titre_et_vues_haut_deuxieme_partie{
-  margin-right: 10px;
-}
 
-.titre_et_vues_duree{
-  float:right;
-}
 
 .titre_et_vues_auteurs{
-  float: left;
+  display: block;
+  font-size: 15px;
+  padding-top: 8px;
 }
 
 .titre_et_vues_tags{
   font-size: 12px;
   color:#666666;
   padding-bottom: 5px;
+  margin-bottom: 10px;
+
+  width: 85%;
 }
 
 .description_video{
   font-size: 12px;
-  margin-top: 20px;
+  margin-top:10px;
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #ffffff;
   padding-left:10px;
-  box-shadow: 0px 0px 3px -1px;
+  box-shadow: 0px 0px 10px -7px;
   margin-bottom: 0px;
 }
 
@@ -496,13 +552,13 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   max-height: 500px;
   max-width: 700px;
   overflow-y: scroll;
-  margin-top: 20px;
+  margin-top: 10px;
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
   background-color: #ffffff;
   padding-left:10px;
-  box-shadow: 0px 0px 3px -1px;
+  box-shadow: 0px 0px 10px -7px;
 }
 
 .commentaires_video_titre{
@@ -537,14 +593,14 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 .commentaires_video_faire{
-  margin-top: 20px;
+  margin-top: 10px;
   padding-right: 10px;
   padding-top: 10px;
 
   background-color: #ffffff;
   padding-left:10px;
-  box-shadow: 0px 0px 3px -1px;
-  margin-bottom: 50px;
+  box-shadow: 0px 0px 10px -7px;
+
 }
 
 
@@ -571,7 +627,7 @@ margin-bottom: 10px;
   float:right;
   padding: 8px;
   text-align: center;
-  box-shadow: 0px 0px 3px -1px;
+  box-shadow: 0px 0px 2px -1px;
   font-size: 12px;
   border-radius: 6px;
 
@@ -662,7 +718,7 @@ padding-top: 5px;
   border-width: 1px;
   border-color: #777777;
   color: #777777;
-  box-shadow: 0px 0px 3px -1px;
+  box-shadow: 0px 0px 2px -1px;
   text-decoration: none;
   padding-left: 2px;
   padding-right: 2px;
@@ -708,10 +764,11 @@ padding-top: 5px;
 
 .container{
   background-color: white;
-  box-shadow: 0px 0px 3px -1px;
+  box-shadow: 0px 0px 2px -1px;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
+  margin-top:0px;
 }
 
 .container h1{
@@ -821,7 +878,7 @@ padding-top: 5px;
   padding-top: 1px;
   margin-top: 0px;
   background-color: white;
-  box-shadow: 0px 0px 3px -1px;
+  box-shadow: 0px 0px 2px -1px;
 
 }
 

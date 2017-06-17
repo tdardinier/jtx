@@ -17,21 +17,36 @@
 
 
 <div class="titre_et_vues" id="titre_et_vues_id">
-	<p class="titre_et_vues_titre">{{ video.titre }}</p>
-	<p class="titre_et_vues_date">{{ video.date|date:"d/m/Y" }}</p>
-	<div class="titre_et_vues_vues_et_jaime">
 
-		<div class="titre_et_vues_vues_et_jaime_vues">
+  <div class="titre_et_vues_titre">{{ video.titre }}</div>
+
+  <div class="bandeau_haut">
+
+    <div class="cellule_num_jtx">
+      <div class="numero_jtx">
+        <div class="numero_jtx_text">
+            15
+        </div>
+      </div>
+    </div>
+
+    <div class="titre_et_vues_auteurs">{{ video|auteurs }}</div>
+    <div class="titre_et_vues_info">Une information pertinente</div>
+
+    <div class="nb_vues">
 		 {{ video.views }} vues
 	 	</div>
 
+  </div>
+
+  <hr>
+
+	<div class="titre_et_vues_vues_et_jaime">
+    <div class="titre_et_vues_vues_et_jaime_nb_jaime">
+       {{ nb_jaimes }}
+    </div>
+
 		<div class="titre_et_vues_vues_et_jaime_vues_jaime">
-
-
-		<div class="titre_et_vues_vues_et_jaime_nb_jaime">
-			 {{ nb_jaimes }} j'aime
-	 	</div>
-
 
 			{% if request.user.is_authenticated %}
 			{% if favorite %}
@@ -45,7 +60,7 @@
 			    <a href="{% url 'add_favorite' video.id %}" class="lien_jaime_vert">
 						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
 							J'aime
-						</div>
+            </div>
 					</a>
 			{% endif %}
 			{% endif %}
@@ -53,14 +68,7 @@
 			</div>
 	</div>
 
-  <hr>
 
-  <div class="titre_et_vues_haut_deuxieme_partie">
-    <div class="titre_et_vues_duree">{{ video|duration }}</div>
-  	<div class="titre_et_vues_auteurs">{{ video|auteurs }}</div>
-  </div>
-
-  <br>
 
 	<div class="titre_et_vues_tags">
 	Tags :
@@ -72,9 +80,21 @@
 </div>
 
 <div class="description_video">
+  <div class="titre_et_vues_date">Ajoutée le {{ video.date|date:"d/m/Y" }}</div>
   {{ video.description }}
 </div>
 
+<div class="commentaires_video_faire">
+  {% if request.user.is_authenticated %}
+
+  <form action="{% url 'comment_video' video.id %}" method="post">
+  {% csrf_token %}
+  <textarea name="comment" rows="3" id="comment"></textarea>
+  <input type="submit" value="Poster" id='bouton_comment'/>
+  </form>
+
+  {% endif %}
+</div>
 
 
 <div class="commentaires_video" id="commentaires_video_id">
@@ -103,17 +123,6 @@
 </div>
 
 
-<div class="commentaires_video_faire">
-  {% if request.user.is_authenticated %}
-
-  <form action="{% url 'comment_video' video.id %}" method="post">
-  {% csrf_token %}
-  <textarea name="comment" rows="3" id="comment"></textarea>
-  <input type="submit" value="Poster" id='bouton_comment'/>
-  </form>
-
-  {% endif %}
-</div>
 <!-- -->
 
 </div>
