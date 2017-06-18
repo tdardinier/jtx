@@ -75,6 +75,20 @@ def real_add_proj(titre_proj, folder, c, promo):
         r.save()
         i += 1
 
+def read_line_proj(line):
+    l = line.split("@@")
+    titre = l[0]
+    folder = l[1] + "/MQ"
+    c = Category.objects.get(titre=l[2])
+    promo = int(l[3])
+    real_add_proj(titre, folder, c, promo)
+
+def auto_proj(l):
+    for x in l:
+        print("Reading " + x + "...")
+        read_line_proj(x)
+        print("Done")
+
 def add_proj(request):
 
     context = {}
@@ -118,7 +132,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 def jtx(request, year):
-    c = Category.objects.get(titre="Proj' JTX")
+    c = Category.objects.get(titre="Proj JTX")
     v = filter(request, Proj.objects.filter(promo=year))
     context = {
         'year': year,
