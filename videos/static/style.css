@@ -414,7 +414,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   padding-top:10px;
   padding-bottom: 10px;
   margin-top: 5px;
-  margin-bottom: -10px;
+  margin-bottom: 10px;
   }
 
 .titre_et_vues{
@@ -462,6 +462,40 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   font-size: 19px;
 }
 
+.proj_vid_suiv{
+  text-decoration: none;
+  color: black;
+  float: right;
+  margin-top: -35px;
+  margin-right: -10px;
+  padding-bottom: 4px;
+  padding-left: 4px;
+  padding-top: 4px;
+  padding-right: 4px;
+  border-bottom-left-radius: 5px;
+  background-color: white;
+  background-color:#dddddd;
+
+  -webkit-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  -moz-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+}
+
+.proj_vid_suiv:hover .proj_vid_suiv_img{
+  width: 13px;
+  height: 13px;
+}
+
+.proj_vid_suiv_img{
+  width: 0px;
+  height: 0px;
+  vertical-align: middle;
+
+  padding-bottom: 4px;
+  -webkit-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  -moz-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+}
 .titre_et_vues_date{
   font-weight: bold;
   font-size: 12px;

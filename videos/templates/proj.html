@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block body %}
 
 {% if proj %}
@@ -48,9 +48,13 @@ launch(1);
 		{{ proj.titre }}
 	</div>
 
-	<div class="titre_et_vues" id="titre_et_vues_id" style="margin-top:50px;">
+	<div class="titre_et_vues" id="titre_et_vues_id">
 
-	  <div class="titre_et_vues_titre">{{ r.video.titre }}</div>
+	  <div class="titre_et_vues_titre"> Titre de la vidéo en cours</div>
+
+		<a href="#" class="proj_vid_suiv">Titre de la vidéo suivante
+			<img src={% static "admin/img/droite.png" %} alt="caca2" class='proj_vid_suiv_img'>
+		</a>
 
 	  <div class="bandeau_haut">
 
