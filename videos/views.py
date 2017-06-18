@@ -48,19 +48,39 @@ def can_add_info(request):
 def id(x):
     return x
 
+def real_add_proj(titre_proj, folder, c, promo):
+
+    base_url = "http://binet-jtx.com/videos"
+    base_folder = "/nfs/serveur/ftp"
+    extensions_acceptees = ['mp4', 'avi']
+
+    p = Proj(titre = titre_proj, category = c, promo = promo)
+    p.save()
+    files = [str(f) for f in listdir(str(base_folder + "/" + folder)) if str(f)[-3:] in extensions_acceptees]
+    files.sort()
+    i = 1
+    for f in files:
+        base = '.'.join(f.split('.')[:-1])
+        filename = str(base_folder + "/" + folder + "/" + f)
+        ld = []
+        if use_duration:
+            ld = FFProbe(filename).video
+        d = 0
+        if len(ld) > 0:
+            dd = ld[0].duration
+            d = int(float(dd if dd != "N/A" else "0"))
+        v = Video(titre = base.replace('_', ' '), url = base_url + "/" + folder + "/" + f, duree=d, category=c)
+        v.save()
+        r = Relation_proj(proj = p, video = v, ordre = i)
+        r.save()
+        i += 1
+
 def add_proj(request):
 
     context = {}
     version = "1.1"
 
-
-    cat = get_object_or_404(Category, pk=category_id)
-
     if can_proj(request):
-
-        base_url = "http://binet-jtx.com/videos"
-        base_folder = "/nfs/serveur/ftp"
-        extensions_acceptees = ['mp4', 'avi']
 
         p = request.POST
         if 'folder' in p and 'titre' in p:
@@ -74,27 +94,10 @@ def add_proj(request):
             folder = folder + "/MQ"
             titre_proj = p['titre']
             c = get_object_or_404(Category, pk=int(p['category']))
-            p = Proj(titre = titre_proj, category = c, promo = int(p['promo']))
-            p.save()
-            files = [str(f) for f in listdir(str(base_folder + "/" + folder)) if str(f)[-3:] in extensions_acceptees]
-            files.sort()
-            i = 1
-            for f in files:
-                base = '.'.join(f.split('.')[:-1])
-                filename = str(base_folder + "/" + folder + "/" + f)
-                ld = []
-                if use_duration:
-                    ld = FFProbe(filename).video
-                d = 0
-                if len(ld) > 0:
-                    dd = ld[0].duration
-                    d = int(float(dd if dd != "N/A" else "0"))
-                v = Video(titre = base.replace('_', ' '), url = base_url + "/" + folder + "/" + f, duree=d)
-                v.save()
-                r = Relation_proj(proj = p, video = v, ordre = i)
-                r.save()
-                i += 1
-                context['message'] = u'Proj "' + titre_proj + u'" ajoutée avec succès !'
+
+            real_add_proj(titre_proj, folder, c, int(p['promo']))
+            context['message'] = u'Proj "' + titre_proj + u'" ajoutée avec succès !'
+
         else:
             context['message'] = "Version " + version
         context['categories'] = Category.objects.all()
