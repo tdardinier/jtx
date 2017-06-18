@@ -31,9 +31,9 @@ def search(request, page=1):
         videos = videos.filter(titre__contains = x)
     context = {
         'titre': u'Résultats de la recherche "' + q + '"',
-        'videos': videos,
+        'elements': videos,
     }
-    return pagination(request, 'videos.html', context, videos, page, 'search')
+    return render(request, 'videos.html', context)
 
 def filter_tag(request, x):
     if not request.user.is_authenticated:
