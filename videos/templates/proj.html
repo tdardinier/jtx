@@ -130,8 +130,8 @@ launch(1);
     <ol>
       {% for r in proj.relation_proj_set.all %}
       <li>
-  			<a href="{% url 'video' r.video.id %}" class="proj_video_titre">{{ r.video.titre }}</a>
-  			<a onclick="launch({{forloop.counter}})" href="#" class="proj_video_voir">Voir ici</a>
+  			<a  onclick="launch({{forloop.counter}})" class="proj_video_titre">{{ r.video.titre }}</a>
+  			<a href="{% url 'video' r.video.id %}" class="proj_video_voir">Voir en solo</a>
   		</li>
       {% endfor %}
     </ol>
@@ -240,7 +240,7 @@ launch(1);
                         </a>
                         -
                         {{v.views}}
-                         vues.
+                         vues
                   </div>
                 </div>
               {% endfor %}

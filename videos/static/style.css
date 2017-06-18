@@ -893,11 +893,20 @@ padding-top: 5px;
   text-decoration: none;
   padding-left: 2px;
   padding-right: 2px;
+  margin-left: -40px;
+  opacity: 0;
+
+  -webkit-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  -moz-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
 }
 
 .proj_video_voir:hover{
   background-color: #777777;
   color:white;
+  opacity: 1;
+  margin-left: 0px;
+
 }
 
 
@@ -909,11 +918,18 @@ padding-top: 5px;
   padding-right: 3px;
   padding:3px;
   color:#444444;
+
 }
 
 .proj_video_titre:hover{
   background-color: #444444;
   color:white;
+  cursor: pointer;
+}
+
+.proj_video_titre:hover + .proj_video_voir{
+  margin-left: 0px;
+  opacity: 1;
 }
 
 @media screen and (max-width: 1000px)  {
