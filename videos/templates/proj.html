@@ -148,7 +148,7 @@ launch(1);
         <div class="liste_videos">
             {% for v in suggestions %}
                 <div class="bloc_video">
-                  <a href="{% url 'video' v.id %}">
+                  <a href="{% url 'proj' v.id %}">
                   <figure>
                       <img class="proj_image" src="{{v.image}}"/>
                       <figcaption class="legende_vid_duree">
