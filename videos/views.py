@@ -14,7 +14,6 @@ use_duration = False
 n_page = 30
 n_index = 5
 n_suggestions = 5
-version = "1.0.18"
 
 if use_duration:
     from ffprobe import FFProbe
@@ -52,6 +51,7 @@ def id(x):
 def add_proj(request):
 
     context = {}
+    version = "1.1"
 
     if can_proj(request):
 
@@ -62,11 +62,13 @@ def add_proj(request):
         p = request.POST
         if 'folder' in p and 'titre' in p:
 
-            #folder = "Evenements/Amphi_presentation_binets/2016/MQ"
-            #folder = "Evenements/Semaine_internationale/Houlgate_2017/MQ"
+            #folder = "Evenements/Semaine_internationale/Houlgate_2017"
             #titre_proj = "Semaine internationale X2016 - Houlgate"
 
             folder = str(p['folder'])
+            if folder[-1] == '/':
+                folder = folder[:-1]
+            folder = folder + "/MQ"
             titre_proj = p['titre']
 
             c = Category.objects.get(pk = 10)
@@ -93,6 +95,7 @@ def add_proj(request):
                 context['message'] = u'Proj "' + titre_proj + u'" ajoutée avec succès !'
         else:
             context['message'] = "Version " + version
+        context['categories'] = Category.objects.all()
     else:
         context['message'] = "Vous ne pouvez pas !"
     return render(request, 'add_proj.html', context)
