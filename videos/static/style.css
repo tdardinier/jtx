@@ -168,7 +168,6 @@ opacity: 0.6;
     border-width: 1px;
     border-color:#e8e8e8;
     position: fixed;
-    overflow-y:scroll;
     overflow-x: hidden;
     top:71px;
     bottom: 0;
@@ -227,21 +226,29 @@ opacity: 0.6;
 
 
 .lateral_bar_button{
-  width: 200px;
+  width: 150px;
   padding-top: 3px;
   padding-bottom: 3px;
-  padding-left: 15px;
+  padding-left:   5px;
   padding-right: 15px;
   display: table;
   margin: 0 auto;
+  border-radius: 1px;
+  display: table;
 }
 
 .lateral_bar_img{
-
+  display: table-cell;
   margin-top: 2px;
   max-height:20px;
 }
 
+.lateral_bar_button_text{
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+
+}
 .lateral_bar_button_a{
 
   text-decoration: none;
@@ -960,6 +967,7 @@ padding-top: 5px;
   margin-top: 7px;
   margin-bottom: 7px;
 }
+
 
 .suggestion{
   width:220px;
