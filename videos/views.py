@@ -10,11 +10,14 @@ from .models import *
 import random
 from os import listdir
 
-#from ffprobe import FFProbe
-
+use_duration = False
 n_page = 30
 n_index = 5
 n_suggestions = 5
+version = "1.0.18"
+
+if use_duration:
+    from ffprobe import FFProbe
 
 def can_proj(request):
     if request.user.is_authenticated:
@@ -60,8 +63,9 @@ def add_proj(request):
             for f in files:
                 base = '.'.join(f.split('.')[:-1])
                 filename = str(base_folder + "/" + folder + "/" + f)
-                #ld = FFProbe(filename).video
-                ld = 0
+                ld = []
+                if use_duration:
+                    ld = FFProbe(filename).video
                 d = 0
                 if len(ld) > 0:
                     dd = ld[0].duration
@@ -73,7 +77,7 @@ def add_proj(request):
                 i += 1
                 context['message'] = u'Proj "' + titre_proj + u'" ajoutée avec succès !'
         else:
-            context['message'] = "Version 1.0.17"
+            context['message'] = "Version " + version
     else:
         context['message'] = "Vous ne pouvez pas !"
     return render(request, 'add_proj.html', context)
