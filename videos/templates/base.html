@@ -14,20 +14,21 @@
 <div id="central">
 
   <div id="navigation_bar">
+    <a href="{% url 'index' %}">
     <div class="navigation_bar_titre">
       <h1> JTX </h1>
     </div>
+    </a>
+
     <div class="navigation_bar_menu">
       <ul>
           <li><a href="{% url 'index' %}">Home</a></li>
-          <li><a href="{% url 'categories' %}">Catégories</a></li>
-          <li><a href="{% url 'projs' 1 %}">Projections</a></li>
-          <li><a href="{% url 'videos' 1 %}">Vidéos</a></li>
-          {% if request.user.is_authenticated %}
-              <li><a href="{% url 'favorites' 1 %}">Favoris</a></li>
-          {% endif %}
-          <li><a href="{% url 'tags' %}">Tags</a></li>
-          <li><a href="{% url 'jtx' 2015 %}">JTX 2015</a></li>
+          <li></li>
+          <li><a >Projections</a></li>
+          <li><a>Vidéos</a></li>
+
+          <li><a >Tags</a></li>
+          <li><a >JTX 2015</a></li>
       </ul>
     </div>
   </div>
@@ -43,31 +44,57 @@
 
           <a class="lateral_bar_button_a" href="{% url 'logout' %}">
             <div class="lateral_bar_button">
+                <img src={% static "admin/img/deconnexion.png" %} alt="caca2" style="width:10px;">
                 Se déconnecter
             </div>
           </a>
 
           <hr>
 
-          <h3>Clips favoris :</h3>
-          {% for f in request.user.favorite_set.all %}
-          <a class="lateral_bar_button_a" href="{% url 'video' f.video.id %}">
-            <div class="lateral_bar_button">
-              <img class="lateral_bar_img" src="{{f.video.url}}.png"/>
-            {{ f.video.titre }}
+          <h3>Menu</h3>
 
-            <!--
-            <a href="{% url 'remove_favorite' video_id=f.video.id home=1 %}" class="lateral_bar_supprimer"> X </a>
-            -->
-            </div>
-          </a>
+          {% if request.user.is_authenticated %}
 
+            <a href="{% url 'favorites' 1 %}" class="lateral_bar_button_a">
+                <div class="lateral_bar_button">
+                  Favoris
+                </div>
+              </a>
+          {% endif %}
 
-          {% endfor %}
+            <a href="{% url 'categories' %}" class="lateral_bar_button_a">
+              <div class="lateral_bar_button">
+                Catégories
+              </div>
+            </a>
+
+            <a href="{% url 'projs' 1 %}" class="lateral_bar_button_a">
+              <div class="lateral_bar_button">
+                Projections
+              </div>
+            </a>
+
+            <a href="{% url 'videos' 1 %}" class="lateral_bar_button_a">
+              <div class="lateral_bar_button">
+                Vidéos
+              </div>
+            </a>
+
+            <a href="{% url 'tags' %}" class="lateral_bar_button_a">
+              <div class="lateral_bar_button">
+                Tags
+              </div>
+            </a>
+
+            <a href="{% url 'jtx' 2015 %}" class="lateral_bar_button_a">
+              <div class="lateral_bar_button">
+                JTX 2015
+              </div>
+            </a>
 
           <hr>
 
-          <h3>Projs :</h3>
+          <h3>Projs épinglées</h3>
           {% for f in request.user.favorite_proj_set.all %}
           <a class="lateral_bar_button_a" href="{% url 'proj' f.proj.id %}">
               <div class="lateral_bar_button">
@@ -80,6 +107,31 @@
 
 
           {% endfor %}
+
+          <hr>
+
+          <h3>Clips épinglés</h3>
+          {% for f in request.user.favorite_set.all %}
+          <a class="lateral_bar_button_a" href="{% url 'video' f.video.id %}">
+            <div class="lateral_bar_button">
+              <img class="lateral_bar_img" src="{{f.video.url}}.png"/>
+              <div class="lateral_bar_button_text">
+                  {{ f.video.titre }}
+              </div>
+
+
+            <!--
+            <a href="{% url 'remove_favorite' video_id=f.video.id home=1 %}" class="lateral_bar_supprimer"> X </a>
+            -->
+            </div>
+          </a>
+
+
+          {% endfor %}
+
+
+
+
 
       {% else %}
         <a class="lateral_bar_button_a" href="{% url 'login' %}?next={% url 'index' %}">
