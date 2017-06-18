@@ -27,7 +27,7 @@ def search(request, page=1):
     q = request.GET.get('q', '')
     l = q.split(" ")
     videos = filter(request, Video.objects)
-    for x in q:
+    for x in l:
         videos = videos.filter(titre__contains = x)
     context = {
         'titre': u'Résultats de la recherche "' + q + '"',
