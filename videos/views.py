@@ -53,6 +53,9 @@ def add_proj(request):
     context = {}
     version = "1.1"
 
+
+    cat = get_object_or_404(Category, pk=category_id)
+
     if can_proj(request):
 
         base_url = "http://binet-jtx.com/videos"
@@ -70,9 +73,8 @@ def add_proj(request):
                 folder = folder[:-1]
             folder = folder + "/MQ"
             titre_proj = p['titre']
-
-            c = Category.objects.get(pk = 10)
-            p = Proj(titre = titre_proj, category = c)
+            c = get_object_or_404(Category, pk=int(p['category']))
+            p = Proj(titre = titre_proj, category = c, promo = int(p['promo']))
             p.save()
             files = [str(f) for f in listdir(str(base_folder + "/" + folder)) if str(f)[-3:] in extensions_acceptees]
             files.sort()
