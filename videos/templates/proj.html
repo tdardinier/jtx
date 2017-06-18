@@ -43,52 +43,82 @@ function next(e) {
 launch(1);
 </script>
 
-<div class="titre_et_vues" id="titre_et_vues_id">
-	<p class="titre_et_vues_titre">{{ proj.titre }}</p>
-	<p class="titre_et_vues_date">{{ proj.date|date:"d/m/Y" }}</p>
-	<div class="titre_et_vues_vues_et_jaime">
 
-		<div class="titre_et_vues_vues_et_jaime_vues">
-		 {{ proj.views }} vues
-	 	</div>
-
-		<div class="titre_et_vues_vues_et_jaime_vues_jaime">
-
-
-		<div class="titre_et_vues_vues_et_jaime_nb_jaime">
-			 {{ nb_jaimes }} j'aime
-	 	</div>
-
-
-			{% if request.user.is_authenticated %}
-			{% if favorite %}
-			    <a href="{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}" class="lien_jaime_rouge">
-						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge" >
-						Je n'aime plus
-						</div>
-					</a>
-			{% else %}
-
-			    <a href="{% url 'add_favorite_proj' proj.id %}" class="lien_jaime_vert">
-						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
-							J'aime
-						</div>
-					</a>
-			{% endif %}
-			{% endif %}
-
-			</div>
+	<div class="titre_proj_nouv">
+		{{ proj.titre }}
 	</div>
 
-<hr>
+	<div class="titre_et_vues" id="titre_et_vues_id" style="margin-top:50px;">
 
-	<div class="proj_titre_video">Titre de la vidéo</div>
-	<div class="proj_a_suivre">A venir : <a href="#" class="proj_video_voir">Thierry Lanoo</a> </div>
+	  <div class="titre_et_vues_titre">{{ r.video.titre }}</div>
+
+	  <div class="bandeau_haut">
+
+	    <div class="cellule_num_jtx">
+	      <div class="numero_jtx">
+	        <div class="numero_jtx_text">
+	            15
+	        </div>
+	      </div>
+	    </div>
+
+	    <div class="titre_et_vues_auteurs">Auteurs</div>
+	    <div class="titre_et_vues_info">Une information pertinente</div>
+
+	    <div class="nb_vues">
+			 {{ proj.views }} vues
+		 	</div>
+
+	  </div>
+
+	  <hr>
+
+		<div class="titre_et_vues_vues_et_jaime">
+	    <div class="titre_et_vues_vues_et_jaime_nb_jaime">
+	       {{ nb_jaimes }}
+	    </div>
+
+			<div class="titre_et_vues_vues_et_jaime_vues_jaime">
+
+				{% if request.user.is_authenticated %}
+				{% if favorite %}
+				    <a href="{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}" class="lien_jaime_rouge">
+							<div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+							Je n'aime plus
+							</div>
+						</a>
+				{% else %}
+
+				    <a href="{% url 'add_favorite_proj' proj.id %}" class="lien_jaime_vert">
+							<div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
+								J'aime
+	            </div>
+						</a>
+				{% endif %}
+				{% endif %}
+
+				</div>
+		</div>
 
 
-</div>
+
+		<div class="titre_et_vues_tags">
+		Tags :
+		{% for r in video.relation_tag_set.all %}
+			<a class="tag" href="{% url 'tag' r.tag.id 1 %}">{{ r.tag.titre }}</a>
+		{% endfor %}
+	  </div>
+
+	</div>
+
+
+
 
 <div class="description_video">
+	<div class="titre_et_vues_date">
+		Ajoutée le {{ proj.date|date:"d/m/Y" }}
+	</div>
+
   <label for="toggle-1">Afficher les vidéos</label>
   <input type="checkbox" id="toggle-1">
 
@@ -106,36 +136,73 @@ launch(1);
 
 
 
-
 <div class="commentaires_video" id="commentaires_video_id">
   <div class="commentaires_video_titre">
     Commentaires
   </div>
 
-  {% for r in proj.relation_comment_proj_set.all %}
-      <hr/>
-      <div class="commentaires_nom">
-        {{ r.author.username }}
+  <div class="commentaires_video_faire">
+    {% if request.user.is_authenticated %}
+
+    <form action="{% url 'comment_proj' proj.id %}" method="post">
+    {% csrf_token %}
+    <textarea name="comment" rows="3" id="comment"></textarea>
+    <input type="submit" value="Poster" id='bouton_comment'/>
+    </form>
+
+    {% endif %}
+  </div>
+
+  {% for r in proj.relation_comment_proj_set.all%}
+      <hr>
+      <div class="commentaire_nom_date">
+        <div class="commentaires_nom">
+          {{ r.author.username }}
+        </div>
+          <div class="commentaires_date">
+          le 04/02/2017 à 15h25
+          </div>
+          <div class="cellule_com_jaime">
+
+            <div class="commentaires_jaime">
+
+              <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime">
+                 14
+              </div>
+
+              <div class="petit_titre_et_vues_vues_et_jaime_vues_jaime">
+
+                {% if request.user.is_authenticated %}
+
+                    <a href="" class="petit_lien_jaime_rouge">
+                      <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+                      Je n'aime plus
+                      </div>
+                    </a>
+
+
+                    <!--
+                {% else %}
+
+                    <a href="" class="lien_jaime_vert">
+                      <div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
+                        J'aime
+                      </div>
+                    </a>
+                {% endif %} !-->
+
+
+                </div>
+            </div>
+          </div>
+
       </div>
+
       <div class="commentaires_commentaires">
         {{ r.comment }}
       </div>
   {% endfor %}
 </div>
-
-
-
-<div class="commentaires_video_faire">
-  {% if request.user.is_authenticated %}
-  <form action="{% url 'comment_proj' proj.id %}" method="post">
-  {% csrf_token %}
-  <!-- <input type="text" rows=2 name="comment" id="comment" /> -->
-    <textarea name="comment" rows="3" id="comment"></textarea>
-  <input type="submit" value="Poster" id='bouton_comment'/>
-  </form>
-  {% endif %}
-</div>
-
 
 
 </div>
@@ -157,7 +224,7 @@ launch(1);
                   </figure>
                   </a>
 
-                  <a href="{% url 'video' v.id %}">
+                  <a href="{% url 'proj' v.id %}">
                       <div class="legende_vid_titre">
                           {{v.titre}}
                       </div>
