@@ -25,10 +25,12 @@ def filter(request, x):
 
 def search(request, page=1):
     q = request.GET.get('q', '')
-    videos = Video.objects.filter(titre__contains = q)
-    videos = filter(request, videos)
+    l = q.split(" ")
+    videos = filter(request, Video.objects)
+    for x in q:
+        videos = videos.filter(titre__contains = x)
     context = {
-        'titre': u'Résultats de la recherche "' + q,
+        'titre': u'Résultats de la recherche "' + q + '"',
         'videos': videos,
     }
     return pagination(request, 'videos.html', context, videos, page, 'search')
