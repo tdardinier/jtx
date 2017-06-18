@@ -10,7 +10,7 @@ from .models import *
 import random
 from os import listdir
 
-use_duration = True
+use_duration = False
 n_page = 30
 n_index = 5
 n_suggestions = 5
