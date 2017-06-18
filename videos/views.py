@@ -18,20 +18,20 @@ n_suggestions = 5
 if use_duration:
     from ffprobe import FFProbe
 
-def search(request, q):
-    videos = Video.objects.filter(titre__contains = q)
-    videos = filter(request, videos)
-    context = {
-        'titre': 'Résultats de la recherche "' + q,
-        'videos': videos,
-    }
-    return pagination(request, 'videos.html', context, videos, page, 'search')
-}
-
 def filter(request, x):
     if not request.user.is_authenticated:
         x = x.filter(category__public=True)
     return x
+
+def search(request, page=1):
+    q = request.GET.get('q', '')
+    videos = Video.objects.filter(titre__contains = q)
+    videos = filter(request, videos)
+    context = {
+        'titre': u'Résultats de la recherche "' + q,
+        'videos': videos,
+    }
+    return pagination(request, 'videos.html', context, videos, page, 'search')
 
 def filter_tag(request, x):
     if not request.user.is_authenticated:
