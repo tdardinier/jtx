@@ -58,14 +58,6 @@ def can_add_info(request):
 def id(x):
     return x
 
-def read_line_proj(line):
-    l = line.split("@@")
-    titre = l[0]
-    folder = l[1]
-    c = Category.objects.get(titre=l[2])
-    promo = int(l([3]))
-    print(titre, folder, c.pk, c.promo)
-
 def real_add_proj(titre_proj, folder, c, promo):
 
     base_url = "http://binet-jtx.com/videos"
@@ -92,6 +84,20 @@ def real_add_proj(titre_proj, folder, c, promo):
         r = Relation_proj(proj = p, video = v, ordre = i)
         r.save()
         i += 1
+
+def read_line_proj(line):
+    l = line.split("@@")
+    titre = l[0]
+    folder = l[1] + "/MQ"
+    c = Category.objects.get(titre=l[2])
+    promo = int(l[3])
+    real_add_proj(titre, folder, c, promo)
+
+def auto_proj(l):
+    for x in l:
+        print("Reading " + x + "...")
+        read_line_proj(x)
+        print("Done")
 
 def add_proj(request):
 
@@ -136,7 +142,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 def jtx(request, year):
-    c = Category.objects.get(titre="Proj' JTX")
+    c = Category.objects.get(titre="Proj JTX")
     v = filter(request, Proj.objects.filter(promo=year))
     context = {
         'year': year,
