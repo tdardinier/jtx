@@ -44,8 +44,8 @@ class TagInline(admin.TabularInline):
     extra = 0
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ['id', 'titre', 'date', 'views', 'public']
-    list_filter = ['date', 'views', 'public']
+    list_display = ['id', 'titre', 'date', 'views', 'category']
+    list_filter = ['date', 'views', 'category']
     search_fields = ['titre']
     inlines = [TagInline]
 

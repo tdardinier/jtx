@@ -19,6 +19,21 @@ version = "1.0.18"
 if use_duration:
     from ffprobe import FFProbe
 
+def filter(request, x):
+    if not request.user.is_authenticated:
+        x = x.filter(category__public=True)
+    return x
+
+def filter_tag(request, x):
+    if not request.user.is_authenticated:
+        x = x.filter(video__category__public=True)
+    return x
+
+def filter_category(request, x):
+    if not request.user.is_authenticated:
+        x = x.filter(public=True)
+    return x
+
 def can_proj(request):
     if request.user.is_authenticated:
         user = request.user
@@ -28,7 +43,7 @@ def can_proj(request):
 def can_add_info(request):
     if request.user.is_authenticated:
         user = request.user
-        return hasattr(user, 'utilisateur') and user.utilisateur.can_proj
+        return hasattr(user, 'utilisateur') and user.utilisateur.can_add_info
     return False
 
 def id(x):
@@ -83,13 +98,9 @@ def add_proj(request):
     return render(request, 'add_proj.html', context)
 
 def index(request):
-    projs = Proj.objects.filter(category__public=True)
-    videos = Video.objects.filter(public=True)
-    categories = Category.objects.filter(public=True)
-    if (request.user.is_authenticated):
-        projs = Proj.objects
-        videos = Video.objects
-        categories = Category.objects
+    projs = filter(request, Proj.objects)
+    videos = filter(request, Video.objects)
+    categories = filter_category(request, Category.objects)
     context = {
         'request': request,
         'projs': projs.all()[:n_index],
@@ -99,16 +110,19 @@ def index(request):
     return render(request, 'index.html', context)
 
 def jtx(request, year):
+    c = Category.objects.get(titre="Proj' JTX")
+    v = filter(request, Proj.objects.filter(promo=year))
     context = {
+        'year': year,
+        'projs_jtx': v.filter(category=c),
+        'projs_autres': v.exclude(category=c),
     }
     return render(request, 'jtx.html', context)
 
 def categories(request):
-    categories = Category.objects.filter(public=True).all()
-    if (request.user.is_authenticated):
-        categories = Category.objects.all()
+    categories = filter_category(request, Category.objects)
     context = {
-        'categories': categories,
+        'categories': categories.all(),
     }
     return render(request, 'categories.html', context)
 
@@ -136,11 +150,9 @@ def category(request, category_id, page=1):
         return index(request)
 
 def projs(request, page=1):
-    projs = Proj.objects.filter(category__public=True)
-    if (request.user.is_authenticated):
-        projs = Proj.objects
+    projs = filter(request, Proj.objects)
     context = {
-        'titre': 'Toutes les projs',
+        'titre': 'Toutes les projs visibles',
     }
     return pagination(request, 'projs.html', context, projs, page, 'projs')
 
@@ -149,9 +161,8 @@ def proj(request, proj_id):
     if proj.category.public or request.user.is_authenticated:
         n = Favorite_proj.objects.filter(proj = proj).count()
         favorite = False
-        all_projs = Proj.objects.filter(category__public=True)
+        all_projs = filter(request, Proj.objects)
         if request.user.is_authenticated:
-            all_projs = Proj.objects
             user = request.user
             favorite = Favorite_proj.objects.filter(user = user, proj = proj).exists()
         suggestions = all_projs.all().order_by('?')[:n_suggestions]
@@ -178,9 +189,7 @@ def favorites(request, page=1):
         return index(request)
 
 def videos(request, page=1):
-    videos = Video.objects.filter(public=True)
-    if (request.user.is_authenticated):
-        videos = Video.objects
+    videos = filter(request, Video.objects)
     context = {
         'titre': 'Toutes les vidéos',
     }
@@ -188,14 +197,13 @@ def videos(request, page=1):
 
 def video(request, video_id):
     video = get_object_or_404(Video, pk=video_id)
-    if video.public or request.user.is_authenticated:
+    if video.category.public or request.user.is_authenticated:
         video.views += 1
         video.save()
         n = Favorite.objects.filter(video = video).count()
         favorite = False
-        all_videos = Video.objects.filter(public=True)
+        all_videos = filter(request, Video.objects)
         if request.user.is_authenticated:
-            all_videos = Video.objects
             user = request.user
             favorite = Favorite.objects.filter(user = user, video = video).exists()
         suggestions = all_videos.all().order_by('?')[:n_suggestions]
@@ -217,9 +225,7 @@ def tags(request):
 
 def tag(request, tag_id, page=1):
     tag = get_object_or_404(Tag, pk=tag_id)
-    videos = tag.relation_tag_set.filter(video__public=True)
-    if request.user.is_authenticated:
-        videos = tag.relation_tag_set
+    videos = filter_tag(request, tag.relation_tag_set)
     context = {
         'titre': tag.titre,
         'titre_tag': True,
@@ -280,13 +286,3 @@ def comment_proj(request, proj_id):
         c = Relation_comment_proj(author = user, proj = proj, comment = comment)
         c.save()
     return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
-
-def populate_bdd(request):
-    #files = [f for f in listdir("/home/thibault/.banque/site/videos/static/videos")]
-    files = []
-    for f in files:
-        l = f.split('.')
-        extension = l[-1]
-        base = '.'.join(l[:-1])
-        v = Video(titre = base.replace('_', ' '), url=base,extension=extension)
-        v.save()

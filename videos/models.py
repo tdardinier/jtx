@@ -37,6 +37,12 @@ class Utilisateur(models.Model):
 #def save_user_utilisateur(sender, instance, **kwargs):
 #    instance.utilisateur.save()
 
+class Category(models.Model):
+    titre = models.CharField(max_length=100)
+    public = models.BooleanField(default=False)
+    def __unicode__(self):
+        return self.titre
+
 class Video(models.Model):
     class Meta:
         ordering = ['-date']
@@ -44,7 +50,7 @@ class Video(models.Model):
     date = models.DateField(default=datetime.date.today)
     url = models.CharField(max_length=1000)
     views = models.IntegerField(default=0)
-    public = models.BooleanField(default=False)
+    category = models.ForeignKey(Category)
     duree = models.IntegerField(default=0)
     description = models.CharField(max_length=1000, default="Pas de description disponible.")
     def __unicode__(self):
@@ -80,12 +86,6 @@ class Implique(models.Model):
     petit = models.ForeignKey(Tag, related_name="petit")
     def __unicode__(self):
         return self.petit.titre + " => " + self.grand.titre
-
-class Category(models.Model):
-    titre = models.CharField(max_length=100)
-    public = models.BooleanField(default=False)
-    def __unicode__(self):
-        return self.titre
 
 class Proj(models.Model):
     class Meta:
