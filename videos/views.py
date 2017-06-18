@@ -23,6 +23,18 @@ def filter(request, x):
         x = x.filter(category__public=True)
     return x
 
+def search(request, page=1):
+    q = request.GET.get('q', '')
+    l = q.split(" ")
+    videos = filter(request, Video.objects)
+    for x in l:
+        videos = videos.filter(titre__contains = x)
+    context = {
+        'titre': u'Résultats de la recherche "' + q + '"',
+        'elements': videos,
+    }
+    return render(request, 'videos.html', context)
+
 def filter_tag(request, x):
     if not request.user.is_authenticated:
         x = x.filter(video__category__public=True)
