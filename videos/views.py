@@ -100,6 +100,7 @@ def index(request):
 
 def jtx(request, year):
     context = {
+        year = int(year)
     }
     return render(request, 'jtx.html', context)
 

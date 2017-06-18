@@ -23,4 +23,3 @@ fi
 mv *.mp4 HQ/
 mv *.srt HQ/
 mv *.sub HQ/
-rm encodage.sh
