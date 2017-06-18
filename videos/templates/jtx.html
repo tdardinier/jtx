@@ -2,15 +2,17 @@
 {% block body %}
 {% load app_filters %}
 
-<div class="jtx_titre">JTX2015</div>
+{% if year %}
+
+<div class="jtx_titre">JTX{{year}}</div>
 <div class="jtx_sous_titre">On intuite et on disrupte.</div>
 
 <div class="container">
 	<h1>Projs</h1>
 	<ul class="jtx_liste_proj">
-		<li>Proj de février</li>
-		<li>Proj de juin</li>
-		<li>Proj de novembre</li>
+        {% for p in projs_jtx %}
+        <li>{{p.titre}}</li>
+        {% endfor %}
 	</ul>
 
 </div>
@@ -20,33 +22,21 @@
 
 <div class="jtx_liste_evnt">
 
-<a href="#">
+{% for p in projs_autres%}
+    <a href="{% url 'proj' p.id %}">
 	<div class="jtx_liste_evnt_item">
 		<div class="jtx_liste_evnt_item_title">
-			Raid de l'X
+            {{p.titre|short}}	
 		</div>
 		<div class="jtx_liste_evnt_item_date">
-			13/05/2017
+            {{p.date|date:"d/m/Y"}}
 		</div>
 		<div class="jtx_liste_evnt_item_vues">
-			Vues : 25
+            Vues : {{p.views}}
 		</div>
 	</div>
 </a>
-
-<a href="#">
-	<div class="jtx_liste_evnt_item">
-		<div class="jtx_liste_evnt_item_title">
-			WEI
-		</div>
-		<div class="jtx_liste_evnt_item_date">
-			06/05/2017
-		</div>
-		<div class="jtx_liste_evnt_item_vues">
-			Vues : 53
-		</div>
-	</div>
-</a>
+{% endfor %}
 
 </div>
 </div>
@@ -57,6 +47,6 @@
 
 </div>
 
-
+{% endif %}
 
 {% endblock %}

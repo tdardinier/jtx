@@ -21,3 +21,14 @@ def short(s):
         return s
     else:
         return s[:(n - 3)] + "..."
+
+@register.filter(name='duration_proj')
+def duration(p):
+    s = 0
+    for r in p.relation_proj_set.all():
+        s += r.video.duree
+    c = '{:02}'.format(s % 60)
+    s //= 60
+    b = '{:02}'.format(s % 60)
+    a = str(s // 60)
+    return a + ":" + b + ":" + c
