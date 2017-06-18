@@ -13,6 +13,11 @@
 
 <div id="central">
 
+
+    <label  class="menu_button" for="toggle-2"><img class="menu_button_img" src="http://www.freeiconspng.com/uploads/menu-icon-28.png" alt="Menu" ></label>
+    <input  class ="menu_button" type="checkbox" id="toggle-2">
+
+
   <div id="navigation_bar">
     <a href="{% url 'index' %}">
     <div class="navigation_bar_titre">
@@ -20,22 +25,13 @@
     </div>
     </a>
 
-    <div class="navigation_bar_menu">
-      <ul>
-          <li><a href="{% url 'index' %}">Home</a></li>
-          <li></li>
-          <li><a >Projections</a></li>
-          <li><a>Vidéos</a></li>
-
-          <li><a >Tags</a></li>
-          <li><a >JTX 2015</a></li>
-      </ul>
+    <div class="barre_de_recherche">
+      <form><input type="text" class='biginput'></form>
     </div>
   </div>
 
   <!-- A changer pour mettre un lien absolu! -->
-  <label  class="menu_button" for="toggle-2"><img class="menu_button_img" src="http://www.freeiconspng.com/uploads/menu-icon-28.png" alt="Menu" ></label>
-  <input  class ="menu_button" type="checkbox" id="toggle-2">
+
 
   <div id="lateral_bar">
 

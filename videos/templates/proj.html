@@ -142,7 +142,7 @@ launch(1);
 
 <div class="suggestion">
   <div class="container_suggestion">
-
+		{% load app_filters %}
     <h1>Suggestions</h1>
 
         <div class="liste_videos">
@@ -152,7 +152,7 @@ launch(1);
                   <figure>
                       <img class="proj_image" src="{{v.image}}"/>
                       <figcaption class="legende_vid_duree">
-                          1:03:56
+                            {{v|duration_proj}}
                       </figcaption>
                   </figure>
                   </a>
