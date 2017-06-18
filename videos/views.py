@@ -48,6 +48,14 @@ def can_add_info(request):
 def id(x):
     return x
 
+def read_line_proj(line):
+    l = line.split("@@")
+    titre = l[0]
+    folder = l[1]
+    c = Category.objects.get(titre=l[2])
+    promo = int(l([3]))
+    print(titre, folder, c.pk, c.promo)
+
 def real_add_proj(titre_proj, folder, c, promo):
 
     base_url = "http://binet-jtx.com/videos"
