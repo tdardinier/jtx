@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% block body %}
-<h2>Login</h2>
-<form method="post">
-	{% csrf_token %}
-	{{ form.as_p }}
-	<button type="submit">Login</button>
-</form>
+
+<div class="container_login">
+	<h1>Se connecter</h1>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit" class="login_button">Login</button>
+	</form>
+</div>
+
+
 {% endblock %}
