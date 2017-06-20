@@ -160,22 +160,23 @@
 
           <h3>Clips épinglés</h3>
           {% for f in request.user.favorite_set.all %}
-          <a class="lateral_bar_button_a" href="{% url 'video' f.video.id %}">
-            <div class="lateral_bar_button">
-              <img class="lateral_bar_img" src="{{f.video.url}}.png"/>
-              <div class="lateral_bar_button_text">
-                  {{ f.video.titre }}
-              </div>
+          {% if f.epingle %}
+              <a class="lateral_bar_button_a" href="{% url 'video' f.video.id %}">
+                <div class="lateral_bar_button">
+                  <img class="lateral_bar_img" src="{{f.video.url}}.png"/>
+                  <div class="lateral_bar_button_text">
+                      {{ f.video.titre }}
+                  </div>
 
 
-            <!--
-            <a href="{% url 'remove_favorite' video_id=f.video.id home=1 %}" class="lateral_bar_supprimer"> X </a>
-            -->
-            </div>
-          </a>
+                <!--
+                <a href="{% url 'remove_favorite' video_id=f.video.id home=1 %}" class="lateral_bar_supprimer"> X </a>
+                -->
+                </div>
+              </a>
 
-
-          {% endfor %}
+        {% endif %}
+        {% endfor %}
 
 
 

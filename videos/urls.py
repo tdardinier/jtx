@@ -16,10 +16,17 @@ urlpatterns = [
     url(r'^favorites/(?P<page>[0-9]+)/$', views.favorites, name='favorites'),
     url(r'^tags/$', views.tags, name='tags'),
     url(r'^tag/(?P<tag_id>[0-9]+)/(?P<page>[0-9]+)/$', views.tag, name='tag'),
+
     url(r'^add_favorite/(?P<video_id>[0-9]+)/$', views.add_favorite, name='add_favorite'),
     url(r'^add_favorite_proj/(?P<proj_id>[0-9]+)/$', views.add_favorite_proj, name='add_favorite_proj'),
     url(r'^remove_favorite/(?P<video_id>[0-9]+)/(?P<home>[0-1])/$', views.remove_favorite, name='remove_favorite'),
     url(r'^remove_favorite_proj/(?P<proj_id>[0-9]+)/(?P<home>[0-1])/$', views.remove_favorite_proj, name='remove_favorite_proj'),
+
+    url(r'^add_epingle/(?P<video_id>[0-9]+)/$', views.add_epingle, name='add_epingle'),
+    url(r'^add_epingle_proj/(?P<proj_id>[0-9]+)/$', views.add_epingle_proj, name='add_epingle_proj'),
+    url(r'^remove_epingle/(?P<video_id>[0-9]+)/(?P<home>[0-1])/$', views.remove_epingle, name='remove_epingle'),
+    url(r'^remove_epingle_proj/(?P<proj_id>[0-9]+)/(?P<home>[0-1])/$', views.remove_epingle_proj, name='remove_epingle_proj'),
+
     url(r'^comment_video/(?P<video_id>[0-9]+)/$', views.comment_video, name='comment_video'),
     url(r'^comment_proj/(?P<proj_id>[0-9]+)/$', views.comment_proj, name='comment_proj'),
     url(r'^jtx/(?P<year>[0-9]+)/$', views.jtx, name='jtx'),

@@ -198,11 +198,12 @@ def proj(request, proj_id):
     if proj.category.public or request.user.is_authenticated:
         n = Favorite_proj.objects.filter(proj = proj).count()
         favorite = False
+        epingle = False
         all_projs = filter(request, Proj.objects)
         if request.user.is_authenticated:
             user = request.user
-            likee = Favorite_proj.objects.filter(user = user, proj = proj).exists()
-            favorite = Favorite_proj.objects.filter(user = user, proj = proj, also_favorite=True).exists()
+            favorite = Favorite_proj.objects.filter(user = user, proj = proj).exists()
+            epingle = Favorite_proj.objects.filter(user = user, proj = proj, epingle = True).exists()
         suggestions = all_projs.all().order_by('?')[:n_suggestions]
         proj.views += 1
         proj.save()
@@ -210,7 +211,7 @@ def proj(request, proj_id):
             'proj': proj,
             'suggestions': suggestions,
             'favorite': favorite,
-            'likee': likee,
+            'epingle': epingle,
             'nb_jaimes': n,
         }
         return render(request, 'proj.html', context)
@@ -241,17 +242,18 @@ def video(request, video_id):
         video.save()
         n = Favorite.objects.filter(video = video).count()
         favorite = False
+        epingle = False
         all_videos = filter(request, Video.objects)
         if request.user.is_authenticated:
             user = request.user
-            favorite = Favorite.objects.filter(user = user, video = video, also_favorite=True).exists()
-            likee = Favorite.objects.filter(user = user, video = video).exists()
+            favorite = Favorite.objects.filter(user = user, video = video).exists()
+            epingle = Favorite.objects.filter(user = user, video = video, epingle = True).exists()
         suggestions = all_videos.all().order_by('?')[:n_suggestions]
         context = {
             'video': video,
             'suggestions': suggestions,
             'favorite': favorite,
-            'likee': likee,
+            'epingle': epingle,
             'nb_jaimes': n,
         }
         return render(request, 'video.html', context)
@@ -274,23 +276,23 @@ def tag(request, tag_id, page=1):
     }
     return pagination(request, 'videos.html', context, videos, page, 'tag', lambda x: x.video)
 
-def remove_epingle(request, video_id, home):
-    if request.user.is_authenticated:
-        video = get_object_or_404(Video, pk=video_id)
-        user = request.user
-        c = Favorite.objects.filter(user = user, video = video)
-        c.also_favorite = False
-        c.save()
-    if home == "1":
-        return HttpResponseRedirect(reverse('index'))
-    else:
-        return HttpResponseRedirect(reverse('video', args=(video.id,)))
-
 def remove_favorite(request, video_id, home):
     if request.user.is_authenticated:
         video = get_object_or_404(Video, pk=video_id)
         user = request.user
         c = Favorite.objects.filter(user = user, video = video).delete()
+    if home == "1":
+        return HttpResponseRedirect(reverse('index'))
+    else:
+        return HttpResponseRedirect(reverse('video', args=(video.id,)))
+
+def remove_epingle(request, video_id, home):
+    if request.user.is_authenticated:
+        video = get_object_or_404(Video, pk=video_id)
+        user = request.user
+        c = get_object_or_404(Favorite, user = user, video = video)
+        c.epingle = False
+        c.save()
     if home == "1":
         return HttpResponseRedirect(reverse('index'))
     else:
@@ -304,11 +306,11 @@ def add_favorite(request, video_id):
         c.save()
     return HttpResponseRedirect(reverse('video', args=(video.id,)))
 
-def add_favorite_epinglee(request, video_id):
+def add_epingle(request, video_id):
     if request.user.is_authenticated:
         video = get_object_or_404(Video, pk=video_id)
         user = request.user
-        c = Favorite(user = user, video = video, also_favorite = True)
+        c = Favorite(user = user, video = video, epingle = True)
         c.save()
     return HttpResponseRedirect(reverse('video', args=(video.id,)))
 
@@ -322,11 +324,31 @@ def remove_favorite_proj(request, proj_id, home):
     else:
         return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
 
+def remove_epingle_proj(request, proj_id, home):
+    if request.user.is_authenticated:
+        proj = get_object_or_404(Proj, pk=proj_id)
+        user = request.user
+        c = get_object_or_404(Favorite_proj, user = user, proj = proj)
+        c.epingle = False
+        c.save()
+    if home == "1":
+        return HttpResponseRedirect(reverse('index'))
+    else:
+        return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
+
 def add_favorite_proj(request, proj_id):
     if request.user.is_authenticated:
         proj = get_object_or_404(Proj, pk=proj_id)
         user = request.user
         c = Favorite_proj(user = user, proj = proj)
+        c.save()
+    return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
+
+def add_epingle_proj(request, proj_id):
+    if request.user.is_authenticated:
+        proj = get_object_or_404(Proj, pk=proj_id)
+        user = request.user
+        c = Favorite_proj(user = user, proj = proj, epingle = True)
         c.save()
     return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
 

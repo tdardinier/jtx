@@ -103,7 +103,7 @@ class Favorite(models.Model):
     class Meta:
         ordering = ['-date']
         unique_together = (('user', 'video'),)
-    also_favorite = models.BooleanField(default = False)
+    epingle = models.BooleanField(default = False)
     user = models.ForeignKey(User)
     video = models.ForeignKey(Video)
     date = models.DateTimeField(auto_now_add = True)
@@ -115,7 +115,7 @@ class Favorite_proj(models.Model):
     class Meta:
         ordering = ['-date']
         unique_together = (('user', 'proj'),)
-    also_favorite = models.BooleanField(default = False)
+    epingle = models.BooleanField(default = False)
     user = models.ForeignKey(User)
     proj = models.ForeignKey(Proj)
     date = models.DateTimeField(auto_now_add = True)
