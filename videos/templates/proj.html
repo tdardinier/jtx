@@ -233,7 +233,7 @@ var titre = document.getElementById('titre_video');
 var current = 0;
 
 var playlist = []
-var tags = [][][];
+var tags = [];
 {% for r in proj.relation_proj_set.all %}
     playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}', '{{r.video|auteurs}}']
     x = [];
@@ -251,7 +251,7 @@ function launch(id) {
     proj_auteurs.innerHTML = playlist[id][2];
 
     if (id + 1 < playlist.length) {
-        titre_video_suivante.innerHTML = playlist[id+1][0];
+        titre_video_suivante.innerHTML = playlist[(id+1)][0];
     }
     else {
         titre_video_suivante.innerHTML = "...";
