@@ -10,7 +10,7 @@ from .models import *
 import random
 from os import listdir
 
-use_duration = False
+use_duration = True
 n_page = 30
 n_index = 5
 n_suggestions = 5
@@ -81,7 +81,10 @@ def real_add_proj(titre_proj, folder, c, promo):
         if len(ld) > 0:
             dd = ld[0].duration
             d = int(float(dd if dd != "N/A" else "0"))
-        v = Video(titre = base.replace('_', ' '), url = base_url + "/" + folder + "/" + f, duree=d, category=c)
+        titre = base.split('_')
+        if titre[0][0] == '0':
+            titre = titre[1:]
+        v = Video(titre = ' '.join(titre), url = base_url + "/" + folder + "/" + f, duree=d, category=c)
         v.save()
         r = Relation_proj(proj = p, video = v, ordre = i)
         r.save()

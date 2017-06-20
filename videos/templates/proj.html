@@ -11,48 +11,15 @@
 
 <video id="video" width="720px" height="405px" controls></video>
 
-<script type="text/javascript">
-var video = document.getElementById('video');
-var source = document.createElement('source');
-video.appendChild(source);
-var titre = document.getElementById('titre_video');
-var current = 0;
-
-var playlist = []
-{% for r in proj.relation_proj_set.all %}
-playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}']
-{% endfor %}
-
-function launch(id) {
-	current = id;
-	video.pause();
-
-	source.setAttribute('src', playlist[id][1]);
-	video.load();
-	video.play();
-}
-
-video.addEventListener('ended',next,false);
-function next(e) {
-	current += 1;
-	if (current < playlist.length) {
-		launch(current);
-	}
-}
-
-launch(1);
-</script>
-
-
 	<div class="titre_proj_nouv">
 		{{ proj.titre }}
 	</div>
 
 	<div class="titre_et_vues" id="titre_et_vues_id">
 
-	  <div class="titre_et_vues_titre"> Titre de la vidéo en cours</div>
+	  <div id="titre_en_cours" class="titre_et_vues_titre"> Titre de la vidéo en cours</div>
 
-		<a href="#" class="proj_vid_suiv">Titre de la vidéo suivante
+      <a onclick="next()" href="#" id="titre_video_suivante" class="proj_vid_suiv">Titre de la vidéo suivante
 			<img src={% static "admin/img/droite.png" %} alt="caca2" class='proj_vid_suiv_img'>
 		</a>
 
@@ -66,7 +33,7 @@ launch(1);
 	      </div>
 	    </div>
 
-	    <div class="titre_et_vues_auteurs">Auteurs</div>
+	    <div id="proj_auteurs" class="titre_et_vues_auteurs">Auteurs</div>
 	    <div class="titre_et_vues_info">Une information pertinente</div>
 
 	    <div class="nb_vues">
@@ -254,6 +221,58 @@ launch(1);
 </div>
 </div>
 
+<script type="text/javascript">
+var video = document.getElementById('video');
+var source = document.createElement('source');
+var titre_en_cours = document.getElementById('titre_en_cours');
+var titre_video_suivante = document.getElementById('titre_video_suivante');
+var proj_auteurs = document.getElementById('proj_auteurs');
+var source = document.createElement('source');
+video.appendChild(source);
+var titre = document.getElementById('titre_video');
+var current = 0;
+
+var playlist = []
+var tags = [];
+{% for r in proj.relation_proj_set.all %}
+    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}', '{{r.video|auteurs}}']
+    x = [];
+	{% for r2 in r.video.relation_tag_set.all %}
+        x[{{forloop.counter}}] = [{{r2.tag.id}}, '{{r2.tag.titre}}'];
+	{% endfor %}
+    tags[{{forloop.counter}}] = x;
+{% endfor %}
+
+function launch(id) {
+	current = id;
+	video.pause();
+
+    titre_en_cours.innerHTML = playlist[id][0];
+    proj_auteurs.innerHTML = playlist[id][2];
+
+    if (id + 1 < playlist.length) {
+        titre_video_suivante.innerHTML = playlist[(id+1)][0];
+    }
+    else {
+        titre_video_suivante.innerHTML = "...";
+    }
+
+
+	source.setAttribute('src', playlist[id][1]);
+	video.load();
+	video.play();
+}
+
+video.addEventListener('ended',next,false);
+function next(e) {
+	current += 1;
+	if (current < playlist.length) {
+		launch(current);
+	}
+}
+
+launch(1);
+</script>
 
 {% endif %}
 {% endblock %}
