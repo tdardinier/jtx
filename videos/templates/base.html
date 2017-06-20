@@ -7,15 +7,67 @@
   <link rel="stylesheet" href="{% static 'style.css' %}"/>
   <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
   <title>JTX</title>
+
+  <script>
+
+  function checkbar(){
+    var show = getCookie("show");
+    if (show != "") {
+      if(show=='oui'){document.getElementById("lateral_bar").style.display = "unset";}
+      else{document.getElementById("lateral_bar").style.display = "none";}
+    }
+    else {
+      document.getElementById("lateral_bar").style.display = "unset";
+    }
+  }
+
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+    function h_r_lateral_bar() {
+
+      if(document.getElementById("lateral_bar").style.display != "none"){
+        document.getElementById("lateral_bar").style.display = "none";
+        setCookie("show", "non", 365);}
+
+      else{
+        document.getElementById("lateral_bar").style.display = "unset";
+        setCookie("show", "oui", 365);}
+
+    }
+    </script>
 </head>
-<body>
+<body onload="checkbar()">
 
 
 <div id="central">
 
 
-    <label  class="menu_button" for="toggle-2"><img class="menu_button_img" src="http://www.freeiconspng.com/uploads/menu-icon-28.png" alt="Menu" ></label>
-    <input  class ="menu_button" type="checkbox" id="toggle-2">
+
+    <button type="button" class="menu_button" onclick="h_r_lateral_bar()">
+      <img class="menu_button_img" src="http://www.freeiconspng.com/uploads/menu-icon-28.png" alt="Menu" >
+    </button>
+
 
 
   <div id="navigation_bar">
