@@ -2,13 +2,16 @@
 {% block body %}
 
 {% if tags %}
-<h1>Tags</h1>
-	{% for t in tags %}
-    <a class="tag" style="font-size:25px" href="{% url 'tag' t.id 1 %}">{{ t.titre }}</a>
-	{% endfor %}
+<div class="container">
+	<h1>Tags</h1>
+		{% for t in tags %}
+	    <a class="tag"  href="{% url 'tag' t.id 1 %}">{{ t.titre }}</a>
+		{% endfor %}
 
-{% else %}
-    <p>Errors.</p>
-{% endif %}
+	{% else %}
+	    <p>Errors.</p>
+	{% endif %}
+</div>
+
 
 {% endblock %}
