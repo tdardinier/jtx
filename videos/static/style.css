@@ -153,9 +153,7 @@ form .biginput:focus {
     text-align:center;
 }
 
-input[type=checkbox]:checked ~ #lateral_bar {
-   display: unset;
-}
+
 
 .menu_button{
 
@@ -169,6 +167,7 @@ z-index: 2;
 padding: 7px;
 padding-bottom: 3px;
 opacity: 0.6;
+border-style: none;
 }
 
 .menu_button:hover{
@@ -188,7 +187,7 @@ opacity: 0.6;
 }
 
 #lateral_bar{
-  display: none;
+
   font-size: 12px;
     border-style: solid;
     border-width: 1px;
