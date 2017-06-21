@@ -515,7 +515,82 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   display: table;
   background-color: #DDDDDD;
   border-radius: 6px;
-    padding-top: -20px;
+  padding-top: -20px;
+}
+
+.epingler{
+  background-color: white;
+  float: right;
+}
+
+.bouton_epingler{
+
+  opacity: 0.7;
+  padding-top: 1px;
+  width: 21px;
+
+  ms-transform: rotate(0deg); /* IE 9 */
+  -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+  transform: rotate(0deg);
+
+  -webkit-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  -moz-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+
+}
+
+.bouton_epingler_tic{
+  opacity: 0.7;
+  padding-top: 1px;
+  width: 21px;
+  position: relative;
+  top:0px;
+  right: 25px;
+  opacity: 0;
+
+  ms-transform: rotate(140deg); /* IE 9 */
+  -webkit-transform: rotate(140deg); /* Chrome, Safari, Opera */
+  transform: rotate(140deg);
+
+  -webkit-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  -moz-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+}
+
+.epingler:hover .bouton_epingler{
+  opacity: 0;
+  ms-transform: rotate(-140deg); /* IE 9 */
+  -webkit-transform: rotate(-140deg); /* Chrome, Safari, Opera */
+  transform: rotate(-140deg);
+}
+
+.epingler:hover  .bouton_epingler_tic{
+  opacity: 1;
+  top:0px;
+  ms-transform: rotate(0deg); /* IE 9 */
+  -webkit-transform: rotate(0deg); /* Chrome, Safari, Opera */
+  transform: rotate(0deg);
+}
+
+.epingler:hover .text_epingler{
+  opacity: 1;
+  right: 20px;
+}
+
+.text_epingler{
+  position:relative;
+  float: right;
+  opacity: 0;
+  right: 35px;
+
+  -webkit-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  -moz-transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+  transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+}
+
+.epingler:hover{
+  background-color: #dddddd;
+  border-radius: 6px;
 }
 
 .nb_vues{

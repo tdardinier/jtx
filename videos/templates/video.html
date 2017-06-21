@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static%}
 {% block body %}
 
 {% if video %}
@@ -41,6 +41,15 @@
 
   <hr>
 
+  <div class="epingler">
+    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
+    <img src={% static "admin/img/green_tic2.png" %} alt="pin" class="bouton_epingler_tic">
+    <div class="text_epingler">
+      épingler la vidéo
+    </div>
+
+  </div>
+
 	<div class="titre_et_vues_vues_et_jaime">
     <div class="titre_et_vues_vues_et_jaime_nb_jaime">
        {{ nb_jaimes }}
@@ -49,12 +58,15 @@
 		<div class="titre_et_vues_vues_et_jaime_vues_jaime">
 
 			{% if request.user.is_authenticated %}
+
 			{% if favorite %}
 			    <a href="{% url 'remove_favorite' video_id=video.id home=0 %}" class="lien_jaime_rouge">
 						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
 						Je n'aime plus
 						</div>
 					</a>
+
+
 			{% else %}
 
 			    <a href="{% url 'add_favorite' video.id %}" class="lien_jaime_vert">
