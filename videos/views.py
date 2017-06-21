@@ -310,8 +310,14 @@ def add_epingle(request, video_id):
     if request.user.is_authenticated:
         video = get_object_or_404(Video, pk=video_id)
         user = request.user
-        c = Favorite(user = user, video = video, epingle = True)
-        c.save()
+        x = Favorite.objects.filter(user = user, video = video)
+        if x.exists():
+            c = x.all()[0]
+            c.epingle = True
+            c.save()
+        else:
+            c = Favorite(user = user, video = video, epingle = True)
+            c.save()
     return HttpResponseRedirect(reverse('video', args=(video.id,)))
 
 def remove_favorite_proj(request, proj_id, home):
@@ -348,8 +354,14 @@ def add_epingle_proj(request, proj_id):
     if request.user.is_authenticated:
         proj = get_object_or_404(Proj, pk=proj_id)
         user = request.user
-        c = Favorite_proj(user = user, proj = proj, epingle = True)
-        c.save()
+        x = Favorite.objects.filter(user = user, proj = proj)
+        if x.exists:
+            c = x.all()[0]
+            c.epingle = True
+            c.save()
+        else:
+            c = Favorite_proj(user = user, proj = proj, epingle = True)
+            c.save()
     return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
 
 def comment_video(request, video_id):
