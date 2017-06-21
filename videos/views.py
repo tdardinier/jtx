@@ -165,9 +165,9 @@ def edit_video(request, video_id):
 
         if 'titre' in p:
 
-            titre = str(p['titre'])
-            url = str(p['url'])
-            description = str(p['description'])
+            titre = p['titre']
+            url = p['url']
+            description = p['description']
             duree = max(int(p['duree']), 0)
             c = get_object_or_404(Category, pk=int(p['category']))
 
