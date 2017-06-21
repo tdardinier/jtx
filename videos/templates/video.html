@@ -107,6 +107,11 @@
 </div>
 
 
+{% if can_edit %}
+    <a href="{% url 'edit_video' video.id %}">Éditer la vidéo (déso si c'est moche)</a>
+{% endif %}
+
+
 
 
 <div class="commentaires_video" id="commentaires_video_id">

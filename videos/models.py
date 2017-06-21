@@ -17,7 +17,7 @@ class Utilisateur(models.Model):
 
     # Tags, auteurs
     @property
-    def can_add_info(self):
+    def can_edit(self):
         return self.profil == '0' or self.profil == '1'
 
     # Add une proj, changer l'ordre, les titres

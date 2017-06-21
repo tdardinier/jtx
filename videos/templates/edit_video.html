@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% if message %}
+{{message}}
+{% endif %}
+
+<h1>Édition d'une vidéo</h1>
+
+{% if v %}
+
+<form action="{% url 'edit_video' v.id %}" method="post">
+
+    {% csrf_token %}
+
+    <label for="titre">Titre :</label>
+    <input id="titre" size="50" type="text" value="{{v.titre}}" name="titre"/>
+    <br/><br/>
+
+    <label for="url">URL :<label>
+    <input id="url" size="100" type="text" name="url" value="{{v.url}}"/>
+    <br/><br/>
+    
+    <label for="duree">Durée :<label>
+    <input id="duree" type="number" name="duree" value="{{v.duree}}" min="1" step="1"/>
+    <br/><br/>
+
+    <label for="category">Catégorie :<label>
+    <select name="category">
+    {% for c in categories %}
+        <option {% if v.category == c %} selected {% endif %} value="{{c.id}}">{{c.titre}}</option>
+    {% endfor %}
+    </select>
+    <br/><br/>
+
+    <label for="description">Description :</label>
+    <textarea id="description" name="description">{{v.description}}</textarea>
+    <br/><br/>
+
+    <input type="submit" value="Modifier la vidéo"/>
+
+</form>
+
+{% endif %}
+
+{% endblock %}
