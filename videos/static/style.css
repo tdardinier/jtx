@@ -7,8 +7,7 @@ text-decoration:none !important;
 }
 
 #central {
-    z-index: 1;
-    position: fixed;
+    position: absolute;
     top: 0;
     bottom:0;
     left: 0;
@@ -20,7 +19,7 @@ text-decoration:none !important;
     display: table;
     margin: 0 auto;
     margin-top: 60px;
-    z-index: 1;
+    overflow: scroll;
 }
 
 /*
@@ -566,7 +565,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   padding-right: 5px;
 }
 
-.bouton_epingler:hover + .text_epingler{
+.link_epingler:hover ~ .text_epingler{
   padding-right: 3px;
   opacity: 1;
 }
@@ -576,10 +575,6 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   cursor: pointer;
 }
 
-.bouton_deja_epingler:hover + .text_epingler{
-  padding-right: 3px;
-  opacity: 1;
-}
 
 .bouton_deja_epingler:hover{
   opacity: 0.3;

@@ -74,7 +74,7 @@
 
   {% if request.user.is_authenticated %}
   {% if epingle %}
-  <a href="{% url 'remove_epingle' video_id=video.id home=0 %}">
+  <a href="{% url 'remove_epingle' video_id=video.id home=0 %}" class="link_epingler">
     <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_deja_epingler">
     </a>
     <div class="text_epingler">
@@ -82,7 +82,7 @@
     </div>
 
     {% else %}
-    <a href="{% url 'add_epingle' video.id %}">
+    <a href="{% url 'add_epingle' video.id %}" class="link_epingler">
     <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
     </a>
     <div class="text_epingler">
