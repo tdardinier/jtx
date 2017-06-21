@@ -30,7 +30,9 @@
       </div>
     </div>
 
-    <div class="titre_et_vues_auteurs">{{ video|auteurs }}</div>
+    {% autoescape off %}
+    <div class="titre_et_vues_auteurs">{{ video|auteurs}}</div>
+    {% endautoescape %}
     <div class="titre_et_vues_info">Catégorie : <a href="{% url 'category' video.category.id 1 %}">{{video.category.titre}}</a></div>
 
     <div class="nb_vues">

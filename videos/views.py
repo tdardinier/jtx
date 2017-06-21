@@ -30,6 +30,15 @@ def videos_request(request, q):
         videos = videos.filter(titre__contains = x)
     return videos.all()
 
+def jtxman(request, auteur_id, page=1):
+    man = get_object_or_404(Auteur, pk=auteur_id)
+    videos = filter_relation(request, man.relation_auteur_video_set)
+    context = {
+        'titre': "JTXman " + str(man.promo) + " : " + man.firstname + " " + man.lastname,
+        'id': auteur_id,
+    }
+    return pagination(request, 'videos.html', context, videos, page, 'jtxman', lambda x: x.video)
+
 def suggestions(request, q):
     videos = []
     if len(q) > 2:
@@ -55,7 +64,7 @@ def search(request, page=1):
     }
     return render(request, 'videos.html', context)
 
-def filter_tag(request, x):
+def filter_relation(request, x):
     if not request.user.is_authenticated:
         x = x.filter(video__category__public=True)
     return x
@@ -323,7 +332,7 @@ def tags(request):
 
 def tag(request, tag_id, page=1):
     tag = get_object_or_404(Tag, pk=tag_id)
-    videos = filter_tag(request, tag.relation_tag_set)
+    videos = filter_relation(request, tag.relation_tag_set)
     context = {
         'titre': tag.titre,
         'titre_tag': True,

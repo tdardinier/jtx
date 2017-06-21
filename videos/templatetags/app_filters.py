@@ -1,4 +1,5 @@
 from django import template
+from django.urls import reverse
 
 register = template.Library()
 
@@ -10,7 +11,8 @@ def duration(v):
 def auteurs(v):
     s = v.relation_auteur_video_set.all()
     if len(s) > 0:
-        return ", ".join([x.auteur.name for x in s])
+        return ", ".join(["<a href='" + reverse('jtxman', args=(x.auteur.id,1,)) + "'>"
+            + x.auteur.name + "</a>" for x in s])
     else:
         return "Inconnu"
 
