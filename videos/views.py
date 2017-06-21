@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 
 from .models import *
@@ -23,15 +23,35 @@ def filter(request, x):
         x = x.filter(category__public=True)
     return x
 
-def search(request, page=1):
-    q = request.GET.get('q', '')
+def videos_request(request, q):
     l = q.split(" ")
     videos = filter(request, Video.objects)
     for x in l:
         videos = videos.filter(titre__contains = x)
+    return videos.all()
+
+def suggestions(request, q):
+    videos = []
+    if len(q) > 2:
+        videos = videos_request(request, q)
+    elements = [
+        {
+            'id': v.id,
+            'titre': v.titre,
+            'duree': v.duree,
+        }
+        for v in videos
+    ]
+    data = {
+        'videos': elements,
+    }
+    return JsonResponse(data)
+
+def search(request, page=1):
+    q = request.GET.get('q', '')
     context = {
         'titre': u'Résultats de la recherche "' + q + '"',
-        'elements': videos,
+        'elements': videos_request(request, q),
     }
     return render(request, 'videos.html', context)
 
