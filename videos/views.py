@@ -71,10 +71,10 @@ def can_proj(request):
         return hasattr(user, 'utilisateur') and user.utilisateur.can_proj
     return False
 
-def can_add_info(request):
+def can_edit(request):
     if request.user.is_authenticated:
         user = request.user
-        return hasattr(user, 'utilisateur') and user.utilisateur.can_add_info
+        return hasattr(user, 'utilisateur') and user.utilisateur.can_edit
     return False
 
 def id(x):
@@ -153,6 +153,40 @@ def add_proj(request):
     else:
         context['message'] = "Vous ne pouvez pas !"
     return render(request, 'add_proj.html', context)
+
+def edit_video(request, video_id):
+
+    context = {}
+
+    if can_edit(request):
+
+        v = get_object_or_404(Video, pk=video_id)
+        p = request.POST
+
+        if 'titre' in p:
+
+            titre = p['titre']
+            url = p['url']
+            description = p['description']
+            duree = max(int(p['duree']), 0)
+            c = get_object_or_404(Category, pk=int(p['category']))
+
+            v.titre = titre
+            v.url = url
+            v.description = description
+            v.duree = duree
+            v.category = c
+            v.save()
+
+            return video(request, video_id)
+
+        context['v'] = v
+        context['categories'] = Category.objects.all()
+
+    else:
+        context['message'] = "Accès interdit !"
+
+    return render(request, 'edit_video.html', context)
 
 def index(request):
     projs = filter(request, Proj.objects)
@@ -270,6 +304,7 @@ def video(request, video_id):
             epingle = Favorite.objects.filter(user = user, video = video, epingle = True).exists()
         suggestions = all_videos.all().order_by('?')[:n_suggestions]
         context = {
+            'can_edit': can_edit(request),
             'video': video,
             'suggestions': suggestions,
             'favorite': favorite,

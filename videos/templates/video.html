@@ -31,7 +31,7 @@
     </div>
 
     <div class="titre_et_vues_auteurs">{{ video|auteurs }}</div>
-    <div class="titre_et_vues_info">Une information pertinente</div>
+    <div class="titre_et_vues_info">Catégorie : <a href="{% url 'category' video.category.id 1 %}">{{video.category.titre}}</a></div>
 
     <div class="nb_vues">
 		 {{ video.views }} vues
@@ -105,6 +105,11 @@
   <div class="titre_et_vues_date">Ajoutée le {{ video.date|date:"d/m/Y" }}</div>
   {{ video.description }}
 </div>
+
+
+{% if can_edit %}
+    <a href="{% url 'edit_video' video.id %}">Éditer la vidéo (déso si c'est moche)</a>
+{% endif %}
 
 
 
