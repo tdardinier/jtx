@@ -108,6 +108,13 @@ Style de la Lateral Bar
   width: 14%;
 }
 
+#txtHint{
+  z-index: 1;
+  position: fixed;
+  background: white;
+  width: 600px;
+
+}
 
 .barre_de_recherche{
   display: table-cell;

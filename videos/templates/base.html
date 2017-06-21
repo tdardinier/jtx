@@ -9,6 +9,22 @@
   <title>JTX</title>
 
   <script>
+  function showHint(str) {
+    if (str.length == 0) {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else {
+      document.getElementById("txtHint").innerHTML = str;
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("txtHint").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET", "gethint.php?q=" + str, true);
+        xmlhttp.send();
+    }
+  }
 
   function checkbar(){
     var show = getCookie("show");
@@ -69,7 +85,11 @@
     </button>
 
 
-
+    <div id="txtHint">
+      Je suis une suggestion <br>
+      Et moi une autre <br>
+      Et moi une troisième.
+    </div>
   <div id="navigation_bar">
     <a href="{% url 'index' %}">
     <div class="navigation_bar_titre">
@@ -78,8 +98,9 @@
     </a>
 
     <div class="barre_de_recherche">
-        <form method="get" action="{% url 'search' %}"><input placeholder="Rechercher" type="text" name="q" class='biginput'></form>
+        <form method="get" action="{% url 'search' %}"><input placeholder="Rechercher" type="text" name="q" class='biginput' onkeyup="showHint(this.value)"></form>
     </div>
+
   </div>
 
   <!-- A changer pour mettre un lien absolu! -->
