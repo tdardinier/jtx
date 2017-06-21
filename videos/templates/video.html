@@ -41,14 +41,6 @@
 
   <hr>
 
-  <div class="epingler">
-    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
-    <img src={% static "admin/img/green_tic2.png" %} alt="pin" class="bouton_epingler_tic">
-    <div class="text_epingler">
-      épingler la vidéo
-    </div>
-
-  </div>
 
 	<div class="titre_et_vues_vues_et_jaime">
     <div class="titre_et_vues_vues_et_jaime_nb_jaime">
@@ -80,6 +72,24 @@
 			</div>
 	</div>
 
+  {% if request.user.is_authenticated %}
+  {% if epingle %}
+  <a href="{% url 'remove_epingle' video_id=video.id home=0 %}">
+    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_deja_epingler">
+    </a>
+    <div class="text_epingler">
+      désépingler
+    </div>
+
+    {% else %}
+    <a href="{% url 'add_epingle' video.id %}">
+    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
+    </a>
+    <div class="text_epingler">
+      épingler
+    </div>
+    {% endif %}
+    {% endif %}
 
 
 	<div class="titre_et_vues_tags">
