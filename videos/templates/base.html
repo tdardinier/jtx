@@ -60,6 +60,14 @@
     return "";
 }
 
+function afficher_results(){
+    document.getElementById("txtHint").style.display = "unset";
+}
+
+function cacher_results(){
+    document.getElementById("txtHint").style.display = "none";
+}
+
     function h_r_lateral_bar() {
 
       if(document.getElementById("lateral_bar").style.display != "none"){
@@ -76,6 +84,7 @@
 <body onload="checkbar()">
 
 
+
 <div id="central">
 
 
@@ -85,11 +94,7 @@
     </button>
 
 
-    <div id="txtHint">
-      Je suis une suggestion <br>
-      Et moi une autre <br>
-      Et moi une troisième.
-    </div>
+
   <div id="navigation_bar">
     <a href="{% url 'index' %}">
     <div class="navigation_bar_titre">
@@ -98,11 +103,19 @@
     </a>
 
     <div class="barre_de_recherche">
-        <form method="get" action="{% url 'search' %}"><input placeholder="Rechercher" type="text" name="q" class='biginput' onkeyup="showHint(this.value)"></form>
+        <form method="get" action="{% url 'search' %}"><input placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()" type="text" name="q" class='biginput' onkeyup="showHint(this.value)"></form>
     </div>
 
   </div>
 
+  <div id="txtHint">
+    <div class="search_result">
+        <a href="#" >Je suis une suggestion</a>
+    </div>
+
+      <a href="#" class="search_result">Et moi une autre </a><br>
+    <a href="#" class="search_result">Et moi une troisième.</a>
+  </div>
   <!-- A changer pour mettre un lien absolu! -->
 
 
