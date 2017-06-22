@@ -2,6 +2,8 @@
 {% load static %}
 {% block body %}
 
+{% load app_filters %}
+
 {% if proj %}
 
 <div style="margin-top:0;display:table">
@@ -28,7 +30,7 @@
 	    <div class="cellule_num_jtx">
 	      <div class="numero_jtx">
 	        <div class="numero_jtx_text">
-	            15
+                {{ proj | short_promo }}
 	        </div>
 	      </div>
 	    </div>
@@ -84,6 +86,12 @@
 
 
 
+  {% if can_proj %}
+  <a href="{% url 'edit_proj' proj.id %}">Éditer la proj (déso moche je sais)</a>
+  {% endif %}
+
+
+
 
 <div class="description_video">
 	<div class="titre_et_vues_date">
@@ -123,6 +131,7 @@
 
     {% endif %}
   </div>
+
 
   {% for r in proj.relation_comment_proj_set.all%}
       <hr>
@@ -165,6 +174,14 @@
 
                 </div>
             </div>
+
+                {% if request.user.is_authenticated and request.user == r.author %}
+                    <a href="{% url 'delete_comment_proj' r.id %}">
+                        Supprimer ce commentaire de merde
+                    </a>
+                {% endif %}
+
+
           </div>
 
       </div>

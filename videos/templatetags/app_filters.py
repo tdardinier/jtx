@@ -24,6 +24,10 @@ def short(s):
     else:
         return s[:(n - 3)] + "..."
 
+@register.filter(name='short_promo')
+def short_promo(e):
+    return str(e.promo)[-2:]
+
 @register.filter(name='duration_proj')
 def duration(p):
     s = 0

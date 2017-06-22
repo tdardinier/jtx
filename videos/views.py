@@ -45,7 +45,7 @@ def suggestions(request, q):
         videos = videos_request(request, q)
     elements = [
         {
-            'id': v.id,
+            'url': reverse('video', args=(v.id,)),
             'titre': v.titre,
             'duree': v.duree,
         }
@@ -111,7 +111,7 @@ def real_add_proj(titre_proj, folder, c, promo):
             dd = ld[0].duration
             d = int(float(dd if dd != "N/A" else "0"))
         titre = base.split('_')
-        if titre[0][0] == '0':
+        if titre[0][0] in ['0', '1']:
             titre = titre[1:]
         v = Video(titre = ' '.join(titre), url = base_url + "/" + folder + "/" + f, duree=d, category=c)
         v.save()
@@ -163,6 +163,47 @@ def add_proj(request):
         context['message'] = "Vous ne pouvez pas !"
     return render(request, 'add_proj.html', context)
 
+def edit_proj(request, proj_id):
+
+    context = {}
+
+    if can_proj(request):
+
+        p = get_object_or_404(Proj, pk=proj_id)
+        post = request.POST
+
+        if 'titre' in post:
+
+            titre = post['titre']
+            c = get_object_or_404(Category, pk=int(post['category']))
+            promo = max(int(post['promo']), 0)
+            image = post['image']
+
+            p.titre = titre
+            p.image = image
+            p.promo = promo
+            p.category = c
+
+            p.save()
+
+            for x in post:
+                if x[:8] == "r_video_":
+                    y = int(x[8:])
+                    r = Relation_proj.objects.get(pk=y)
+                    r.ordre = int(post[x])
+                    r.save()
+
+
+            return HttpResponseRedirect(reverse('proj', args=(p.id,)))
+
+        context['p'] = p
+        context['categories'] = Category.objects.all()
+
+    else:
+        context['message'] = "Accès interdit !"
+
+    return render(request, 'edit_proj.html', context)
+
 def edit_video(request, video_id):
 
     context = {}
@@ -187,7 +228,7 @@ def edit_video(request, video_id):
             v.category = c
             v.save()
 
-            return video(request, video_id)
+            return HttpResponseRedirect(reverse('video', args=(v.id,)))
 
         context['v'] = v
         context['categories'] = Category.objects.all()
@@ -271,6 +312,7 @@ def proj(request, proj_id):
         proj.views += 1
         proj.save()
         context = {
+            'can_proj': can_proj(request),
             'proj': proj,
             'suggestions': suggestions,
             'favorite': favorite,
@@ -445,3 +487,19 @@ def comment_proj(request, proj_id):
         c = Relation_comment_proj(author = user, proj = proj, comment = comment)
         c.save()
     return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
+
+def delete_comment_video(request, comment_id):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Relation_comment, pk=comment_id)
+        user = request.user
+        if user == comment.author:
+            comment.delete()
+    return HttpResponseRedirect(reverse('video', args=(comment.video.id,)))
+
+def delete_comment_proj(request, comment_id):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Relation_comment_proj, pk=comment_id)
+        user = request.user
+        if user == comment.author:
+            comment.delete()
+    return HttpResponseRedirect(reverse('proj', args=(comment.proj.id,)))

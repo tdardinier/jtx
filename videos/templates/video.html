@@ -123,6 +123,7 @@
 
   <div class="commentaires_video_faire">
     {% if request.user.is_authenticated %}
+    
 
     <form action="{% url 'comment_video' video.id %}" method="post">
     {% csrf_token %}
@@ -171,12 +172,23 @@
                     </a>
                 {% endif %} !-->
 
+            
 
                 </div>
             </div>
+
+                {% if request.user.is_authenticated and request.user == r.author %}
+                    <a href="{% url 'delete_comment_video' r.id %}">
+                        Supprimer ce commentaire de merde
+                    </a>
+                {% endif %}
+
+
+
           </div>
 
       </div>
+
 
       <div class="commentaires_commentaires">
         {{ r.comment }}

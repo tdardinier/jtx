@@ -30,7 +30,13 @@ urlpatterns = [
 
     url(r'^comment_video/(?P<video_id>[0-9]+)/$', views.comment_video, name='comment_video'),
     url(r'^comment_proj/(?P<proj_id>[0-9]+)/$', views.comment_proj, name='comment_proj'),
+
+    url(r'^delete_comment_video/(?P<comment_id>[0-9]+)/$', views.delete_comment_video, name='delete_comment_video'),
+    url(r'^delete_comment_proj/(?P<comment_id>[0-9]+)/$', views.delete_comment_proj, name='delete_comment_proj'),
+
     url(r'^edit_video/(?P<video_id>[0-9]+)/$', views.edit_video, name='edit_video'),
+    url(r'^edit_proj/(?P<proj_id>[0-9]+)/$', views.edit_proj, name='edit_proj'),
+
     url(r'^jtx/(?P<year>[0-9]+)/$', views.jtx, name='jtx'),
     url(r'^search/$', views.search, name='search'),
     url(r'^suggestions/(?P<q>[\w|\W]*)/$', views.suggestions, name='suggestions'),
