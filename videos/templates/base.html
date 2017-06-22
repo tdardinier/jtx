@@ -25,7 +25,9 @@
 
       var showData = $('#txtHint');
 
-        $.getJSON("{% url 'suggestions' " str "%}", function(data){
+      var url = "{% url 'suggestions' '' %}";
+      url = url.substring(0, url.length - 1);
+        $.getJSON(url + str, function(data){
 
 
 
