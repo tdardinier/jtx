@@ -7,41 +7,29 @@
   <link rel="stylesheet" href="{% static 'style.css' %}"/>
   <link href='//fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
   <title>JTX</title>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
   function showHint(str) {
     if (str.length == 0) {
         document.getElementById("txtHint").innerHTML = "";
         return;
     } else {
+      $.getJSON( "suggestions/"+str+"/", function( data ) {
+          var items = [];
+          $.each( data, function( key, val ) {
+            items.push( "<li id='" + key + "'>" + val + "</li>" );
+          });
 
-      a=getJSON('/suggestions/'+str,
-function(err, data) {
-if (err != null) {
-  alert('Something went wrong: ' + err);
-} else {
-  alert('Your query count: ' + data.query.count);
-}
-});
-        document.getElementById("txtHint").innerHTML = a;
+          $( "<ul/>", {
+            "class": "my-new-list",
+            html: items.join( "" )
+          }).appendTo( "txtHint" );
+        });
+
 
     }
   }
 
-  var getJSON = function(url, callback) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', url, true);
-    xhr.responseType = 'json';
-    xhr.onload = function() {
-      var status = xhr.status;
-      if (status == 200) {
-        callback(null, xhr.response);
-      } else {
-        callback(status);
-      }
-    };
-    xhr.send();
-};
 
   function checkbar(){
     var show = getCookie("show");
