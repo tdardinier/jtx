@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^favorites/(?P<page>[0-9]+)/$', views.favorites, name='favorites'),
     url(r'^tags/$', views.tags, name='tags'),
     url(r'^tag/(?P<tag_id>[0-9]+)/(?P<page>[0-9]+)/$', views.tag, name='tag'),
+    url(r'^jtxman/(?P<auteur_id>[0-9]+)/(?P<page>[0-9]+)/$', views.jtxman, name='jtxman'),
 
     url(r'^add_favorite/(?P<video_id>[0-9]+)/$', views.add_favorite, name='add_favorite'),
     url(r'^add_favorite_proj/(?P<proj_id>[0-9]+)/$', views.add_favorite_proj, name='add_favorite_proj'),
