@@ -52,7 +52,7 @@ def suggestions(request, q):
         for v in videos
     ]
     data = {
-        'videos': elements,
+        'videos': elements[:10],
     }
     return JsonResponse(data)
 
