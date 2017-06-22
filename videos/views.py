@@ -41,7 +41,7 @@ def jtxman(request, auteur_id, page=1):
 
 def suggestions(request, q):
     videos = []
-    if len(q) > 2:
+    if len(q) >= 2:
         videos = videos_request(request, q)
     elements = [
         {
