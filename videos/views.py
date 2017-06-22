@@ -45,7 +45,7 @@ def suggestions(request, q):
         videos = videos_request(request, q)
     elements = [
         {
-            'id': v.id,
+            'url': reverse('video', args=(v.id,)),
             'titre': v.titre,
             'duree': v.duree,
         }
