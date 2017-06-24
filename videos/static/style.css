@@ -394,8 +394,8 @@ Style des listes de vidéos et de projs
 }
 
 .img_vid_suggestions{
-  max-width:154px;
-  max-height: 87px;
+  max-width:168px;
+  max-height: 94px;
   margin: auto;
 }
 
@@ -737,6 +737,15 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   margin-bottom: 0px;
 }
 
+.description_video hr{
+
+  margin: 0,auto;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #E2E2E2;
+  padding: 0;
+}
+
 .commentaires_video::-webkit-scrollbar {
     display:none;
 }
@@ -978,23 +987,6 @@ Design de l'interface de lecture d'une proj
 
 /* Checkbox Hack */
 /*On cache le petit bouton*/
-input[type=checkbox] {
-   position: absolute;
-   top: -9999px;
-   left: -9999px;
-}
-
-.description_video label {
-/*  -webkit-appearance: square-button;
-  -moz-appearance: button;
-  display: inline-block;*/
-  display: inline-block;
-  margin-top: 5px;
-  background-color: white;
-  color: #444444;
-  padding: 5px;
-  cursor: pointer;
-}
 
 .description_video label:hover {
 /*  -webkit-appearance: square-button;
@@ -1013,9 +1005,15 @@ input[type=checkbox] {
 }
 
 
-/* Toggled State */
-input[type=checkbox]:checked ~ .description_video_proj{
-   height: 0px;
+#bouton_affiche_liste{
+  text-align: center;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+#bouton_affiche_liste:hover{
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .description_video_proj ol li{
@@ -1026,12 +1024,11 @@ padding-top: 5px;
   border-radius: 6px;
   border-style: solid;
   border-width: 1px;
-  border-color: #777777;
-  color: #777777;
+  border-color: #e67e22 ;
+  color: #e67e22;
   box-shadow: 0px 0px 2px -1px;
   text-decoration: none;
-  padding-left: 2px;
-  padding-right: 2px;
+  padding:3px;
   margin-left: -40px;
   opacity: 0;
 
@@ -1041,7 +1038,7 @@ padding-top: 5px;
 }
 
 .proj_video_voir:hover{
-  background-color: #777777;
+  background-color: #e67e22;
   color:white;
   opacity: 1;
   margin-left: 0px;
@@ -1051,8 +1048,9 @@ padding-top: 5px;
 
 .proj_video_titre{
   text-decoration: none;
-  color:black;
-  font-weight: bold;
+  color:black !important;
+  font-size: 13px;
+  font-weight: 400;
   padding-left: 3px;
   padding-right: 3px;
   padding:3px;
@@ -1060,9 +1058,9 @@ padding-top: 5px;
 
 }
 
+
 .proj_video_titre:hover{
-  background-color: #444444;
-  color:white;
+  background-color: #c8c8c8;
   cursor: pointer;
 }
 
@@ -1172,14 +1170,14 @@ padding-top: 5px;
   text-decoration: none;
   color:#767676;
   font-weight: 400;
-  width: 150px;
+  width: 220px;
   font-size: 12px;
 }
 
 .legende_vid_auteur a{
   text-decoration: none;
   color:grey;
-  width: 150px;
+  width: 220px;
   font-size: 12px;
   margin-bottom: 15px;
 }
@@ -1375,6 +1373,14 @@ margin-left: -2px;
     .titre_et_vues{
       width: 412px;}
 
+      .titre_proj_nouv{
+        width: 432px;
+      }
+
+      .description_video{
+        width:412px;
+      }
+
       .suggestion {
         margin-top: 10px;
         display: block;
@@ -1390,7 +1396,7 @@ margin-left: -2px;
       }
 
       .bloc_video_suggestion{
-          height: 87px;
+          height: 94px;
           overflow: hidden;
       }
 
@@ -1401,7 +1407,7 @@ margin-left: -2px;
       .bloc_legende_suggestions {
         display: table-cell;
         position: relative;
-        top: -73px;
+        top: -82px;
         padding-left: 6px;
         margin-bottom: -50px;
         overflow: hidden;
@@ -1420,6 +1426,14 @@ margin-left: -2px;
 
     .titre_et_vues{
       width: 620px;}
+
+      .titre_proj_nouv{
+        width: 640px;
+      }
+
+      .description_video{
+        width: 620px;
+      }
 }
 @media screen and (min-width: 1300px)  {
     #video {
@@ -1435,13 +1449,13 @@ margin-left: -2px;
       width: 844px;}
 
     .suggestion {
-      width: 320px;
-      padding-left: 0px;
+      width: 432px;
+      padding-left: 10px;
       margin-left: 10px;
     }
 
     .bloc_video_suggestion{
-        height: 87px;
+        height: 94px;
         overflow: hidden;
     }
 
@@ -1452,10 +1466,18 @@ margin-left: -2px;
     .bloc_legende_suggestions {
       display: table-cell;
       position: relative;
-      top: -73px;
+      top: -82px;
       padding-left: 6px;
       margin-bottom: -50px;
       overflow: hidden;
+    }
+
+    .titre_proj_nouv{
+      width: 864px;
+    }
+
+    .description_video{
+      width: 844px;
     }
 
 }

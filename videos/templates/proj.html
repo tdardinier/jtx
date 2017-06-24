@@ -98,10 +98,15 @@
 		Ajoutée le {{ proj.date|date:"d/m/Y" }}
 	</div>
 
-  <label for="toggle-1">Afficher les vidéos</label>
-  <input type="checkbox" id="toggle-1">
+	<div id="bouton_affiche_liste" onclick="affiche_liste()">
+		  Afficher les vidéos
+	</div>
 
-  <div class="description_video_proj">
+	<hr>
+
+
+
+  <div class="description_video_proj" id="ls_vid">
     <ol>
       {% for r in proj.relation_proj_set.all %}
       <li>
@@ -195,7 +200,7 @@
 
 </div>
 
-<div class="suggestion" style="padding-left:10px;">
+<div class="suggestion" >
   <div class="container_suggestion">
 		{% load app_filters %}
     <p class="suggestion_titre">À suivre</p>
@@ -204,16 +209,16 @@
             {% for v in suggestions %}
 
             <div class="bloc_video_suggestion">
-              <a href="{% url 'video' v.id %}" class="lien_suggestion_video">
+              <a href="{% url 'proj' v.id %}" class="lien_suggestion_video">
               <figure class="figure_suggestions">
-                  <img class="img_vid_suggestions" src="{{v.image}}	"/>
+                  <img class="img_vid_suggestions" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg	"/>
                   <figcaption class="legende_vid_duree">
                       {{v|duration_proj}}
                   </figcaption>
 
               </figure>
               </a>
-              <a href="{% url 'video' v.id %}" class="lien_suggestion_bloc">
+              <a href="{% url 'proj' v.id %}" class="lien_suggestion_bloc">
               <div class="bloc_legende_suggestions">
 
                     <div class="legende_vid_titre_suggestions">
@@ -302,6 +307,19 @@ function next(e) {
 	}
 }
 
+function affiche_liste(){
+	if(affiche_l==0){
+		affiche_l=1;
+		document.getElementById("ls_vid").style.display="none";
+	}
+	else {
+		affiche_l=0;
+		document.getElementById("ls_vid").style.display="unset";
+	}
+}
+
+
+var affiche_l=0;
 launch(1);
 </script>
 
