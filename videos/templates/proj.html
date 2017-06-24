@@ -7,8 +7,8 @@
 {% if proj %}
 
 <div style="margin-top:0;display:table">
-<div style="margin-top:0;display:table-row">
-<div style="margin-top:0;display:table-cell;vertical-align:top">
+<div style="margin-top:0;display:block">
+<div style="margin-top:0;display:table-cell;vertical-align:top;padding-right:10px;">
 <!--> <div style="margin-top:0;display:table-cell;vertical-align:top"></-->
 
 <video id="video" width="720px" height="405px" controls></video>
@@ -195,43 +195,55 @@
 
 </div>
 
-<div class="suggestion">
+<div class="suggestion" style="padding-left:10px;">
   <div class="container_suggestion">
 		{% load app_filters %}
-    <h1>Suggestions</h1>
+    <p class="suggestion_titre">À suivre</p>
 
-        <div class="liste_videos">
+        <div class="liste_videos" >
             {% for v in suggestions %}
-                <div class="bloc_video">
-                  <a href="{% url 'proj' v.id %}">
-                  <figure>
-                      <img class="proj_image" src="{{v.image}}"/>
-                      <figcaption class="legende_vid_duree">
-                            {{v|duration_proj}}
-                      </figcaption>
-                  </figure>
-                  </a>
 
-                  <a href="{% url 'proj' v.id %}">
-                      <div class="legende_vid_titre">
-                          {{v.titre}}
-                      </div>
-                  </a>
+            <div class="bloc_video_suggestion">
+              <a href="{% url 'video' v.id %}" class="lien_suggestion_video">
+              <figure class="figure_suggestions">
+                  <img class="img_vid_suggestions" src="{{v.image}}	"/>
+                  <figcaption class="legende_vid_duree">
+                      {{v|duration_proj}}
+                  </figcaption>
 
-                  <div class="legende_vid_auteur">
-                        <a href="#">
-                          JTX2015
-                        </a>
-                        -
-                        {{v.views}}
-                         vues
-                  </div>
+              </figure>
+              </a>
+              <a href="{% url 'video' v.id %}" class="lien_suggestion_bloc">
+              <div class="bloc_legende_suggestions">
+
+                    <div class="legende_vid_titre_suggestions">
+                        {{v.titre|short}}
+                    </div>
+
+
+                <div class="legende_vid_auteur">
+
+                      JTX 2015
+
                 </div>
+                <div class="legende_vid_auteur">
+                        {{v.views}}
+                       vues
+                       <span class="petit_point">&#9679;</span>
+
+                       il y a 1 an
+                </div>
+              </div>
+                </a>
+            </div>
+
               {% endfor %}
         </div>
 
       </div>
     </div>
+
+
 
 
 

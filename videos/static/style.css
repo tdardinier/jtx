@@ -1437,6 +1437,7 @@ margin-left: -2px;
     .suggestion {
       width: 320px;
       padding-left: 0px;
+      margin-left: 10px;
     }
 
     .bloc_video_suggestion{
