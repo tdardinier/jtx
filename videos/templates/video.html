@@ -6,11 +6,11 @@
 {% load app_filters %}
 
 <div style="margin-top:0;display:table">
-<div style="margin-top:0;display:table-row">
+<div style="margin-top:0;display:block">
 
 <div style="margin-top:0;display:table-cell;vertical-align:top;">
 
-    <video id="video" width="720px" height="405px" controls autoplay>
+    <video id="video" controls autoplay>
         <source src="{{video.url}}">
 		Your browser does not support the video tag.
 	</video>
@@ -123,7 +123,7 @@
 
   <div class="commentaires_video_faire">
     {% if request.user.is_authenticated %}
-    
+
 
     <form action="{% url 'comment_video' video.id %}" method="post">
     {% csrf_token %}
@@ -136,6 +136,14 @@
 
   {% for r in video.relation_comment_set.all %}
       <hr>
+      <div class="commentaires_supprimer_div">
+        {% if request.user.is_authenticated and request.user == r.author %}
+            <a href="{% url 'delete_comment_video' r.id %}">
+                  <img src={% static "admin/img/icon-deletelink.svg" %} alt="Supprimer" class='commentaires_supprimer'>
+            </a>
+        {% endif %}
+      </div>
+
       <div class="commentaire_nom_date">
         <div class="commentaires_nom">
           {{ r.author.username }}
@@ -148,7 +156,7 @@
             <div class="commentaires_jaime">
 
               <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime">
-                 14
+                 115
               </div>
 
               <div class="petit_titre_et_vues_vues_et_jaime_vues_jaime">
@@ -172,20 +180,17 @@
                     </a>
                 {% endif %} !-->
 
-            
+
 
                 </div>
             </div>
 
-                {% if request.user.is_authenticated and request.user == r.author %}
-                    <a href="{% url 'delete_comment_video' r.id %}">
-                        Supprimer ce commentaire de merde
-                    </a>
-                {% endif %}
+
 
 
 
           </div>
+
 
       </div>
 
@@ -207,33 +212,43 @@
 
     <p class="suggestion_titre">À suivre</p>
 
-        <div class="liste_videos">
+        <div class="liste_videos" >
             {% for v in suggestions %}
-                <div class="bloc_video">
-                  <a href="{% url 'video' v.id %}">
-                  <figure>
-                      <img class="img_vid" src="{{v.url}}.png"/>
-                      <figcaption class="legende_vid_duree">
-                          {{v|duration}}
-                      </figcaption>
-                  </figure>
-                  </a>
 
-                  <a href="{% url 'video' v.id %}">
-                      <div class="legende_vid_titre">
-                          {{v.titre|short}}
-                      </div>
-                  </a>
+            <div class="bloc_video_suggestion">
+              <a href="{% url 'video' v.id %}" class="lien_suggestion_video">
+              <figure class="figure_suggestions">
+                  <img class="img_vid_suggestions" src="{{v.url}}.png"/>
+                  <figcaption class="legende_vid_duree">
+                      {{v|duration}}
+                  </figcaption>
 
-                  <div class="legende_vid_auteur">
-                        <a href="#">
-                          {{v|auteurs}}
-                        </a>
-                        -
-                        {{v.views}}
-                         vues
-                  </div>
+              </figure>
+              </a>
+              <a href="{% url 'video' v.id %}" class="lien_suggestion_bloc">
+              <div class="bloc_legende_suggestions">
+
+                    <div class="legende_vid_titre_suggestions">
+                        {{v.titre|short}}
+                    </div>
+
+
+                <div class="legende_vid_auteur">
+
+                        {{v|auteurs}}
+
                 </div>
+                <div class="legende_vid_auteur">
+                        {{v.views}}
+                       vues
+                       <span class="petit_point">&#9679;</span>
+
+                       il y a 1 an
+                </div>
+              </div>
+                </a>
+            </div>
+
               {% endfor %}
         </div>
 

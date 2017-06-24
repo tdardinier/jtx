@@ -393,6 +393,12 @@ Style des listes de vidéos et de projs
   margin: auto;
 }
 
+.img_vid_suggestions{
+  max-width:154px;
+  max-height: 87px;
+  margin: auto;
+}
+
 /*
 -------------------------------------------
 Concerne l'affichage des légendes des vidéos
@@ -480,6 +486,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   padding-right:10px;
   padding-bottom: 1px;
   margin-top: 7px;
+  width: 844px;
 }
 
 .bandeau_haut{
@@ -515,7 +522,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
 .titre_et_vues_titre{
   padding-top: 12px;
-  font-size: 19px;
+  font-size: 20px;
 }
 
 .proj_vid_suiv{
@@ -553,9 +560,8 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   transition: all 0.2s cubic-bezier(0.770, 0.000, 0.175, 1.000);
 }
 .titre_et_vues_date{
-  font-weight: bold;
+  font-weight: 500;
   font-size: 12px;
-
 }
 
 #titre_et_vues_id hr {
@@ -735,10 +741,17 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
     display:none;
 }
 
+#video{
+  width:864px;
+  height:486px;
+}
+
+
+
 .commentaires_video{
 
   /* max-height: 500px;*/
-  max-width: 700px;
+  max-width: 844px;
   /*overflow-y: scroll;*/
   margin-top: 10px;
   padding-right: 10px;
@@ -748,6 +761,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   padding-left:10px;
   box-shadow: 0px 0px 10px -7px;
 }
+
 
 .commentaires_video_titre{
   color: #666666;
@@ -778,6 +792,25 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 .commentaires_commentaires{
     font-size: 13px;
     width: inherit;
+}
+
+.commentaires_supprimer{
+  width: 20px;
+  padding:0;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  border-radius: 5px;
+}
+
+.commentaires_supprimer_div{
+  display: inline-block;
+  float: right;
+}
+
+
+.commentaires_supprimer:hover{
+  background-color: #DCDCDC;
 }
 
 .commentaires_video_faire{
@@ -1119,7 +1152,7 @@ padding-top: 5px;
     text-decoration: none;
 }
 
-.container figure{
+.figure_liste{
   display:table-cell;
   width: 200px;
 }
@@ -1139,14 +1172,14 @@ padding-top: 5px;
   text-decoration: none;
   color:#767676;
   font-weight: 400;
-  width: 200px;
+  width: 150px;
   font-size: 12px;
 }
 
 .legende_vid_auteur a{
   text-decoration: none;
   color:grey;
-  width: 200px;
+  width: 150px;
   font-size: 12px;
   margin-bottom: 15px;
 }
@@ -1186,6 +1219,34 @@ padding-top: 5px;
   text-decoration: underline;
 }
 
+.bloc_video_suggestion{
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+
+}
+
+.lien_suggestion_bloc{
+  display: table-cell;
+}
+
+.lien_suggestion_bloc:hover .legende_vid_titre_suggestions{
+  color:#167AC6;
+}
+
+
+
+.legende_vid_titre_suggestions{
+  color:black;
+  max-height: 40px;
+  overflow: hidden;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight:400;
+}
+
 .suggestion_titre{
   font-size: 15px;
   margin-top: 7px;
@@ -1194,7 +1255,7 @@ padding-top: 5px;
 
 
 .suggestion{
-  width:220px;
+
   padding-left: 10px;
   vertical-align:top;
   display:table-cell;
@@ -1206,6 +1267,7 @@ padding-top: 5px;
   padding-left: 10px;
   padding-right: 10px;
   padding-top: 1px;
+  padding-bottom: 6px;
   margin-top: 0px;
   background-color: white;
   box-shadow: 0px 0px 10px -7px;
@@ -1218,9 +1280,9 @@ padding-top: 5px;
   color:#333333;
 }
 
-.container_suggestion figure{
+.figure_suggestions{
+  width: 156px;
   display:table-cell;
-  width: 200px;
 }
 
 .proj_titre_video{
@@ -1295,4 +1357,104 @@ margin-left: -2px;
   width: 100px;
   text-align: right;
   vertical-align: middle;
+}
+
+
+
+
+@media screen and (max-width: 700px)  {
+  #video {
+        width: 432px;
+        height: 243px;
+    }
+
+    .commentaires_video {
+      max-width: 412px;
+    }
+
+    .titre_et_vues{
+      width: 412px;}
+
+      .suggestion {
+        margin-top: 10px;
+        display: block;
+        width: 432px;
+        padding-right: 0px;
+        padding-left: 0px;
+
+      }
+
+      .container_suggestion{
+
+        padding-left: 10px;
+      }
+
+      .bloc_video_suggestion{
+          height: 87px;
+          overflow: hidden;
+      }
+
+      .lien_suggestion_video{
+        display: table-cell;
+      }
+
+      .bloc_legende_suggestions {
+        display: table-cell;
+        position: relative;
+        top: -73px;
+        padding-left: 6px;
+        margin-bottom: -50px;
+        overflow: hidden;
+      }
+}
+
+@media screen and (max-width: 1300px)  and (min-width:700px) {
+    #video {
+        width:640px;
+        height: 360px;
+    }
+
+    .commentaires_video {
+      max-width: 620px;
+    }
+
+    .titre_et_vues{
+      width: 620px;}
+}
+@media screen and (min-width: 1300px)  {
+    #video {
+          width: 864px;
+          height:486px;
+    }
+
+    .commentaires_video {
+      max-width: 844px;
+    }
+
+    .titre_et_vues{
+      width: 844px;}
+
+    .suggestion {
+      width: 320px;
+      padding-left: 0px;
+    }
+
+    .bloc_video_suggestion{
+        height: 87px;
+        overflow: hidden;
+    }
+
+    .lien_suggestion_video{
+      display: table-cell;
+    }
+
+    .bloc_legende_suggestions {
+      display: table-cell;
+      position: relative;
+      top: -73px;
+      padding-left: 6px;
+      margin-bottom: -50px;
+      overflow: hidden;
+    }
+
 }

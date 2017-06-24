@@ -25,7 +25,7 @@
 				<div class="bloc_video">
 
 			    <a href="{% url 'proj' p.id %}">
-			        <figure>
+			        <figure class="figure_liste">
 									<img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
 									<div class="legende_vid_duree">
 											  {{p|duration_proj}}
@@ -66,7 +66,7 @@
 		{% for v in videos %}
 		<div class="bloc_video">
 			<a href="{% url 'video' v.id %}">
-			<figure>
+			<figure class="figure_liste">
 					<img class="img_vid" src="{{v.url}}.png"/>
 					<figcaption class="legende_vid_duree">
 							{{v|duration}}
