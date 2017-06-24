@@ -109,6 +109,12 @@ Style de la Lateral Bar
   width: 14%;
 }
 
+.lien_suggestion{
+  color:black;
+  text-decoration: none;
+}
+
+
 #txtHint{
   display: none;
   border-bottom-left-radius: 5px;
@@ -117,8 +123,8 @@ Style de la Lateral Bar
   border-width: 1px;
   border-color: #c8c8c8;
 
-  margin-top: 37px;
-  margin-left: 272.5px;
+  margin-top: 37.5px;
+
 
   z-index: 1;
   position: fixed;
@@ -127,8 +133,8 @@ Style de la Lateral Bar
 
 }
 
-.search_result a{
-  padding-left: 2px;
+.search_result{
+  padding-left: 4px;
   text-decoration: none;
   color:black;
 }
@@ -144,15 +150,14 @@ Style de la Lateral Bar
 }
 
 form .biginput {
-  width: 600px;
+  width: 612px;
   height: 25px;
   margin-left: 6px;
-  padding: 0 10px 0 10px;
+  padding: 0 4px 0 4px;
   background-color: #fff;
   border: 1px solid #c8c8c8;
 
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
+
 
   color:#858585;
   font-weight:normal;
@@ -309,9 +314,9 @@ border-style: none;
 
 }
 .lateral_bar_button_a{
-
+  font-size: 14px;
   text-decoration: none;
-  font-weight: lighter;
+  font-weight:400;
   color: black;
 }
 
@@ -342,7 +347,7 @@ Style des tags
 
     color:black;
     text-transform:uppercase;
-    font-weight:lighter;
+    font-weight:400;
 
     font-size: 10px;
     padding-top: 2px;
@@ -412,7 +417,7 @@ Concerne l'affichage des légendes des vidéos
   font-size: 13px;
   text-shadow: 0px 0px 3px black;
 
-  opacity: 0.8;
+  opacity: 0.7;
 
   margin-bottom: -20px;
 

@@ -20,6 +20,7 @@
   function showHint(str) {
     if (str.length == 0) {
         document.getElementById("txtHint").innerHTML = "";
+        document.getElementById("txtHint").style.display = "none";
         return;
     } else {
 
@@ -29,19 +30,23 @@
       url = url.substring(0, url.length - 1);
         $.getJSON(url + str, function(data){
 
-
-
-
         var videos = data.videos.map(function (video) {
-          return '<a href="'+video.url+'">'+video.titre + ': ' + video.duree+"</a>";
+          return '<a onclick="test()" class="lien_suggestion" href="'+video.url+'"><div class="search_result">'+video.titre + ': ' + video.duree+"</div></a>";
+
         });
 
         showData.empty();
 
         if (videos.length) {
-          var content = '<div class="search_result">' + videos.join('</div><div class="search_result">') + '</div>';
-          //var list = $('<ul />').html(content);
+
+          document.getElementById("txtHint").style.display = "unset";
+          var content = videos.join(' ');
+          //var list = $('<ul />').html(cont  ent);
           showData.append(content);
+
+        }
+        else{
+            document.getElementById("txtHint").style.display = "none";
         }
 });
 
@@ -50,6 +55,7 @@
 
 
   function checkbar(){
+    positionne_suggestions();
     var show = getCookie("show");
     if (show != "") {
       if(show=='oui'){document.getElementById("lateral_bar").style.display = "unset";}
@@ -84,11 +90,12 @@
 }
 
 function afficher_results(){
-    document.getElementById("txtHint").style.display = "unset";
+
 }
 
 function cacher_results(){
-    document.getElementById("txtHint").style.display = "none";
+  if(suivre_lien==0){document.getElementById("txtHint").style.display = "none";}
+
 }
 
     function h_r_lateral_bar() {
@@ -102,6 +109,19 @@ function cacher_results(){
         setCookie("show", "oui", 365);}
 
     }
+
+    function positionne_suggestions(){
+      var rect = document.getElementById("search_bar").getBoundingClientRect();
+      document.getElementById("txtHint").style.marginLeft = (rect.left+6).toString() + "px";
+
+    }
+
+    function lien_ok(i){
+      suivre_lien=i;
+    }
+
+    var suivre_lien=0;
+     window.onresize = positionne_suggestions;
     </script>
 </head>
 <body onload="checkbar()">
@@ -124,17 +144,13 @@ function cacher_results(){
     </div>
     </a>
 
-    <div class="barre_de_recherche">
+    <div id="search_bar" class="barre_de_recherche">
         <form method="get" action="{% url 'search' %}"><input autocomplete="off" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()" type="text" name="q" class='biginput' onkeyup="showHint(this.value)"></form>
     </div>
 
   </div>
 
-  <div id="txtHint">
-    <div class="search_result">
-        <a href="#" >Je suis une suggestion</a>
-    </div>
-
+  <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)">
 
   </div>
   <!-- A changer pour mettre un lien absolu! -->
