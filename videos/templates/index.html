@@ -26,10 +26,11 @@
 
 			    <a href="{% url 'proj' p.id %}">
 			        <figure>
-			            <img class="proj_image" src="{{p.image}}"/>
-									<figcaption class="legende_vid_duree">
+									<img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
+									<div class="legende_vid_duree">
 											  {{p|duration_proj}}
-									</figcaption>
+									</div>
+
 			        </figure>
 			    </a>
 
@@ -43,9 +44,13 @@
 								<a href="#">
 									JTX2015
 								</a>
-								-
+					</div>
+					<div class="legende_vid_auteur">
 								  {{p.views}}
-								 vues.
+								 vues
+								 <span class="petit_point">&#9679;</span>
+
+								 il y a 1 an
 					</div>
 				</div>
 		{% endfor %}
@@ -66,6 +71,7 @@
 					<figcaption class="legende_vid_duree">
 							{{v|duration}}
 					</figcaption>
+
 			</figure>
 			</a>
 
@@ -79,9 +85,13 @@
 						<a href="#">
 							{{v|auteurs}}
 						</a>
-						-
-						{{v.views}}
-						 vues.
+			</div>
+			<div class="legende_vid_auteur">
+							{{v.views}}
+						 vues
+						 <span class="petit_point">&#9679;</span>
+
+						 il y a 1 an
 			</div>
 		</div>
 		{% endfor %}
