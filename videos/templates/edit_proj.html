@@ -4,44 +4,36 @@
 {% if message %}
 {{message}}
 {% endif %}
-<script type="text/javascript">
-angular.module("demo").controller("SimpleDemoController", function($scope) {
 
-  $scope.models = {
-      selected: null,
-      lists: {"A": [], "B": []}
-  };
 
-  // Generate initial model
-  for (var i = 1; i <= 3; ++i) {
-      $scope.models.lists.A.push({label: "Item A" + i});
-      $scope.models.lists.B.push({label: "Item B" + i});
-  }
 
-  // Model to JSON for demo purpose
-  $scope.$watch('models', function(model) {
-      $scope.modelAsJson = angular.toJson(model, true);
-  }, true);
+{% load static %}
+<script src={% static "angular-drag-and-drop-lists.js" %}></script>
+<script src={% static "script.js" %}></script>
 
-});
-</script>
 
-<div class="container">
-  <ul dnd-list="list">
-      <!-- The dnd-draggable directive makes an element draggable and will
-           transfer the object that was assigned to it. If an element was
-           dragged away, you have to remove it from the original list
-           yourself using the dnd-moved attribute -->
-      <li ng-repeat="item in list"
-          dnd-draggable="item"
-          dnd-moved="list.splice($index, 1)"
-          dnd-effect-allowed="move"
-          dnd-selected="models.selected = item"
-          ng-class="{'selected': models.selected === item}"
-          >
-          {{item.label}}
-      </li>
-  </ul>
+<div class="simpleDemo" ng-controller="SimpleDemoController">
+    <ul dnd-list="list">
+        <li ng-repeat="item in models.lists.A"
+            dnd-draggable="item"
+            dnd-moved="models.lists.A.splice($index, 1)"
+            dnd-effect-allowed="move"
+            dnd-selected="models.selected = item"
+            ng-class="{'selected': models.selected === item}">
+            {{item.label}} 
+        </li>
+    </ul>
+
+    <ul dnd-list="list">
+        <li ng-repeat="item in models.lists.B"
+            dnd-draggable="item"
+            dnd-moved="models.lists.B.splice($index, 1)"
+            dnd-effect-allowed="move"
+            dnd-selected="models.selected = item"
+            ng-class="{'selected': models.selected === item}">
+            {{item.label}}
+        </li>
+    </ul>
 </div>
 
 
