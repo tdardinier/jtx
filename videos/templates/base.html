@@ -35,12 +35,24 @@
 
         });
 
+
+        var jtxmen = data.auteurs.map(function (jtxman) {
+        return '<a onclick="test()" class="lien_suggestion" href="'+jtxman.url+'"><div class="search_result">'+jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo  +")</div></a>";
+
+        });
+
+        var projs = data.projs.map(function (proj) {
+          return '<a onclick="test()" class="lien_suggestion" href="'+proj.url+'"><div class="search_result">'+proj.titre +"</div></a>";
+
+        });
+
         showData.empty();
 
-        if (videos.length) {
+        if (videos.length + jtxmen.length) {
+            elements = jtxmen.concat(videos).concat(projs);
 
           document.getElementById("txtHint").style.display = "unset";
-          var content = videos.join(' ');
+          var content = elements.join(' ');
           //var list = $('<ul />').html(cont  ent);
           showData.append(content);
 

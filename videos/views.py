@@ -79,7 +79,9 @@ def suggestions(request, q):
     elements_auteur = [
         {
             'url': reverse('jtxman', args=(a.id,1,)),
-            'titre': a.firstname + " " + a.lastname,
+            'promo': a.promo,
+            'firstname': a.firstname,
+            'lastname': a.lastname,
         }
         for a in auteurs]
     data = {
