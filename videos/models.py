@@ -95,6 +95,7 @@ class Proj(models.Model):
     date = models.DateField(default=datetime.date.today)
     promo = models.IntegerField(default=2015)
     views = models.IntegerField(default=0)
+    description = models.CharField(max_length=1000, default="Pas de description disponible.")
     image = models.CharField(max_length=2000, default="http://cdn.wallpapersafari.com/58/12/nyHXSO.jpg")
     def __unicode__(self):
         return self.titre

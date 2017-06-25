@@ -86,6 +86,19 @@ def edit_video(request, video_id):
             v.category = c
             v.save()
 
+            # TAGS
+
+
+
+            for x in post:
+                if x[:8] == "r_video_":
+                    y = int(x[8:])
+                    r = Relation_proj.objects.get(pk=y)
+                    r.ordre = int(post[x])
+                    r.save()
+
+
+
             return HttpResponseRedirect(reverse('video', args=(v.id,)))
 
         context['v'] = v
