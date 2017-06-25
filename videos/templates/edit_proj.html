@@ -23,13 +23,13 @@
     {% csrf_token %}
 <tr>
   <th><label for="titre">Titre :</label></th>
-  <td>  <input class="input_edit" id="titre" size="50" type="text" value="{{p.titre}}" name="titre"/></td>
+  <td>  <input class="input_edit" id="titre" size="50" type="text" value="{{p.titre}}" onfocus="ffocus('titre')" onblur="defocus('titre')" name="titre"/></td>
 </tr>
 
 <tr>
   <th>  <label for="image">Image (URL) :<label></th>
   <td>
-    <input class="input_edit" id="image" size="100" type="text" name="image" value="{{p.image}}"/></td>
+    <input class="input_edit" id="image" size="100" type="text" name="image" onfocus="ffocus('image')" value="{{p.image}}"/></td>
 </tr>
 
 <tr>
@@ -46,6 +46,10 @@
   </select></td>
 </tr>
 
+<tr>
+  <th class="col1"><label for="description">Description :</label><br>  </th>
+  <th>    <textarea class="input_edit" id="description_edit" name="description">{{p.description}}</textarea></th>
+</tr>
 
 </table>
 
@@ -71,6 +75,11 @@
 </div>
 
 <script type="text/javascript">
+defocus('titre');
+defocus('image');
+function linear(i){
+  return i;
+}
 
 function ffocus(element_namee){
   var element=document.getElementById("description_edit");
