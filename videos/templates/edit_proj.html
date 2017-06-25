@@ -45,6 +45,8 @@
   {% endfor %}
   </select></td>
 </tr>
+
+
 </table>
 
 <table>
@@ -67,6 +69,82 @@
 </form>
 
 </div>
+
+<script type="text/javascript">
+
+function ffocus(element_namee){
+  var element=document.getElementById("description_edit");
+  var style = window.getComputedStyle(element);
+  var max_width= parseInt(style.getPropertyValue('width'));
+
+  var element=document.getElementById(element_namee);
+  var style = window.getComputedStyle(element);
+  var debut= parseInt(style.getPropertyValue('width'));
+  var fin =max_width;
+  animate({
+duration: 200,
+timing:makeEaseInOut(linear),
+draw: function(progress) {
+document.getElementById(element_namee).style.width  = debut+progress*(fin-debut)+ 'px';
+}
+});
+
+}
+
+function defocus(element_name){
+  var element=document.getElementById(element_name);
+  var style = window.getComputedStyle(element);
+  var debut= parseInt(style.getPropertyValue('width'));
+
+  document.getElementById("hidden_"+element_name).innerHTML=document.getElementById(element_name).value;
+
+
+  var element2=document.getElementById("hidden_"+element_name);
+  var style2 = window.getComputedStyle(element2);
+  var fin= parseInt(style2.getPropertyValue('width'))+3;
+
+  document.getElementById("hidden_"+element_name).style.dislay="hidden";
+
+  animate({
+duration: 200,
+timing:makeEaseInOut(linear),
+draw: function(progress) {
+document.getElementById(element_name).style.width  = debut+progress*(fin-debut)+ 'px';
+}
+});
+
+}
+
+function animate({timing, draw, duration}) {
+
+let start = performance.now();
+
+requestAnimationFrame(function animate(time) {
+  // timeFraction goes from 0 to 1
+  let timeFraction = (time - start) / duration;
+  if (timeFraction > 1) timeFraction = 1;
+
+  // calculate the current animation state
+  let progress = timing(timeFraction);
+
+  draw(progress); // draw it
+
+  if (timeFraction < 1) {
+    requestAnimationFrame(animate);
+  }
+
+});
+}
+
+function makeEaseInOut(timing) {
+return function(timeFraction) {
+  if (timeFraction < .5)
+    return timing(2 * timeFraction) / 2;
+  else
+    return (2 - timing(2 * (1 - timeFraction))) / 2;
+}
+}
+</script>
 {% endif %}
 
 {% endblock %}
