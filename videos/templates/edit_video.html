@@ -52,6 +52,26 @@
     <th>    <textarea class="input_edit" id="description_edit" name="description">{{v.description}}</textarea></th>
   </tr>
 
+  <br/><br/>
+Auteurs :
+    <select>
+        {% for a in auteurs %}
+            <option value="{{a.id}}">{{a.firstname}} {{a.lastname}}</option>
+        {% endfor %}
+    </select>
+
+
+  <br/><br/>
+Tags :
+    <select>
+        {% for t in tags %}
+            <option value="{{t.id}}">{{t.titre}}</option>
+        {% endfor %}
+    </select>
+
+
+
+
 </table>
 
     <input type="submit" class="edit_bouton" value="Modifier la vidéo"/>
