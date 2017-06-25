@@ -5,6 +5,9 @@
 {{message}}
 {% endif %}
 
+<div class="container">
+
+
 <h1>Édition d'une proj</h1>
 
 {% if p %}
@@ -20,7 +23,7 @@
     <label for="image">Image (URL) :<label>
     <input id="image" size="100" type="text" name="image" value="{{p.image}}"/>
     <br/><br/>
-    
+
     <label for="promo">Promo :<label>
             <input id="promo" type="number" name="promo" value="{{p.promo}}" min="1991" max="2030" step="1"/>
     <br/><br/>
@@ -42,11 +45,11 @@
     <br/>
 
     <input type="submit" value="Modifier la proj"/>
-    <br/>
-    <br/>
+
 
 </form>
 
+</div>
 {% endif %}
 
 {% endblock %}
