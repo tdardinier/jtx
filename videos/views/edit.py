@@ -36,11 +36,13 @@ def edit_proj(request, proj_id):
             c = get_object_or_404(Category, pk=int(post['category']))
             promo = max(int(post['promo']), 0)
             image = post['image']
+            description = p['description']
 
             p.titre = titre
             p.image = image
             p.promo = promo
             p.category = c
+            p.description = description
 
             p.save()
 

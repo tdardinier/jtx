@@ -47,6 +47,8 @@ def jtx(request, year):
         'year': year,
         'projs_jtx': v.filter(category=c),
         'projs_autres': v.exclude(category=c),
+        'jtxmen': Auteur.objects.filter(promo=year),
+        'videos': Video.objects.order_by('-views')[:12]
     }
     return render(request, 'jtx.html', context)
 
