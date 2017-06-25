@@ -267,6 +267,8 @@ def edit_video(request, video_id):
 
         context['v'] = v
         context['categories'] = Category.objects.all()
+        context['auteurs'] = Auteur.objects.all()
+        context['tags'] = Tag.objects.all()
 
     else:
         context['message'] = "Accès interdit !"
