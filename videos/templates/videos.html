@@ -4,19 +4,20 @@
 {% if elements %}
 
 {% load app_filters %}
-<div class="container">
-	<h1>Toutes les vidéos</h1>
+<div class="container" style="margin-top:15px;">
+
 
 <div class="liste_videos">
 	{% for v in elements %}
 
 	<div class="bloc_video">
 		<a href="{% url 'video' v.id %}">
-		<figure>
+		<figure class="figure_liste">
 				<img class="img_vid" src="{{v.url}}.png"/>
 				<figcaption class="legende_vid_duree">
 						{{v|duration}}
 				</figcaption>
+
 		</figure>
 		</a>
 
@@ -26,13 +27,20 @@
 				</div>
 		</a>
 
+		<div class="legende_vid_auteur" id="auteur_{{v.id}}">
+				
+		</div>
+
+		<script type="text/javascript">
+			document.getElementById("auteur_{{v.id}}").innerHTML="{{v|auteurs}}";
+		</script>
+
 		<div class="legende_vid_auteur">
-					<a href="#">
-						{{v|auteurs|striptags}}
-					</a>
-					-
-					{{v.views}}
+						{{v.views}}
 					 vues
+					 <span class="petit_point">&#9679;</span>
+
+					 il y a 1 an
 		</div>
 	</div>
 
