@@ -5,6 +5,8 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 
+from django.db.models import Q
+
 from .models import *
 
 import random
@@ -30,6 +32,20 @@ def videos_request(request, q):
         videos = videos.filter(titre__contains = x)
     return videos.all()
 
+def proj_request(request, q):
+    l = q.split(" ")
+    projs = filter(request, Proj.objects)
+    for x in l:
+        projs = projs.filter(titre__contains = x)
+    return projs.all()
+
+def auteurs_request(request, q):
+    l = q.split(" ")
+    auteurs = Auteur.objects
+    for x in l:
+        auteurs = auteurs.filter(Q(firstname__contains = x) | Q(lastname__contains = x))
+    return auteurs.all()
+
 def jtxman(request, auteur_id, page=1):
     man = get_object_or_404(Auteur, pk=auteur_id)
     videos = filter_relation(request, man.relation_auteur_video_set)
@@ -41,18 +57,35 @@ def jtxman(request, auteur_id, page=1):
 
 def suggestions(request, q):
     videos = []
+    projs = []
+    auteurs = []
     if len(q) >= 2:
         videos = videos_request(request, q)
-    elements = [
+        projs = proj_request(request, q)
+        auteurs = auteurs_request(request, q)
+    elements_video = [
         {
             'url': reverse('video', args=(v.id,)),
             'titre': v.titre,
             'duree': v.duree,
         }
-        for v in videos
-    ]
+        for v in videos]
+    elements_proj = [
+        {
+            'url': reverse('proj', args=(p.id,)),
+            'titre': p.titre,
+        }
+        for p in projs]
+    elements_auteur = [
+        {
+            'url': reverse('jtxman', args=(a.id,1,)),
+            'titre': a.firstname + " " + a.lastname,
+        }
+        for a in auteurs]
     data = {
-        'videos': elements[:10],
+        'videos': elements_video[:10],
+        'projs': elements_proj[:10],
+        'auteurs': elements_auteur[:10],
     }
     return JsonResponse(data)
 
