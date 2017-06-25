@@ -28,19 +28,18 @@
 		</a>
 
 		<div class="legende_vid_auteur" id="auteur_{{v.id}}">
-				
+			{% autoescape off %}
+				{{ v|auteurs}}
+			{% endautoescape %}
 		</div>
 
-		<script type="text/javascript">
-			document.getElementById("auteur_{{v.id}}").innerHTML="{{v|auteurs}}";
-		</script>
 
 		<div class="legende_vid_auteur">
 						{{v.views}}
 					 vues
 					 <span class="petit_point">&#9679;</span>
 
-					 il y a 1 an
+					 {{ v.date|date:"d/m/Y" }}
 		</div>
 	</div>
 

@@ -2,9 +2,10 @@
 {% load static %}
 {% block body %}
 
-{% load app_filters %}
 
 {% if proj %}
+
+{% load app_filters %}
 
 <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:block">
@@ -107,7 +108,7 @@
 
   {% if can_proj %}
 
-  <a href="{% url 'edit_proj' proj.id %}">Éditer la proj (déso moche je sais)</a>
+  <a href="{% url 'edit_proj' proj.id %}">Éditer la proj </a>
 {% endif %}
 
 
