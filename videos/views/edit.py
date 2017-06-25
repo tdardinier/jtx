@@ -88,16 +88,16 @@ def edit_video(request, video_id):
 
             # TAGS
 
+            for r in v.relation_tag_set.all():
+                r.delete()
 
-
-            for x in post:
-                if x[:8] == "r_video_":
-                    y = int(x[8:])
-                    r = Relation_proj.objects.get(pk=y)
-                    r.ordre = int(post[x])
+            for x in p:
+                print(x)
+                if x[:4] == "tag_":
+                    y = int(x[4:])
+                    t = Tag.objects.get(pk=y)
+                    r = Relation_tag(tag=t, video=v)
                     r.save()
-
-
 
             return HttpResponseRedirect(reverse('video', args=(v.id,)))
 
