@@ -252,8 +252,8 @@ def add_epingle_proj(request, proj_id):
     if request.user.is_authenticated:
         proj = get_object_or_404(Proj, pk=proj_id)
         user = request.user
-        x = Favorite.objects.filter(user = user, proj = proj)
-        if x.exists:
+        x = Favorite_proj.objects.filter(user = user, proj = proj)
+        if x.exists():
             c = x.all()[0]
             c.epingle = True
             c.save()
