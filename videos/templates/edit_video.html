@@ -53,22 +53,41 @@
   </tr>
 
   <br/><br/>
-Auteurs :
-    <select>
+  <h3>Auteurs :</h3>
+    <input list="auteurs">
+    <datalist id="auteurs">
+        <select>
         {% for a in auteurs %}
-            <option value="{{a.id}}">{{a.firstname}} {{a.lastname}}</option>
+            <option value="{{a.id}}">{{a.firstname}} {{a.lastname}}"</option>
         {% endfor %}
-    </select>
+        </select>
+    </datalist>
+    <input type="button" value="Ajouter"/>
+    
+    {% for r in v.relation_auteur_video_set.all %}
+        <br/>{{r.auteur.firstname}} {{r.auteur.lastname}} <a href="#">(Supprimer)</a>
+        <input type="hidden" name="auteur_{{r.auteur.id}}" value="1">
+    {% endfor %}
 
 
-  <br/><br/>
-Tags :
-    <select>
+  <br/>
+  <h3>Tags :</h3>
+    <input list="tags">
+    <datalist id="tags">
+        <select>
         {% for t in tags %}
             <option value="{{t.id}}">{{t.titre}}</option>
         {% endfor %}
-    </select>
+        </select>
+    </datalist>
+    <input type="button" value="Ajouter"/>
+ 
+    {% for t in v.relation_tag_set.all %}
+        <br/>{{t.tag.titre}} <a href="#">(Supprimer)</a>
+        <input type="hidden" name="tag_{{t.tag.id}}" value="1">
+    {% endfor %}
 
+    <br/><br/>
 
 
 
