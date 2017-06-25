@@ -91,6 +91,9 @@ def edit_video(request, video_id):
             for r in v.relation_tag_set.all():
                 r.delete()
 
+            for r in v.relation_auteur_video_set.all():
+                r.delete()
+
             for x in p:
                 print(x)
                 if x[:4] == "tag_":
@@ -98,6 +101,12 @@ def edit_video(request, video_id):
                     t = Tag.objects.get(pk=y)
                     r = Relation_tag(tag=t, video=v)
                     r.save()
+                if x[:7] == "auteur_":
+                    y = int(x[7:])
+                    a = Auteur.objects.get(pk=y)
+                    r = Relation_auteur_video(auteur=a, video=v)
+                    r.save()
+
 
             return HttpResponseRedirect(reverse('video', args=(v.id,)))
 
