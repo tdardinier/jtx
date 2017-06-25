@@ -5,6 +5,8 @@
 {{message}}
 {% endif %}
 
+
+
 <div class="container">
 
 
@@ -12,41 +14,56 @@
 
 {% if p %}
 
-<form action="{% url 'edit_proj' p.id %}" method="post">
+
+
+
+<form action="{% url 'edit_proj' p.id %}" metdod="post">
+  <table class="table_edit_proj_haut">
 
     {% csrf_token %}
+<tr>
+  <th><label for="titre">Titre :</label></th>
+  <td>  <input class="input_edit" id="titre" size="50" type="text" value="{{p.titre}}" name="titre"/></td>
+</tr>
 
-    <label for="titre">Titre :</label>
-    <input id="titre" size="50" type="text" value="{{p.titre}}" name="titre"/>
-    <br/><br/>
+<tr>
+  <th>  <label for="image">Image (URL) :<label></th>
+  <td>
+    <input class="input_edit" id="image" size="100" type="text" name="image" value="{{p.image}}"/></td>
+</tr>
 
-    <label for="image">Image (URL) :<label>
-    <input id="image" size="100" type="text" name="image" value="{{p.image}}"/>
-    <br/><br/>
+<tr>
+  <th>  <label for="promo">Promo :<label></th>
+  <td><input class="input_edit" id="promo" type="number" name="promo" value="{{p.promo}}" min="1991" max="2030" step="1"/></td>
+</tr>
 
-    <label for="promo">Promo :<label>
-            <input id="promo" type="number" name="promo" value="{{p.promo}}" min="1991" max="2030" step="1"/>
-    <br/><br/>
+<tr>
+  <th>  <label for="category">Catégorie :<label></th  >
+  <td><select class="input_edit" name="category">
+  {% for c in categories %}
+      <option {% if p.category == c %} selected {% endif %} value="{{c.id}}">{{c.titre}}</option>
+  {% endfor %}
+  </select></td>
+</tr>
+</table>
 
-    <label for="category">Catégorie :<label>
-    <select name="category">
-    {% for c in categories %}
-        <option {% if p.category == c %} selected {% endif %} value="{{c.id}}">{{c.titre}}</option>
-    {% endfor %}
-    </select>
-    <br/><br/>
+<table>
+
 
     {% for r in p.relation_proj_set.all %}
-        <input type="number" id="r_video_{{r.id}}" name ="r_video_{{r.id}}" value="{{r.ordre}}" max="999" min="-999"/>
+    <tr>
+      <td><input type="number" id="r_video_{{r.id}}" name ="r_video_{{r.id}}" value="{{r.ordre}}" max="999" min="-999"/></td>
+      <td>  <label for="r_video_{{r.id}}">{{r.video.titre}}</label></td>
+    </tr>
 
-        <label for="r_video_{{r.id}}">{{r.video.titre}}</label>
-        <br/>
     {% endfor %}
-    <br/>
 
-    <input type="submit" value="Modifier la proj"/>
+</table>
 
 
+
+
+<input type="submit" value="Modifier la proj"/>
 </form>
 
 </div>

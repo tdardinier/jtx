@@ -4,6 +4,7 @@
 {% if message %}
 {{message}}
 {% endif %}
+{% load static %}
 
 <div class="container" id="div_form">
 
@@ -48,54 +49,67 @@
   </tr>
 
   <tr>
+    <th class="col1">  Auteurs :</th>
+    <th>  <input id="input_auteur" class="input_edit" list="auteurs">
+      <datalist id="auteurs">
+          <select id="select_auteur">
+          {% for a in auteurs %}
+              <option value="{{a.id}}">{{a.firstname}} {{a.lastname}}</option>
+          {% endfor %}
+          </select>
+      </datalist>
+      <input type="button" value="Ajouter" onclick="ajouter('auteur')"/></th>
+  </tr>
+
+
+  <tr>
+    <th class="col1">Déjà ajoutés :</th>
+    <td><span id="ls_auteur">
+      {% for r in v.relation_auteur_video_set.all %}
+
+        <span id="s_auteur_{{r.auteur.id}}">
+          {{r.auteur.firstname}} {{r.auteur.lastname}} <a href="#" onclick="supprimer('auteur',{{r.auteur.id}})"><img src={% static "admin/img/icon-deletelink.svg" %} alt="(Supprimer)" class='commentaires_supprimer'></a>
+        <input type="hidden" name="auteur_{{r.auteur.id}}" value="1">  </span>
+
+
+      {% endfor %}
+      </span>
+    </td>
+
+  </tr>
+
+
+  <tr>
+    <th class="col1">Tags :</th>
+    <th>  <input class="input_edit" list="tags" id="input_tag">
+      <datalist id="tags">
+          <select>
+          {% for t in tags %}
+              <option value="{{t.id}}">{{t.titre}}</option>
+          {% endfor %}
+          </select>
+      </datalist>
+      <input type="button" value="Ajouter" onclick="ajouter('tag')"/></th>
+  </tr>
+
+  <tr>
+    <th class="col1">Déjà ajoutés : </th>
+    <td><span id="ls_tag">
+      {% for t in v.relation_tag_set.all %}
+        <span id="s_tag_{{t.tag.id}}"><span class='tag'>{{t.tag.titre}}</span> <a href="#" onclick="supprimer('tag',{{t.tag.id}})"><img src={% static "admin/img/icon-deletelink.svg" %} alt="(Supprimer)" class='commentaires_supprimer'></a>
+        <input type="hidden" name="tag_{{t.tag.id}}" value="1"></span>
+    {% endfor %}</span></td>
+  </tr>
+
+  <tr>
     <th class="col1"><label for="description">Description :</label><br>  </th>
     <th>    <textarea class="input_edit" id="description_edit" name="description">{{v.description}}</textarea></th>
   </tr>
 
-  <br/><br/>
-  <h3>Auteurs :</h3>
-    <input list="auteurs">
-    <datalist id="auteurs">
-        <select>
-        {% for a in auteurs %}
-            <option value="{{a.id}}">{{a.firstname}} {{a.lastname}}"</option>
-        {% endfor %}
-        </select>
-    </datalist>
-    <input type="button" value="Ajouter"/>
-    
-    {% for r in v.relation_auteur_video_set.all %}
-        <br/>{{r.auteur.firstname}} {{r.auteur.lastname}} <a href="#">(Supprimer)</a>
-        <input type="hidden" name="auteur_{{r.auteur.id}}" value="1">
-    {% endfor %}
-
-
-  <br/>
-  <h3>Tags :</h3>
-    <input list="tags">
-    <datalist id="tags">
-        <select>
-        {% for t in tags %}
-            <option value="{{t.id}}">{{t.titre}}</option>
-        {% endfor %}
-        </select>
-    </datalist>
-    <input type="button" value="Ajouter"/>
- 
-    {% for t in v.relation_tag_set.all %}
-        <br/>{{t.tag.titre}} <a href="#">(Supprimer)</a>
-        <input type="hidden" name="tag_{{t.tag.id}}" value="1">
-    {% endfor %}
-
-    <br/><br/>
-
 
 
 </table>
-
     <input type="submit" class="edit_bouton" value="Modifier la vidéo"/>
-
-
 </form>
 
 </div>
@@ -116,6 +130,42 @@ update_time();
 
 set_size_duree();
 
+
+  function ajouter(cat) {
+    id=document.getElementById("input_"+cat).value;
+
+    if (cat=="auteur") {
+    {% for a in auteurs %}
+        if(id=={{a.id}}){
+          if (document.getElementById("s_"+cat+"_"+id)) {
+              document.getElementById("s_"+cat+"_"+id).innerHTML="{{a.firstname}} {{a.lastname}} <a href='#' onclick='supprimer("+'\"'+cat+'\"'+" ,{{a.id}})'><img src={% static 'admin/img/icon-deletelink.svg' %} alt='(Supprimer)' class='commentaires_supprimer'></a>  <input type='hidden' name= \' auteur _{{r.auteur.id}} \' value='1'>";
+          }
+          else {
+              document.getElementById("ls_"+cat).innerHTML+=    "<span id='s_auteur_{{a.id}}'>{{a.firstname}} {{a.lastname}} <a href='#' onclick='supprimer("+'\"auteur\"'+",{{a.id}})'><img src={% static 'admin/img/icon-deletelink.svg' %} alt='(Supprimer)' class='commentaires_supprimer'></a><input type='hidden' name='auteur_{{a.id}}' value='{{a.id}}'> <input type='hidden' name= \' auteur_{{a.id}} \' value='1'></span>";
+          }
+        }
+    {% endfor %}
+  }
+  else if (cat=="tag") {
+
+    {% for t in tags %}
+        if(id=={{t.id}}){
+
+          if (document.getElementById("s_"+cat+"_"+id)) {
+              document.getElementById("s_"+cat+"_"+id).innerHTML="<span class='tag'>{{t.titre}}</span> <a href='#' onclick='supprimer("+'\"tag\"'+" ,{{t.id}})'><img src={% static 'admin/img/icon-deletelink.svg' %} alt='(Supprimer)' class='commentaires_supprimer'></a>  <input type='hidden' name= \' tag_{{t.id}} \' value='1'>";
+          }
+          else {
+              document.getElementById("ls_"+cat).innerHTML+=    "<span id='s_tag_{{t.id}}'><span class='tag'>{{t.titre}}</span> <a href='#' onclick='supprimer("+'\"'+cat+'\"'+",{{t.id}})'><img src={% static 'admin/img/icon-deletelink.svg' %} alt='(Supprimer)' class='commentaires_supprimer'></a><input type='hidden' name='tag_{{t.id}}' value='{{t.id}}'> <input type='hidden' name= \' tag _{{t.id}} \' value='1'></span>";
+          }
+        }
+
+    {% endfor %}
+  }}
+
+  function supprimer(cat,id){
+    document.getElementById("s_"+cat+"_"+id).innerHTML="";
+  }
+
   function set_size_duree(){
     var element=document.getElementById("select_category_edit_vid");
     var style = window.getComputedStyle(element);
@@ -134,9 +184,9 @@ set_size_duree();
     else{hours=hours + " h";}
 
    if (minutes==0){minutes='';}
-   else{minutes=minutes + " min";}
+   else{minutes=minutes + " min et";}
 
-   document.getElementById("time_fr").innerHTML="ce qui fait "+ hours+' '+minutes+' et '+seconds+' s.';
+   document.getElementById("time_fr").innerHTML="ce qui fait "+ hours+' '+minutes+' '+seconds+' s.';
   }
 
   function linear(i){
@@ -157,7 +207,7 @@ set_size_duree();
     var style = window.getComputedStyle(element);
     var debut= parseInt(style.getPropertyValue('width'));
     var fin =max_width;
-    animate({ 
+    animate({
   duration: 200,
   timing:makeEaseInOut(linear),
   draw: function(progress) {

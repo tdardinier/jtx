@@ -7,6 +7,8 @@ from django.core.urlresolvers import reverse
 
 from ..models import *
 
+from os import listdir
+
 def can_proj(request):
     if request.user.is_authenticated:
         user = request.user
