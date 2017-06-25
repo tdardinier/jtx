@@ -1404,11 +1404,22 @@ margin-left: -2px;
   padding-bottom: 28px;
 }
 
+.edit_form th{
+  padding-top: 5px;
+  padding-bottom: 5px;  
+}
+
 #time_fr{
   font-weight: 400;
 }
 
+.table_edit_proj_haut{
+  padding: 2px;
+}
 
+.table_edit_proj_haut td,th{
+  text-align: left;
+}
 
 @media screen and (max-width: 1000px)  {
     .container {
