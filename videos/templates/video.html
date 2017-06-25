@@ -103,15 +103,19 @@
 
 </div>
 
+{% if can_edit %}
+    <div class="editer_contenu">
+        <span class="trait_edit">&boxh;</span><a href="{% url 'edit_video' video.id %}" class="editer_contenu_lien" > Éditer la vidéo </a> <span class="trait_edit">&boxh;</span>
+    </div>
+{% endif %}
+
 <div class="description_video">
   <div class="titre_et_vues_date">Ajoutée le {{ video.date|date:"d/m/Y" }}</div>
   {{ video.description }}
 </div>
 
 
-{% if can_edit %}
-    <a href="{% url 'edit_video' video.id %}">Éditer la vidéo (déso si c'est moche)</a>
-{% endif %}
+
 
 
 
@@ -243,7 +247,7 @@
                        vues
                        <span class="petit_point">&#9679;</span>
 
-                       il y a 1 an
+                        {{ v.date|date:"d/m/Y" }}
                 </div>
               </div>
                 </a>

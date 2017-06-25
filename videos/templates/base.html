@@ -12,10 +12,6 @@
   <script>
 
 
-  $(document).ready(function () {
-    $('input').click(function () {
-
-  });});
 
 
   function showHint(str) {
@@ -127,6 +123,9 @@ function cacher_results(){
       var rect = document.getElementById("search_bar").getBoundingClientRect();
       document.getElementById("txtHint").style.marginLeft = (rect.left+6).toString() + "px";
 
+      var rect = document.getElementById("titre_site").getBoundingClientRect();
+      document.getElementById("entourer_titre").style.left = ((rect.left+rect.right)/2-35).toString() + "px";
+
     }
 
     function lien_ok(i){
@@ -152,12 +151,11 @@ function cacher_results(){
 
   <div id="navigation_bar">
     <a href="{% url 'index' %}">
+        <!-- <div id="entourer_titre"></div> -->
     <div class="navigation_bar_titre">
-      <h1 > JTX </h1>
+      <h1 id="titre_site" > JTX </h1>
     </div>
-    <!-- <div class="entourer_titre">
 
-    </div> -->
     </a>
 
     <div id="search_bar" class="barre_de_recherche">

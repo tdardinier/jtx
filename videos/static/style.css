@@ -16,11 +16,18 @@ text-decoration:none !important;
 
 }
 
+
+
+body{
+    overflow-y:scroll;
+}
+
 #body {
     display: table;
     margin: 0 auto;
     margin-top: 60px;
     overflow: scroll;
+    overflow-y:scroll;
 }
 
 /*
@@ -42,6 +49,9 @@ Style de la bar de navigation
 -----------------------------
 */
 #navigation_bar{
+
+    overflow: hidden;
+
     z-index: 1;
     display: table;
     background-color: white;
@@ -109,9 +119,7 @@ Style de la Lateral Bar
   width: 14%;
 }
 
-.navigation_bar_titre h1{
 
-}
 
 .lien_suggestion{
   color:black;
@@ -180,13 +188,13 @@ form .biginput:focus {
 }*/
 
 /* Pour le titre jtx*/
-.entourer_titre{
+#entourer_titre{
   position: relative;
-  top:-40px;
+  top:7px;
   left: 125px;
 
   width: 59px;
-  height: 20px;
+  height: 19px;
   padding: 5px;
 
   border-color: #c8c8c8;
@@ -199,13 +207,12 @@ form .biginput:focus {
 
 }
 
-#navigation_bar{
-  overflow: hidden;
+#entourer_titre:hover{
+
 }
 
-#navigation_bar h1 {
 
-
+#titre_site{
     font-weight: 900;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -217,8 +224,16 @@ form .biginput:focus {
     color:#FDC500;
 
     text-align:center;
+
+    -webkit-transition: all 2s linear;
+    -moz-transition: all 2s linear;
+    transition: all 2s linear;
+
 }
 
+#titre_site:hover{
+  color:#CC181E;
+}
 
 
 .menu_button{
@@ -1462,6 +1477,41 @@ margin-left: -2px;
   padding-bottom: 5px;
 }
 
+.editer_contenu{
+  margin-top: 10px;
+
+  width: 100%;
+  text-align: center;
+  text-transform: uppercase;
+
+  font-size: 20px;
+  text-align: center;
+}
+.editer_contenu_lien{
+  text-decoration: none;
+  color: black;
+  background-color: #F1F1F1;
+
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+.trait_edit{
+  margin: 0;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.editer_contenu:hover .trait_edit{
+  margin-left: 6px;
+  margin-right: 6px;
+}
+
+.editer_contenu_lien:hover{
+  background-color: white;
+  box-shadow: 0px 0px 10px -7px;
+}
 @media screen and (max-width: 1000px)  {
     .container {
         width: 640px;

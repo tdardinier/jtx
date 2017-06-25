@@ -41,16 +41,16 @@
 					</a>
 
 					<div class="legende_vid_auteur">
-								<a href="#">
-									JTX2015
-								</a>
+						<a href="{% url 'jtx' 2015 %}">
+								JTX 20{{ p | short_promo }}
+						</a>
 					</div>
 					<div class="legende_vid_auteur">
 								  {{p.views}}
 								 vues
 								 <span class="petit_point">&#9679;</span>
 
-								 il y a 1 an
+								  {{ p.date|date:"d/m/Y" }}
 					</div>
 				</div>
 		{% endfor %}
@@ -91,7 +91,7 @@
 						 vues
 						 <span class="petit_point">&#9679;</span>
 
-						 il y a 1 an
+						  {{ v.date|date:"d/m/Y" }}
 			</div>
 		</div>
 		{% endfor %}

@@ -10,7 +10,7 @@
 <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:block">
 <div style="margin-top:0;display:table-cell;vertical-align:top;padding-right:10px;">
-<!--> <div style="margin-top:0;display:table-cell;vertical-align:top">
+
 
 <video id="video" width="720px" height="405px" controls></video>
 
@@ -107,8 +107,10 @@
 
 
   {% if can_proj %}
+  <div class="editer_contenu">
+      <span class="trait_edit">&boxh;</span><a href="{% url 'edit_proj' proj.id %}" class="editer_contenu_lien" > Éditer la proj </a> <span class="trait_edit">&boxh;</span>
+  </div>
 
-  <a href="{% url 'edit_proj' proj.id %}">Éditer la proj </a>
 {% endif %}
 
 
@@ -187,15 +189,15 @@
                     </a>
 
 
-                    <!--
+                      <!-->
                 {% else %}
 
                     <a href="" class="lien_jaime_vert">
                       <div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
                         J'aime
                       </div>
-                    </a>
-                {% endif %} !-->
+                    </a><!-->
+                {% endif %}
 
 
                 </div>
@@ -249,7 +251,7 @@
 
                 <div class="legende_vid_auteur">
 
-                      JTX 2015
+                      JTX 20{{ v | short_promo }}
 
                 </div>
                 <div class="legende_vid_auteur">
@@ -257,7 +259,7 @@
                        vues
                        <span class="petit_point">&#9679;</span>
 
-                       il y a 1 an
+                        {{ v.date|date:"d/m/Y" }}
                 </div>
               </div>
                 </a>
