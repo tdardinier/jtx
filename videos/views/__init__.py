@@ -1,2 +1,3 @@
-from edit import *
-from general import *
+from .edit import *
+from .general import *
+

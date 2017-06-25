@@ -8,9 +8,9 @@ from django.core.urlresolvers import reverse
 import random
 from os import listdir
 
-from edit import *
-from search import *
-from autoproj import *
+from .edit import * 
+from .search import *
+from .autoproj import *
 
 n_page = 30
 n_index = 5
