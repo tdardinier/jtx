@@ -73,6 +73,25 @@
 				</div>
 		</div>
 
+		{% if request.user.is_authenticated %}
+	  {% if epingle %}
+	  <a href="{% url 'remove_epingle_proj' proj_id=proj.id home=0 %}" class="link_epingler">
+	    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_deja_epingler">
+	    </a>
+	    <div class="text_epingler">
+	      désépingler
+	    </div>
+
+	    {% else %}
+	    <a href="{% url 'add_epingle_proj' proj.id %}" class="link_epingler">
+	    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
+	    </a>
+	    <div class="text_epingler">
+	      épingler
+	    </div>
+	    {% endif %}
+	    {% endif %}
+
 
 
 		<div class="titre_et_vues_tags">
@@ -89,7 +108,7 @@
   {% if can_proj %}
 
   <a href="{% url 'edit_proj' proj.id %}">Éditer la proj (déso moche je sais)</a>
-{% endif %} 
+{% endif %}
 
 
 

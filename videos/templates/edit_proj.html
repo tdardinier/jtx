@@ -17,8 +17,8 @@
 
 
 
-<form action="{% url 'edit_proj' p.id %}" metdod="post">
-  <table class="table_edit_proj_haut">
+<form action="{% url 'edit_proj' p.id %}" metdod="post" class='edit_form'>
+  <table class="table_edit_proj_haut" class="edit_video">
 
     {% csrf_token %}
 <tr>
@@ -29,7 +29,7 @@
 <tr>
   <th>  <label for="image">Image (URL) :<label></th>
   <td>
-    <input class="input_edit" id="image" size="100" type="text" name="image" onfocus="ffocus('image')" value="{{p.image}}"/></td>
+    <input class="input_edit" id="image" size="100" type="text" name="image" onfocus="ffocus('image')" onblur="defocus('image')" value="{{p.image}}"/></td>
 </tr>
 
 <tr>
@@ -39,7 +39,7 @@
 
 <tr>
   <th>  <label for="category">Catégorie :<label></th  >
-  <td><select class="input_edit" name="category">
+  <td><select class="input_edit" name="category" id="cat_egory">
   {% for c in categories %}
       <option {% if p.category == c %} selected {% endif %} value="{{c.id}}">{{c.titre}}</option>
   {% endfor %}
@@ -53,12 +53,12 @@
 
 </table>
 
-<table>
+<table class="edit_proj_table_vid">
 
 
     {% for r in p.relation_proj_set.all %}
     <tr>
-      <td><input type="number" id="r_video_{{r.id}}" name ="r_video_{{r.id}}" value="{{r.ordre}}" max="999" min="-999"/></td>
+      <td><input class="input_edit" type="number" id="r_video_{{r.id}}" name ="r_video_{{r.id}}" value="{{r.ordre}}" max="999" min="-999"/></td>
       <td>  <label for="r_video_{{r.id}}">{{r.video.titre}}</label></td>
     </tr>
 
@@ -69,14 +69,27 @@
 
 
 
-<input type="submit" value="Modifier la proj"/>
+<input type="submit" value="Modifier la proj" class="edit_bouton"/>
 </form>
 
 </div>
 
+
+<div  style="display:hidden;">
+  <p id="hidden_titre" style="display:inline-block;font-size:14px;color:#f1f1f1;position:relative; top:-100000px;" style="display:hidden;"></p>
+    <p id="hidden_image" style="display:inline-block;font-size:14px;color:#f1f1f1;position:relative; top:-100000px;" style="display:hidden;"></p>
+</div>
 <script type="text/javascript">
+var element=document.getElementById("cat_egory");
+var style = window.getComputedStyle(element);
+var width_promo= parseInt(style.getPropertyValue('width'))-7;
+
+document.getElementById("promo").style.width=width_promo+"px";
+
+
 defocus('titre');
 defocus('image');
+
 function linear(i){
   return i;
 }
