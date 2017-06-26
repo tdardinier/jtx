@@ -64,6 +64,8 @@ Style de la bar de navigation
     position:fixed;
 }
 
+
+
 /*#navigation_bar ul {
     z-index: 1;
     list-style-type: none;
@@ -115,8 +117,10 @@ Style de la Lateral Bar
 
 
 .navigation_bar_titre{
+
   display: table-cell;
-  width: 14%;
+  width: 220px;
+
 }
 
 
@@ -157,8 +161,9 @@ Style de la Lateral Bar
 
 .barre_de_recherche{
   display: table-cell;
-  width: 86%;
   vertical-align: middle;
+
+  width: 1950px;
 }
 
 form .biginput {
@@ -188,28 +193,7 @@ form .biginput:focus {
 }*/
 
 /* Pour le titre jtx*/
-#entourer_titre{
-  position: relative;
-  top:7px;
-  left: 125px;
 
-  width: 59px;
-  height: 19px;
-  padding: 5px;
-
-  border-color: #c8c8c8;
-  border-style: solid;
-  border-width: 1px;
-
-  margin-bottom: -32px;
-
-  box-shadow: 0px 0px 6px -5px black;
-
-}
-
-#entourer_titre:hover{
-
-}
 
 
 #titre_site{
@@ -228,6 +212,9 @@ form .biginput:focus {
     -webkit-transition: all 2s linear;
     -moz-transition: all 2s linear;
     transition: all 2s linear;
+
+    padding-right: 53.5px;
+    padding-left: 53px;
 
 }
 
@@ -1139,6 +1126,9 @@ padding-top: 5px;
   font-weight:bolder;
 }
 
+#connexion{
+  margin-top: 7px;
+}
 
 .container{
   background-color: white;
@@ -1163,14 +1153,15 @@ padding-top: 5px;
     position: relative;
     left: -10px;
 
-
-}
+    margin-bottom: -10px;
+  }
 
 .container h1{
-  padding-top: 5px;
+  padding-top: 8px;
   font-size:18px;
   font-weight:500;
   color:#333333;
+  margin-bottom: 5px;
 }
 
 .container ul{

@@ -168,6 +168,7 @@ function cacher_results(){
         <form method="get" action="{% url 'search' %}"><input autocomplete="off" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()" type="text" name="q" class='biginput' onkeyup="showHint(this.value)"></form>
     </div>
 
+
   </div>
 
   <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)">
@@ -272,7 +273,7 @@ function cacher_results(){
 
       {% else %}
         <a class="lateral_bar_button_a" href="{% url 'login' %}?next={% url 'index' %}">
-          <div class="lateral_bar_button">
+          <div class="lateral_bar_button" id="connexion">
               Se connecter
           </div>
         </a>
@@ -295,8 +296,9 @@ function cacher_results(){
 
       {% if titre_tag %}
         <div class="container">
-          Tags affichés : <span class="tag">{{titre}}</span>
-
+          <h1>
+          Tags affichés :</h1> <span class="tag">{{titre}}</span>
+          <hr class="container_hr">
       {% elif titre %}
           <div class="container">
           <h1>{{titre}}</h1>
@@ -308,8 +310,7 @@ function cacher_results(){
     {% block body %}
     {% endblock %}
 
-  </div>
-  <!-- Pour fermer le div ouvert précedemment-->
+
 
     {% if pages and page and adress %}
   <div class="choisir_page">
