@@ -153,6 +153,7 @@ Style de la Lateral Bar
   padding-left: 4px;
   text-decoration: none;
   color:black;
+  height: 20px;
 }
 
 .search_result:hover{
@@ -394,6 +395,78 @@ Style des tags
     border-color: #DDDDDD;
     color:black;
     text-decoration: none;
+}
+
+.tag_search_jtxman{
+  color:#3498db;
+  text-transform:uppercase;
+  font-weight:400;
+  vertical-align: middle;
+
+
+  position: relative;
+  bottom: 1.5px;
+
+  font-size: 9px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 3px;
+  padding-right:3px;
+  margin-right: 3px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: #3498db;
+
+  text-decoration: none;
+}
+
+.tag_search_proj{
+  color:#CC181E;
+  text-transform:uppercase;
+  font-weight:400;
+  vertical-align: middle;
+
+
+  position: relative;
+  bottom: 1.5px;
+
+  font-size: 9px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 3px;
+  padding-right:3px;
+  margin-right: 3px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color: #CC181E;
+
+  text-decoration: none;
+}
+
+.tag_search_video{
+  color:#27ae60;
+  text-transform:uppercase;
+  font-weight:400;
+  vertical-align: middle;
+
+
+  position: relative;
+  bottom: 1.5px;
+
+  font-size: 9px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 3px;
+  padding-right:3px;
+  margin-right: 3px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color:#27ae60;
+
+  text-decoration: none;
 }
 
 /*

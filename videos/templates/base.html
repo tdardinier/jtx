@@ -28,18 +28,26 @@
         $.getJSON(url + str, function(data){
 
         var videos = data.videos.map(function (video) {
-          return '<a onclick="test()" class="lien_suggestion" href="'+video.url+'"><div class="search_result">'+video.titre + ': ' + video.duree+"</div></a>";
+          var s=video.titre;
+          if(video.titre.length>80){
+            s=video.titre.substring(0,80);
+          }
+          return '<a onclick="test()" class="lien_suggestion" href="'+video.url+'"><div class="search_result"><span class="tag_search_video">Vidéo</span>'+s + "</div></a>";
 
         });
 
 
         var jtxmen = data.auteurs.map(function (jtxman) {
-        return '<a onclick="test()" class="lien_suggestion" href="'+jtxman.url+'"><div class="search_result">'+jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo  +")</div></a>";
+        return '<a onclick="test()" class="lien_suggestion" href="'+jtxman.url+'"><div class="search_result"><span class="tag_search_jtxman">JTXMAN</span>'+jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo  +")</div></a>";
 
         });
 
         var projs = data.projs.map(function (proj) {
-          return '<a onclick="test()" class="lien_suggestion" href="'+proj.url+'"><div class="search_result">'+proj.titre +"</div></a>";
+          var s=proj.titre;
+          if(proj.titre.length>80){
+            s=proj.titre.substring(0,80);
+          }
+          return '<a onclick="test()" class="lien_suggestion" href="'+proj.url+'"><div class="search_result"> <span class="tag_search_proj">PROJ</span>'+s+"</div></a>";
 
         });
 
