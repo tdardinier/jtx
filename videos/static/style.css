@@ -310,7 +310,7 @@ border-style: none;
   padding-left: 10px;
   text-align: left;
   font-size: 12px;
-  margin-bottom:0px;
+  margin-bottom:3px;
 }
 
 .lateral_bar_supprimer{
@@ -346,6 +346,7 @@ border-style: none;
   display: block;
 }
 
+
 .lateral_bar_img{
   display: table-cell;
   margin-top: 2px;
@@ -380,6 +381,8 @@ border-style: none;
   width:200px;
 
 }
+
+
 
 /*
 ---------------
@@ -1144,6 +1147,23 @@ padding-top: 5px;
   padding-right: 10px;
   padding-bottom: 10px;
   margin-top:0px;
+
+}
+
+.container_hr{
+
+    display: table;
+    margin: 0,auto;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #E2E2E2;
+
+    padding: 0;
+    width: 100%;
+    position: relative;
+    left: -10px;
+
+
 }
 
 .container h1{
@@ -1224,7 +1244,8 @@ padding-top: 5px;
   padding-left: 5px;
   padding-right: 5px;
   display: inline-block;
-
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 
 
@@ -1512,6 +1533,9 @@ margin-left: -2px;
   box-shadow: 0px 0px 10px -7px;
 }
 @media screen and (max-width: 1000px)  {
+  .container_hr{
+    width: 660px;
+  }
     .container {
         width: 640px;
     }
@@ -1526,7 +1550,10 @@ margin-left: -2px;
     }
 }
 
-@media screen and (max-width: 1200px)  and (min-width: 1000px) {
+@media screen and (max-width: 1350px)  and (min-width: 1000px) {
+  .container_hr{
+    width: 875px;
+  }
     .container {
         width: 855px;
     }
@@ -1540,9 +1567,13 @@ margin-left: -2px;
       max-width: 715px;
     }
 }
-@media screen and (min-width: 1200px)  {
+@media screen and (min-width: 1350px)  {
+
+    .container_hr{
+      width: 1300px;
+    }
     .container {
-          width: 1070px;
+          width: 1280px;
     }
 
     #description_edit{

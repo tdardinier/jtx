@@ -12,11 +12,11 @@
 		    <li><a href="{% url 'category' c.id 1 %}">{{ c.titre|short }}</a></li>
 			{% endfor %}
 			</ul>
-	</div>
+
 {% endif %}
 
 {% if projs %}
-<div class="container">
+	<hr class="container_hr">
 	<h1>Projs</h1>
 
 		<div class="liste_videos">
@@ -55,11 +55,11 @@
 				</div>
 		{% endfor %}
 		</div>
-	</div>
+
 {% endif %}
 
 {% if videos %}
-<div class="container">
+	<hr class="container_hr">
 	<h1>Vidéos</h1>
 	<div class="liste_videos">
 
@@ -95,7 +95,7 @@
 			</div>
 		</div>
 		{% endfor %}
-</div>
-{% endif %}
 
+{% endif %}
+</div>
 {% endblock %}

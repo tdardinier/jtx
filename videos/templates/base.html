@@ -255,15 +255,11 @@ function cacher_results(){
           {% if f.epingle %}
               <a class="lateral_bar_button_a" href="{% url 'video' f.video.id %}">
                 <div class="lateral_bar_button">
-                  <img class="lateral_bar_img" src="{{f.video.url}}.png"/>
+
                   <div class="lateral_bar_button_text">
                       {{ f.video.titre }}
                   </div>
 
-
-                <!--
-                <a href="{% url 'remove_favorite' video_id=f.video.id home=1 %}" class="lateral_bar_supprimer"> X </a>
-                -->
                 </div>
               </a>
 
@@ -300,17 +296,20 @@ function cacher_results(){
       {% if titre_tag %}
         <div class="container">
           Tags affichés : <span class="tag">{{titre}}</span>
-        </div>
+
       {% elif titre %}
           <div class="container">
           <h1>{{titre}}</h1>
-          </div>
+
       {% endif %}
 
 
 
     {% block body %}
     {% endblock %}
+
+  </div>
+  <!-- Pour fermer le div ouvert précedemment-->
 
     {% if pages and page and adress %}
   <div class="choisir_page">
