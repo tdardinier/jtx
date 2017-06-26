@@ -1406,9 +1406,12 @@ padding-top: 5px;
 }
 
 .jtx_titre{
-  margin-top: -30px;
+  margin-top: 0px;
   text-align: center;
   font-size: 100px;
+  letter-spacing: 50px;
+  font-weight: 100;
+
 }
 .jtx_sous_titre{
   font-style: italic;
@@ -1424,6 +1427,95 @@ padding-top: 5px;
   background-color: red;
   border-radius: 3px;
 }
+
+
+.diplay_proj{
+  display: table;
+  margin:0 auto;
+}
+
+.page_jtx_vue_jaime{
+  display: block;
+  font-size: 22px;
+  font-weight: 200;
+  position: relative;
+  width: 200px;
+
+  top:119px;
+  margin-bottom: -57px;
+  height: 60px;
+  overflow: hidden;
+  padding: 2px;
+
+}
+
+.page_jtx_proj_titre{
+  letter-spacing: 0px;
+  font-weight: 500;
+  display: block;
+  text-align: left;
+  margin-bottom: -1px;
+  font-size: 15px;
+  text-transform: uppercase;
+  text-align: center;
+  color:grey;
+
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+.page_jtx_proj{
+  padding: 7px;
+  display:inline-block;
+  width: 425px;
+
+
+  background-color: white;
+  box-shadow: 0 0 10px -7px black;
+  margin-left: 4px;
+  margin-right: 4px;
+
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+
+.page_jtx_proj:hover{
+    box-shadow: 0 0 10px -4px black;
+}
+
+.page_jtx_proj:hover .page_jtx_proj_titre{
+  color:black;
+}
+
+
+.page_jtx_proj_image{
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5px;
+}
+
+.jtx_hr{
+  display: table;
+  margin: 0,auto;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #E2E2E2;
+
+  padding: 0;
+  width: 442px;
+  position: relative;
+  left: -10px;
+  margin-bottom: 12px;
+}
+
+.page_jtx_proj_description{
+  display: inline-block;
+  margin-left: -10px;
+  width:200px;
+}
+
 
 .jtx_liste_evnt{
   width: 500px;

@@ -7,17 +7,65 @@
 <div class="jtx_titre">JTX{{year}}</div>
 <div class="jtx_sous_titre">On intuite et on disrupte.</div>
 
-<div class="container">
-	<h1>Projs</h1>
-	<ul class="jtx_liste_proj">
-        {% for p in projs_jtx %}
-        <li>{{p.titre}}</li>
-        {% endfor %}
-	</ul>
 
-</div>
+	<div class="diplay_proj">
+		  {% for p in projs_jtx %}
+			<div class="page_jtx_proj">
 
-<div class="container">
+				<span class="page_jtx_proj_titre">{{p.titre}}</span>
+				<hr class="jtx_hr">
+
+
+				<div class="page_jtx_proj_image">
+					<a href="{% url 'proj' p.id %}">
+							<figure class="figure_liste">
+									<img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
+									<div class="legende_vid_duree">
+												{{p|duration_proj}}
+									</div>
+
+							</figure>
+					</a>
+
+					<a href="{% url 'proj' p.id %}">
+							<div class="legende_vid_titre">
+									{{p.titre|short}}
+							</div>
+					</a>
+
+					<div class="legende_vid_auteur">
+								<a href="{% url 'jtx' 2015 %}">
+									  JTX 20{{ p | short_promo }}
+								</a>
+					</div>
+					<div class="legende_vid_auteur">
+									{{p.views}}
+								 vues
+								 <span class="petit_point">&#9679;</span>
+
+								  {{ p.date|date:"d/m/Y" }}
+					</div>
+				</div>
+
+				<div class="page_jtx_proj_description">
+					<b>Le mot du JTX</b><br>
+					Cette proj était vraiment toute pourrie, je ne me rappelle pas avoir aussi mal travaillé de toute ma vie. Franchement
+					on ne s'est pas trop donnés et ça se voit.
+				</div>
+
+
+
+			</div>
+			{% endfor %}
+	</div>
+
+
+
+
+	<div class="container">
+
+
+
 	<h1>Projs lors d'évènements</h1>
 
 <div class="jtx_liste_evnt">
@@ -26,7 +74,7 @@
     <a href="{% url 'proj' p.id %}">
 	<div class="jtx_liste_evnt_item">
 		<div class="jtx_liste_evnt_item_title">
-            {{p.titre|short}}	
+            {{p.titre|short}}
 		</div>
 		<div class="jtx_liste_evnt_item_date">
             {{p.date|date:"d/m/Y"}}
@@ -39,10 +87,9 @@
 {% endfor %}
 
 </div>
-</div>
 
+<hr class="container_hr">
 
-<div class="container">
 	<h1>Vidéos les plus vues</h1>
 
 </div>
