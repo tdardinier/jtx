@@ -64,10 +64,15 @@
 
 
   function checkbar(){
+
     positionne_suggestions();
+
     var show = getCookie("show");
+
     if (show != "") {
-      if(show=='oui'){document.getElementById("lateral_bar").style.display = "unset";}
+      if(show=='oui'){
+
+        document.getElementById("lateral_bar").style.display = "unset";}
       else{document.getElementById("lateral_bar").style.display = "none";}
     }
     else {
@@ -120,11 +125,12 @@ function cacher_results(){
     }
 
     function positionne_suggestions(){
+
       var rect = document.getElementById("search_bar").getBoundingClientRect();
       document.getElementById("txtHint").style.marginLeft = (rect.left+6).toString() + "px";
 
-      var rect = document.getElementById("titre_site").getBoundingClientRect();
-      document.getElementById("entourer_titre").style.left = ((rect.left+rect.right)/2-35).toString() + "px";
+      //var rect = document.getElementById("titre_site").getBoundingClientRect();
+      //document.getElementById("entourer_titre").style.left = ((rect.left+rect.right)/2-35).toString() + "px";
 
     }
 

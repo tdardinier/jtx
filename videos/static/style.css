@@ -340,10 +340,10 @@ border-style: none;
   padding-bottom: 3px;
   padding-left:   5px;
   padding-right: 15px;
-  display: table;
+
   margin: 0 auto;
   border-radius: 1px;
-  display: table;
+  display: block;
 }
 
 .lateral_bar_img{
@@ -354,10 +354,9 @@ border-style: none;
 
 .lateral_bar_button_text{
   display: table-cell;
-  text-align: center;
-  vertical-align: middle;
-
+  text-align: left;
 }
+
 .lateral_bar_button_a{
   font-size: 14px;
   text-decoration: none;
