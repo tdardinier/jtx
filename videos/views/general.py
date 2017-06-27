@@ -8,13 +8,13 @@ from django.core.urlresolvers import reverse
 import random
 from os import listdir
 
-from .edit import * 
+from .edit import *
 from .search import *
 from .autoproj import *
 
-n_page = 30
-n_index = 5
-n_suggestions = 5
+n_page = 36
+n_index = 12
+n_suggestions = 12
 
 def jtxman(request, auteur_id, page=1):
     man = get_object_or_404(Auteur, pk=auteur_id)
