@@ -4,10 +4,16 @@
 }
 
 a {
-   outline: 0;
+   outline: 0 !important;
+   text-shadow: none !important;
+}
+:-moz-any-link {
+  outline: 0 !important;
+  text-shadow: none !important;
 }
 
-a:-webkit-any-link{
+:-webkit-any-link{
+  outline: 0 !important;
 text-decoration:none !important;
 }
 
@@ -1512,9 +1518,9 @@ padding-top: 5px;
   border-top: 1px solid #E2E2E2;
 
   padding: 0;
-  width: 442px;
+  width: 439px;
   position: relative;
-  left: -10px;
+  left: -7px;
   margin-bottom: 12px;
 }
 
