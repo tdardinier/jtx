@@ -310,7 +310,7 @@ function launch(id) {
     proj_auteurs.innerHTML = playlist[id][2];
 
     if (id + 1 < playlist.length) {
-        titre_video_suivante.innerHTML = playlist[(id+1)][0];
+        titre_video_suivante.innerHTML = playlist[(id+1)][0]+"<img src={% static 'admin/img/droite.png' %} alt='Vaneau' class='proj_vid_suiv_img'>";
     }
     else {
         titre_video_suivante.innerHTML = "...";
