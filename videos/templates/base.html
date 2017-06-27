@@ -242,13 +242,13 @@ function showHint(e,str) {
         if(video.titre.length>80){
           s=video.titre.substring(0,80);
         }
-        return '<a onmouseover="mouse_select()" class="lien_suggestion" href="'+video.url+'"><div class="search_result"><span class="tag_search_video">Vidéo</span>'+s + "</div></a>";
+        return '<a onmouseover="mouse_select(this)" onmouseout="mouse_deselect(this)" class="lien_suggestion" href="'+video.url+'"><div class="search_result"><span class="tag_search_video">Vidéo</span>'+s + "</div></a>";
 
       });
 
 
       var jtxmen = data.auteurs.map(function (jtxman) {
-      return '<a onmouseover="mouse_select()" class="lien_suggestion" href="'+jtxman.url+'"><div class="search_result"><span class="tag_search_jtxman">JTXMAN</span>'+jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo  +")</div></a>";
+      return '<a onmouseover="mouse_select(this)" onmouseout="mouse_deselect(this)" class="lien_suggestion" href="'+jtxman.url+'"><div class="search_result"><span class="tag_search_jtxman">JTXMAN</span>'+jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo  +")</div></a>";
 
       });
 
@@ -257,7 +257,7 @@ function showHint(e,str) {
         if(proj.titre.length>80){
           s=proj.titre.substring(0,80);
         }
-        return '<a onmouseover="mouse_select()" class="lien_suggestion" href="'+proj.url+'"><div class="search_result"> <span class="tag_search_proj">PROJ</span>'+s+"</div></a>";
+        return '<a onmouseover="mouse_select(this)" onmouseout="mouse_deselect(this)" class="lien_suggestion" href="'+proj.url+'"><div class="search_result"> <span class="tag_search_proj">PROJ</span>'+s+"</div></a>";
 
       });
 
@@ -358,9 +358,24 @@ if(suivre_lien==0){document.getElementById("txtHint").style.display = "none";}
   }
   create_select();
 
-  function mouse_select() {
+  function mouse_select(y) {
+      var x=document.getElementsByClassName('search_result');
+      if(select>=0 && select<x.length){x[select].style.backgroundColor="white";}
+      el=y.getElementsByTagName('div')[0];
+      el.style.backgroundColor="#c8c8c8";
 
+      for(var i=0;i<x.length;i++){
+        if(el==x[i]){select=i;}
+      }
   }
+
+  function mouse_deselect(y) {
+        var x=document.getElementsByClassName('search_result');
+      y.getElementsByTagName('div')[0].style.backgroundColor="white";
+      if(select>=0 && select<x.length){x[select].style.backgroundColor="white";}
+      select=-1;
+  }
+
 
   function select_lien(e){
     var keycode;
