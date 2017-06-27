@@ -21,7 +21,7 @@
 
 
     <button type="button" class="menu_button" onclick="h_r_lateral_bar()">
-      <img class="menu_button_img" src="http://www.freeiconspng.com/uploads/menu-icon-28.png" alt="Menu" >
+      <img class="menu_button_img" src={% static "admin/img/menu.png" %} alt="Menu" >
     </button>
 
 
@@ -35,7 +35,7 @@
     </a>
 
     <div id="search_bar" class="barre_de_recherche">
-        <form method="get" action="{% url 'search' %}"><input autocomplete="off" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()" type="text" name="q" class='biginput' onkeydown="select_lien(event)" onkeyup="showHint(event,this.value)"></form>
+        <form method="get" action="{% url 'search' %}"><input autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()" type="text" name="q" class='biginput' onkeydown="select_lien(event)" onkeyup="showHint(event,this.value)"></form>
     </div>
 
 
@@ -54,7 +54,7 @@
 
           <a class="lateral_bar_button_a" href="{% url 'logout' %}">
             <div class="lateral_bar_button">
-                <img src={% static "admin/img/deconnexion.png" %} alt="caca2" style="width:10px;">
+                <img src={% static "admin/img/deconnexion.png" %} alt="->" style="width:10px;">
                 Se déconnecter
             </div>
           </a>
@@ -322,7 +322,9 @@ function getCookie(cname) {
 }
 
 function afficher_results() {
-if(suivre_lien==0){document.getElementById("txtHint").style.display = "unset";}
+  var x=document.getElementById("search_input").value;
+  var y=document.getElementById("txtHint").innerHTML;
+if(suivre_lien==0 && x!="" && y!=""){document.getElementById("txtHint").style.display = "unset";}
 }
 
 function cacher_results(){
@@ -416,10 +418,21 @@ if(suivre_lien==0){document.getElementById("txtHint").style.display = "none";}
     }
     else if (keycode==13){
         var x=document.getElementsByClassName('search_result');
-      x[select].click();
+
+        //x[select].click();
+        x[select].parentElement.click();
+        e.preventDefault();
     }
   }
 
+  function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+      if ((new Date().getTime() - start) > milliseconds){
+        break;
+      }
+    }
+  }
 
   var suivre_lien=0;
 

@@ -245,21 +245,24 @@ margin-top: 1px;
 margin-left: 0px;
 visibility: visible;
 z-index: 2;
-padding-left: 13px;
-padding-right: 13px;
-padding-bottom: 8px;
-padding-top: 11px;
-opacity: 0.6;
+padding-left: 17px;
+padding-right: 17px;
+padding-bottom: 12px;
+padding-top: 13px;
+opacity: 0.5;
 border-style: none;
+outline: 0;
 }
 
 .menu_button:hover{
-  opacity: 1;
+  opacity: 0.6;
   cursor: pointer;
 }
 
 .menu_button_img{
-  width: 25px;
+  padding-top: 2px;
+  width: 17px;
+  outline: 0;
 }
 
 #lateral_bar::-webkit-scrollbar {
