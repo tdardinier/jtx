@@ -10,147 +10,7 @@
   <title>JTX</title>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-  <script>
 
-
-  checkbar();
-
-
-  function showHint(str) {
-    if (str.length == 0) {
-        document.getElementById("txtHint").innerHTML = "";
-        document.getElementById("txtHint").style.display = "none";
-        return;
-    } else {
-
-      var showData = $('#txtHint');
-
-      var url = "{% url 'suggestions' '' %}";
-      url = url.substring(0, url.length - 1);
-        $.getJSON(url + str, function(data){
-
-        var videos = data.videos.map(function (video) {
-          var s=video.titre;
-          if(video.titre.length>80){
-            s=video.titre.substring(0,80);
-          }
-          return '<a onclick="test()" class="lien_suggestion" href="'+video.url+'"><div class="search_result"><span class="tag_search_video">Vidéo</span>'+s + "</div></a>";
-
-        });
-
-
-        var jtxmen = data.auteurs.map(function (jtxman) {
-        return '<a onclick="test()" class="lien_suggestion" href="'+jtxman.url+'"><div class="search_result"><span class="tag_search_jtxman">JTXMAN</span>'+jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo  +")</div></a>";
-
-        });
-
-        var projs = data.projs.map(function (proj) {
-          var s=proj.titre;
-          if(proj.titre.length>80){
-            s=proj.titre.substring(0,80);
-          }
-          return '<a onclick="test()" class="lien_suggestion" href="'+proj.url+'"><div class="search_result"> <span class="tag_search_proj">PROJ</span>'+s+"</div></a>";
-
-        });
-
-        showData.empty();
-
-        if (videos.length + jtxmen.length) {
-            elements = jtxmen.concat(videos).concat(projs);
-
-          document.getElementById("txtHint").style.display = "unset";
-          var content = elements.join(' ');
-          //var list = $('<ul />').html(cont  ent);
-          showData.append(content);
-
-        }
-        else{
-            document.getElementById("txtHint").style.display = "none";
-        }
-});
-
-    }
-  }
-
-
-  function checkbar(){
-
-    positionne_suggestions();
-
-    var show = getCookie("show");
-
-    if (show != "") {
-      if(show=='oui'){
-
-        document.getElementById("lateral_bar").style.display = "unset";}
-      else{document.getElementById("lateral_bar").style.display = "none";}
-    }
-    else {
-      document.getElementById("lateral_bar").style.display = "none";
-    }
-  }
-
-  function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    var expires = "expires="+ d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-  }
-
-  function getCookie(cname) {
-    var name = cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
-    }
-    return "";
-}
-
-function afficher_results(){
-
-}
-
-function cacher_results(){
-  if(suivre_lien==0){document.getElementById("txtHint").style.display = "none";}
-
-}
-
-    function h_r_lateral_bar() {
-
-      if(document.getElementById("lateral_bar").style.display != "none"){
-        document.getElementById("lateral_bar").style.display = "none";
-        setCookie("show", "non", 365);}
-
-      else{
-        document.getElementById("lateral_bar").style.display = "unset";
-        setCookie("show", "oui", 365);}
-
-    }
-
-    function positionne_suggestions(){
-
-      var rect = document.getElementById("search_bar").getBoundingClientRect();
-      document.getElementById("txtHint").style.marginLeft = (rect.left+6).toString() + "px";
-
-      //var rect = document.getElementById("titre_site").getBoundingClientRect();
-      //document.getElementById("entourer_titre").style.left = ((rect.left+rect.right)/2-35).toString() + "px";
-
-    }
-
-    function lien_ok(i){
-      suivre_lien=i;
-    }
-
-    var suivre_lien=0;
-     window.onresize = positionne_suggestions;
-    </script>
 </head>
 <body onload="checkbar()">
 
@@ -175,7 +35,7 @@ function cacher_results(){
     </a>
 
     <div id="search_bar" class="barre_de_recherche">
-        <form method="get" action="{% url 'search' %}"><input autocomplete="off" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()" type="text" name="q" class='biginput' onkeyup="showHint(this.value)"></form>
+        <form method="get" action="{% url 'search' %}"><input autocomplete="off" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()" type="text" name="q" class='biginput' onkeydown="select_lien(event)" onkeyup="showHint(event,this.value)"></form>
     </div>
 
 
@@ -343,4 +203,212 @@ function cacher_results(){
 	</div>
 </div>
 </body>
+
+<script>
+
+
+
+checkbar();
+
+
+function showHint(e,str) {
+  var keycode;
+  if (window.event){
+    keycode = window.event.keyCode;}
+  else if (e){
+  keycode = e.which;}
+
+  if(keycode==40 || keycode==38){
+
+  }
+  else{
+
+
+
+  if (str.length == 0) {
+      document.getElementById("txtHint").innerHTML = "";
+      document.getElementById("txtHint").style.display = "none";
+      return;
+  } else {
+
+    var showData = $('#txtHint');
+
+    var url = "{% url 'suggestions' '' %}";
+    url = url.substring(0, url.length - 1);
+      $.getJSON(url + str, function(data){
+
+      var videos = data.videos.map(function (video) {
+        var s=video.titre;
+        if(video.titre.length>80){
+          s=video.titre.substring(0,80);
+        }
+        return '<a onmouseover="mouse_select()" class="lien_suggestion" href="'+video.url+'"><div class="search_result"><span class="tag_search_video">Vidéo</span>'+s + "</div></a>";
+
+      });
+
+
+      var jtxmen = data.auteurs.map(function (jtxman) {
+      return '<a onmouseover="mouse_select()" class="lien_suggestion" href="'+jtxman.url+'"><div class="search_result"><span class="tag_search_jtxman">JTXMAN</span>'+jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo  +")</div></a>";
+
+      });
+
+      var projs = data.projs.map(function (proj) {
+        var s=proj.titre;
+        if(proj.titre.length>80){
+          s=proj.titre.substring(0,80);
+        }
+        return '<a onmouseover="mouse_select()" class="lien_suggestion" href="'+proj.url+'"><div class="search_result"> <span class="tag_search_proj">PROJ</span>'+s+"</div></a>";
+
+      });
+
+      showData.empty();
+
+      if (videos.length + jtxmen.length) {
+          elements = jtxmen.concat(videos).concat(projs);
+
+        document.getElementById("txtHint").style.display = "unset";
+        var content = elements.join(' ');
+        //var list = $('<ul />').html(cont  ent);
+        showData.append(content);
+
+      }
+      else{
+          document.getElementById("txtHint").style.display = "none";
+      }
+});
+
+  }
+}}
+
+
+function checkbar(){
+
+  positionne_suggestions();
+
+  var show = getCookie("show");
+
+  if (show != "") {
+    if(show=='oui'){
+
+      document.getElementById("lateral_bar").style.display = "unset";}
+    else{document.getElementById("lateral_bar").style.display = "none";}
+  }
+  else {
+    document.getElementById("lateral_bar").style.display = "none";
+  }
+}
+
+function setCookie(cname, cvalue, exdays) {
+  var d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  var expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+      }
+  }
+  return "";
+}
+
+function afficher_results() {
+if(suivre_lien==0){document.getElementById("txtHint").style.display = "unset";}
+}
+
+function cacher_results(){
+if(suivre_lien==0){document.getElementById("txtHint").style.display = "none";}
+}
+
+  function h_r_lateral_bar() {
+
+    if(document.getElementById("lateral_bar").style.display != "none"){
+      document.getElementById("lateral_bar").style.display = "none";
+      setCookie("show", "non", 365);}
+
+    else{
+      document.getElementById("lateral_bar").style.display = "unset";
+      setCookie("show", "oui", 365);}
+
+  }
+
+  function positionne_suggestions(){
+    var x =document.getElementById("search_bar");
+    if(typeof  x !="undefined"){
+    var rect = x.getBoundingClientRect();
+    document.getElementById("txtHint").style.marginLeft = (rect.left+6).toString() + "px";}
+
+  }
+
+  function lien_ok(i){
+    suivre_lien=i;
+  }
+
+  function create_select() {
+    select=-1;
+  }
+  create_select();
+
+  function mouse_select() {
+
+  }
+
+  function select_lien(e){
+    var keycode;
+    if (window.event){
+      keycode = window.event.keyCode;}
+    else if (e){
+    keycode = e.which;}
+
+    if(keycode==40){
+
+      var x=document.getElementsByClassName('search_result');
+
+
+        if(select<(x.length-1)){
+
+            if(select>=0){x[select].style.backgroundColor="white";}
+
+            select=1+  select;
+
+            x[select].style.backgroundColor="#c8c8c8";
+
+        }
+    }
+    else if (keycode==38) {
+      var x=document.getElementsByClassName('search_result');
+
+
+        if(0<select){
+
+            if(select<x.length){x[select].style.backgroundColor="white";}
+
+            select= select-1;
+
+            x[select].style.backgroundColor="#c8c8c8";
+
+
+        }
+    }
+    else if (keycode==13){
+        var x=document.getElementsByClassName('search_result');
+      x[select].click();
+    }
+  }
+
+
+  var suivre_lien=0;
+
+   window.onresize = positionne_suggestions;
+
+  </script>
 </html>

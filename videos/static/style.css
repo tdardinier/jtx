@@ -159,6 +159,7 @@ Style de la Lateral Bar
   text-decoration: none;
   color:black;
   height: 20px;
+  background-color: white;
 }
 
 .search_result:hover{
