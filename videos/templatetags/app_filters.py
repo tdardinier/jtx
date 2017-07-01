@@ -18,7 +18,7 @@ def auteurs(v):
 
 @register.filter(name='short')
 def short(s):
-    n = 25
+    n = 70
     if len(s) <= n:
         return s
     else:
