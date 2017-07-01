@@ -163,6 +163,13 @@
 
   {% for r in proj.relation_comment_proj_set.all%}
       <hr>
+			<div class="commentaires_supprimer_div">
+        {% if request.user.is_authenticated and request.user == r.author %}
+            <a href="{% url 'delete_comment_proj' r.id %}">
+                  <img src={% static "admin/img/icon-deletelink.svg" %} alt="Supprimer" class='commentaires_supprimer'>
+            </a>
+        {% endif %}
+      </div>
       <div class="commentaire_nom_date">
         <div class="commentaires_nom">
           {{ r.author.username }}
@@ -203,11 +210,7 @@
                 </div>
             </div>
 
-                {% if request.user.is_authenticated and request.user == r.author %}
-                    <a href="{% url 'delete_comment_proj' r.id %}">
-                        Supprimer ce commentaire de merde
-                    </a>
-                {% endif %}
+
 
 
           </div>
