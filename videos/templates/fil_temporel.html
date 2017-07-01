@@ -4,6 +4,8 @@
 {% if elements %}
 
 {% load app_filters %}
+<div class="centrer_fil">
+
 
 <div class="container_fil">
 {% for p in elements %}
@@ -14,50 +16,58 @@
         {{ p.date|date:"d/m/Y" }}
       </div>
       <div class="fil_description_titre">
-        Amphi Binets des 2016
+        {{p.titre}}
       </div>
     </div>
 
-    <div class="fil_point">
-        &#9679;
+    <div class="fil_point_barre">
+      <div class="fil_barre"></div>
+      <div class="fil_point">
+          &#9679;
+      </div>
+      <div class="fil_barre"></div>
     </div>
-    <div class="fil_barre"></div>
-    <div class="bloc_video">
 
-      <a href="{% url 'proj' p.id %}">
-          <figure class="figure_liste">
-              <img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
-              <div class="legende_vid_duree">
-                    {{p|duration_proj}}
-              </div>
+    <div class="fil_bloc_video">
+      <div class="bloc_video">
 
-          </figure>
-      </a>
+        <a href="{% url 'proj' p.id %}">
+            <figure class="figure_liste">
+                <img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
+                <div class="legende_vid_duree">
+                      {{p|duration_proj}}
+                </div>
 
-      <a href="{% url 'proj' p.id %}">
-          <div class="legende_vid_titre">
-              {{p.titre|short}}
-          </div>
-      </a>
+            </figure>
+        </a>
 
-      <div class="legende_vid_auteur">
-            <a href="{% url 'jtx' 2015 %}">
-                JTX 20{{ p | short_promo }}
-            </a>
-      </div>
-      <div class="legende_vid_auteur">
-              {{p.views}}
-             vues
-             <span class="petit_point">&#9679;</span>
+        <a href="{% url 'proj' p.id %}">
+            <div class="legende_vid_titre">
+                {{p.titre|short}}
+            </div>
+        </a>
 
-              {{ p.date|date:"d/m/Y" }}
-      </div>
+        <div class="legende_vid_auteur">
+              <a href="{% url 'jtx' 2015 %}">
+                  JTX 20{{ p | short_promo }}
+              </a>
+        </div>
+        <div class="legende_vid_auteur">
+                {{p.views}}
+               vues
+               <span class="petit_point">&#9679;</span>
 
-  </div>
+                {{ p.date|date:"d/m/Y" }}
+        </div>
+
+    </div>
+    </div>
+
 
 
 </div>
 {% endfor %}
+</div>
 </div>
 
 {% endif %}
