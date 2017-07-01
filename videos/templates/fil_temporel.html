@@ -11,13 +11,20 @@
 {% for p in elements %}
   <div class="fil_ligne_div">
 
+
     <div class="fil_description">
+        <a class="fil_description_a" href="{% url 'proj' p.id %}">
       <div class="fil_description_date">
         {{ p.date|date:"d/m/Y" }}
       </div>
       <div class="fil_description_titre">
         {{p.titre}}
+        <br>
+        {% if p in projs_jtx %}
+        <span class="tag_search_proj" style="margin-left:0px;">PROJ</span>
+        {% endif %}
       </div>
+      </a>
     </div>
 
     <div class="fil_point_barre">

@@ -92,8 +92,10 @@ def projs(request, page=1):
 #AJOUT VIDON
 def fil(request, page=1):
     projs = filter(request, Proj.objects)
+    c = Category.objects.get(titre="Proj JTX")
     context = {
         'titre': 'Toutes les projs visibles',
+        'projs_jtx': projs.filter(category=c),
     }
     return pagination(request, 'fil_temporel.html', context, projs, page, 'projs')
 
