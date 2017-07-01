@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% if elements %}
+
+{% load app_filters %}
+
+<div class="container_fil">
+{% for p in elements %}
+  <div class="fil_ligne_div">
+
+    <div class="fil_description">
+      <div class="fil_description_date">
+        {{ p.date|date:"d/m/Y" }}
+      </div>
+      <div class="fil_description_titre">
+        Amphi Binets des 2016
+      </div>
+    </div>
+
+    <div class="fil_point">
+        &#9679;
+    </div>
+    <div class="fil_barre"></div>
+    <div class="bloc_video">
+
+      <a href="{% url 'proj' p.id %}">
+          <figure class="figure_liste">
+              <img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
+              <div class="legende_vid_duree">
+                    {{p|duration_proj}}
+              </div>
+
+          </figure>
+      </a>
+
+      <a href="{% url 'proj' p.id %}">
+          <div class="legende_vid_titre">
+              {{p.titre|short}}
+          </div>
+      </a>
+
+      <div class="legende_vid_auteur">
+            <a href="{% url 'jtx' 2015 %}">
+                JTX 20{{ p | short_promo }}
+            </a>
+      </div>
+      <div class="legende_vid_auteur">
+              {{p.views}}
+             vues
+             <span class="petit_point">&#9679;</span>
+
+              {{ p.date|date:"d/m/Y" }}
+      </div>
+
+  </div>
+
+
+</div>
+{% endfor %}
+</div>
+
+{% endif %}
+{% endblock %}

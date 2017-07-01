@@ -78,6 +78,12 @@
               </div>
             </a>
 
+            <a href="{% url 'fil' 1 %}" class="lateral_bar_button_a">
+              <div class="lateral_bar_button">
+                Fil
+              </div>
+            </a>
+
             <a href="{% url 'projs' 1 %}" class="lateral_bar_button_a">
               <div class="lateral_bar_button">
                 Projections
@@ -341,7 +347,7 @@ if(suivre_lien==0){document.getElementById("txtHint").style.display = "none";}
 
     else{
       document.getElementById("lateral_bar").style.display = "unset";
-      
+
       setCookie("show", "oui", 365);}
 
   }

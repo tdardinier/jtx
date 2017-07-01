@@ -8,6 +8,11 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': views.index}, name='logout'),
     url(r'^projs/(?P<page>[0-9]+)/$', views.projs, name='projs'),
+
+    #AJOUT VIDON 01/07
+    url(r'^fil/(?P<page>[0-9]+)/$', views.fil, name='fil'),
+    #FIN d'AJOUT
+
     url(r'^proj/(?P<proj_id>[0-9]+)/$', views.proj, name='proj'),
     url(r'^categories/$', views.categories, name='categories'),
     url(r'^category/(?P<category_id>[0-9]+)/(?P<page>[0-9]+)/$', views.category, name='category'),

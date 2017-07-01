@@ -89,6 +89,14 @@ def projs(request, page=1):
     }
     return pagination(request, 'projs.html', context, projs, page, 'projs')
 
+#AJOUT VIDON
+def fil(request, page=1):
+    projs = filter(request, Proj.objects)
+    context = {
+        'titre': 'Toutes les projs visibles',
+    }
+    return pagination(request, 'fil_temporel.html', context, projs, page, 'projs')
+
 def proj(request, proj_id):
     proj = get_object_or_404(Proj, pk=proj_id)
     if proj.category.public or request.user.is_authenticated:
