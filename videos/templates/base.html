@@ -295,6 +295,7 @@ function checkbar(){
   }
   else {
     document.getElementById("lateral_bar").style.display = "none";
+
   }
 }
 
@@ -335,10 +336,12 @@ if(suivre_lien==0){document.getElementById("txtHint").style.display = "none";}
 
     if(document.getElementById("lateral_bar").style.display != "none"){
       document.getElementById("lateral_bar").style.display = "none";
+
       setCookie("show", "non", 365);}
 
     else{
       document.getElementById("lateral_bar").style.display = "unset";
+      
       setCookie("show", "oui", 365);}
 
   }
@@ -425,14 +428,7 @@ if(suivre_lien==0){document.getElementById("txtHint").style.display = "none";}
     }
   }
 
-  function sleep(milliseconds) {
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
-    }
-  }
+
 
   var suivre_lien=0;
 

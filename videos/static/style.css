@@ -39,6 +39,9 @@ body{
     overflow: scroll;
     overflow-y:scroll;
     /*padding-left:220px; SI ON RAJOUTE LA BARRE*/
+    -webkit-transition: all 0.2s linear;
+    -moz-transition: all 0.2s linear;
+    transition: all 0.2s linear;
 }
 
 /*
@@ -641,8 +644,32 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
 .titre_et_vues_info{
   font-size: 12px;
+  padding-top: 3px;
 }
 
+.titre_et_vues_info a{
+  text-decoration: none;
+  color:#27ae60;
+  text-transform:uppercase;
+  font-weight:400;
+
+  font-size: 9px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 3px;
+  padding-right:3px;
+
+  border-style: solid;
+  border-width: 1px;
+  border-color:#27ae60;
+
+  text-decoration: none;
+
+}
+
+.titre_et_vues_info a:hover {
+  background-color: rgba(39, 174, 96,0.07 );
+}
 .titre_et_vues_titre{
   padding-top: 12px;
   font-size: 20px;
@@ -832,12 +859,23 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   color : red;
 }
 
+.titre_et_vues_auteurs a{
+  text-decoration: none;
+  color:black;
+  border-radius: 3px;
+  background-color: white;
+  padding: 1px;
 
+}
+
+.titre_et_vues_auteurs a:hover{
+  text-decoration: underline;
+}
 
 .titre_et_vues_auteurs{
   display: block;
   font-size: 15px;
-  padding-top: 8px;
+  padding-top: 5px;
 }
 
 .titre_et_vues_tags{
@@ -1329,6 +1367,9 @@ padding-top: 5px;
   margin-bottom: 6px;
 }
 
+.bloc_video a{
+  text-decoration: none;
+}
 
 /*Numéro de page en dessous des pages*/
 
@@ -1546,15 +1587,9 @@ padding-top: 5px;
 }
 
 
-.jtx_liste_evnt{
-  width: 500px;
-  margin: auto;
-}
 
-.jtx_liste_evnt a{
-text-decoration: none;
-color: black;
-}
+
+
 
 .jtx_liste_evnt hr{
 display: block;
@@ -1564,32 +1599,7 @@ border-top: 1px solid #E2E2E2;
 margin-left: -2px;
 }
 
-.jtx_liste_evnt_item div {
-  display: table-cell;
-  padding: 5px;
-}
 
-.jtx_liste_evnt_item:hover {
-  background-color: #E2E2E2;
-  border-radius: 3px;
-}
-
-.jtx_liste_evnt_item_title{
-  width: 150px;
-  font-size: 20px;
-}
-
-.jtx_liste_evnt_item_date{
-  width: 250px;
-  vertical-align: middle;
-  text-align: center;
-}
-
-.jtx_liste_evnt_item_vues{
-  width: 100px;
-  text-align: right;
-  vertical-align: middle;
-}
 
 /*EDIT*/
 .edit_video th{
