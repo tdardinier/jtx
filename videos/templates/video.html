@@ -239,7 +239,9 @@
 
                 <div class="legende_vid_auteur">
 
-                        {{v|auteurs}}
+                  {% autoescape off %}
+                    {{ v|auteurs}}
+                  {% endautoescape %}
 
                 </div>
                 <div class="legende_vid_auteur">
