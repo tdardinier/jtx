@@ -182,30 +182,32 @@
             <div class="commentaires_jaime">
 
               <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime">
-                 14
+                  {{r.like_comment_proj_set.count}}
               </div>
 
               <div class="petit_titre_et_vues_vues_et_jaime_vues_jaime">
 
-                {% if request.user.is_authenticated %}
+            {% if request.user.is_authenticated %}
 
-                    <a href="" class="petit_lien_jaime_rouge">
+                {% if r.like_comment_proj_set|exists_user:request.user %}
+
+                    <a href="{% url 'unlike_comment_proj' r.id %}" class="petit_lien_jaime_rouge">
                       <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
                       Je n'aime plus
                       </div>
                     </a>
 
-
-                      <!-->
                 {% else %}
 
-                    <a href="" class="lien_jaime_vert">
+                    <a href="{% url 'like_comment_proj' r.id  %}" class="lien_jaime_vert">
                       <div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
                         J'aime
                       </div>
-                    </a><!-->
+                    </a>
+
                 {% endif %}
 
+            {% endif %}
 
                 </div>
             </div>

@@ -1,15 +1,12 @@
 from django.contrib import admin
 from .models import *
 from django.contrib.auth.models import User
+from django.apps import apps
 
-admin.site.register(Tag)
-admin.site.register(Relation_proj)
-admin.site.register(Favorite)
-admin.site.register(Auteur)
-admin.site.register(Relation_auteur_video)
-admin.site.register(Favorite_proj)
-admin.site.register(Utilisateur)
-admin.site.register(Relation_tag)
+app = apps.get_app_config('videos')
+
+for model_name, model in app.models.items():
+    admin.site.register(model)
 
 class FavoriteInline(admin.TabularInline):
     model = Favorite
@@ -30,9 +27,11 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ['video', 'date']
     search_fields = ['comment', 'video__titre']
 
+admin.site.unregister(Relation_comment)
 admin.site.register(Relation_comment, CommentAdmin)
+
+admin.site.unregister(Relation_comment_proj)
 admin.site.register(Relation_comment_proj, CommentProjAdmin)
-admin.site.register(Implique)
 
 # --------------------
 # --------------------
@@ -50,6 +49,7 @@ class VideoAdmin(admin.ModelAdmin):
     search_fields = ['titre']
     inlines = [TagInline]
 
+admin.site.unregister(Video)
 admin.site.register(Video, VideoAdmin)
 
 # --------------------
@@ -68,6 +68,7 @@ class ProjAdmin(admin.ModelAdmin):
     search_fields = ['titre', 'category__titre']
     inlines = [VideoInline]
 
+admin.site.unregister(Proj)
 admin.site.register(Proj, ProjAdmin)
 
 # --------------------
@@ -81,4 +82,5 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = ['public']
     search_fields = ['titre']
 
+admin.site.unregister(Category)
 admin.site.register(Category, CategoryAdmin)

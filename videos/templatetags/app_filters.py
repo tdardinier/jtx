@@ -38,3 +38,7 @@ def duration(p):
     b = '{:02}'.format(s % 60)
     a = str(s // 60)
     return a + ":" + b + ":" + c
+
+@register.filter(name='exists_user')
+def exists_user(elements, user):
+    return elements.filter(user = user).exists()
