@@ -1061,7 +1061,11 @@ margin-bottom: 10px;
 
 .commentaires_jaime{
 margin-left: 5px;
-display: table;
+
+}
+
+.commentaires_jaime a{
+  margin-left: 0px;
 }
 
 .petit_titre_et_vues_vues_et_jaime_nb_jaime{
@@ -1088,6 +1092,7 @@ display: table;
   border-color: #CCCCCC;
   border-width: 1px;
 
+  margin-right:  0px;
 
 }
 
@@ -1115,6 +1120,13 @@ display: inline-block;
   border-width: 1px;
   border-color: #50b649;
   background-color: #50b649;
+
+  margin-left: -5px;
+
+}
+
+..petit_lien_jaime_vert{
+  margin-left: 0px;
 }
 
 .petit_lien_jaime_vert :hover{
@@ -1125,6 +1137,8 @@ display: inline-block;
 
 .petit_titre_et_vues_vues_et_jaime_vues_jaime{
 display: none;
+margin-left: 0px;
+
 }
 .petit_titre_et_vues_vues_et_jaime_bouton_jaime_rouge{
 
