@@ -1874,6 +1874,49 @@ transition: all 0.1s linear;
   transition: all 0.1s linear;
 }
 
+.svg_container_bas{
+
+  margin-bottom: -5px;
+}
+.svg_rupture{
+  margin-left: 320.75px;
+}
+
+.svg_rupture line{
+  stroke-width:2px;
+}
+.container_text_rupture{
+  width: 112px;
+  margin: auto;
+  margin-top: -15px;
+  margin-bottom: -11px;
+}
+.text_rupture{
+  text-align: center;
+
+
+  background-color: rgb(250,250,250);
+  width: 100px;
+  margin-right: 12px;
+
+  border-width: 1px;
+  border-style: solid;
+  border-color: #CCCCCC;
+  box-shadow: 0 0 5px -3px black;
+}
+
+.old_jtx{
+  text-decoration: line-through;
+  color:#c8c8c8;
+
+}
+
+.new_jtx{
+  font-size: 20px;
+  color:black;
+  font-weight: 800;
+}
+
 @media screen and (max-width: 1000px)  {
   .fil_description_date{
     width: 230px;
