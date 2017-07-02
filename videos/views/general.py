@@ -305,3 +305,33 @@ def delete_comment_proj(request, comment_id):
         if user == comment.author:
             comment.delete()
     return HttpResponseRedirect(reverse('proj', args=(comment.proj.id,)))
+
+def like_comment(request, comment_id):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Relation_comment, pk=comment_id)
+        user = request.user
+        r = Like_comment(user = user, comment = comment)
+        r.save()
+    return HttpResponseRedirect(reverse('video', args=(comment.video.id,)))
+
+def like_comment_proj(request, comment_id):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Relation_comment_proj, pk=comment_id)
+        user = request.user
+        r = Like_comment_proj(user = user, comment = comment)
+        r.save()
+    return HttpResponseRedirect(reverse('proj', args=(comment.proj.id,)))
+
+def unlike_comment(request, comment_id):
+    if request.user.is_authenticated:
+        c = get_object_or_404(Relation_comment, pk=comment_id)
+        user = request.user
+        r = Like_comment.objects.filter(user = user, comment = c).delete()
+    return HttpResponseRedirect(reverse('video', args=(c.video.id,)))
+
+def unlike_comment_proj(request, comment_id):
+    if request.user.is_authenticated:
+        c = get_object_or_404(Relation_comment_proj, pk=comment_id)
+        user = request.user
+        r = Like_comment_proj.objects.filter(user = user, comment = c).delete()
+    return HttpResponseRedirect(reverse('proj', args=(c.proj.id,)))

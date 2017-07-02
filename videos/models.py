@@ -162,3 +162,23 @@ class Relation_comment_proj(models.Model):
     author = models.ForeignKey(User)
     def __unicode__(self):
         return self.proj.titre + u" : " + self.comment
+
+class Like_comment(models.Model):
+    class Meta:
+        unique_together = (('user', 'comment'),)
+    user = models.ForeignKey(User)
+    comment = models.ForeignKey(Relation_comment)
+    date = models.DateTimeField(auto_now_add = True)
+
+    def __unicode__(self):
+        return self.user.username + " : " + self.comment.video.titre
+
+class Like_comment_proj(models.Model):
+    class Meta:
+        unique_together = (('user', 'comment'),)
+    user = models.ForeignKey(User)
+    comment = models.ForeignKey(Relation_comment_proj)
+    date = models.DateTimeField(auto_now_add = True)
+
+    def __unicode__(self):
+        return self.user.username + " : " + self.comment.proj.titre

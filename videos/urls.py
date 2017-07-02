@@ -36,6 +36,11 @@ urlpatterns = [
     url(r'^comment_video/(?P<video_id>[0-9]+)/$', views.comment_video, name='comment_video'),
     url(r'^comment_proj/(?P<proj_id>[0-9]+)/$', views.comment_proj, name='comment_proj'),
 
+    url(r'^like_comment/(?P<comment_id>[0-9]+)/$', views.like_comment, name='like_comment'),
+    url(r'^like_comment_proj/(?P<comment_id>[0-9]+)/$', views.like_comment_proj, name='like_comment_proj'),
+    url(r'^unlike_comment/(?P<comment_id>[0-9]+)/$', views.unlike_comment, name='unlike_comment'),
+    url(r'^unlike_comment_proj/(?P<comment_id>[0-9]+)/$', views.unlike_comment_proj, name='unlike_comment_proj'),
+
     url(r'^delete_comment_video/(?P<comment_id>[0-9]+)/$', views.delete_comment_video, name='delete_comment_video'),
     url(r'^delete_comment_proj/(?P<comment_id>[0-9]+)/$', views.delete_comment_proj, name='delete_comment_proj'),
 
