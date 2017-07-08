@@ -37,7 +37,7 @@
 	    </div>
 
 	    <div id="proj_auteurs" class="titre_et_vues_auteurs">JTX 20{{ proj | short_promo }}</div>
-	    <div class="titre_et_vues_info">Catégorie : <a href="{% url 'category' proj.category.id 1 %}">{{video.category.titre}}</a></div>
+	    <div class="titre_et_vues_info">Catégorie : <a href="{% url 'category' proj.category.id 1 %}">{{proj.category.titre}}</a></div>
 
 	    <div class="nb_vues">
 			 {{ proj.views }} vues
