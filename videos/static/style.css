@@ -668,23 +668,23 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 .titre_et_vues_info_cat_proj{
-    color:#27ae60;
-    border-color:#27ae60;
+    color:rgb(39, 174, 96,1);
+    border-color:rgb(39, 174, 96,0.7);
 }
 
 .titre_et_vues_info_cat_amphi{
     color:rgba(155, 89, 182,1.0);
-    border-color:rgba(155, 89, 182,1.0);
+    border-color:rgba(155, 89, 182,0.7);
 }
 
 .titre_et_vues_info_cat_semaine{
     color:rgba(192, 57, 43,1.0);
-    border-color:rgba(192, 57, 43,1.0);
+    border-color:rgba(192, 57, 43,0.7);
 }
 
 .titre_et_vues_info_cat_coupe{
     color:rgba(230, 126, 34,1.0);
-    border-color:rgba(230, 126, 34,1.0);
+    border-color:rgba(230, 126, 34,0.7);
 }
 
 .titre_et_vues_info_cat_coupe:hover{

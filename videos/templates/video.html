@@ -33,7 +33,7 @@
     {% autoescape off %}
     <div class="titre_et_vues_auteurs">{{ video|auteurs}}</div>
     {% endautoescape %}
-    <div class="titre_et_vues_info">Catégorie :
+    <div class="titre_et_vues_info">
 
       {% if video.category.titre.lower == 'proj jtx' %}
         <a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{video.category.titre}}</a>

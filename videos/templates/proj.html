@@ -37,7 +37,7 @@
 	    </div>
 
 	    <div id="proj_auteurs" class="titre_et_vues_auteurs">JTX 20{{ proj | short_promo }}</div>
-	    <div class="titre_et_vues_info">Catégorie :
+	    <div class="titre_et_vues_info">
 				{% if proj.category.titre.lower == 'proj jtx' %}
 					<a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{proj.category.titre}}</a>
 				{% elif proj.category.titre.lower == 'amphi binets' %}
