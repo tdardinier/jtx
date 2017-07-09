@@ -33,7 +33,18 @@
     {% autoescape off %}
     <div class="titre_et_vues_auteurs">{{ video|auteurs}}</div>
     {% endautoescape %}
-    <div class="titre_et_vues_info">Catégorie : <a href="{% url 'category' video.category.id 1 %}">{{video.category.titre}}</a></div>
+    <div class="titre_et_vues_info">Catégorie :
+
+      {% if video.category.titre.lower == 'proj jtx' %}
+        <a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{video.category.titre}}</a>
+      {% elif video.category.titre.lower == 'amphi binets' %}
+        <a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_amphi">{{video.category.titre}}</a>
+      {% elif video.category.titre.lower == 'semaine internationale' %}
+        <a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_semaine">{{video.category.titre}}</a>
+      {% elif video.category.titre.lower == "coupe de l'x" %}
+        <a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_coupe">{{video.category.titre}}</a>
+      {% endif %}
+    </div>
 
     <div class="nb_vues">
 		 {{ video.views }} vues

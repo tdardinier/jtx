@@ -649,7 +649,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
 .titre_et_vues_info a{
   text-decoration: none;
-  color:#27ae60;
+
   text-transform:uppercase;
   font-weight:400;
 
@@ -661,15 +661,48 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
   border-style: solid;
   border-width: 1px;
-  border-color:#27ae60;
+
 
   text-decoration: none;
 
 }
 
-.titre_et_vues_info a:hover {
+.titre_et_vues_info_cat_proj{
+    color:#27ae60;
+    border-color:#27ae60;
+}
+
+.titre_et_vues_info_cat_amphi{
+    color:rgba(155, 89, 182,1.0);
+    border-color:rgba(155, 89, 182,1.0);
+}
+
+.titre_et_vues_info_cat_semaine{
+    color:rgba(192, 57, 43,1.0);
+    border-color:rgba(192, 57, 43,1.0);
+}
+
+.titre_et_vues_info_cat_coupe{
+    color:rgba(230, 126, 34,1.0);
+    border-color:rgba(230, 126, 34,1.0);
+}
+
+.titre_et_vues_info_cat_coupe:hover{
+  background-color:rgba(230, 126, 34,0.07);
+}
+
+.titre_et_vues_info_cat_semaine:hover{
+background-color: rgba(192, 57, 43,0.07);
+}
+
+.titre_et_vues_info_cat_amphi:hover{
+  background-color: rgba(155, 89, 182,0.07);
+}
+
+.titre_et_vues_info_cat_proj:hover {
   background-color: rgba(39, 174, 96,0.07 );
 }
+
 .titre_et_vues_titre{
   padding-top: 12px;
   font-size: 20px;
