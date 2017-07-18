@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% load app_filters %}
+
+
+{% if elements_proj %}
+<div class="search_container">
+<span class='search_titre_section'><span class='tag_search_proj' >Projs</span></span>
+
+
+<div class="search_liste_videos">
+{% for p in elements_proj %}
+
+
+		<div class="bloc_video">
+
+			<a href="{% url 'proj' p.id %}">
+					<figure class="figure_liste">
+							<img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
+							<div class="legende_vid_duree">
+										{{p|duration_proj}}
+							</div>
+
+					</figure>
+			</a>
+
+			<a href="{% url 'proj' p.id %}">
+					<div class="legende_vid_titre">
+							{{p.titre|short}}
+					</div>
+			</a>
+
+			<div class="legende_vid_auteur">
+						<a href="{% url 'jtx' 2015 %}">
+								JTX 20{{ p | short_promo }}
+						</a>
+			</div>
+			<div class="legende_vid_auteur">
+							{{p.views}}
+						 vues
+						 <span class="petit_point">&#9679;</span>
+
+							{{ p.date|date:"d/m/Y" }}
+			</div>
+
+</div>
+{% endfor %}
+</div>
+
+</div>
+{% endif %}
+
+{% if elements_vid %}
+
+
+
+
+<div class="liste_videos">
+	{% for v in elements_vid %}
+
+	<div class="bloc_video">
+		<a href="{% url 'video' v.id %}">
+		<figure class="figure_liste">
+				<img class="img_vid" src="{{v.url}}.png"/>
+				<figcaption class="legende_vid_duree">
+						{{v|duration}}
+				</figcaption>
+
+		</figure>
+		</a>
+
+		<a href="{% url 'video' v.id %}">
+				<div class="legende_vid_titre">
+						{{v.titre|short}}
+				</div>
+		</a>
+
+		<div class="legende_vid_auteur" id="auteur_{{v.id}}">
+			{% autoescape off %}
+				{{ v|auteurs}}
+			{% endautoescape %}
+		</div>
+
+
+		<div class="legende_vid_auteur">
+						{{v.views}}
+					 vues
+					 <span class="petit_point">&#9679;</span>
+
+					 {{ v.date|date:"d/m/Y" }}
+		</div>
+	</div>
+
+	{% endfor %}
+	</div>
+
+{% endif %}
+ <hr>
+
+{% endblock %}

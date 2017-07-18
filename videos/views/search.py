@@ -12,10 +12,12 @@ from ..models import *
 def search(request, page=1):
     q = request.GET.get('q', '')
     context = {
+        'titre_search': True,
         'titre': u'Résultats de la recherche "' + q + '"',
-        'elements': videos_request(request, q),
+        'elements_vid': videos_request(request, q),
+        'elements_proj': proj_request(request, q),
     }
-    return render(request, 'videos.html', context)
+    return render(request, 'search.html', context)
 
 def filter(request, x):
     if not request.user.is_authenticated:
@@ -88,5 +90,3 @@ def filter_category(request, x):
     if not request.user.is_authenticated:
         x = x.filter(public=True)
     return x
-
-
