@@ -1355,14 +1355,17 @@ padding-top: 5px;
 }
 
 .search_container{
+
   background-color: white;
   box-shadow: 0px 0px 10px -7px;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;
   margin-top:0px;
-  width: 550px;
+  width: 650px;
+  margin: 0 auto;
 }
+
 
 .container_hr{
 
@@ -1456,7 +1459,7 @@ padding-top: 5px;
 }
 
 .search_liste_videos{
-  display: table;
+
   margin: 0 auto;
   vertical-align: top;
   width: 500px;
@@ -2009,8 +2012,82 @@ transition: all 0.1s linear;
 }
 
 .search_titre_section span{
-  font-size: 16px;
-  padding-top: 15px;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.search_container hr{
+    display: table;
+    margin: 0,auto;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #E2E2E2;
+
+    padding: 0;
+    width: 670px;
+    position: relative;
+    left: -10px;
+    margin-top: 7px;
+    margin-bottom: 5px;
+  }
+
+.search_bloc_video{
+
+    vertical-align: top;
+    width: 650px;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: inline-block;
+    margin-left: -80px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+    overflow: hidden;
+  }
+
+.search_bloc_video .img_vid{
+  max-width:250px;
+  max-height: 141.5px;
+}
+
+.colonne_droite{
+  display: inline-block;
+  vertical-align: top;
+
+  width: 395px;
+}
+
+.search_bloc_video .legende_vid_titre{
+  display:table-cell;
+  width: 395px;
+  vertical-align: top;
+  font-size: 15px;
+  font-weight: 100;
+
+}
+
+
+.search_bloc_video .colonne_droite .legende_v_a_d{
+  margin-top: 5px;
+  display: table-cell;
+  float: right;
+
+  width: 395px;
+  vertical-align: top;
+}
+
+.search_description{
+
+  margin-top: 5px;
+  display: table-cell;
+
+  width: 395px;
+  vertical-align: top;
+  font-size: 12px;
+  float: right;
+  color:#767676;
 }
 
 @media screen and (max-width: 1184px){

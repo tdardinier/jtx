@@ -8,12 +8,13 @@
 <div class="search_container">
 <span class='search_titre_section'><span class='tag_search_proj' >Projs</span></span>
 
+<hr>
 
 <div class="search_liste_videos">
 {% for p in elements_proj %}
 
 
-		<div class="bloc_video">
+		<div class="search_bloc_video">
 
 			<a href="{% url 'proj' p.id %}">
 					<figure class="figure_liste">
@@ -25,24 +26,34 @@
 					</figure>
 			</a>
 
-			<a href="{% url 'proj' p.id %}">
-					<div class="legende_vid_titre">
-							{{p.titre|short}}
+			<div class="colonne_droite">
+				<a href="{% url 'proj' p.id %}">
+						<div class="legende_vid_titre">
+								{{p.titre|short}}
+						</div>
+				</a>
+
+				<div class="legende_v_a_d">
+					<div class="legende_vid_auteur">
+								<a href="{% url 'jtx' 2015 %}">
+										JTX 20{{ p | short_promo }}
+								</a>
 					</div>
-			</a>
+					<div class="legende_vid_auteur">
+									{{p.views}}
+								 vues
+								 <span class="petit_point">&#9679;</span>
 
-			<div class="legende_vid_auteur">
-						<a href="{% url 'jtx' 2015 %}">
-								JTX 20{{ p | short_promo }}
-						</a>
-			</div>
-			<div class="legende_vid_auteur">
-							{{p.views}}
-						 vues
-						 <span class="petit_point">&#9679;</span>
+									{{ p.date|date:"d/m/Y" }}
+					</div>
+				</div>
 
-							{{ p.date|date:"d/m/Y" }}
+				<div class="search_description">
+					{{ p.description }}
+				</div>
 			</div>
+
+
 
 </div>
 {% endfor %}
