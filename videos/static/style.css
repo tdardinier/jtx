@@ -191,7 +191,7 @@ form .biginput {
   border: 1px solid #c8c8c8;
 
 
-
+  box-shadow: 0px 0px 6px -5px black inset;
   color:#858585;
   font-weight:normal;
   font-size: 1em;
@@ -199,8 +199,12 @@ form .biginput {
   -moz-transition: all 0.2s linear;
   transition: all 0.2s linear;
 }
+form .biginput:hover{
+  border-color: rgb(170, 170, 170);
+}
 form .biginput:focus {
   color: black;
+  box-shadow: 0px 0px 5px -4px black inset;
 }
 
 /* Influence de la barre latérale sur le body
