@@ -7,10 +7,10 @@
 {% if elements_proj %}
 <div class="search_container">
 <span class='search_titre_section'><span class='tag_search_proj' >Projs</span></span>
-
+<span class="search_masquer" onclick="search_hide_proj('search_proj_liste')">Masquer</span>
 <hr>
 
-<div class="search_liste_videos">
+<div class="search_liste_videos" id='search_proj_liste'>
 {% for p in elements_proj %}
 
 
@@ -29,7 +29,7 @@
 			<div class="colonne_droite">
 				<a href="{% url 'proj' p.id %}">
 						<div class="legende_vid_titre">
-								{{p.titre|short}}
+								{{p.titre}}
 						</div>
 				</a>
 
@@ -65,12 +65,15 @@
 {% if elements_vid %}
 
 
+<div class="search_container">
+<span class='search_titre_section'><span class='tag_search_video' >Vidéos</span></span>
+<span class="search_masquer" onclick="search_hide_proj('search_vid_liste')">Masquer</span>
+<hr>
 
-
-<div class="liste_videos">
+<div class="search_liste_videos" id='search_vid_liste'>
 	{% for v in elements_vid %}
 
-	<div class="bloc_video">
+	<div class="search_bloc_video">
 		<a href="{% url 'video' v.id %}">
 		<figure class="figure_liste">
 				<img class="img_vid" src="{{v.url}}.png"/>
@@ -81,32 +84,54 @@
 		</figure>
 		</a>
 
-		<a href="{% url 'video' v.id %}">
-				<div class="legende_vid_titre">
-						{{v.titre|short}}
+		<div class="colonne_droite">
+			<a href="{% url 'video' v.id %}">
+					<div class="legende_vid_titre">
+							{{v.titre}}
+					</div>
+			</a>
+
+			<div class="legende_v_a_d">
+				<div class="legende_vid_auteur" id="auteur_{{v.id}}">
+					{% autoescape off %}
+						{{ v|auteurs}}
+					{% endautoescape %}
 				</div>
-		</a>
-
-		<div class="legende_vid_auteur" id="auteur_{{v.id}}">
-			{% autoescape off %}
-				{{ v|auteurs}}
-			{% endautoescape %}
-		</div>
 
 
-		<div class="legende_vid_auteur">
-						{{v.views}}
-					 vues
-					 <span class="petit_point">&#9679;</span>
+				<div class="legende_vid_auteur">
+								{{v.views}}
+							 vues
+							 <span class="petit_point">&#9679;</span>
 
-					 {{ v.date|date:"d/m/Y" }}
-		</div>
+							 {{ v.date|date:"d/m/Y" }}
+				</div>
+			</div>
+
+			<div class="search_description">
+				{{ v.description }}
+			</div>
+	</div>
 	</div>
 
 	{% endfor %}
 	</div>
 
+</div>
 {% endif %}
- <hr>
+
+
+ <script type="text/javascript">
+ 	function search_hide_proj(arg){
+
+		var e=document.getElementById(arg);
+		if(e.style.display=='none'){
+			e.style.display='block	';
+		}
+		else{
+			e.style.display='none';
+		}
+	}
+ </script>
 
 {% endblock %}
