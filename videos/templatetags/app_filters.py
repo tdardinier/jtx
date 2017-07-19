@@ -16,6 +16,10 @@ def auteurs(v):
     else:
         return "Inconnu"
 
+@register.filter(name='url_auteur')
+def url_auteur(a):
+    return reverse('jtxman', args=(a.id,1,))
+
 @register.filter(name='short')
 def short(s):
     n = 70

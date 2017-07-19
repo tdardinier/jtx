@@ -2106,6 +2106,14 @@ transition: all 0.1s linear;
   color:black;
 }
 
+.search_jtxwoman{
+  text-decoration: none;
+  color: black;
+}
+
+.search_jtxwoman:hover{
+  text-decoration: underline;
+}
 @media screen and (max-width: 1184px){
   .bouton_suggestions{
     left:850px;

@@ -120,6 +120,23 @@
 </div>
 {% endif %}
 
+{% if elements_auteurs %}
+
+	<div class="search_container">
+		<span class='search_titre_section'><span class='tag_search_jtxman' >JTXWOMEN.MEN</span></span>
+		<span class="search_masquer" onclick="search_hide_proj('search_auteurs_liste')">Masquer</span>
+		<hr>
+		<div id='search_auteurs_liste'>
+
+
+		{% for a in elements_auteurs %}
+			<a href="{{ a|url_auteur }}" class='search_jtxwoman'>{{ a.firstname }} {{ a.lastname }} - {{ a.promo }}</a>
+		{% endfor %}
+		</div>
+	</div>
+
+
+{% endif %}
 
  <script type="text/javascript">
  	function search_hide_proj(arg){

@@ -16,6 +16,8 @@ def search(request, page=1):
         'titre': u'Résultats de la recherche "' + q + '"',
         'elements_vid': videos_request(request, q),
         'elements_proj': proj_request(request, q),
+        'elements_auteurs': auteurs_request(request,q),
+
     }
     return render(request, 'search.html', context)
 
