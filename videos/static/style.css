@@ -678,8 +678,8 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 }
 
 .titre_et_vues_info_cat_proj{
-    color:rgb(39, 174, 96,1);
-    border-color:rgb(39, 174, 96,0.7);
+    color:rgba(39, 174, 96,1);
+    border-color:rgba(39, 174, 96,0.7);
 }
 
 .titre_et_vues_info_cat_amphi{
