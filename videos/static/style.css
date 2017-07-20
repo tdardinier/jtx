@@ -2114,6 +2114,20 @@ transition: all 0.1s linear;
 .search_jtxwoman:hover{
   text-decoration: underline;
 }
+
+
+.lien_ancienne_proj{
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  margin-bottom: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  padding:1px;
+  padding-left: 2px;
+  padding-right: 2px;
+}
 @media screen and (max-width: 1184px){
   .bouton_suggestions{
     left:850px;
