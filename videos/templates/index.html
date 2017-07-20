@@ -82,9 +82,9 @@
 			</a>
 
 			<div class="legende_vid_auteur">
-						<a href="#">
-							{{v|auteurs}}
-						</a>
+				{% autoescape off %}
+					{{ v|auteurs}}
+				{% endautoescape %}
 			</div>
 			<div class="legende_vid_auteur">
 							{{v.views}}
