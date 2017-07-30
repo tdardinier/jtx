@@ -300,11 +300,11 @@
 
 <script type="text/javascript">
 
-var video = document.getElementById('video')
+var video = document.getElementById('video');
 
 video.addEventListener('ended',next,false);
 function next(e) {
-	window.location.replace("{% url 'video' suggestions.0.id %}")
+	window.location.replace("{% url 'video' suggestions.0.id %}");
 }
 
 function like(val,link){

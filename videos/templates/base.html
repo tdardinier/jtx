@@ -116,8 +116,10 @@
           <hr>
 
           <h3>Projs épinglées</h3>
+          <span id='proj_epingle_liste'>
           {% for f in request.user.favorite_proj_set.all %}
           {% if f.epingle %}
+          <span id='proj_epingle_id_+{{f.proj.id}}'>
           <a class="lateral_bar_button_a" href="{% url 'proj' f.proj.id %}">
               <div class="lateral_bar_button">
                   {{ f.proj.titre }}
@@ -126,10 +128,10 @@
                   -->
               </div>
           </a>
-
+          </span>
           {% endif %}
           {% endfor %}
-
+        </span>
           <hr>
 
           <h3>Clips épinglés</h3>
