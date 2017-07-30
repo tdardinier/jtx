@@ -308,9 +308,12 @@ function next(e) {
 }
 
 function like(val,link){
+
     $.get(link, function(data,status){
       if(data=='lannoo'){
+
         if(val==1){
+
           document.getElementById('bouton_jaime').innerHTML= `<a onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="lien_jaime_rouge">
  						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
  						Je n'aime plus
@@ -327,6 +330,16 @@ function like(val,link){
          </a>`;
          c=parseInt(document.getElementById('video_nb_jaime').innerHTML);
          document.getElementById('video_nb_jaime').innerHTML=c-1;
+
+         document.getElementById('bouton_epingle').innerHTML= `
+           <a onclick="epingle(1,'{% url 'add_epingle' video.id %}')" class="link_epingler">
+             <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
+           </a>
+           <div class="text_epingler">
+             épingler
+           </div>
+         `;
+         document.getElementById('video_epingle_id_+{{video.id}}').innerHTML="";
         }
       }
     });
@@ -357,6 +370,17 @@ function epingle(val,link){
         </span>`;
 
         document.getElementById('video_epingle_liste').innerHTML=a+document.getElementById('video_epingle_liste').innerHTML;
+
+        document.getElementById('bouton_jaime').innerHTML= `<a onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="lien_jaime_rouge">
+          <div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+          Je n'aime plus
+          </div>
+        </a>`;
+
+        
+        c=parseInt(document.getElementById('video_nb_jaime').innerHTML);
+        document.getElementById('video_nb_jaime').innerHTML=c+1;
+
       }
       if(val==0){
           document.getElementById('bouton_epingle').innerHTML= `
