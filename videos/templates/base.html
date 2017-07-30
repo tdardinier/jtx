@@ -133,8 +133,11 @@
           <hr>
 
           <h3>Clips épinglés</h3>
+          <span id='video_epingle_liste'>
           {% for f in request.user.favorite_set.all %}
+
           {% if f.epingle %}
+            <span id='video_epingle_id_+{{f.video.id}}'>
               <a class="lateral_bar_button_a" href="{% url 'video' f.video.id %}">
                 <div class="lateral_bar_button">
 
@@ -144,9 +147,11 @@
 
                 </div>
               </a>
-
+            </span>
         {% endif %}
+
         {% endfor %}
+        </span>
 
 
 

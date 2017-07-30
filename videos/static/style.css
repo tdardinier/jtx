@@ -1139,11 +1139,17 @@ margin-left: 5px;
 
 }
 
+.titre_et_vues_vues_et_jaime_vues_jaime{
+  cursor: pointer;
+}
+
 .commentaires_jaime:hover  .petit_titre_et_vues_vues_et_jaime_vues_jaime{
 display: inline-block;
+
 }
 .petit_titre_et_vues_vues_et_jaime_vues_jaime a{
   text-decoration: none;
+  cursor: pointer;
 }
 .petit_titre_et_vues_vues_et_jaime_bouton_jaime_vert{
 
