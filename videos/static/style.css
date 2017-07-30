@@ -1295,6 +1295,7 @@ padding-top: 5px;
 }
 
 
+
 .proj_video_titre{
   text-decoration: none;
   color:black !important;
@@ -1304,7 +1305,11 @@ padding-top: 5px;
   padding-right: 3px;
   padding:3px;
   color:#444444;
+  background-color: unset;
+}
 
+.proj_video_titre_checked{
+  background-color: #c8c8c8;
 }
 
 

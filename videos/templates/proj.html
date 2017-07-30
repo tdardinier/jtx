@@ -143,7 +143,7 @@
     <ol>
       {% for r in proj.relation_proj_set.all %}
       <li>
-  			<a  onclick="launch({{forloop.counter}})" class="proj_video_titre">{{ r.video.titre }}</a>
+  			<a  onclick="launch({{forloop.counter}})" id="video_{{ r.video.id }}" class="proj_video_titre">{{ r.video.titre }}</a>
   			<a href="{% url 'video' r.video.id %}" class="proj_video_voir">Voir en solo</a>
   		</li>
       {% endfor %}
@@ -308,7 +308,7 @@ var playlist = []
 var tags = [];
 {% for r in proj.relation_proj_set.all %}
 
-    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}', '{{r.video|auteurs|striptags}}']
+    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}', '{{r.video|auteurs|striptags}}', '{{r.video.id}}']
 
     x = [];
 	{% for r2 in r.video.relation_tag_set.all %}
@@ -318,9 +318,12 @@ var tags = [];
 {% endfor %}
 
 function launch(id) {
+	if(current>=1){
+	document.getElementById('video_'+playlist[current][3]).classList.remove('proj_video_titre_checked');}
 	current = id;
 	video.pause();
 
+		document.getElementById('video_'+playlist[id][3]).classList.add('proj_video_titre_checked');
     titre_en_cours.innerHTML = playlist[id][0];
     proj_auteurs.innerHTML = playlist[id][2];
 
@@ -339,6 +342,7 @@ function launch(id) {
 
 video.addEventListener('ended',next,false);
 function next(e) {
+	document.getElementById('video_'+playlist[current][3]).classList.remove('proj_video_titre_checked');
 	current += 1;
 	if (current < playlist.length) {
 		launch(current);
