@@ -58,35 +58,38 @@
 	  <hr>
 
 		<div class="titre_et_vues_vues_et_jaime">
-	    <div class="titre_et_vues_vues_et_jaime_nb_jaime">
+	    <div class="titre_et_vues_vues_et_jaime_nb_jaime" id='proj_nb_jaime'>
 	       {{ nb_jaimes }}
 	    </div>
 
 			<div class="titre_et_vues_vues_et_jaime_vues_jaime">
 
 				{% if request.user.is_authenticated %}
+				<span id="bouton_jaime">
 				{% if favorite %}
-				    <a href="{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}" class="lien_jaime_rouge">
+				    <a onclick="like(0,'{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}')" class="lien_jaime_rouge">
 							<div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
 							Je n'aime plus
 							</div>
 						</a>
 				{% else %}
 
-				    <a href="{% url 'add_favorite_proj' proj.id %}" class="lien_jaime_vert">
+				    <a onclick="like(1,'{% url 'add_favorite_proj' proj.id %}')" class="lien_jaime_vert">
 							<div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
 								J'aime
 	            </div>
 						</a>
 				{% endif %}
+				</span>
 				{% endif %}
 
 				</div>
 		</div>
 
 		{% if request.user.is_authenticated %}
+		<span id='bouton_epingle'>
 	  {% if epingle %}
-	  <a href="{% url 'remove_epingle_proj' proj_id=proj.id home=0 %}" class="link_epingler">
+	  <a onclick='epingle(0,"{% url "remove_epingle_proj" proj_id=proj.id home=0 %}")' class="link_epingler">
 	    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_deja_epingler">
 	    </a>
 	    <div class="text_epingler">
@@ -94,13 +97,14 @@
 	    </div>
 
 	    {% else %}
-	    <a href="{% url 'add_epingle_proj' proj.id %}" class="link_epingler">
+	    <a onclick='epingle(1,"{% url "add_epingle_proj" proj.id %}")'  class="link_epingler">
 	    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
 	    </a>
 	    <div class="text_epingler">
 	      épingler
 	    </div>
 	    {% endif %}
+			</span>
 	    {% endif %}
 
 
@@ -143,7 +147,7 @@
     <ol>
       {% for r in proj.relation_proj_set.all %}
       <li>
-  			<a  onclick="launch({{forloop.counter}})" class="proj_video_titre">{{ r.video.titre }}</a>
+  			<a  onclick="launch({{forloop.counter}})" id="video_{{ r.video.id }}" class="proj_video_titre">{{ r.video.titre }}</a>
   			<a href="{% url 'video' r.video.id %}" class="proj_video_voir">Voir en solo</a>
   		</li>
       {% endfor %}
@@ -308,7 +312,7 @@ var playlist = []
 var tags = [];
 {% for r in proj.relation_proj_set.all %}
 
-    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}', '{{r.video|auteurs|striptags}}']
+    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}', '{{r.video|auteurs|striptags}}', '{{r.video.id}}']
 
     x = [];
 	{% for r2 in r.video.relation_tag_set.all %}
@@ -318,9 +322,12 @@ var tags = [];
 {% endfor %}
 
 function launch(id) {
+	if(current>=1){
+	document.getElementById('video_'+playlist[current][3]).classList.remove('proj_video_titre_checked');}
 	current = id;
 	video.pause();
 
+		document.getElementById('video_'+playlist[id][3]).classList.add('proj_video_titre_checked');
     titre_en_cours.innerHTML = playlist[id][0];
     proj_auteurs.innerHTML = playlist[id][2];
 
@@ -339,6 +346,7 @@ function launch(id) {
 
 video.addEventListener('ended',next,false);
 function next(e) {
+	document.getElementById('video_'+playlist[current][3]).classList.remove('proj_video_titre_checked');
 	current += 1;
 	if (current < playlist.length) {
 		launch(current);
@@ -354,6 +362,79 @@ function affiche_liste(){
 		affiche_l=0;
 		document.getElementById("ls_vid").style.display="unset";
 	}
+}
+
+function like(val,link){
+    $.get(link, function(data,status){
+      if(data=='lannoo'){
+        if(val==1){
+          document.getElementById('bouton_jaime').innerHTML= `
+					<a onclick="like(0,'{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}')" class="lien_jaime_rouge">
+ 						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+ 						Je n'aime plus
+ 						</div>
+ 					</a>
+					`;
+          c=parseInt(document.getElementById('proj_nb_jaime').innerHTML);
+          document.getElementById('proj_nb_jaime').innerHTML=c+1;
+        }
+        if(val==0){
+            document.getElementById('bouton_jaime').innerHTML= `
+						<a onclick="like(1,'{% url 'add_favorite_proj' proj.id %}')" class="lien_jaime_vert">
+						 <div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
+							 J'aime
+						 </div>
+					 </a>
+				 `;
+         c=parseInt(document.getElementById('proj_nb_jaime').innerHTML);
+         document.getElementById('proj_nb_jaime').innerHTML=c-1;
+				 document.getElementById('proj_epingle_id_+{{proj.id}}').innerHTML="";
+
+        }
+      }
+    });
+}
+
+function epingle(val,link){
+  $.get(link, function(data,status){
+    if(data=='lannoo'){
+      if(val==1){
+        document.getElementById('bouton_epingle').innerHTML= `
+					<a onclick='epingle(0,"{% url "remove_epingle_proj" proj_id=proj.id home=0 %}")' class="link_epingler">
+						<img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_deja_epingler">
+					</a>
+					<div class="text_epingler">
+						désépingler
+					</div>
+        `;
+
+        a= `
+        <span id='proj_epingle_id_+{{proj.id}}'>
+          <a class="lateral_bar_button_a" href="{% url 'proj' proj.id %}">
+            <div class="lateral_bar_button">
+              <div class="lateral_bar_button_text">
+                  {{ proj.titre }}
+              </div>
+            </div>
+        </a>
+        </span>`;
+
+        document.getElementById('proj_epingle_liste').innerHTML=a+document.getElementById('proj_epingle_liste').innerHTML;
+      }
+      if(val==0){
+          document.getElementById('bouton_epingle').innerHTML= `
+						<a onclick='epingle(1,"{% url "add_epingle_proj" proj.id %}")' class="link_epingler">
+							<img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
+						</a>
+						<div class="text_epingler">
+							épingler
+						</div>
+          `;
+
+          document.getElementById('proj_epingle_id_+{{proj.id}}').innerHTML="";
+      }
+    }
+  });
 }
 
 

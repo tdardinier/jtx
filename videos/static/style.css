@@ -1139,11 +1139,17 @@ margin-left: 5px;
 
 }
 
+.titre_et_vues_vues_et_jaime_vues_jaime{
+  cursor: pointer;
+}
+
 .commentaires_jaime:hover  .petit_titre_et_vues_vues_et_jaime_vues_jaime{
 display: inline-block;
+
 }
 .petit_titre_et_vues_vues_et_jaime_vues_jaime a{
   text-decoration: none;
+  cursor: pointer;
 }
 .petit_titre_et_vues_vues_et_jaime_bouton_jaime_vert{
 
@@ -1295,6 +1301,7 @@ padding-top: 5px;
 }
 
 
+
 .proj_video_titre{
   text-decoration: none;
   color:black !important;
@@ -1304,7 +1311,11 @@ padding-top: 5px;
   padding-right: 3px;
   padding:3px;
   color:#444444;
+  background-color: unset;
+}
 
+.proj_video_titre_checked{
+  background-color: #c8c8c8;
 }
 
 
