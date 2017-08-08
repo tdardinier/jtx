@@ -16,54 +16,36 @@
   <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
 
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous"> -->
   <link rel="stylesheet" href="{% static 'style.css' %}" />
 </head>
 
 <!-- <body onload="checkbar()"> -->
 
 <body>
+  
   <br>
   <br>
   <br>
-  <div class="container-fluid">
-    <div class="row top_bar">
-       <div  class="col-xs-3 col-md-3">
-         <span class="glyphicon glyphicon-menu-hamburger" onclick="h_r_lateral_bar()"></span>
-
-          <a href="{% url 'index' %}" id="titre_site">JTX</a>
-        </div>
-        <div  class="col-xs-9 col-md-9">
-          <form class="" method="get" action="{% url 'search' %}">
-            <div class="input-group input_group_search">
-              <input autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()"
-                type="text" name="q" class='biginput' onkeydown="select_lien(event)" onkeyup="showHint(event,this.value)">
-              <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search"></span></button>
-              </span>
-            </div>
-          </form>
-        </div>
-    </div>
-  </div>
+  
 
 
-   <div class="container">
+   <!-- <div class="container">
     <nav class="navbar navbar-default  navbar-fixed-top">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
+        
         <div class="navbar-header">
 
           <div class="navbar-brand">
             <span class="glyphicon glyphicon-menu-hamburger" onclick="h_r_lateral_bar()"></span>
-            <a href="{% url 'index' %}" id="titre_site">JTX</a>
+            <a href="{% url 'index' %}" id="titre_site" style="padding-left:10px;">JTX</a>
           </div>
 
           <form class="navbar-form navbar-left" method="get" action="{% url 'search' %}">
             <div class="input-group">
               <input autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()"
-                type="text" name="q" class='biginput' onkeydown="select_lien(event)" onkeyup="showHint(event,this.value)">
+                type="text" name="q" class='biginput' onkeydown="select_lien(event)" onkeyup="showHint(event,this.value)" style="width:400px !important;">
               <span class="input-group-btn">
                       <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search"></span></button>
               </span>
@@ -71,58 +53,61 @@
           </form>
 
         </div>
-        <!-- navbar-header -->
+        
 
         <div class="collapse navbar-collapse">
-          <!-- Collect the nav links, forms, and other content for toggling -->
+         
           <a target="_newtab" class=" navbar-right" href="https://docs.google.com/forms/u/0/d/e/1FAIpQLScnWrGA33Z6HbHlhkl-g0sqKDzbGaz16Yd0MVAl8hHbbWc_5g/viewform?usp=sf_link">
                 <button type="button" class="btn btn-default navbar-btn">
                   Signaler un bug\Proposer une suggestion
                 </button>
               </a>
 
-          <!-- </div>  -->
-          <!-- /.navbar-collapse -->
-
-          <!-- /.container-fluid -->
     </nav>
 
-    <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)"></div>
+    <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)"></div> -->
   </div> 
 
     <div>
 
-      <div id="central" class="">
-        <!-- 
+      <div id="central" >
+         
+        <a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLScnWrGA33Z6HbHlhkl-g0sqKDzbGaz16Yd0MVAl8hHbbWc_5g/viewform?usp=sf_link" target="_newtab">
+    <div class="bouton_suggestions">
+      Signaler un bug\Proposer une suggestion
+    </div>
+    </a>
 
 
-      <button type="button" class="" onclick="h_r_lateral_bar()">
-        <img class="menu_button_img" src={% static "admin/img/menu.png" %} alt="Menu" >
-      </button>
+    <button type="button" class="menu_button" onclick="h_r_lateral_bar()">
+      <img class="menu_button_img" src={% static "admin/img/menu.png" %} alt="Menu">
+    </button>
 
 
-      <div id="navigation_bar">
-        <a href="{% url 'index' %}"> -->
+  <div id="navigation_bar">
+    <a href="{% url 'index' %}">
         <!-- <div id="entourer_titre"></div> -->
-        <!-- <div class="navigation_bar_titre">
-            <h1 id="titre_site"> JTX </h1>
-          </div>
+    <div class="navigation_bar_titre">
+      <h1 id="titre_site"> JTX </h1>
+    </div>
 
-        </a>
+    </a>
 
-        <div id="search_bar" class="barre_de_recherche">
-          <form method="get" action="{% url 'search' %}"></form>
-        </div>
-
-
-      </div>
-
-      <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)">
-
-      </div> -->
-        <!-- A changer pour mettre un lien absolu! -->
+    <div id="search_bar" class="barre_de_recherche">
+        <form method="get" action="/jtx/search/"><input autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()" name="q" class="biginput" onkeydown="select_lien(event)" onkeyup="showHint(event,this.value)" type="text"></form>
+    </div>
 
 
+  </div>
+
+  <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)" style="margin-left: 221.067px;">
+
+  </div>
+  <!-- A changer pour mettre un lien absolu! -->
+
+
+
+     
         <div id="lateral_bar">
 
           {% if request.user.is_authenticated %}
