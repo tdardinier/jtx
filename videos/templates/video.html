@@ -5,20 +5,21 @@
 {% if video %}
 {% load app_filters %}
 
-<div style="margin-top:0;display:table">
-<div style="margin-top:0;display:block">
+<!-- <div style="margin-top:0;display:table">
+<div style="margin-top:0;display:block">   -->
+<!-- style="margin-top:0;display:table-cell;vertical-align:top;padding-right:10px;" -->
+<div class="row" style="margin:0;" >
+<div class="col-xs-12 col-sm-8" style="padding:15px;">
 
-<div style="margin-top:0;display:table-cell;vertical-align:top;padding-right:10px;">
-
-    <video id="video" controls autoplay>
+    <video id="video"  controls autoplay>
         <source src="{{video.url}}">
 		Your browser does not support the video tag.
 	</video>
 
 
-<div class="titre_et_vues" id="titre_et_vues_id">
+<div class="titre_et_vues row" id="titre_et_vues_id" style="width:100%;margin:0;">
 
-  <div class="titre_et_vues_titre">{{ video.titre }}</div>
+  <div class="titre_et_vues_titre col-xs-12">{{ video.titre }}</div>
 
   <div class="bandeau_haut">
 
@@ -241,8 +242,8 @@
 
 </div>
 
-
-<div class="suggestion">
+<!-- suggestion -->
+<!-- <div class="col-xs-12 col-sm-4" >
   <div class="container_suggestion">
 
     <p class="suggestion_titre">À suivre</p>
@@ -290,9 +291,10 @@
         </div>
 
       </div>
-    </div>
-</div>
-</div>
+    </div> -->
+  </div>
+<!-- </div>
+</div> -->
 
 {% endif %}
 

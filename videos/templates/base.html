@@ -16,8 +16,8 @@
   <!-- <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script> -->
 
 
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous"> -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous"> 
   <link rel="stylesheet" href="{% static 'style.css' %}" />
 </head>
 
@@ -25,47 +25,10 @@
 
 <body>
   
-  <br>
-  <br>
-  <br>
-  
 
 
-   <!-- <div class="container">
-    <nav class="navbar navbar-default  navbar-fixed-top">
-      <div class="container-fluid">
-        
-        <div class="navbar-header">
 
-          <div class="navbar-brand">
-            <span class="glyphicon glyphicon-menu-hamburger" onclick="h_r_lateral_bar()"></span>
-            <a href="{% url 'index' %}" id="titre_site" style="padding-left:10px;">JTX</a>
-          </div>
 
-          <form class="navbar-form navbar-left" method="get" action="{% url 'search' %}">
-            <div class="input-group">
-              <input autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()"
-                type="text" name="q" class='biginput' onkeydown="select_lien(event)" onkeyup="showHint(event,this.value)" style="width:400px !important;">
-              <span class="input-group-btn">
-                      <button class="btn btn-default" type="button"><span class=" glyphicon glyphicon-search"></span></button>
-              </span>
-            </div>
-          </form>
-
-        </div>
-        
-
-        <div class="collapse navbar-collapse">
-         
-          <a target="_newtab" class=" navbar-right" href="https://docs.google.com/forms/u/0/d/e/1FAIpQLScnWrGA33Z6HbHlhkl-g0sqKDzbGaz16Yd0MVAl8hHbbWc_5g/viewform?usp=sf_link">
-                <button type="button" class="btn btn-default navbar-btn">
-                  Signaler un bug\Proposer une suggestion
-                </button>
-              </a>
-
-    </nav>
-
-    <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)"></div> -->
   </div> 
 
     <div>
@@ -115,62 +78,66 @@
 
           <a class="lateral_bar_button_a" href="{% url 'logout' %}">
             <div class="lateral_bar_button">
-              <img src={% static "admin/img/deconnexion.png" %} alt="->" style="width:10px;"> Se déconnecter
+              <!-- <img src={% static "admin/img/deconnexion.png" %} alt="->" style="width:10px;">  -->
+              <span class="glyphicon glyphicon-log-out"></span>Se déconnecter
             </div>
           </a>
 
           <hr>
 
-          <h3>Menu</h3>
+          <h3> <span class="glyphicon glyphicon-option-vertical" ></span>Menu</h3>
 
           {% if request.user.is_authenticated %}
 
           <a href="{% url 'favorites' 1 %}" class="lateral_bar_button_a">
             <div class="lateral_bar_button">
-              Favoris
+              <span class="glyphicon glyphicon-star"></span>Favoris
             </div>
           </a>
           {% endif %}
 
-          <a href="{% url 'categories' %}" class="lateral_bar_button_a">
-            <div class="lateral_bar_button">
-              Catégories
-            </div>
-          </a>
+          
+          <a href="{% url 'videos' 1 %}" class="lateral_bar_button_a">
 
-          <a href="{% url 'fil' 1 %}" class="lateral_bar_button_a">
             <div class="lateral_bar_button">
-              Fil
+              <span class="glyphicon glyphicon-facetime-video"></span> Vidéos
             </div>
           </a>
 
           <a href="{% url 'projs' 1 %}" class="lateral_bar_button_a">
             <div class="lateral_bar_button">
-              Projections
+              <span class="glyphicon glyphicon-film"></span> Projections
             </div>
           </a>
 
-          <a href="{% url 'videos' 1 %}" class="lateral_bar_button_a">
-            <div class="lateral_bar_button">
-              Vidéos
+          <a href="{% url 'categories' %}" class="lateral_bar_button_a">
+            <div class="lateral_bar_button" style="padding-left:40px;">
+              Catégories
             </div>
           </a>
+
+           <a href="{% url 'fil' 1 %}" class="lateral_bar_button_a">
+            <div class="lateral_bar_button" style="padding-left:40px;">
+              <span class="glyphicon glyphicon-sort-by-attributes"></span>  Fil
+            </div>
+          </a>
+
 
           <a href="{% url 'tags' %}" class="lateral_bar_button_a">
             <div class="lateral_bar_button">
-              Tags
+              <span class="glyphicon glyphicon-text-background"></span> Tags
             </div>
           </a>
 
           <a href="{% url 'jtx' 2015 %}" class="lateral_bar_button_a">
             <div class="lateral_bar_button">
-              JTX 2015
+             <span class="glyphicon glyphicon-sound-dolby"></span> JTX 2015
             </div>
           </a>
 
           <hr>
 
-          <h3>Projs épinglées</h3>
+          <h3> <span class=" glyphicon glyphicon-pushpin"></span> Projections épinglées</h3>
           <span id='proj_epingle_liste'>
           {% for f in request.user.favorite_proj_set.all %}
           {% if f.epingle %}
@@ -187,7 +154,7 @@
           </span>
           <hr>
 
-          <h3>Clips épinglés</h3>
+          <h3><span class=" glyphicon glyphicon-pushpin"></span> Vidéos épinglées</h3>
           <span id='video_epingle_liste'>
           {% for f in request.user.favorite_set.all %}
 
@@ -237,7 +204,8 @@
             <h1>
               Tags affichés :</h1> <span class="tag">{{titre}}</span>
             <hr class="container_hr"><br> {% elif titre and not titre_search %}
-            <div class="container_no_bs">
+            <!-- container_no_bs -->
+            <div class="container" style="background-color:white;">
               <h1>{{titre}}</h1>
 
               {% endif %} {% block body %} {% endblock %} {% if pages and page and adress %}
