@@ -144,14 +144,32 @@
 
 
   <div class="description_video_proj" id="ls_vid">
-    <ol>
-      {% for r in proj.relation_proj_set.all %}
-      <li>
-  			<a  onclick="launch({{forloop.counter}})" id="video_{{ r.video.id }}" class="proj_video_titre">{{ r.video.titre }}</a>
-  			<a href="{% url 'video' r.video.id %}" class="proj_video_voir">Voir en solo</a>
-  		</li>
+    <table id="proj_elements" class="display">
+      <thead>
+        <tr>
+          <th>Ordre</th>
+          <th>Nom du clip</th>
+          <th>Durée</th>
+          <th>Lien solo</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% for r in proj.relation_proj_set.all %}
+      <tr>
+        <td> {{r.id}} </td>
+        <td> <a  onclick="launch({{forloop.counter}})" id="video_{{ r.video.id }}" class="proj_video_titre">{{ r.video.titre }}</a></td>
+        <td> {{ r.video|duration }}</td>
+        <!-- proj_video_voir -->
+  			<td><a href="{% url 'video' r.video.id %}" class="">Voir en solo</a></td>
+  		</tr>
       {% endfor %}
-    </ol>
+
+      </tbody>
+
+    </table>
+      
+    
   </div>
 </div>
 
@@ -298,6 +316,10 @@
 </div>
 
 <script type="text/javascript">
+$(document).ready(function() {
+    $('#proj_elements').DataTable();
+} );
+
 var video = document.getElementById('video');
 var source = document.createElement('source');
 var titre_en_cours = document.getElementById('titre_en_cours');
