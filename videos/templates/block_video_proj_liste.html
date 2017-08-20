@@ -1,0 +1,98 @@
+{% load app_filters %}
+
+<!-- bloc_video -->
+<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 " style="margin-bottom:20px;">
+    <div class="row" style="padding:5px;">
+        
+        {% if video %}
+            <a href="{% url 'video' elmt.id %}" style="width:250px;">
+        {% else %}
+            <a href="{% url 'proj' elmt.id %}" style="width:250px;">
+        {% endif %}
+                <!-- figure_liste -->
+                <figure class="" style="width:100%;min-width:200px;">
+
+                     {% if video %}
+                    <img class="" src="{{elmt.url}}.png" style="width:100%;min-width:200px;" />
+                    {% else %}
+                    <img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
+                    {% endif %}
+
+                    <figcaption class="legende_vid_duree">
+                        {% if video %}
+                            {{elmt|duration}}
+                         {% else %}
+                            {{elmt|duration_proj}}
+                         {% endif %}
+                    </figcaption>   
+                </figure>
+            </a>
+
+        
+        {% if video %}
+            <a href="{% url 'video' v.id %}" class='col-xs-12' style="padding:0;">
+        {% else %}
+            <a href="{% url 'proj' elmt.id %}" class='col-xs-12' style="padding:0;">
+        {% endif %}
+        
+            <div class="legende_vid_titre">
+                {{elmt.titre|short}}
+            </div>
+        </a>
+
+
+
+        <!-- legende_vid_auteur -->
+
+        <div class="col-xs-12" id="auteur_{{elmt.id}}" style="padding:0;font-size:11px;">
+             {% if video %}
+                {% autoescape off %} 
+                    {{ elmt|auteurs}} 
+                {% endautoescape %}
+            {% else %}
+                JTX {{elmt.promo}}
+            {% endif %}
+        </div>
+
+
+
+        <!-- legende_vid_auteur -->
+        <div class="col-xs-12" style="padding:0;color:rgb(118, 118, 118);font-size:11px;">
+            {{elmt.views}} vues
+            <span class="petit_point">&#9679;</span> {{ elmt.date|date:"d/m/Y" }}
+        </div>
+
+        {% if video %}
+        <span class="col-xs-8 text-left align-top" style="padding:0;display:inline-block;vertical-align:middle;">
+                {% if v.category.titre.lower == 'proj jtx' %}
+                    
+                    {% for r in v.relation_proj_set.all  %}
+                        <a class='titre_et_vues_info_cat_proj tag '  href="{% url 'proj' r.proj.id %}" style="font-size:9px; margin-right:0px;">PROJ</a>
+                    {% endfor %}
+                {% elif v.category.titre.lower == 'amphi binets' %}
+            
+                    {% for r in v.relation_proj_set.all  %}
+                        <a class='titre_et_vues_info_cat_amphi tag' href="{% url 'proj' r.proj.id %}">BINETS</a>
+                    {% endfor %}
+                {% elif v.category.titre.lower == 'semaine internationale' %}
+                
+                    {% for r in v.relation_proj_set.all  %}
+                        <a class='titre_et_vues_info_cat_semaine tag' href="{% url 'proj' r.proj.id %}">S.INT.</a>
+                    {% endfor %}
+                {% elif v.category.titre.lower == "coupe de l'x" %}
+            
+                    {% for r in v.relation_proj_set.all  %}
+                        <a class='titre_et_vues_info_cat_coupe tag' href="{% url 'proj' r.proj.id %}">COUPE</a>
+                    {% endfor %}
+            {% endif %}
+        {% endif %}
+            <span class="glyphicon glyphicon-pushpin" style="display:inline-block; width:10px;margin-left:5px; opacity:0.53;"></span>
+        <span class="glyphicon glyphicon-thumbs-up" style="display:inline-block; width:10px;margin-left:5px;opacity:0.53;"></span>
+        </span>
+
+    </div>
+</div>
+
+
+
+				   

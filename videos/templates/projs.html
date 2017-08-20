@@ -6,42 +6,10 @@
 {% load app_filters %}
 
 
-	<div class="liste_videos">
+	<div class="row">
 	{% for p in elements %}
+		{% include "block_video_proj_liste.html" with video=0 elmt=p %}
 
-
-			<div class="bloc_video">
-
-				<a href="{% url 'proj' p.id %}">
-						<figure class="figure_liste">
-								<img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
-								<div class="legende_vid_duree">
-											{{p|duration_proj}}
-								</div>
-
-						</figure>
-				</a>
-
-				<a href="{% url 'proj' p.id %}">
-						<div class="legende_vid_titre">
-								{{p.titre|short}}
-						</div>
-				</a>
-
-				<div class="legende_vid_auteur">
-							<a href="{% url 'jtx' 2015 %}">
-								  JTX 20{{ p | short_promo }}
-							</a>
-				</div>
-				<div class="legende_vid_auteur">
-								{{p.views}}
-							 vues
-							 <span class="petit_point">&#9679;</span>
-
-							  {{ p.date|date:"d/m/Y" }}
-				</div>
-
-	</div>
 	{% endfor %}
 </div>
 
