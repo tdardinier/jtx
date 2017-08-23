@@ -15,6 +15,24 @@
 
 {% endif %}
 
+{% if request.user.is_authenticated %}
+
+<h1>Video du jour</h1>
+
+<video id="video" controls autoplay>
+    <source src="http://binet-jtx.com/vdj/vdj.mp4">
+    Your browser does not support the video tag.
+</video>
+
+{% else %}
+
+<h1>Vous n'etes pas connecte !</h1>
+
+Connectez vous pour pouvoir voir toutes les videos, et accedez a toutes les fonctionnalites du site.
+Tant que vous n'etes pas connecte, vous ne pouvez voir que les videos ouvertes au public.
+
+{% endif %}
+
 {% if projs %}
 	<hr class="container_hr">
 	<h1>Projs</h1>

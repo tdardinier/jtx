@@ -55,7 +55,7 @@
   <div id="lateral_bar">
 
       {% if request.user.is_authenticated %}
-          <h3>Bonjour {{ request.user.username }}</h3>
+          <h3>Bonjour {{ request.user.first_name }} {{ request.user.last_name }}</h3>
 
           <a class="lateral_bar_button_a" href="{% url 'logout' %}">
             <div class="lateral_bar_button">
