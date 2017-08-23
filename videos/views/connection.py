@@ -25,8 +25,8 @@ def connection(request):
     if user is not None:
         login(request, user)
     else:
-        user = User.objects.create_user(username=forlife, password=pw)
-        Utilisateur.objects.create(user=user)
+        user = User.objects.create_user(username=forlife, password=pw, first_name=prenom,last_name=nom)
+        Utilisateur.objects.create(user=user, promo=promo)
         login(request, user)
 
     return redirect('index')
