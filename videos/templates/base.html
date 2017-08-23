@@ -160,9 +160,16 @@
 
 
       {% else %}
+        <a class="lateral_bar_button_a" href="/org">
+          <div class="lateral_bar_button" id="connexion">
+              Connexion (polytechnique.org)
+          </div>
+        </a>
+
+
         <a class="lateral_bar_button_a" href="{% url 'login' %}?next={% url 'index' %}">
           <div class="lateral_bar_button" id="connexion">
-              Se connecter
+              Connexion manuelle
           </div>
         </a>
 

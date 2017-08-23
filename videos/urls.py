@@ -50,4 +50,7 @@ urlpatterns = [
     url(r'^jtx/(?P<year>[0-9]+)/$', views.jtx, name='jtx'),
     url(r'^search/$', views.search, name='search'),
     url(r'^suggestions/(?P<q>[\w|\W]*)/$', views.suggestions, name='suggestions'),
+
+    url(r'^connection/$', views.connection, name='connection'),
+
 ]
