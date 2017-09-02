@@ -74,16 +74,8 @@
 
 
 
-<<<<<<< HEAD
-     
-        <div id="lateral_bar">
-
-          {% if request.user.is_authenticated %}
-          <h3>Bonjour {{ request.user.username }}</h3>
-=======
       {% if request.user.is_authenticated %}
           <h3>Bonjour {{ request.user.first_name }} {{ request.user.last_name }}</h3>
->>>>>>> cc9c9786fb0884e702b85bc5fe8032f1e4abd7c7
 
           <a class="lateral_bar_button_a" href="{% url 'logout' %}">
             <div class="lateral_bar_button">
