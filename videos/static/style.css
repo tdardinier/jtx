@@ -554,7 +554,7 @@ Concerne l'affichage des légendes des vidéos
 ------------------------------------------
  */
 .legende_vid_duree{
-  display:inline-block;
+  
   float: right;
   position: relative;
   top:-25px;
@@ -574,10 +574,7 @@ Concerne l'affichage des légendes des vidéos
 
   opacity: 0.7;
 
-  margin-bottom: -20px;
-
-
-
+  margin-bottom: -22px;
 }
 
 .legende_vid_titre{
