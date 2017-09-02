@@ -14,6 +14,7 @@ class Utilisateur(models.Model):
         ('3', 'dfhm'),
     )
     profil = models.CharField(max_length=1, choices=DROITS, default='2')
+    promo = models.IntegerField(default=0)
 
     # Tags, auteurs
     @property

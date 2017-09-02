@@ -12,6 +12,7 @@ from .edit import *
 from .search import *
 from .autoproj import *
 from .likes import *
+from .connection import *
 
 n_page = 36
 n_index = 12
