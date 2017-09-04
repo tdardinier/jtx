@@ -1,6 +1,86 @@
 {% load app_filters %}
 
 <!-- bloc_video -->
+<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" style="padding:5px;">
+<div class="card" style="max-width:250px;margin:0 auto;border-style:none;">
+    {% if video %}
+        <a href="{% url 'video' elmt.id %}">
+        <img class="card-img-top" src="{{elmt.url}}.png" style="width:100%;" />
+        <span class="legende_vid_duree" >
+            {{elmt|duration}}
+        </span>  
+        </a>
+    {% else %}
+        <a  href="{% url 'proj' elmt.id %}">
+        <img class="card-img-top" src="{{elmt.image}}"  style="width:100%;"/>
+        <span class="legende_vid_duree" >
+            {{elmt|duration_proj}}
+        </span>  
+        </a>
+    {% endif %}
+
+    <div class="card-body" style="padding:5px;">
+     
+            {% if video %}
+                <a style="margin-bottom:0;" href="{% url 'video' elmt.id %}">{{elmt.titre|short}} </a>
+            {% else %}
+                <a style="margin-bottom:0;" href="{% url 'proj' elmt.id %}">{{elmt.titre|short}} </a>
+            {% endif %}
+            
+            <br>
+            <span style="font-size:11px; margin-bottom:0;"> 
+             {% if video %}
+                {% autoescape off %} 
+                    {{ elmt|auteurs}} 
+                {% endautoescape %}
+            {% else %}
+                <a href="{% url 'jtx' elmt.promo %}" style="color:black;">
+                JTX {{elmt.promo}}
+                </a>
+            {% endif %}
+             </span>
+            <br>
+            <div class="d-flex justify-content-end align-items-center">
+            <div  class="mr-auto align-self-center" style="color:rgb(118, 118, 118);font-size:11px;">
+            {{elmt.views}} vues
+            <span class="petit_point">&#9679;</span> 
+            {{ elmt.date|date:"d/m/Y" }}
+            </div>
+
+            {% if video %}
+            <div class="" style="">
+               <span style="position:relative;top:-3px;">
+                  
+                {% if v.category.titre.lower == 'proj jtx' %}
+                    
+                    {% for r in v.relation_proj_set.all  %}
+                        <a class='titre_et_vues_info_cat_proj tag '  href="{% url 'proj' r.proj.id %}">PROJ</a>
+                    {% endfor %}
+                {% elif v.category.titre.lower == 'amphi binets' %}
+            
+                    {% for r in v.relation_proj_set.all  %}
+                        <a class='titre_et_vues_info_cat_amphi tag' href="{% url 'proj' r.proj.id %}">BINETS</a>
+                    {% endfor %}
+                {% elif v.category.titre.lower == 'semaine internationale' %}
+                
+                    {% for r in v.relation_proj_set.all  %}
+                        <a class='titre_et_vues_info_cat_semaine tag' href="{% url 'proj' r.proj.id %}">S.INT.</a>
+                    {% endfor %}
+                {% elif v.category.titre.lower == "coupe de l'x" %}
+            
+                    {% for r in v.relation_proj_set.all  %}
+                        <a class='titre_et_vues_info_cat_coupe tag' href="{% url 'proj' r.proj.id %}">COUPE</a>
+                    {% endfor %}
+                {% endif %}
+                </span>
+            </div>
+              {% endif %}
+             </div>
+        
+    </div>
+</div>
+</div>
+<!-- 
 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 " style="margin-bottom:20px;">
     <div class="row" style="padding:5px;">
         
@@ -9,7 +89,7 @@
         {% else %}
             <a href="{% url 'proj' elmt.id %}" style="width:250px;">
         {% endif %}
-                <!-- figure_liste -->
+                
                 <figure class="" style="width:100%;min-width:200px;margin-bottom:2px;" >
 
                      {% if video %}
@@ -42,8 +122,7 @@
 
 
 
-        <!-- legende_vid_auteur -->
-
+       
         <div class="col-xs-12" id="auteur_{{elmt.id}}" style="padding:0;font-size:11px;">
              {% if video %}
                 {% autoescape off %} 
@@ -56,7 +135,7 @@
 
 
 
-        <!-- legende_vid_auteur -->
+       
         <div class="col-xs-12" style="padding:0;color:rgb(118, 118, 118);font-size:11px;">
             {{elmt.views}} vues
             <span class="petit_point">&#9679;</span> {{ elmt.date|date:"d/m/Y" }}
@@ -95,4 +174,4 @@
 
 
 
-				   
+				    -->

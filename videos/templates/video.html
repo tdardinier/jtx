@@ -1,231 +1,246 @@
-{% extends 'base.html' %}
-{% load static%}
-{% block body %}
-
-{% if video %}
-{% load app_filters %}
+{% extends 'base.html' %} {% load static%} {% block body %} {% if video %} {% load app_filters %}
 
 <!-- <div style="margin-top:0;display:table">
 <div style="margin-top:0;display:block">   -->
 <!-- style="margin-top:0;display:table-cell;vertical-align:top;padding-right:10px;" -->
-<div class="row" style="margin:0;" >
-<div class="col-xs-12 col-sm-8" style="padding:15px;">
+<div class="row" style="margin:0;">
+  <div class="col-md-12 col-lg-8" style="padding:15px; background-color:red;">
 
-    <video id="video"  controls autoplay>
-        <source src="{{video.url}}">
-		Your browser does not support the video tag.
-	</video>
+    <video id="video" controls autoplay>
+      <source src="{{video.url}}"> Your browser does not support the video tag.
+    </video>
 
 
-<div class="titre_et_vues row" id="titre_et_vues_id" style="width:100%;margin:0;">
+    <div class="col-12" id="" style="background-color:white;">
 
-  <div class="titre_et_vues_titre col-xs-12">{{ video.titre }}</div>
+      <div class=" col-12" style="background-color:rebeccapurple;padding:0;"><h3>{{ video.titre }} </h3></div>
 
-  <div class="bandeau_haut">
+      <div class="col-12" style="background-color:green;">
+        <div class="row justify-content-between">
+          <div class="col-9" style="background-color:blue;padding:0;">
+           <div class="d-flex flex-row align-items-center">
+            
+            <div class="d-flex align-items-center justify-content-center" style="width:50px;height:50px;background-color:aquamarine;">
+             
+                <div class="" style="font-size:30px;">
+                    15
+                </div>
+              
+            </div>
+            
+            <div style="padding:5px;">
+              {% autoescape off %}
+              <div class="" style="background-color:red;">{{ video|auteurs}}</div>
+              {% endautoescape %}
+              <div class="titre_et_vues_info">
 
-    <div class="cellule_num_jtx">
-      <div class="numero_jtx">
-        <div class="numero_jtx_text">
-            15
+                {% if video.category.titre.lower == 'proj en .k' %}
+                <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{video.category.titre}}</a>-->
+                {% for r in video.relation_proj_set.all %}
+                <a class='titre_et_vues_info_cat_proj' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> {% endfor %} 
+                {%elif video.category.titre.lower == 'amphi binets' %}
+                <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_amphi">{{video.category.titre}}</a>-->
+                {% for r in video.relation_proj_set.all %}
+                <a class='titre_et_vues_info_cat_amphi' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> {% endfor %} 
+                {% elif video.category.titre.lower == 'semaine internationale' %}
+                <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_semaine">{{video.category.titre}}</a>-->
+                {% for r in video.relation_proj_set.all %}
+                <a class='titre_et_vues_info_cat_semaine' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> {% endfor %}
+                {% elif video.category.titre.lower == "coupe de l'x" %}
+                <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_coupe">{{video.category.titre}}</a>-->
+                {% for r in video.relation_proj_set.all %}
+                <a class='titre_et_vues_info_cat_coupe' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> {% endfor %} {% endif %}
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-3 row align-items-end" style="background-color:purple;padding:0;margin:0;">
+            
+              <div class="col-12" style="padding:0;text-align:center;font-size:25px;">
+            {{ video.views }} vues
+            </div>
+           
+          </div>
         </div>
       </div>
-    </div>
 
-    {% autoescape off %}
-    <div class="titre_et_vues_auteurs">{{ video|auteurs}}</div>
-    {% endautoescape %}
-    <div class="titre_et_vues_info">
-
-      {% if video.category.titre.lower == 'proj jtx' %}
-        <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{video.category.titre}}</a>-->
-        {% for r in video.relation_proj_set.all  %}
-          <a class='titre_et_vues_info_cat_proj' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a>
-        {% endfor %}
-      {% elif video.category.titre.lower == 'amphi binets' %}
-        <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_amphi">{{video.category.titre}}</a>-->
-        {% for r in video.relation_proj_set.all  %}
-          <a class='titre_et_vues_info_cat_amphi' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a>
-        {% endfor %}
-      {% elif video.category.titre.lower == 'semaine internationale' %}
-        <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_semaine">{{video.category.titre}}</a>-->
-        {% for r in video.relation_proj_set.all  %}
-          <a class='titre_et_vues_info_cat_semaine' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a>
-        {% endfor %}
-      {% elif video.category.titre.lower == "coupe de l'x" %}
-        <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_coupe">{{video.category.titre}}</a>-->
-        {% for r in video.relation_proj_set.all  %}
-          <a class='titre_et_vues_info_cat_coupe' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a>
-        {% endfor %}
-      {% endif %}
+      <hr>
 
 
-    </div>
-
-    <div class="nb_vues">
-		 {{ video.views }} vues
-	 	</div>
-
-  </div>
-
-  <hr>
-
-
-	<div class="titre_et_vues_vues_et_jaime">
-    <div class="titre_et_vues_vues_et_jaime_nb_jaime" id='video_nb_jaime'>
-       {{ nb_jaimes }}
-    </div>
-
-		<div class="titre_et_vues_vues_et_jaime_vues_jaime" id='bouton_jaime'>
-
-			{% if request.user.is_authenticated %}
-
-			{% if favorite %}
-			    <a onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="lien_jaime_rouge">
-						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
-						Je n'aime plus
-						</div>
-					</a>
-
-
-			{% else %}
-          <!-- href="{% url 'add_favorite' video.id %}"-->
-        <a  onclick="like(1,'{% url 'add_favorite' video.id %}')" class="lien_jaime_vert">
-         <div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
-           J'aime
+      <div class="col-12" style="background-color:brown;">
+        <div class="row">
+          <div class="col-9" style="background-color:darkcyan;">
+            Tags : 
+            {% for r in video.relation_tag_set.all %}
+              <a class="tag" href="{% url 'tag' r.tag.id 1 %}">{{ r.tag.titre }}</a> 
+            {% endfor %}
           </div>
-       </a>
 
-			{% endif %}
-			{% endif %}
+          <div class="col-3">
+            <div class="row align-items-center">
+              <div class="col-3">
+            {% if request.user.is_authenticated %}
+                  <span id='bouton_epingle'>
+                  {% if epingle %}
+                    <a onclick="epingle(0,'{% url 'remove_epingle' video_id=video.id home=0 %}')" class="link_epingler">
+                      <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_deja_epingler">
+                    </a>
+                    <div class="text_epingler">
+                      désépingler
+                    </div>
 
-			</div>
-	</div>
+                    {% else %}
+                    <a onclick="epingle(1,'{% url 'add_epingle' video.id %}')" class="link_epingler">
+                      <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
+                    </a>
+                    <div class="text_epingler">
+                      épingler
+                    </div>
+                    {% endif %}
+                </span> 
+              {% endif %}
+            </div>
+             <div class="col-9" style="text-align:right;padding:0;">
+            {% if request.user.is_authenticated %}
+              <div class="btn-group" role="group" >
+                <button type="button" class="btn btn-secondary btn-sm disabled">{{ nb_jaimes }}</button>
 
-  {% if request.user.is_authenticated %}
-  <span id='bouton_epingle'>
-  {% if epingle %}
-  <a onclick="epingle(0,'{% url 'remove_epingle' video_id=video.id home=0 %}')" class="link_epingler">
-    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_deja_epingler">
-    </a>
-    <div class="text_epingler">
-      désépingler
+                {% if favorite %}
+                  <button type="button" class="btn btn-danger btn-sm">Je n'aime plus</button>
+                {% else %}
+                  <button type="button" class="btn btn-success btn-sm">J'aime</button>
+                {% endif %}
+              </div>
+            {% endif %}
+            </div> 
+           
+            <!-- <div class="titre_et_vues_vues_et_jaime_nb_jaime" id='video_nb_jaime'>
+              {{ nb_jaimes }}
+            </div>
+
+              <div class="titre_et_vues_vues_et_jaime_vues_jaime" id='bouton_jaime'>
+
+                {% if request.user.is_authenticated %} {% if favorite %}
+                <a onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="lien_jaime_rouge">
+                  <div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+                    Je n'aime plus
+                  </div>
+                </a>
+
+
+                {% else %}
+                
+                <a onclick="like(1,'{% url 'add_favorite' video.id %}')" class="lien_jaime_vert">
+                  <div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
+                    J'aime
+                  </div>
+                </a>
+
+                {% endif %} {% endif %}
+
+              </div> -->
+
+              </div> 
+            </div>
+          </div>
+      </div>
+
+     
+
+
+    
+
+
     </div>
 
-    {% else %}
-    <a onclick="epingle(1,'{% url 'add_epingle' video.id %}')" class="link_epingler">
-    <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
-    </a>
-    <div class="text_epingler">
-      épingler
-    </div>
-    {% endif %}
-    </span>
-    {% endif %}
-
-
-	<div class="titre_et_vues_tags">
-	Tags :
-	{% for r in video.relation_tag_set.all %}
-		<a class="tag" href="{% url 'tag' r.tag.id 1 %}">{{ r.tag.titre }}</a>
-	{% endfor %}
-  </div>
-
-
-
-</div>
-
-{% if can_edit %}
+    {% if can_edit %}
     <div class="editer_contenu">
-        <span class="trait_edit">&boxh;</span><a href="{% url 'edit_video' video.id %}" class="editer_contenu_lien" > Éditer la vidéo </a> <span class="trait_edit">&boxh;</span>
+      <span class="trait_edit">&boxh;</span><a href="{% url 'edit_video' video.id %}" class="editer_contenu_lien"> Éditer la vidéo </a>      <span class="trait_edit">&boxh;</span>
     </div>
-{% endif %}
-
-<div class="description_video">
-  <div class="titre_et_vues_date">Ajoutée le {{ video.date|date:"d/m/Y" }}</div>
-  {{ video.description }}
-</div>
-
-
-
-
-
-
-
-<div class="commentaires_video" id="commentaires_video_id">
-  <div class="commentaires_video_titre">
-    Commentaires
-  </div>
-
-  <div class="commentaires_video_faire">
-    {% if request.user.is_authenticated %}
-
-
-    <form action="{% url 'comment_video' video.id %}" method="post">
-    {% csrf_token %}
-    <textarea name="comment" rows="3" id="comment"></textarea>
-    <input type="submit" value="Poster" id='bouton_comment'/>
-    </form>
-
     {% endif %}
-  </div>
 
-  {% for r in video.relation_comment_set.all %}
+    <div class="description_video">
+      <div class="titre_et_vues_date">Ajoutée le {{ video.date|date:"d/m/Y" }}</div>
+      {{ video.description }}
+    </div>
+
+
+
+
+
+
+
+    <div class="commentaires_video" id="commentaires_video_id">
+      <div class="commentaires_video_titre">
+        Commentaires
+      </div>
+
+      <div class="commentaires_video_faire">
+        {% if request.user.is_authenticated %}
+
+
+        <form action="{% url 'comment_video' video.id %}" method="post">
+          {% csrf_token %}
+          <textarea name="comment" rows="3" id="comment"></textarea>
+          <input type="submit" value="Poster" id='bouton_comment' />
+        </form>
+
+        {% endif %}
+      </div>
+
+      {% for r in video.relation_comment_set.all %}
       <hr>
       <div class="commentaires_supprimer_div">
         {% if request.user.is_authenticated and request.user == r.author %}
-            <a href="{% url 'delete_comment_video' r.id %}">
+        <a href="{% url 'delete_comment_video' r.id %}">
                   <img src={% static "admin/img/icon-deletelink.svg" %} alt="Supprimer" class='commentaires_supprimer'>
-            </a>
-        {% endif %}
+            </a> {% endif %}
       </div>
 
       <div class="commentaire_nom_date">
         <div class="commentaires_nom">
           {{ r.author.username }}
         </div>
-          <div class="commentaires_date">
+        <div class="commentaires_date">
           le 04/02/2017 à 15h25
-          </div>
-          <div class="cellule_com_jaime">
+        </div>
+        <div class="cellule_com_jaime">
 
-            <div class="commentaires_jaime">
+          <div class="commentaires_jaime">
 
-              <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime">
-                  {{r.like_comment_set.count}}
-              </div>
-
-              <div class="petit_titre_et_vues_vues_et_jaime_vues_jaime">
-
-            {% if request.user.is_authenticated %}
-
-                {% if r.like_comment_set|exists_user:request.user %}
-
-                    <a href="{% url 'unlike_comment' r.id %}" class="petit_lien_jaime_rouge">
-                      <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
-                      Je n'aime plus
-                      </div>
-                    </a>
-
-                {% else %}
-
-                    <a href="{% url 'like_comment' r.id  %}" class="petit_lien_jaime_vert">
-                      <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_vert">
-                        J'aime
-                      </div>
-                    </a>
-
-                {% endif %}
-
-            {% endif %}
-
-                </div>
+            <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime">
+              {{r.like_comment_set.count}}
             </div>
 
+            <div class="petit_titre_et_vues_vues_et_jaime_vues_jaime">
 
+              {% if request.user.is_authenticated %} {% if r.like_comment_set|exists_user:request.user %}
 
+              <a href="{% url 'unlike_comment' r.id %}" class="petit_lien_jaime_rouge">
+                <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+                  Je n'aime plus
+                </div>
+              </a>
 
+              {% else %}
 
+              <a href="{% url 'like_comment' r.id  %}" class="petit_lien_jaime_vert">
+                <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_vert">
+                  J'aime
+                </div>
+              </a>
+
+              {% endif %} {% endif %}
+
+            </div>
           </div>
+
+
+
+
+
+        </div>
 
 
       </div>
@@ -234,16 +249,16 @@
       <div class="commentaires_commentaires">
         {{ r.comment }}
       </div>
-  {% endfor %}
-</div>
+      {% endfor %}
+    </div>
 
 
-<!-- -->
+    <!-- -->
 
-</div>
+  </div>
 
-<!-- suggestion -->
-<!-- <div class="col-xs-12 col-sm-4" >
+  <!-- suggestion -->
+   <div class="col-xs-12 col-sm-4" >
   <div class="container_suggestion">
 
     <p class="suggestion_titre">À suivre</p>
@@ -291,49 +306,48 @@
         </div>
 
       </div>
-    </div> -->
-  </div>
+    </div> 
+</div>
 <!-- </div>
 </div> -->
+
 
 {% endif %}
 
 
-
 <script type="text/javascript">
+  var video = document.getElementById('video');
 
-var video = document.getElementById('video');
+  video.addEventListener('ended', next, false);
+  function next(e) {
+    window.location.replace("{% url 'video' suggestions.0.id %}");
+  }
 
-video.addEventListener('ended',next,false);
-function next(e) {
-	window.location.replace("{% url 'video' suggestions.0.id %}");
-}
+  function like(val, link) {
 
-function like(val,link){
+    $.get(link, function (data, status) {
+      if (data == 'lannoo') {
 
-    $.get(link, function(data,status){
-      if(data=='lannoo'){
+        if (val == 1) {
 
-        if(val==1){
-
-          document.getElementById('bouton_jaime').innerHTML= `<a onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="lien_jaime_rouge">
+          document.getElementById('bouton_jaime').innerHTML = `<a onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="lien_jaime_rouge">
  						<div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
  						Je n'aime plus
  						</div>
  					</a>`;
-          c=parseInt(document.getElementById('video_nb_jaime').innerHTML);
-          document.getElementById('video_nb_jaime').innerHTML=c+1;
+          c = parseInt(document.getElementById('video_nb_jaime').innerHTML);
+          document.getElementById('video_nb_jaime').innerHTML = c + 1;
         }
-        if(val==0){
-            document.getElementById('bouton_jaime').innerHTML= `<a  onclick="like(1,'{% url 'add_favorite' video.id %}')" class="lien_jaime_vert">
+        if (val == 0) {
+          document.getElementById('bouton_jaime').innerHTML = `<a  onclick="like(1,'{% url 'add_favorite' video.id %}')" class="lien_jaime_vert">
            <div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
              J'aime
             </div>
          </a>`;
-         c=parseInt(document.getElementById('video_nb_jaime').innerHTML);
-         document.getElementById('video_nb_jaime').innerHTML=c-1;
+          c = parseInt(document.getElementById('video_nb_jaime').innerHTML);
+          document.getElementById('video_nb_jaime').innerHTML = c - 1;
 
-         document.getElementById('bouton_epingle').innerHTML= `
+          document.getElementById('bouton_epingle').innerHTML = `
            <a onclick="epingle(1,'{% url 'add_epingle' video.id %}')" class="link_epingler">
              <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
            </a>
@@ -341,17 +355,17 @@ function like(val,link){
              épingler
            </div>
          `;
-         document.getElementById('video_epingle_id_+{{video.id}}').innerHTML="";
+          document.getElementById('video_epingle_id_+{{video.id}}').innerHTML = "";
         }
       }
     });
-}
+  }
 
-function epingle(val,link){
-  $.get(link, function(data,status){
-    if(data=='lannoo'){
-      if(val==1){
-        document.getElementById('bouton_epingle').innerHTML= `
+  function epingle(val, link) {
+    $.get(link, function (data, status) {
+      if (data == 'lannoo') {
+        if (val == 1) {
+          document.getElementById('bouton_epingle').innerHTML = `
           <a onclick="epingle(0,'{% url 'remove_epingle' video_id=video.id home=0 %}')" class="link_epingler">
             <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_deja_epingler">
           </a>
@@ -360,7 +374,7 @@ function epingle(val,link){
           </div>
         `;
 
-        a= `
+          a = `
         <span id='video_epingle_id_+{{video.id}}'>
           <a class="lateral_bar_button_a" href="{% url 'video' video.id %}">
             <div class="lateral_bar_button">
@@ -371,21 +385,21 @@ function epingle(val,link){
         </a>
         </span>`;
 
-        document.getElementById('video_epingle_liste').innerHTML=a+document.getElementById('video_epingle_liste').innerHTML;
+          document.getElementById('video_epingle_liste').innerHTML = a + document.getElementById('video_epingle_liste').innerHTML;
 
-        document.getElementById('bouton_jaime').innerHTML= `<a onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="lien_jaime_rouge">
+          document.getElementById('bouton_jaime').innerHTML = `<a onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="lien_jaime_rouge">
           <div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
           Je n'aime plus
           </div>
         </a>`;
 
-        
-        c=parseInt(document.getElementById('video_nb_jaime').innerHTML);
-        document.getElementById('video_nb_jaime').innerHTML=c+1;
 
-      }
-      if(val==0){
-          document.getElementById('bouton_epingle').innerHTML= `
+          c = parseInt(document.getElementById('video_nb_jaime').innerHTML);
+          document.getElementById('video_nb_jaime').innerHTML = c + 1;
+
+        }
+        if (val == 0) {
+          document.getElementById('bouton_epingle').innerHTML = `
             <a onclick="epingle(1,'{% url 'add_epingle' video.id %}')" class="link_epingler">
               <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
             </a>
@@ -393,11 +407,11 @@ function epingle(val,link){
               épingler
             </div>
           `;
-          document.getElementById('video_epingle_id_+{{video.id}}').innerHTML="";
+          document.getElementById('video_epingle_id_+{{video.id}}').innerHTML = "";
+        }
       }
-    }
-  });
-}
+    });
+  }
 
 </script>
 

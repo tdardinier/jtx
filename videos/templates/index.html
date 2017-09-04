@@ -4,56 +4,91 @@
 
 {% load app_filters %}
 
+		{% if not request.user.is_authenticated %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    	<span aria-hidden="true">&times;</span>
+  		</button>
+			<h4><strong> Vous n'êtes pas connecté !</strong></h4>
+		Connectez vous pour pouvoir voir toutes les vidéos, et accéder a toutes les fonctionnalités du site.
+		Tant que vous n'êtes pas connecté, vous ne pouvez voir que les videos ouvertes au public.
+		</div>
 
-{% if categories %}
-	<div class="container_no_bs">
-		<h1>Catégories</h1>
-			<ul>
-			{% for c in categories %}
-		    	<li><a href="{% url 'category' c.id 1 %}">{{ c.titre|short }}</a></li>
-			{% endfor %}
-			</ul>
+		{% endif %}
 
-{% endif %}
 
-{% if request.user.is_authenticated %}
 
-<h1>Video du jour</h1>
+		{% if request.user.is_authenticated %}
 
-<video id="video" controls autoplay>
-    <source src="http://binet-jtx.com/vdj/vdj.mp4">
-    Your browser does not support the video tag.
-</video>
-
-{% else %}
-
-<h1>Vous n'etes pas connecte !</h1>
-
-Connectez vous pour pouvoir voir toutes les videos, et accedez a toutes les fonctionnalites du site.
-Tant que vous n'etes pas connecte, vous ne pouvez voir que les videos ouvertes au public.
+		<div class="card">
+	<h2 class="card-header">Vidéo du jour</h2>
+	<div class="card-body">
+	<video id="video" controls autoplay>
+			<source src="http://binet-jtx.com/vdj/vdj.mp4">
+			Your browser does not support the video tag.
+		</video>
+</div>
+	</div>
+	
 
 {% endif %}
 
 {% if projs %}
-	<hr class="container_hr">
-	<h1>Projs</h1>
+<br>
+<div class="card">
+	<div class="card-header" >
+		<h2 class="">Projections</h2>
+		{% if categories %}
+
+
+			<ul class=" nav nav-tabs card-header-tabs">
+
+				<li class="nav-item">
+					<a class="nav-link active" href="#">Les plus récentes</a>
+				</li>
+				{% for c in categories %}
+		    	<li class="nav-item">
+					<a class="nav-link" href="{% url 'category' c.id 1 %}">{{ c.titre|short }}</a>
+				</li>
+				{% endfor %}
+				
+			</ul>
+		
+
+		{% endif %}
+	</div>
+	
+	<div class="card-body">
+
+		
 
 		<div class="row">
 			{% for p in projs %}
 				{% include "block_video_proj_liste.html" with video=0 elmt=p %}
 			{% endfor %}
 		</div>
-
+	</div>
+</div>
 {% endif %}
 
+
 {% if videos %}
-	<hr class="container_hr">
-	<h1>Vidéos</h1>
+<br>
+<div class="card">
+	<h2 class="card-header">Vidéos</h2>
+	<div class="card-body">
 	<div class="row">
 		{% for v in videos %}
 			{% include "block_video_proj_liste.html" with video=1 elmt=v %}
 		{% endfor %}
 
-{% endif %}
+
+	</div>
 </div>
+{% endif %}
+<br>
+<br>
+<br>
+<br>
+
 {% endblock %}

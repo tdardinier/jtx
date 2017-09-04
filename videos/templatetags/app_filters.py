@@ -11,10 +11,10 @@ def duration(v):
 def auteurs(v):
     s = v.relation_auteur_video_set.all()
     if len(s) > 0:
-        return ", ".join(["<a href='" + reverse('jtxman', args=(x.auteur.id,1,)) + "'>"
+        return ", ".join(["<a style='color:black;' href='" + reverse('jtxman', args=(x.auteur.id,1,)) + "'>"
             + x.auteur.name + "</a>" for x in s])
     else:
-        return "Inconnu"
+        return "Auteur inconnu"
 
 @register.filter(name='url_auteur')
 def url_auteur(a):
