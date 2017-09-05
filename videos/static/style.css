@@ -993,8 +993,9 @@ text-decoration: none;
 }
 
 #video{
-  width:864px;
-  height:486px;
+  /* width:864px;
+  height:486px; */
+  width:100%;
 }
 
 
@@ -2392,3 +2393,13 @@ transition: all 0.1s linear;
     }
 
 } */
+
+@media screen and (min-width: 1300px)  {
+
+
+  .container{
+    width: 1450px;
+    max-width: 1450px;
+  }
+
+}
