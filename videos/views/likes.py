@@ -126,3 +126,21 @@ def add_epingle_proj(request, proj_id):
 """
     return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
 """
+
+def unlike_comment(request, comment_id):
+    if request.user.is_authenticated:
+        c = get_object_or_404(Relation_comment, pk=comment_id)
+        user = request.user
+        r = Like_comment.objects.filter(user = user, comment = c).delete()
+        return HttpResponse(str(comment_id))
+    return HttpResponse("erreur")
+
+def like_comment(request, comment_id):
+    if request.user.is_authenticated:
+        comment = get_object_or_404(Relation_comment, pk=comment_id)
+        user = request.user
+        r = Like_comment(user = user, comment = comment)
+        r.save()
+        return HttpResponse(str(comment_id))
+    return HttpResponse("erreur")
+    

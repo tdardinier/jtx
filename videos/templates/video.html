@@ -238,8 +238,8 @@
 
           <div class="commentaires_jaime">
 
-            <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime">
-              {{r.like_comment_set.count}} j'aime.
+            <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime" >
+              <span id="commentaire_{{r.id}}">{{r.like_comment_set.count}}</span> j'aime.
             </div>
 
             <div style="display:inline-block;margin-left:-4px;">
@@ -252,7 +252,7 @@
                 </div>
               </a> -->
 
-               <button type="button" onclick="" class="btn btn-sm" style="background-color:white;margin-top:-5px;" data-toggle="tooltip" data-placement="top" title="Je n'aime plus.">
+               <button type="button" id="like_comment_btn_{{r.id}}" onclick="like_comment(0, '/jtx/unlike_comment/{{r.id}}')" class="btn btn-sm" style="background-color:white;margin-top:-5px;" data-toggle="tooltip" data-placement="top" title="Je n'aime plus.">
                     <img src={% static "admin/img/opticons/thumbsdown.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
               </button>
               {% else %}
@@ -263,7 +263,7 @@
                 </div>
               </a> -->
 
-              <button type="button" onclick="" class="btn btn-sm" style="background-color:white;margin-top:-5px;" data-toggle="tooltip" data-placement="top" title="J'aime.">
+              <button type="button" id="like_comment_btn_{{r.id}}" onclick="like_comment(1, '/jtx/like_comment/{{r.id}}')" class="btn btn-sm" style="background-color:white;margin-top:-5px;" data-toggle="tooltip" data-placement="top" title="J'aime.">
                     <img src={% static "admin/img/opticons/thumbsup.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
               </button>
 
@@ -444,12 +444,32 @@ $(function () {
 
   function like_comment(like,link){
     $.get(link, function (data, status) {
-    if(like==0){
-      document.getElementById()
-    }
-    else{
+      if (data != 'erreur') {
+        var id=parseInt(data);
+        
+        if(like==0){
+          c = parseInt(document.getElementById("commentaire_"+id).innerHTML);
+          document.getElementById("commentaire_"+id).innerHTML=c-1
 
-    }
+          var btn=document.getElementById("like_comment_btn_"+id);
+          btn.innerHTML=`
+             <img src={% static "admin/img/opticons/thumbsup.svg" %} alt="+" style="height:15px;margin-top:0px;opacity:0.294;" >
+          `
+          btn.onclick=function() { like_comment(1,'/jtx/like_comment/' +id);};
+         
+        }
+        else{
+          c = parseInt(document.getElementById("commentaire_"+id).innerHTML);
+          document.getElementById("commentaire_"+id).innerHTML=c+1
+
+          var btn=document.getElementById("like_comment_btn_"+id);
+          btn.innerHTML=`
+             <img src={% static "admin/img/opticons/thumbsdown.svg" %} alt="+" style="height:15px;margin-top:0px;opacity:0.294;" >
+          `
+          btn.onclick=function() { like_comment(0, '/jtx/unlike_comment/'+id);};
+         
+        }
+      }
     });
   }
 
