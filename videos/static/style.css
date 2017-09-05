@@ -41,12 +41,10 @@ body{
 }
 
 #body {
-   padding-top: 70px; 
-    display: table;
-    margin: 0 auto;
+    padding-top: 70px; 
+    
 
-    overflow: scroll;
-    overflow-y:scroll;
+    
     /*padding-left:220px; SI ON RAJOUTE LA BARRE*/
     -webkit-transition: all 0.2s linear;
     -moz-transition: all 0.2s linear;
@@ -1079,8 +1077,8 @@ font-size: 13px;
 max-width: 100%;
 min-width: 100%;
 
-max-height:  45px;
-min-height:  45px;
+max-height:  65px;
+min-height:  65px;
 margin-bottom: 10px;
 }/*
 
@@ -1146,8 +1144,8 @@ margin-left: 5px;
   font-size: 10px;
   background-color: rgb(250,250,250);
 
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: 6px;
+  border-radius: 3px;
+
 
   color: #737373;
 
@@ -2159,6 +2157,8 @@ transition: all 0.1s linear;
   padding-left: 2px;
   padding-right: 2px;
 }
+
+/* 
 @media screen and (max-width: 1184px){
   .bouton_suggestions{
     left:850px;
@@ -2269,37 +2269,21 @@ transition: all 0.1s linear;
     .input_edit{
       max-width: 930px;
     }
-}
+} */
 
-
+/* 
 @media screen and (max-width: 700px)  {
   #video {
     width:100%;
     height: 100%;
-        /* width: 432px;
-        height: 243px; */
+
     }
 
-    .commentaires_video {
-      /* max-width: 412px; */
-    }
-
-    .titre_et_vues{
-      /* width: 412px; */
-    }
-
-      .titre_proj_nouv{
-        /* width: 432px; */
-      }
-
-      .description_video{
-        /* width:412px; */
-      }
 
       .suggestion {
         margin-top: 10px;
         display: block;
-        /* width: 432px; */
+     
         padding-right: 0px;
         padding-left: 0px;
 
@@ -2327,8 +2311,8 @@ transition: all 0.1s linear;
         margin-bottom: -50px;
         overflow: hidden;
       }
-}
-
+} */
+/* 
 @media screen and (max-width: 1300px)  and (min-width:700px) {
     #video {
         width:640px;
@@ -2354,7 +2338,8 @@ transition: all 0.1s linear;
       .description_video{
         width: 620px;
       }
-}
+ } */
+    /*
 @media screen and (min-width: 1300px)  {
 
 
@@ -2406,4 +2391,4 @@ transition: all 0.1s linear;
       width: 844px;
     }
 
-}
+} */

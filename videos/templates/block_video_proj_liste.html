@@ -1,26 +1,43 @@
 {% load app_filters %}
 
 <!-- bloc_video -->
-<div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" style="padding:5px;">
-<div class="card" style="max-width:250px;margin:0 auto;border-style:none;">
+    {% if horizontal %}
+        <div class="col-12" style="margin-bottom:10px;">
+    {% else %}
+        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" style="padding:5px;">
+    {% endif %} 
+
+<div class="card" style="margin:0 auto;border-style:none;">
+
+    {% if horizontal %}
+        <div class="row ">
+            <div class="col-md-4"  style="padding:2px;margin:0;">
+    {% endif %}  
+
     {% if video %}
         <a href="{% url 'video' elmt.id %}">
-        <img class="card-img-top" src="{{elmt.url}}.png" style="width:100%;" />
+        <img class="card-img-top" src="{{elmt.url}}.png" style="width:100%;border-radius:0px;" />
         <span class="legende_vid_duree" >
             {{elmt|duration}}
         </span>  
         </a>
     {% else %}
         <a  href="{% url 'proj' elmt.id %}">
-        <img class="card-img-top" src="{{elmt.image}}"  style="width:100%;"/>
+        <img class="card-img-top" src="{{elmt.image}}"  style="width:100%;border-radius:0px;"/>
         <span class="legende_vid_duree" >
             {{elmt|duration_proj}}
         </span>  
         </a>
     {% endif %}
-
+    
+    {% if horizontal %}
+            </div>
+            <div class="col-md-8 " style="padding:0;padding-left:5px;margin-top:-3px;">
+                <div class="card-block">
+    {% else %}
     <div class="card-body" style="padding:5px;">
-     
+    {% endif %}
+
             {% if video %}
                 <a style="margin-bottom:0;" href="{% url 'video' elmt.id %}">{{elmt.titre|short}} </a>
             {% else %}
@@ -76,10 +93,14 @@
             </div>
               {% endif %}
              </div>
-        
+        {% if horizontal %}
+            </div></div>
+    {% endif %}
     </div>
 </div>
 </div>
+
+
 <!-- 
 <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 " style="margin-bottom:20px;">
     <div class="row" style="padding:5px;">
