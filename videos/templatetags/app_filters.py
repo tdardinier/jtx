@@ -1,5 +1,7 @@
 from django import template
 from django.urls import reverse
+from videos.models import Relation_proj
+from django.shortcuts import render, get_object_or_404
 
 register = template.Library()
 
@@ -46,3 +48,15 @@ def duration(p):
 @register.filter(name='exists_user')
 def exists_user(elements, user):
     return elements.filter(user = user).exists()
+
+@register.filter(name='get_promo_video')
+def get_promo_video(video,typ):
+    r=Relation_proj.objects.get(video=video)
+    if r:
+        if typ=='short':
+            return str(r.proj.promo)[-2:]
+        else:
+            return str(r.proj.promo)
+    else:
+        return "INC"
+

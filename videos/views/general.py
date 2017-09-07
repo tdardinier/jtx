@@ -43,7 +43,7 @@ def index(request):
     return render(request, 'index.html', context)
 
 def jtx(request, year):
-    c = Category.objects.get(titre="Proj JTX")
+    c = Category.objects.get(titre="Proj en .K")
     v = filter(request, Proj.objects.filter(promo=year))
     context = {
         'year': year,

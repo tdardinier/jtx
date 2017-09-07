@@ -8,6 +8,14 @@ a {
    text-shadow: none !important;
 }
 
+.no-hover-link:hover{
+  text-decoration: none;
+}
+
+.shadow-div{
+  box-shadow: 0px 0px 10px -7px black;
+}
+
 :-moz-any-link {
   outline: 0 !important;
   text-shadow: none !important;
@@ -325,14 +333,14 @@ outline: 0;
 }
 
 #lateral_bar h3 {
-  color: #cc181e;
+  /* color: #cc181e;
   font-weight: bold;
   text-transform: uppercase;
   background-color: white;
   padding-left: 10px;
   text-align: left;
   font-size: 12px;
-  margin-bottom:3px;
+  margin-bottom:3px; */
 }
 
 .lateral_bar_supprimer{
@@ -361,7 +369,7 @@ outline: 0;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left:   5px;
-  padding-right: 15px;
+  /* padding-right: 15px; */
 
   margin: 0 auto;
   border-radius: 1px;
@@ -1371,9 +1379,6 @@ padding-top: 5px;
   font-weight:bolder;
 }
 
-#connexion{
-  margin-top: 7px;
-}
 
 .container_no_bs{
   background-color: white;

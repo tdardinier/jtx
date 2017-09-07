@@ -70,81 +70,89 @@
   </div>
   <!-- A changer pour mettre un lien absolu! -->
 
+  
+
   <div id="lateral_bar">
 
+      
+      
       {% if request.user.is_authenticated %}
-          <h3>Bonjour {{ request.user.first_name }} {{ request.user.last_name }}</h3>
+          <h4 class="dropdown-header">Bonjour {{ request.user.first_name }} {{ request.user.last_name }}</h3>
+           
+          
 
-          <a class="lateral_bar_button_a" href="{% url 'logout' %}">
-            <div class="lateral_bar_button">
+          <a class="dropdown-item" href="{% url 'logout' %}">
+            <div class="">
               <!-- <img src={% static "admin/img/deconnexion.png" %} alt="->" style="width:10px;">  -->
               <span class="glyphicon glyphicon-log-out"></span>Se déconnecter
             </div>
           </a>
 
-          <hr>
+          <div class="dropdown-divider"></div>
+       
 
-          <h3> <span class="glyphicon glyphicon-option-vertical" ></span>Menu</h3>
+          <h3 class="dropdown-header"> <span class="glyphicon glyphicon-option-vertical" ></span>Menu</h3>
 
           {% if request.user.is_authenticated %}
 
           
 
-          <a href="{% url 'favorites' 1 %}" class="lateral_bar_button_a">
-            <div class="lateral_bar_button">
+          <a href="{% url 'favorites' 1 %}" class="dropdown-item">
+            <div class="">
               <span class="glyphicon glyphicon-star"></span>Favoris
             </div>
           </a>
           {% endif %}
 
           
-          <a href="{% url 'videos' 1 %}" class="lateral_bar_button_a">
+          <a href="{% url 'videos' 1 %}" class="dropdown-item">
 
-            <div class="lateral_bar_button">
-              <span class="glyphicon glyphicon-facetime-video"></span> Vidéos
+            <div class="d-flex justify-content-between">
+              <div>Vidéos</div>
+              <div><img src="{% static "admin/img/opticons/device-camera-video.svg" %}" alt="hello"></div>
             </div>
           </a>
 
-          <a href="{% url 'projs' 1 %}" class="lateral_bar_button_a">
-            <div class="lateral_bar_button">
+          <a href="{% url 'projs' 1 %}" class="dropdown-item">
+            <div class="">
               <span class="glyphicon glyphicon-film"></span> Projections
             </div>
           </a>
 
-          <a href="{% url 'categories' %}" class="lateral_bar_button_a">
-            <div class="lateral_bar_button" style="padding-left:40px;">
+          <a href="{% url 'categories' %}" class="dropdown-item">
+            <div class="" style="padding-left:20px;">
               Catégories
             </div>
           </a>
 
-           <a href="{% url 'fil' 1 %}" class="lateral_bar_button_a">
-            <div class="lateral_bar_button" style="padding-left:40px;">
+           <a href="{% url 'fil' 1 %}" class="dropdown-item">
+            <div class="" style="padding-left:20px;">
               <span class="glyphicon glyphicon-sort-by-attributes"></span>  Fil
             </div>
           </a>
 
 
-          <a href="{% url 'tags' %}" class="lateral_bar_button_a">
-            <div class="lateral_bar_button">
+          <a href="{% url 'tags' %}" class="dropdown-item">
+            <div class="">
               <span class="glyphicon glyphicon-text-background"></span> Tags
             </div>
           </a>
 
-          <a href="{% url 'jtx' 2015 %}" class="lateral_bar_button_a">
-            <div class="lateral_bar_button">
+          <a href="{% url 'jtx' 2015 %}" class="dropdown-item">
+            <div class="">
              <span class="glyphicon glyphicon-sound-dolby"></span> JTX 2015
             </div>
           </a>
 
-          <hr>
+          <div class="dropdown-divider"></div>
 
-          <h3> <span class=" glyphicon glyphicon-pushpin"></span> Projections épinglées</h3>
+          <h3 class="dropdown-header"> Projections épinglées</h3>
           <span id='proj_epingle_liste'>
           {% for f in request.user.favorite_proj_set.all %}
           {% if f.epingle %}
           <span id='proj_epingle_id_+{{f.proj.id}}'>
-          <a class="lateral_bar_button_a" href="{% url 'proj' f.proj.id %}">
-              <div class="lateral_bar_button">
+          <a class="dropdown-item" href="{% url 'proj' f.proj.id %}">
+              <div class="">
                   {{ f.proj.titre }}
                   <!--
                   <a href="{% url 'remove_favorite_proj' proj_id=f.proj.id home=1 %}" class="lateral_bar_supprimer">X</a>
@@ -153,16 +161,17 @@
           </a>
           </span> {% endif %} {% endfor %}
           </span>
-          <hr>
+         
+          <div class="dropdown-divider"></div>
 
-          <h3><span class=" glyphicon glyphicon-pushpin"></span> Vidéos épinglées</h3>
+          <h3 class="dropdown-header"> Vidéos épinglées</h3>
           <span id='video_epingle_liste'>
           {% for f in request.user.favorite_set.all %}
 
           {% if f.epingle %}
             <span id='video_epingle_id_+{{f.video.id}}'>
-              <a class="lateral_bar_button_a" href="{% url 'video' f.video.id %}">
-                <div class="lateral_bar_button">
+              <a class="dropdown-item" href="{% url 'video' f.video.id %}">
+                <div class="">
 
                   <div class="lateral_bar_button_text">
                       {{ f.video.titre }}
@@ -178,15 +187,21 @@
 
 
       {% else %}
-        <a class="lateral_bar_button_a" href="/org">
-          <div class="lateral_bar_button" id="connexion">
+          <h3 class="dropdown-header">  
+            <div class="d-flex justify-content-between">
+              <div>Connexion</div>
+              <div><img src="{% static "admin/img/opticons/key.svg" %}" alt="hello"></div>
+            </div>
+          </h3>
+        <a class="dropdown-item" href="/org">
+          <div class="" id="connexion">
               Connexion (polytechnique.org)
           </div>
         </a>
 
 
-        <a class="lateral_bar_button_a" href="{% url 'login' %}?next={% url 'index' %}">
-          <div class="lateral_bar_button" id="connexion">
+        <a class="dropdown-item" href="{% url 'login' %}?next={% url 'index' %}">
+          <div class="" id="connexion">
               Connexion manuelle
           </div>
         </a>
@@ -235,6 +250,7 @@
 
               {% endif %} 
               <div class="container" >
+                
               {% block body %} {% endblock %}
               </div>
               {% if pages and page and adress %}
@@ -272,7 +288,8 @@
 <script>
   checkbar();
 
-
+  
+  
 
   function showHint(e, str) {
     var keycode;
