@@ -4,7 +4,7 @@
 <div style="margin-top:0;display:block">   -->
 <!-- style="margin-top:0;display:table-cell;vertical-align:top;padding-right:10px;" -->
 <div class="row" style="margin:0;">
-  <div class="col-12 col-sm-12 col-md-8 col-lg-8" style="padding:15px;padding-right:5px;">
+  <div class="col-12 col-sm-12 col-md-12 col-lg-8" style="padding:5px;">
     
     
    
@@ -217,7 +217,7 @@
       </div>
 
       {% for r in video.relation_comment_set.all|dictsortreversed:"date" %}
-      <hr>
+      <br>
       <div class="commentaires_supprimer_div">
         {% if request.user.is_authenticated and request.user == r.author %}
         <a href="{% url 'delete_comment_video' r.id %}">
@@ -302,7 +302,7 @@
   </div>
 
   <!-- suggestion -->
-  <div class="col-xs-12 col-sm-4 col-lg-4 " style="padding:15px;padding-left:5px;" >
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 " style="padding:5px;" >
     <div class="shadow-div" style="background-color:white;margin:0;padding:20px;">
         <h4>À suivre</h4>
         

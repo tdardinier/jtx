@@ -14,6 +14,7 @@ a {
 
 .shadow-div{
   box-shadow: 0px 0px 10px -7px black;
+  border-radius: 2px;
 }
 
 :-moz-any-link {
@@ -79,10 +80,10 @@ Style de la bar de navigation
 */
 #navigation_bar{
 
-    overflow: hidden;
+    
     
     z-index: 1;
-    display: table;
+    
     background-color: white;
     width: 100%;
     border-style: solid;
@@ -161,7 +162,7 @@ Style de la Lateral Bar
 
 
 #txtHint{
-  display: none;
+  /* display: none;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   border-style:solid;
@@ -174,16 +175,20 @@ Style de la Lateral Bar
   z-index: 1;
   position: fixed;
   background: white;
-  width: 620px;
+  width: 620px; */
 
 }
 
 .search_result{
-  padding-left: 4px;
+  /* padding-left: 4px;
   text-decoration: none;
   color:black;
   height: 20px;
-  background-color: white;
+  background-color: white; */
+}
+
+.highlight_word{
+  background-color: rgb(220, 220, 250);
 }
 
 .search_result:hover{
@@ -238,14 +243,13 @@ form .biginput:focus {
 
 
 #titre_site{
-        font-weight: 900;
-    padding-top: 4px;
-    padding-bottom: 4px;
+    font-weight: 700;
+
     text-align: center;
 
-    margin: 0;
-    margin-left: 50px;
-    height:40px;
+    
+    
+    
     color:#FDC500;
 
     text-align:center;
@@ -254,12 +258,18 @@ form .biginput:focus {
     -moz-transition: all 2s linear;
     transition: all 2s linear;
 
-    padding-right: 53.5px;
-    padding-left: 53px;
+   
+}
+
+#titre_site_h1{
+  font-weight: 700;
+  font-size:35px;
+
 }
 
 #titre_site:hover{
   color:#CC181E;
+  text-decoration: none;
 }
 
 
@@ -308,17 +318,17 @@ outline: 0;
     border-color:#e8e8e8;
     position: fixed;
     overflow-x: hidden;
-    top:71px;
+    top:55px;
     bottom: 0;
     left:0;
     width:220px;
 
     background-color: #ffffff;
-    margin-top:-22px;
+    /* margin-top:-22px; */
 
     position:fixed;
 
-    z-index: 1;
+    z-index: 2;
 }
 
 
@@ -424,9 +434,9 @@ Style des tags
 
     color:black;
     text-transform:uppercase;
-    font-weight:400;
+    font-weight:700;
 
-    font-size: 10px;
+    font-size: 11px;
     padding-top: 2px;
     padding-bottom: 2px;
     padding-left: 3px;
@@ -434,9 +444,16 @@ Style des tags
 
     border-style: solid;
     border-width: 1px;
+    border-radius: 2px;
     border-color: #DDDDDD;
     color:black;
     text-decoration: none;
+}
+
+.tag:hover{
+  text-decoration: none;
+  color:black;
+  background-color: rgba(221, 221, 221,0.3);
 }
 
 .tag_search_jtxman{
@@ -679,9 +696,9 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
   text-decoration: none;
 
   text-transform:uppercase;
-  font-weight:400;
+  font-weight:700;
 
-  font-size: 9px;
+  font-size: 11 px;
   padding-top: 2px;
   padding-bottom: 2px;
   padding-left: 3px;
@@ -689,6 +706,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 
   border-style: solid;
   border-width: 1px;
+  border-radius:2px;
 
 
   text-decoration: none;

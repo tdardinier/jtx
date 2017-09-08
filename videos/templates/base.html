@@ -31,43 +31,56 @@
 
 
 
-  </div> 
+  
 
-    <div>
+    
 
       <div id="central" >
          
-        <a href="https://docs.google.com/forms/u/0/d/e/1FAIpQLScnWrGA33Z6HbHlhkl-g0sqKDzbGaz16Yd0MVAl8hHbbWc_5g/viewform?usp=sf_link" target="_newtab">
-    <div class="bouton_suggestions">
-      Signaler un bug\Proposer une suggestion
-    </div>
-    </a>
+        <div id="navigation_bar" class="d-flex justify-content-start align-items-center" style="z-index:1;">
 
 
-    <button type="button" class="menu_button" onclick="h_r_lateral_bar()">
-      <img class="menu_button_img" src={% static "admin/img/menu.png" %} alt="Menu">
-    </button>
+          
+            <a type="button" class="p-2" onclick="h_r_lateral_bar()">
+              <img class="" style="width:25px;" src={% static "admin/img/opticons/three-bars.svg" %} alt="Menu">
+            </a>
+          
 
+       
+          <a href="{% url 'index' %}" id="titre_site" class="d-none  d-md-block" style="width:150px;text-align:center;">
+              <!-- <div id="entourer_titre"></div> -->
+               <span id="titre_site_h1" class="" > JTX </span>
+           
+          </a>
 
-  <div id="navigation_bar">
-    <a href="{% url 'index' %}">
-        <!-- <div id="entourer_titre"></div> -->
-    <div class="navigation_bar_titre">
-      <h1 id="titre_site"> JTX </h1>
-    </div>
+          <div id="search_bar" class="" style="width:100%;max-width:600px;">
+              <form method="get" class="form-inline" action="/jtx/search/">
+                <input autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" 
+                onfocus="afficher_results()" name="q" class="form-control m-2 " onkeydown="select_lien(event)" 
+                onkeyup="showHint(event,this.value)" type="text" style="width:100%;min-width:0px;"
+                aria-owns="textHint" role="combobox"
+                >
+              
+                <div id="txtHint" role="listbox" class="m-2  shadow-div"  onmouseover="lien_ok(1)" onmouseout="lien_ok(0)" style="position:absolute;background-color:white;z-index:1;top:40px;"></div>
+            </form>
 
-    </a>
+            
+            </div>
+          <!-- <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)" style="margin-left: 221.067px;"> -->
+          <!-- </div> -->
 
-    <div id="search_bar" class="barre_de_recherche">
-        <form method="get" action="/jtx/search/"><input autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" onfocus="afficher_results()" name="q" class="biginput" onkeydown="select_lien(event)" onkeyup="showHint(event,this.value)" type="text"></form>
-    </div>
+          <a class="ml-auto btn btn-primary m-1 d-none d-md-block" href="https://docs.google.com/forms/u/0/d/e/1FAIpQLScnWrGA33Z6HbHlhkl-g0sqKDzbGaz16Yd0MVAl8hHbbWc_5g/viewform?usp=sf_link" target="_newtab">
+            
+              Signaler un bug\Proposer une suggestion
+          </a>
 
+          <a class="ml-auto btn btn-primary m-1 d-block d-xs-block d-md-none" href="https://docs.google.com/forms/u/0/d/e/1FAIpQLScnWrGA33Z6HbHlhkl-g0sqKDzbGaz16Yd0MVAl8hHbbWc_5g/viewform?usp=sf_link" target="_newtab">
+              Bug
+          </a>
 
-  </div>
+        </div>
 
-  <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)" style="margin-left: 221.067px;">
-
-  </div>
+ 
   <!-- A changer pour mettre un lien absolu! -->
 
   
@@ -93,16 +106,13 @@
 
           <h3 class="dropdown-header"> <span class="glyphicon glyphicon-option-vertical" ></span>Menu</h3>
 
-          {% if request.user.is_authenticated %}
+         
 
-          
-
-          <a href="{% url 'favorites' 1 %}" class="dropdown-item">
+          <a href="{% url 'projs' 1 %}" class="dropdown-item">
             <div class="">
-              <span class="glyphicon glyphicon-star"></span>Favoris
+              <span class="glyphicon glyphicon-film"></span> Projections
             </div>
           </a>
-          {% endif %}
 
           
           <a href="{% url 'videos' 1 %}" class="dropdown-item">
@@ -113,12 +123,15 @@
             </div>
           </a>
 
-          <a href="{% url 'projs' 1 %}" class="dropdown-item">
+          {% if request.user.is_authenticated %}
+          <a href="{% url 'favorites' 1 %}" class="dropdown-item">
             <div class="">
-              <span class="glyphicon glyphicon-film"></span> Projections
+              <span class="glyphicon glyphicon-star"></span>Favoris
             </div>
           </a>
+          {% endif %}
 
+<!--           
           <a href="{% url 'categories' %}" class="dropdown-item">
             <div class="" style="padding-left:20px;">
               Catégories
@@ -129,8 +142,8 @@
             <div class="" style="padding-left:20px;">
               <span class="glyphicon glyphicon-sort-by-attributes"></span>  Fil
             </div>
-          </a>
-
+          </a> -->
+          
 
           <a href="{% url 'tags' %}" class="dropdown-item">
             <div class="">
@@ -289,6 +302,9 @@
   checkbar();
 
   
+  function highlight(phrase,mot){
+    return phrase.replace(new RegExp(mot, 'gi'), "<span class='highlight_word'>"+mot+"</span>");
+  }
   
 
   function showHint(e, str) {
@@ -324,13 +340,13 @@
             if (video.titre.length > 80) {
               s = video.titre.substring(0, 80);
             }
-            return '<a onmouseover="mouse_select(this)" onmouseout="mouse_deselect(this)" class="lien_suggestion" href="' + video.url + '"><div class="search_result"><span class="tag_search_video">Vidéo</span>' + s + "</div></a>";
+            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + video.url + '"><div class="">' + highlight(s,str) + "</div></a>";
 
           });
 
 
           var jtxmen = data.auteurs.map(function (jtxman) {
-            return '<a onmouseover="mouse_select(this)" onmouseout="mouse_deselect(this)" class="lien_suggestion" href="' + jtxman.url + '"><div class="search_result"><span class="tag_search_jtxman">JTXMAN</span>' + jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo + ")</div></a>";
+            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + jtxman.url + '"><div class="">' + highlight(jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo,str) + ")</div></a>";
 
           });
 
@@ -339,11 +355,23 @@
             if (proj.titre.length > 80) {
               s = proj.titre.substring(0, 80);
             }
-            return '<a onmouseover="mouse_select(this)" onmouseout="mouse_deselect(this)" class="lien_suggestion" href="' + proj.url + '"><div class="search_result"> <span class="tag_search_proj">PROJ</span>' + s + "</div></a>";
+            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + proj.url + '"><div class=""> ' + highlight(s,str)+ "</div></a>";
 
           });
 
           showData.empty();
+          
+          if(jtxmen.length>0){
+            jtxmen=["<div class='dropdown-header'>JTXWomen.Men</div>"].concat(jtxmen);
+          }
+
+          if(videos.length>0){
+            videos=["<div class='dropdown-divider'></div><div class='dropdown-header'>Vidéos</div>"].concat(videos);
+          }
+
+          if(projs.length>0){
+            projs=["<div class='dropdown-divider'></div><div class='dropdown-header'>Projections</div>"].concat(projs);
+          }
 
           if (videos.length + jtxmen.length) {
             elements = jtxmen.concat(videos).concat(projs);
@@ -366,7 +394,7 @@
 
   function checkbar() {
 
-    positionne_suggestions();
+    // positionne_suggestions();
 
     var show = getCookie("show");
 
@@ -433,11 +461,16 @@
   }
 
   function positionne_suggestions() {
-    var x = document.getElementById("search_bar");
-    if (typeof x != "undefined") {
-      var rect = x.getBoundingClientRect();
-      document.getElementById("txtHint").style.marginLeft = (rect.left + 6).toString() + "px";
-    }
+    console.log("hello");
+    var x = document.getElementById("search_input");
+    var y = document.getElementById("txtHint");
+    y.style.width=x.clientWidth+"px";
+    
+    console.log(y.style.width);
+    // if (typeof x != "undefined") {
+    //   var rect = x.getBoundingClientRect();
+    //   document.getElementById("txtHint").style.marginLeft = (rect.left + 6).toString() + "px";
+    // }
 
   }
 
@@ -453,17 +486,17 @@
   function mouse_select(y) {
     var x = document.getElementsByClassName('search_result');
     if (select >= 0 && select < x.length) { x[select].style.backgroundColor = "white"; }
-    el = y.getElementsByTagName('div')[0];
-    el.style.backgroundColor = "#c8c8c8";
+    
+    y.style.backgroundColor = "#c8c8c8";
 
     for (var i = 0; i < x.length; i++) {
-      if (el == x[i]) { select = i; }
+      if (y == x[i]) { select = i; }
     }
   }
 
   function mouse_deselect(y) {
     var x = document.getElementsByClassName('search_result');
-    y.getElementsByTagName('div')[0].style.backgroundColor = "white";
+    y.style.backgroundColor = "white";
     if (select >= 0 && select < x.length) { x[select].style.backgroundColor = "white"; }
     select = -1;
   }
@@ -512,7 +545,7 @@
       var x = document.getElementsByClassName('search_result');
 
       //x[select].click();
-      x[select].parentElement.click();
+      x[select].click();
       e.preventDefault();
     }
   }
@@ -522,6 +555,8 @@
   var suivre_lien = 0;
 
   window.onresize = positionne_suggestions;
+  positionne_suggestions();
+  console.log(suivre_lien);
 
 </script>
 

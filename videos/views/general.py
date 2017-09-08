@@ -94,7 +94,7 @@ def projs(request, page=1):
 #AJOUT VIDON
 def fil(request, page=1):
     projs = filter(request, Proj.objects)
-    c = Category.objects.get(titre="Proj JTX")
+    c = Category.objects.get(titre="Proj en .K")
     context = {
         'titre': 'Toutes les projs visibles',
         'projs_jtx': projs.filter(category=c),
