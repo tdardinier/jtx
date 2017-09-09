@@ -11,7 +11,7 @@
 
     {% if horizontal %}
         <div class="row ">
-            <div class="col-lg-4"  style="padding:2px;margin:0;">
+            <div class="col-4"  style="padding:2px;margin:0;">
     {% endif %}  
 
     {% if video %}
@@ -32,7 +32,7 @@
     
     {% if horizontal %}
             </div>
-            <div class="col-lg-8 " style="padding:0;padding-left:5px;margin-top:-3px;">
+            <div class="col-8 " style="padding:0;padding-left:5px;margin-top:-3px;">
                 <div class="card-block">
     {% else %}
     <div class="card-body" style="padding:5px;">
@@ -65,33 +65,61 @@
             </div>
 
             {% if video %}
-            <div class="" style="">
-               <span style="position:relative;top:-3px;">
-                  
-                {% if v.category.titre.lower == 'proj jtx' %}
+                <div class="" style="">
+                <span style="position:relative;top:-3px;">
                     
-                    {% for r in v.relation_proj_set.all  %}
-                        <a class='titre_et_vues_info_cat_proj tag '  href="{% url 'proj' r.proj.id %}">PROJ</a>
-                    {% endfor %}
-                {% elif v.category.titre.lower == 'amphi binets' %}
-            
-                    {% for r in v.relation_proj_set.all  %}
-                        <a class='titre_et_vues_info_cat_amphi tag' href="{% url 'proj' r.proj.id %}">BINETS</a>
-                    {% endfor %}
-                {% elif v.category.titre.lower == 'semaine internationale' %}
+                    {% if v.category.titre.lower == 'proj en .k' %}
+                        
+                        {% for r in v.relation_proj_set.all  %}
+                            <a class='titre_et_vues_info_cat_proj tag '  href="{% url 'proj' r.proj.id %}">PROJ .K</a>
+                        {% endfor %}
+                    {% elif v.category.titre.lower == 'amphi binets' %}
                 
-                    {% for r in v.relation_proj_set.all  %}
-                        <a class='titre_et_vues_info_cat_semaine tag' href="{% url 'proj' r.proj.id %}">S.INT.</a>
-                    {% endfor %}
-                {% elif v.category.titre.lower == "coupe de l'x" %}
-            
-                    {% for r in v.relation_proj_set.all  %}
-                        <a class='titre_et_vues_info_cat_coupe tag' href="{% url 'proj' r.proj.id %}">COUPE</a>
-                    {% endfor %}
-                {% endif %}
-                </span>
-            </div>
-              {% endif %}
+                        {% for r in v.relation_proj_set.all  %}
+                            <a class='titre_et_vues_info_cat_amphi tag' href="{% url 'proj' r.proj.id %}">BINETS</a>
+                        {% endfor %}
+                    {% elif v.category.titre.lower == 'semaine internationale' %}
+                    
+                        {% for r in v.relation_proj_set.all  %}
+                            <a class='titre_et_vues_info_cat_semaine tag' href="{% url 'proj' r.proj.id %}">S.INT.</a>
+                        {% endfor %}
+                    {% elif v.category.titre.lower == "coupe de l'x" %}
+                
+                        {% for r in v.relation_proj_set.all  %}
+                            <a class='titre_et_vues_info_cat_coupe tag' href="{% url 'proj' r.proj.id %}">COUPE</a>
+                        {% endfor %}
+                    {% endif %}
+                    </span>
+                </div>
+            {% else %}
+                <div class="" style="">
+                    <span style="position:relative;top:-3px;">
+                        
+                        {% if elmt.category.titre.lower == 'proj en .k' %}
+                            
+                           
+                                <a class='titre_et_vues_info_cat_proj tag '  href="">PROJ .K</a>
+                            
+                        {% elif elmt.category.titre.lower == 'amphi binets' %}
+                    
+                            
+                                <a class='titre_et_vues_info_cat_amphi tag' href="">BINETS</a>
+                            
+                        {% elif elmt.category.titre.lower == 'semaine internationale' %}
+                        
+                            
+                                <a class='titre_et_vues_info_cat_semaine tag' href="">S.INT.</a>
+                           
+                        {% elif elmt.category.titre.lower == "coupe de l'x" %}
+                    
+                            
+                                <a class='titre_et_vues_info_cat_coupe tag' href="">COUPE</a>
+                           
+                        {% endif %}
+                        </span>
+                    </div>
+            {% endif %}
+
              </div>
         {% if horizontal %}
             </div></div>

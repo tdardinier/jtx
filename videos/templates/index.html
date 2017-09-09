@@ -40,33 +40,76 @@
 		<h2 class="">Projections</h2>
 		{% if categories %}
 
+			<div class="d-none d-sm-block">
+				<ul class=" nav nav-tabs card-header-tabs no-wrap">
 
-			<ul class=" nav nav-tabs card-header-tabs">
-
-				<li class="nav-item">
-					<a class="nav-link active" href="#">Les plus récentes</a>
-				</li>
-				{% for c in categories %}
-		    	<li class="nav-item">
-					<a class="nav-link" href="{% url 'category' c.id 1 %}">{{ c.titre|short }}</a>
-				</li>
-				{% endfor %}
-				
-			</ul>
-		
+					<li class="nav-item">
+						<a class="nav-link active" href="#recent" data-toggle="tab" role="tab">Les plus récentes</a>
+					</li>
+					{% for c in categories %}
+					<li class="nav-item" >
+						<a class="nav-link" href="#{{ c.id }}" data-toggle="tab"  role="tab">{{ c.titre }}</a>
+					</li>
+					{% endfor %}
+					
+				</ul>
+			</div>
 
 		{% endif %}
 	</div>
 	
 	<div class="card-body">
 
-		
+		<div class="tab-content">
+			<div class="tab-pane fade show active" id="recent">
+				<div class="d-none  d-sm-block">
+						<div class="row ">
+							{% for p in projs|dictsortreversed:'date'%}
+								{% include "block_video_proj_liste.html" with video=0 elmt=p %}
+							{% endfor %}
+			
+			
+						</div>
+					</div>
+					<div class="d-block   d-sm-none">
+						<div class="row ">
+								{% for p in projs %}
+									{% include "block_video_proj_liste.html" with video=0 elmt=p horizontal=1%}
+								{% endfor %}
+						</div>
+					</div>
+			</div>
 
-		<div class="row">
-			{% for p in projs %}
-				{% include "block_video_proj_liste.html" with video=0 elmt=p %}
+			{% for c in categories %}
+			
+				<div class="tab-pane fade" id="{{c.id}}">
+						<div class="d-none  d-sm-block">
+								<div class="row ">
+									{% for p in projs|dictsortreversed:'date'%}
+										{% if p.category.id == c.id %}
+											{% include "block_video_proj_liste.html" with video=0 elmt=p %}
+										{% endif %}
+									{% endfor %}
+					
+					
+								</div>
+							</div>
+							<div class="d-block   d-sm-none">
+								<div class="row ">
+										{% for p in projs %}
+											{% if p.category.id == c.id %}
+												{% include "block_video_proj_liste.html" with video=0 elmt=p horizontal=1%}
+											{% endif %}
+										{% endfor %}
+								</div>
+							</div>
+				</div>
+
 			{% endfor %}
+			
 		</div>
+
+
 	</div>
 </div>
 {% endif %}
@@ -77,13 +120,22 @@
 <div class="card">
 	<h2 class="card-header">Vidéos</h2>
 	<div class="card-body">
-	<div class="row">
-		{% for v in videos %}
-			{% include "block_video_proj_liste.html" with video=1 elmt=v %}
-		{% endfor %}
+		<div class="d-none  d-sm-block">
+			<div class="row ">
+				{% for v in videos %}
+					{% include "block_video_proj_liste.html" with video=1 elmt=v %}
+				{% endfor %}
 
 
-	</div>
+			</div>
+		</div>
+		<div class="d-block   d-sm-none">
+			<div class="row ">
+					{% for v in videos %}
+						{% include "block_video_proj_liste.html" with video=1 elmt=v horizontal=1%}
+					{% endfor %}
+			</div>
+		</div>
 </div>
 {% endif %}
 <br>
