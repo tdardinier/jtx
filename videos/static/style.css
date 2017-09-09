@@ -690,6 +690,7 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 .titre_et_vues_info{
   font-size: 12px;
   padding-top: 3px;
+  
 }
 
 .titre_et_vues_info a{
@@ -716,21 +717,37 @@ Tout ce qui suit jusqu'au prochain bloc concerne le design du lecteur de vidéos
 .titre_et_vues_info_cat_proj{
     color:rgba(39, 174, 96,1);
     border-color:rgba(39, 174, 96,0.7);
+    width:10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .titre_et_vues_info_cat_amphi{
     color:rgba(155, 89, 182,1.0);
     border-color:rgba(155, 89, 182,0.7);
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .titre_et_vues_info_cat_semaine{
     color:rgba(192, 57, 43,1.0);
     border-color:rgba(192, 57, 43,0.7);
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .titre_et_vues_info_cat_coupe{
     color:rgba(230, 126, 34,1.0);
     border-color:rgba(230, 126, 34,0.7);
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .titre_et_vues_info_cat_coupe:hover{
@@ -1052,7 +1069,7 @@ text-decoration: none;
 }
 
 .commentaires_nom{
-  display: table-cell;
+  margin-right:5px;
   color:rgb(18,147,231);
   font-weight: bold;
   font-variant: small-caps;
@@ -1060,7 +1077,7 @@ text-decoration: none;
 }
 
 .commentaires_date{
-  padding-left: 5px;
+ 
   display: table-cell;
   font-variant: normal;
   color:grey;

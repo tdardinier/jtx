@@ -134,52 +134,67 @@
 
 
     
+      <hr>
 
+    <!-- </div>
 
-    </div>
+    <div class="col-12 shadow-div" style="background-color:white;padding:10px;margin-top:10px;"> -->
 
-    <div class="col-12 shadow-div" style="background-color:white;padding:10px;margin-top:10px;">
+        {% with duree_proj=proj|duration_proj_seconds  %}
+        <div class="progress">
+  
+            {% for r in proj.relation_proj_set.all %}
+            <div class="progress-bar  progress_bar_class" id="progress_{{r.ordre}}" role="progressbar" style="width: {{r.video|get_percent:duree_proj}}%" 
+            data-toggle="tooltip" data-placement="top" title="{{r.video.titre}}" onclick="launch({{forloop.counter}})">
+            </div>
+            <span style="width:1px;"></span>
+            {% endfor %}
+        </div>
+        {%endwith%}
+        <br>  
+
       <div class="d-flex justify-content-between align-items-center"> 
         <a  onclick="launch(0)" id="lien_precedente" >
           <img src={% static "admin/img/opticons/arrow-left.svg" %} alt="Précédente" style="height:50px;margin-top:0px;"
           data-toggle="tooltip" data-placement="right" title="Vidéo précédente" >
         </a>
-        <div class="card"> 
-          <div class="card-header" style="padding:10px;" >Vidéo en cours</div>
-          <div class="card-body" style="padding:10px;">
-          <h5 >
-            <div class="d-flex justify-content-between align-items-center">
-            <span id="titre_en_cours"></span>
-            <a href="">
-                <img src={% static "admin/img/opticons/diff-renamed.svg" %} alt="Solo" style="height:20px;margin-top:0px;margin-left:5px;"
-                data-toggle="tooltip" data-placement="top" title="Voir en solo" >
-            </a>
-            </div>
-            <br>  
-          <small>De :  <span id="proj_auteurs"></span></small> </h5>
-        </div>
-          <div class="card-footer" style="text-align:right;padding:10px;"> <small ><span style="font-variant:small-caps;"> à suivre :</span>   <span id="titre_video_suivante"></span></small></div>
-         
+        <div style="width:90%;"> 
+            
+         Vidéo en cours
+          <div class="dropdown-divider" style=""> </div>
           
-        </div>
+          <div class="card" style="width:100%;border-style:none;"> 
+              <div class="card-body" style="padding-top:2px;">
+            <h5 class="card-title" >
+          
+              
+                <span id="titre_en_cours" class="float-left"></span>
+                <a href="" id='lien_en_cours_solo' class="float-right">
+                    <img src={% static "admin/img/opticons/diff-renamed.svg" %} alt="Solo" style="height:20px;margin-top:0px;margin-left:5px;"
+                    data-toggle="tooltip" data-placement="top" title="Voir en solo" >
+                </a>
+              
+              <br>   
+              
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted"> <small>De :  <span id="proj_auteurs"></span></small> </h6>
+        
+            <p class="card-text" style="text-align:right;"> 
+              <span style="font-variant:small-caps;"> à suivre :</span>   <span id="titre_video_suivante"></span>
+            </p>
+            </div>
+          </div>
+          
+      </div>
       <a   onclick="launch(1)" style="text-align:right" id="lien_suivante">
           <img src={% static "admin/img/opticons/arrow-right.svg" %} alt="Suivante" style="height:50px;margin-top:0px;"
           data-toggle="tooltip" data-placement="left" title="Vidéo suivante" >
       </a>
       </div> 
-      <br>
-      {% with duree_proj=proj|duration_proj_seconds  %}
-      <div class="progress">
-
-          {% for r in proj.relation_proj_set.all %}
-          <div class="progress-bar  progress_bar_class" id="progress_{{r.ordre}}" role="progressbar" style="width: {{r.video|get_percent:duree_proj}}%" 
-          data-toggle="tooltip" data-placement="top" title="{{r.video.titre}}" onclick="launch({{forloop.counter}})">
-          </div>
-          <span style="width:1px;"></span>
-          {% endfor %}
-      </div>
-      {%endwith%}
+    
+      
      
+      
     </div>
 
     
@@ -188,7 +203,7 @@
       <div class="titre_et_vues_date">Ajoutée le {{ proj.date|date:"d/m/Y" }}.</div>
       {{ proj.description }}
 
-      <table id="proj_elements" class="table  ">
+      <table id="proj_elements" class="table table-striped table-bordered dt-responsive nowrap  " width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>Ordre</th>
@@ -255,20 +270,21 @@
       </div>
 
        <div class="media-body">
-      <div class="commentaire_nom_date">
+          <div class="d-flex flex-wrap align-items-end">
+      
         <div class="commentaires_nom">
           {{ r.author.first_name|lower }} {{ r.author.last_name|lower }}
         </div>
         <div class="commentaires_date">
           
           le {{r.date|date:"d/m/Y" }} à {{r.date|date:"H:i"}}
-        </div>
-        <div class="cellule_com_jaime">
+        
+        <div class="cellule_com_jaime" style="display:inline-block">
 
           <div class="commentaires_jaime">
 
             <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime" >
-              <span id="commentaire_{{r.id}}">{{r.like_comment_set.count}}</span> j'aime
+              <span id="commentaire_{{r.id}}">{{r.like_comment_proj_set.count}}</span> j'aime
             </div>
 
             <div style="display:inline-block;margin-left:-4px;">
@@ -281,9 +297,9 @@
                 </div>
               </a> -->
 
-               <button type="button" id="like_comment_btn_{{r.id}}" onclick="like_comment(0, '/jtx/unlike_comment/{{r.id}}')" class="btn btn-sm" style="background-color:white;margin-top:-5px;" >
+               <a  id="like_comment_btn_{{r.id}}" onclick="like_comment(0, '/jtx/unlike_comment_proj/{{r.id}}')" style="background-color:white;margin-top:-5px;margin-left:5px;" >
                     <img src={% static "admin/img/opticons/thumbsdown.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
-              </button>
+               </a>
               {% else %}
 
               <!-- <a href="{% url 'like_comment' r.id  %}" class="petit_lien_jaime_vert">
@@ -292,9 +308,9 @@
                 </div>
               </a> -->
 
-              <button type="button" id="like_comment_btn_{{r.id}}" onclick="like_comment(1, '/jtx/like_comment/{{r.id}}')" class="btn btn-sm" style="background-color:white;margin-top:-5px;" >
+              <a id="like_comment_btn_{{r.id}}" onclick="like_comment(1, '/jtx/like_comment_proj/{{r.id}}')"  style="background-color:white;margin-top:-5px;margin-left:5px;" >
                     <img src={% static "admin/img/opticons/thumbsup.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
-              </button>
+              </a>
 
               {% endif %} {% endif %}
 
@@ -306,7 +322,7 @@
 
 
         </div>
-
+      </div>
 
       </div>
 
@@ -409,20 +425,27 @@ function launch(id) {
     var pg=liste_prog[i];
       if(parseInt(pg.id.replace('progress_',''))<current){
         pg.classList.remove('bg-danger');
+        pg.classList.remove('progress-bar-striped'); 
+        pg.classList.remove('progress-bar-animated');
         pg.classList.add('bg-success');
       }
       else if(parseInt(pg.id.replace('progress_',''))>current){
         pg.classList.remove('bg-danger');
+        pg.classList.remove('progress-bar-striped'); 
+        pg.classList.remove('progress-bar-animated');
         pg.classList.remove('bg-success');
       }
       else{
         pg.classList.add('bg-danger');
+        pg.classList.add('progress-bar-striped'); 
+        pg.classList.add('progress-bar-animated');
+        
       }
   }
 
   document.getElementById('lien_precedente').onclick=function(){ launch(Math.max(1,current-1)) };
-
   document.getElementById('lien_suivante').onclick=function(){ launch(Math.min(playlist.length-1,current+1)) };
+  document.getElementById('lien_en_cours_solo').href='/jtx/video/'+playlist[current][3].toString();
 }
 
 video.addEventListener('ended',next,false);
@@ -437,9 +460,6 @@ function next(e) {
 }
 
 
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-});
 
  
 
@@ -529,7 +549,7 @@ $(function () {
           btn.innerHTML=`
              <img src={% static "admin/img/opticons/thumbsup.svg" %} alt="+" style="height:15px;margin-top:0px;opacity:0.294;" >
           `
-          btn.onclick=function() { like_comment(1,'/jtx/like_comment/' +id);};
+          btn.onclick=function() { like_comment(1,'/jtx/like_comment_proj/' +id);};
          
         }
         else{
@@ -540,7 +560,7 @@ $(function () {
           btn.innerHTML=`
              <img src={% static "admin/img/opticons/thumbsdown.svg" %} alt="+" style="height:15px;margin-top:0px;opacity:0.294;" >
           `
-          btn.onclick=function() { like_comment(0, '/jtx/unlike_comment/'+id);};
+          btn.onclick=function() { like_comment(0, '/jtx/unlike_comment_proj/'+id);};
          
         }
       }
@@ -564,24 +584,7 @@ $(function () {
     }
  });
 
- $.fn.dataTable.Api.register('row().show()', function() {
-  var page_info = this.table().page.info();
-  // Get row index
-  var new_row_index = this.index();
-  // Row position
-  var row_position = this.table().rows()[0].indexOf( new_row_index );
-  // Already on right page ?
-  if( row_position >= page_info.start && row_position < page_info.end ) {
-      // Return row object
-      return this;
-  }
-  // Find page number
-  var page_to_display = Math.floor( row_position / this.table().page.len() );
-  // Go to that page
-  this.table().page( page_to_display );
-  // Return row object
-  return this;
-});
+
 
 jQuery.fn.dataTable.Api.register( 'page.jumpToData()', function ( data, column ) {
     var pos = this.column(column, {order:'current'}).data().indexOf( data );
@@ -595,6 +598,11 @@ jQuery.fn.dataTable.Api.register( 'page.jumpToData()', function ( data, column )
 } );
 
  launch(1);
+
+ 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
 
 </script>
 

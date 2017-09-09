@@ -222,18 +222,4 @@ def delete_comment_proj(request, comment_id):
 
 
 
-def like_comment_proj(request, comment_id):
-    if request.user.is_authenticated:
-        comment = get_object_or_404(Relation_comment_proj, pk=comment_id)
-        user = request.user
-        r = Like_comment_proj(user = user, comment = comment)
-        r.save()
-    return HttpResponseRedirect(reverse('proj', args=(comment.proj.id,)))
 
-
-def unlike_comment_proj(request, comment_id):
-    if request.user.is_authenticated:
-        c = get_object_or_404(Relation_comment_proj, pk=comment_id)
-        user = request.user
-        r = Like_comment_proj.objects.filter(user = user, comment = c).delete()
-    return HttpResponseRedirect(reverse('proj', args=(c.proj.id,)))

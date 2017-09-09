@@ -34,7 +34,7 @@
               </a>
            
 
-            <div style="padding:5px;margin-top:-6px;">
+            <div style="padding:5px;margin-top:-6px;overflow: hidden;">
               {% autoescape off %}
               <div class="" style="">{{ video|auteurs}}</div>
               {% endautoescape %}
@@ -77,14 +77,14 @@
 
       <div class="col-12" style="padding:0;">
         <div class="row">
-          <div class="col-12 col-sm-12 col-lg-8 col-xl-9" style="">
+          <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-9" style="">
             Tags : 
             {% for r in video.relation_tag_set.all %}
               <a class="tag" href="{% url 'tag' r.tag.id 1 %}">{{ r.tag.titre }}</a> 
             {% endfor %}
           </div>
 
-          <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3">
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
             <div class="d-flex flex-row-reverse align-items-center">
 
             <div  style="text-align:right;padding:0;">
@@ -231,17 +231,17 @@
       </div>
 
        <div class="media-body">
-      <div class="commentaire_nom_date">
-        <div class="commentaires_nom">
+      <div class="d-flex flex-wrap align-items-end">
+        <div class="commentaires_nom ">
           {{ r.author.first_name|lower }} {{ r.author.last_name|lower }}
         </div>
-        <div class="commentaires_date">
+        <div class="commentaires_date ">
           
           le {{r.date|date:"d/m/Y" }} à {{r.date|date:"H:i"}}
-        </div>
-        <div class="cellule_com_jaime">
+        
+        <div class="cellule_com_jaime" style="display:inline-block">
 
-          <div class="commentaires_jaime">
+         
 
             <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime" >
               <span id="commentaire_{{r.id}}">{{r.like_comment_set.count}}</span> j'aime
@@ -257,9 +257,9 @@
                 </div>
               </a> -->
 
-               <button type="button" id="like_comment_btn_{{r.id}}" onclick="like_comment(0, '/jtx/unlike_comment/{{r.id}}')" class="btn btn-sm" style="background-color:white;margin-top:-5px;" >
+               <a  id="like_comment_btn_{{r.id}}" onclick="like_comment(0, '/jtx/unlike_comment/{{r.id}}')" style="background-color:white;margin-top:-5px;margin-left:5px;" >
                     <img src={% static "admin/img/opticons/thumbsdown.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
-              </button>
+               </a>
               {% else %}
 
               <!-- <a href="{% url 'like_comment' r.id  %}" class="petit_lien_jaime_vert">
@@ -268,9 +268,9 @@
                 </div>
               </a> -->
 
-              <button type="button" id="like_comment_btn_{{r.id}}" onclick="like_comment(1, '/jtx/like_comment/{{r.id}}')" class="btn btn-sm" style="background-color:white;margin-top:-5px;" >
+              <a id="like_comment_btn_{{r.id}}" onclick="like_comment(1, '/jtx/like_comment/{{r.id}}')"  style="background-color:white;margin-top:-5px;margin-left:5px;" >
                     <img src={% static "admin/img/opticons/thumbsup.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
-              </button>
+              </a>
 
               {% endif %} {% endif %}
 
@@ -281,9 +281,8 @@
 
 
 
-        </div>
-
-
+        
+      </div>
       </div>
 
 

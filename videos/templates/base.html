@@ -16,6 +16,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'style.css' %}" />
    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap4.min.css" />
+   
 
        
 
@@ -41,7 +43,7 @@
 
 
           
-            <a type="button" class="p-2" onclick="h_r_lateral_bar()">
+            <a  class="p-2" onclick="h_r_lateral_bar()">
               <img class="" style="width:25px;" src={% static "admin/img/opticons/three-bars.svg" %} alt="Menu">
             </a>
           
@@ -58,12 +60,13 @@
                 <input autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" 
                 onfocus="afficher_results()" name="q" class="form-control m-2 " onkeydown="select_lien(event)" 
                 onkeyup="showHint(event,this.value)" type="text" style="width:100%;min-width:0px;"
-                aria-owns="textHint" role="combobox"
+                
                 >
               
-                <div id="txtHint" role="listbox" class="m-2  shadow-div"  onmouseover="lien_ok(1)" onmouseout="lien_ok(0)" style="position:absolute;background-color:white;z-index:1;top:40px;"></div>
-            </form>
-
+                
+              </form>
+            <div id="txtHint" role="listbox" class="m-2  shadow-div"  onmouseover="lien_ok(1)" onmouseout="lien_ok(0)"
+            style="position:absolute;background-color:white;z-index:1;top:40px;"></div>
             
             </div>
           <!-- <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)" style="margin-left: 221.067px;"> -->
@@ -250,6 +253,8 @@
         
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap4.min.js"></script>
 
 
 
@@ -266,7 +271,7 @@
               <h1>{{titre}}</h1>
 
               {% endif %} 
-              <div class="container-fluid" style="max-width:1400px;" >
+              <div class="container-fluid" style="max-width:1400px;padding-right:2px;padding-left:2px;" >
                 
               {% block body %} {% endblock %}
               </div>
