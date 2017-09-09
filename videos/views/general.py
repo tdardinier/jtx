@@ -123,7 +123,7 @@ def proj(request, proj_id):
             'epingle': epingle,
             'nb_jaimes': n,
         }
-        return render(request, 'proj.html', context)
+        return render(request, 'proj_new.html', context)
     return index(request)
 
 def favorites(request, page=1):

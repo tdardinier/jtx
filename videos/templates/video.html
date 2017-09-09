@@ -4,7 +4,7 @@
 <div style="margin-top:0;display:block">   -->
 <!-- style="margin-top:0;display:table-cell;vertical-align:top;padding-right:10px;" -->
 <div class="row" style="margin:0;">
-  <div class="col-12 col-sm-12 col-md-12 col-lg-8" style="padding:5px;">
+  <div class="col-12 col-sm-12 col-md-9 col-lg-8" style="padding:5px;">
     
     
    
@@ -302,7 +302,7 @@
   </div>
 
   <!-- suggestion -->
-  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 " style="padding:5px;" >
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4 " style="padding:5px;" >
     <div class="shadow-div" style="background-color:white;margin:0;padding:20px;">
         <h4>À suivre</h4>
         
@@ -475,6 +475,25 @@ $(function () {
       }
     });
   }
+
+  // Play pause quand on appuie sur espace
+  $(document).keypress(function(e){ 
+    if (e.which == 32){
+      if( e.target == document.body){
+        e.preventDefault();
+        var video=document.getElementById('video');
+        if(video.paused){
+          video.play();
+        }
+        else{
+          video.pause();
+        }
+        
+        }
+    }
+ });
+
+
 
 </script>
 

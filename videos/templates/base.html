@@ -106,7 +106,11 @@
 
           <h3 class="dropdown-header"> <span class="glyphicon glyphicon-option-vertical" ></span>Menu</h3>
 
-         
+          <a href="{% url 'index'  %}" class="dropdown-item">
+            <div class="">
+              Accueil
+            </div>
+          </a>
 
           <a href="{% url 'projs' 1 %}" class="dropdown-item">
             <div class="">
@@ -262,7 +266,7 @@
               <h1>{{titre}}</h1>
 
               {% endif %} 
-              <div class="container" >
+              <div class="container-fluid" style="max-width:1400px;" >
                 
               {% block body %} {% endblock %}
               </div>
@@ -303,7 +307,9 @@
 
   
   function highlight(phrase,mot){
-    return phrase.replace(new RegExp(mot, 'gi'), "<span class='highlight_word'>"+mot+"</span>");
+    var val=phrase.search(new RegExp(mot, 'gi'));
+    var correct=phrase.slice(val,val+mot.length);
+    return phrase.replace(new RegExp(mot, 'gi'), "<span class='highlight_word'>"+correct+"</span>");
   }
   
 
@@ -362,19 +368,19 @@
           showData.empty();
           
           if(jtxmen.length>0){
-            jtxmen=["<div class='dropdown-header'>JTXWomen.Men</div>"].concat(jtxmen);
+            jtxmen=["<div class='dropdown-header' style='color:#3498db'>JTXWomen.Men</div>"].concat(jtxmen);
           }
 
           if(videos.length>0){
-            videos=["<div class='dropdown-divider'></div><div class='dropdown-header'>Vidéos</div>"].concat(videos);
+            videos=["<div class='dropdown-divider'></div><div class='dropdown-header' style='color:#27ae60'>Vidéos</div>"].concat(videos);
           }
 
           if(projs.length>0){
-            projs=["<div class='dropdown-divider'></div><div class='dropdown-header'>Projections</div>"].concat(projs);
+            projs=["<div class='dropdown-divider'></div><div class='dropdown-header' style='color:#CC181E'>Projections</div>"].concat(projs);
           }
 
           if (videos.length + jtxmen.length) {
-            elements = jtxmen.concat(videos).concat(projs);
+            elements = projs.concat(videos).concat(jtxmen);
 
             document.getElementById("txtHint").style.display = "unset";
             var content = elements.join(' ');
@@ -397,9 +403,10 @@
     // positionne_suggestions();
 
     var show = getCookie("show");
+    var taille=$(window).width();
 
     if (show != "") {
-      if (show == 'oui') {
+      if (show == 'oui' && taille>1800) {
 
         document.getElementById("lateral_bar").style.display = "unset";
       }

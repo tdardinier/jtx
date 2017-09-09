@@ -45,6 +45,13 @@ def duration(p):
     a = str(s // 60)
     return a + ":" + b + ":" + c
 
+@register.filter(name='duration_proj_seconds')
+def duration_sec(p):
+    s = 0
+    for r in p.relation_proj_set.all():
+        s += r.video.duree
+    return s
+
 @register.filter(name='exists_user')
 def exists_user(elements, user):
     return elements.filter(user = user).exists()
@@ -60,3 +67,7 @@ def get_promo_video(video,typ):
     else:
         return "INC"
 
+@register.filter(name='get_percent')
+def get_percent(video,proj_duree):
+    s = 0
+    return 100*video.duree/proj_duree
