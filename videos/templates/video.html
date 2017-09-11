@@ -7,16 +7,24 @@
   <div class="col-12 col-sm-12 col-md-9 col-lg-8" style="padding:5px;">
     
     
-   
-      <video id="video" class="embed-responsive-item" controls autoplay>
-        <source src="{{video.url}}"> Your browser does not support the video tag.
-      </video> 
-        
     
+      <video id="video" class="embed-responsive-item" controls autoplay>
+        <source id="src_hd" src="{{video.url}}"> Your browser does not support the video tag.
+      </video> 
+    
+    
+      
+
 
     <div class="col-12 shadow-div" id="" style="background-color:white;padding:10px;margin-top:10px;">
 
-      <div class=" col-12" style="padding:0;"><h3>{{ video.titre }} </h3></div>
+      <div class=" col-12 d-flex  justify-content-between align-items-start" style="padding:0;">
+        <h3>{{ video.titre }} </h3>
+        <div class="btn-group" data-toggle="buttons">
+            <a href="#" id="btn_sd" class="btn btn-secondary btn-sm " onclick="tosd('{{video.url}}')">SD</a>
+            <a href="#" id="btn_hd" class="btn btn-success btn-sm" onclick="tohd('{{video.url}}')">HD</a>
+        </div>
+      </div>
 
       <div class="col-12" style="">
         <div class="row justify-content-between">
@@ -477,8 +485,10 @@ $(function () {
 
   // Play pause quand on appuie sur espace
   $(document).keypress(function(e){ 
+    
     if (e.which == 32){
-      if( e.target == document.body){
+      
+      if( e.target != document.getElementById('search_input') && e.target!=document.getElementById('comment')){
         e.preventDefault();
         var video=document.getElementById('video');
         if(video.paused){
@@ -492,7 +502,55 @@ $(function () {
     }
  });
 
+ function tosd(sdlink){
+    if(quality!='sd'){
+      var sd_btn=document.getElementById('btn_sd');
+      var hd_btn=document.getElementById('btn_hd');
+      sd_btn.classList.remove('btn-secondary');
+      hd_btn.classList.remove('btn-success');
+      hd_btn.classList.add('btn-secondary');
+      sd_btn.classList.add('btn-success');
+      quality='sd';
 
+      var video = document.getElementById('video'); 
+      var time=video.currentTime;
+      video.removeChild(document.getElementById('src_hd'));
+     
+      var source = document.createElement('source');
+      source.setAttribute('src', sdlink+'#t='+time.toString());
+      source.setAttribute('id', 'src_sd');
+      video.appendChild(source);
+      
+      video.load();
+      video.play();
+    }
+ }
+
+ function tohd(hdlink){
+    if(quality!='hd'){
+      var sd_btn=document.getElementById('btn_sd');
+      var hd_btn=document.getElementById('btn_hd');
+      sd_btn.classList.remove('btn-success');
+      sd_btn.classList.add('btn-secondary');
+      hd_btn.classList.remove('btn-secondary');
+      hd_btn.classList.add('btn-success');
+      quality='hd';
+
+      var video = document.getElementById('video'); 
+      var time=video.currentTime;
+      video.removeChild(document.getElementById('src_sd'));
+     
+      var source = document.createElement('source');
+      source.setAttribute('src', hdlink+'#t='+time.toString());
+      source.setAttribute('id', 'src_hd');
+      video.appendChild(source);
+      
+      video.load();
+      video.play();
+    }
+ }
+
+quality='hd';
 
 </script>
 
