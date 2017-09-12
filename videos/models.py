@@ -45,16 +45,27 @@ class Category(models.Model):
         return self.titre
 
 class Video(models.Model):
+
     class Meta:
         ordering = ['-date']
+
     titre = models.CharField(max_length=100)
     date = models.DateField(default=datetime.date.today)
-    url = models.CharField(max_length=1000)
+
+    hd = models.CharField(max_length=1000, default="")
+    md = models.CharField(max_length=1000, default="")
+    sd = models.CharField(max_length=1000, default="")
+
+    screenshot = models.CharField(max_length=1000, default="")
+
+    promo = models.IntegerField(default=2015)
+
     views = models.IntegerField(default=0)
     category = models.ForeignKey(Category)
     duree = models.IntegerField(default=0)
 
     description = models.CharField(max_length=1000, default="Pas de description disponible.")
+
     def __unicode__(self):
         return self.titre
 

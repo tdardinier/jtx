@@ -76,13 +76,23 @@ def edit_video(request, video_id):
         if 'titre' in p:
 
             titre = p['titre']
-            url = p['url']
+
+            hd = p['hd']
+            md = p['md']
+            sd = p['sd']
+            screenshot = p['screenshot']
+
             description = p['description']
             duree = max(int(p['duree']), 0)
             c = get_object_or_404(Category, pk=int(p['category']))
 
             v.titre = titre
-            v.url = url
+
+            v.hd = hd
+            v.md = md
+            v.sd = sd
+            v.screenshot = screenshot
+
             v.description = description
             v.duree = duree
             v.category = c

@@ -16,7 +16,7 @@
 
     {% if video %}
         <a href="{% url 'video' elmt.id %}">
-        <img class="card-img-top" src="{{elmt.url}}.png" style="width:100%;border-radius:0px;" />
+        <img class="card-img-top" src="{{elmt.screenshot}}" style="width:100%;border-radius:0px;" />
         <span class="legende_vid_duree" >
             {{elmt|duration}}
         </span>  
@@ -142,7 +142,7 @@
                 <figure class="" style="width:100%;min-width:200px;margin-bottom:2px;" >
 
                      {% if video %}
-                    <img class="" src="{{elmt.url}}.png" style="width:100%;min-width:200px;" />
+                    <img class="" src="{{elmt.screenshot}}" style="width:100%;min-width:200px;" />
                     {% else %}
                     <img class="" src="{{elmt.image}}"  style="width:100%;min-width:200px;"/>
                     {% endif %}

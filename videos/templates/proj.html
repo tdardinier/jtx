@@ -334,7 +334,7 @@ var playlist = []
 var tags = [];
 {% for r in proj.relation_proj_set.all %}
 
-    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.url}}', '{{r.video|auteurs|striptags}}', '{{r.video.id}}']
+    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.hd}}', '{{r.video|auteurs|striptags}}', '{{r.video.id}}']
 
     x = [];
 	{% for r2 in r.video.relation_tag_set.all %}

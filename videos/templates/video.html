@@ -9,7 +9,7 @@
     
     
       <video id="video" class="embed-responsive-item" controls autoplay>
-        <source id="src_hd" src="{{video.url}}"> Your browser does not support the video tag.
+        <source id="src_hd" src="{{video.hd}}"> Your browser does not support the video tag.
       </video> 
     
     
@@ -21,8 +21,8 @@
       <div class=" col-12 d-flex  justify-content-between align-items-start" style="padding:0;">
         <h3>{{ video.titre }} </h3>
         <div class="btn-group" data-toggle="buttons">
-            <a href="#" id="btn_sd" class="btn btn-secondary btn-sm " onclick="tosd('{{video.url}}')">SD</a>
-            <a href="#" id="btn_hd" class="btn btn-success btn-sm" onclick="tohd('{{video.url}}')">HD</a>
+            <a href="#" id="btn_sd" class="btn btn-secondary btn-sm " onclick="tosd('{{video.md}}')">SD</a>
+            <a href="#" id="btn_hd" class="btn btn-success btn-sm" onclick="tohd('{{video.hd}}')">HD</a>
         </div>
       </div>
 
@@ -322,7 +322,7 @@
             <div class="bloc_video_suggestion">
               <a href="{% url 'video' v.id %}" class="lien_suggestion_video">
               <figure class="figure_suggestions">
-                  <img class="img_vid_suggestions" src="{{v.url}}.png"/>
+                  <img class="img_vid_suggestions" src="{{v.screenshot}}"/>
                   <figcaption class="legende_vid_duree">
                       {{v|duration}}
                   </figcaption>
