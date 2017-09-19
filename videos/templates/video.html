@@ -9,7 +9,7 @@
     
     
       <video id="video" class="embed-responsive-item" controls autoplay>
-        <source id="src_hd" src="{{video.hd}}"> Your browser does not support the video tag.
+        <source id="src_video" src="{{video.md}}"> Your browser does not support the video tag.
       </video> 
     
     
@@ -20,10 +20,29 @@
 
       <div class=" col-12 d-flex  justify-content-between align-items-start" style="padding:0;">
         <h3>{{ video.titre }} </h3>
-        <div class="btn-group" data-toggle="buttons">
+        <!-- <div class="btn-group" data-toggle="buttons">
             <a href="#" id="btn_sd" class="btn btn-secondary btn-sm " onclick="tosd('{{video.md}}')">SD</a>
             <a href="#" id="btn_hd" class="btn btn-success btn-sm" onclick="tohd('{{video.hd}}')">HD</a>
+        </div> -->
+
+        <div class="btn-group" data-toggle="buttons">
+          {% if video.sd %}
+          <label class="btn btn-primary btn-sm" onclick="change_flux_to('{{video.sd}}')">
+            <input type="radio" name="options" id="option3" autocomplete="off" > 360p
+          </label>
+          {% endif %}
+          {% if video.md %}
+          <label class="btn btn-primary active btn-sm"  onclick="change_flux_to('{{video.md}}')">
+            <input type="radio" name="options" id="option2" autocomplete="off" checked> 720p
+          </label>
+          {% endif %}
+          {% if video.hd %}
+          <label class="btn btn-primary  btn-sm" onclick="change_flux_to('{{video.hd}}')">
+            <input type="radio" name="options" id="option1" autocomplete="off" > 1080p
+          </label>
+          {% endif %}
         </div>
+
       </div>
 
       <div class="col-12" style="">
@@ -502,53 +521,67 @@ $(function () {
     }
  });
 
- function tosd(sdlink){
-    if(quality!='sd'){
-      var sd_btn=document.getElementById('btn_sd');
-      var hd_btn=document.getElementById('btn_hd');
-      sd_btn.classList.remove('btn-secondary');
-      hd_btn.classList.remove('btn-success');
-      hd_btn.classList.add('btn-secondary');
-      sd_btn.classList.add('btn-success');
-      quality='sd';
+//  function tosd(sdlink){
+//     if(quality!='sd'){
+//       var sd_btn=document.getElementById('btn_sd');
+//       var hd_btn=document.getElementById('btn_hd');
+//       sd_btn.classList.remove('btn-secondary');
+//       hd_btn.classList.remove('btn-success');
+//       hd_btn.classList.add('btn-secondary');
+//       sd_btn.classList.add('btn-success');
+//       quality='sd';
 
-      var video = document.getElementById('video'); 
-      var time=video.currentTime;
-      video.removeChild(document.getElementById('src_hd'));
+//       var video = document.getElementById('video'); 
+//       var time=video.currentTime;
+//       video.removeChild(document.getElementById('src_hd'));
      
-      var source = document.createElement('source');
-      source.setAttribute('src', sdlink+'#t='+time.toString());
-      source.setAttribute('id', 'src_sd');
-      video.appendChild(source);
+//       var source = document.createElement('source');
+//       source.setAttribute('src', sdlink+'#t='+time.toString());
+//       source.setAttribute('id', 'src_sd');
+//       video.appendChild(source);
       
-      video.load();
-      video.play();
-    }
- }
+//       video.load();
+//       video.play();
+//     }
+//  }
 
- function tohd(hdlink){
-    if(quality!='hd'){
-      var sd_btn=document.getElementById('btn_sd');
-      var hd_btn=document.getElementById('btn_hd');
-      sd_btn.classList.remove('btn-success');
-      sd_btn.classList.add('btn-secondary');
-      hd_btn.classList.remove('btn-secondary');
-      hd_btn.classList.add('btn-success');
-      quality='hd';
+//  function tohd(hdlink){
+//     if(quality!='hd'){
+//       var sd_btn=document.getElementById('btn_sd');
+//       var hd_btn=document.getElementById('btn_hd');
+//       sd_btn.classList.remove('btn-success');
+//       sd_btn.classList.add('btn-secondary');
+//       hd_btn.classList.remove('btn-secondary');
+//       hd_btn.classList.add('btn-success');
+//       quality='hd';
 
-      var video = document.getElementById('video'); 
-      var time=video.currentTime;
-      video.removeChild(document.getElementById('src_sd'));
+//       var video = document.getElementById('video'); 
+//       var time=video.currentTime;
+//       video.removeChild(document.getElementById('src_sd'));
      
-      var source = document.createElement('source');
-      source.setAttribute('src', hdlink+'#t='+time.toString());
-      source.setAttribute('id', 'src_hd');
-      video.appendChild(source);
+//       var source = document.createElement('source');
+//       source.setAttribute('src', hdlink+'#t='+time.toString());
+//       source.setAttribute('id', 'src_hd');
+//       video.appendChild(source);
       
-      video.load();
-      video.play();
-    }
- }
+//       video.load();
+//       video.play();
+//     }
+//  }
+
+function change_flux_to(link){
+  var video = document.getElementById('video'); 
+  var time=video.currentTime;
+  video.removeChild(document.getElementById('src_video'));
+     
+  var source = document.createElement('source');
+  source.setAttribute('src', link+'#t='+time.toString());
+  source.setAttribute('id', 'src_video');
+  video.appendChild(source);
+      
+  video.load();
+  video.play();
+}
 
 quality='hd';
 
