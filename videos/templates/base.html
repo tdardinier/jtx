@@ -40,7 +40,7 @@
 
       <div id="central" >
          
-        <div id="navigation_bar" class="d-flex justify-content-start align-items-center" style="z-index:1;">
+        <div id="navigation_bar" class="d-flex justify-content-start align-items-center" style="z-index:100;">
 
 
           
@@ -67,7 +67,7 @@
                 
               </form>
             <div id="txtHint" role="listbox" class="m-2  shadow-div"  onmouseover="lien_ok(1)" onmouseout="lien_ok(0)"
-            style="position:absolute;background-color:white;z-index:1;top:40px;"></div>
+            style="position:absolute;background-color:white;z-index:200;top:40px;"></div>
             
             </div>
           <!-- <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)" style="margin-left: 221.067px;"> -->
@@ -380,11 +380,22 @@
           }
 
           if(videos.length>0){
-            videos=["<div class='dropdown-divider'></div><div class='dropdown-header' style='color:#27ae60'>Vidéos</div>"].concat(videos);
+            videos=["<div class='dropdown-header' style='color:#27ae60'>Vidéos</div>"].concat(videos);
+            if(projs.length>0){
+              videos=["<div class='dropdown-divider'></div>"].concat(videos);
+            }
+            if(jtxmen.length>0){
+              videos=videos.concat(["<div class='dropdown-divider'></div>"]);
+            }
+          }
+          else{
+            if(jtxmen.length>0 && projs.length>0){
+              jtxmen=["<div class='dropdown-divider'></div>"].concat(jtxmen);
+            }
           }
 
           if(projs.length>0){
-            projs=["<div class='dropdown-divider'></div><div class='dropdown-header' style='color:#CC181E'>Projections</div>"].concat(projs);
+            projs=["<div class='dropdown-header' style='color:#CC181E'>Projections</div>"].concat(projs);
           }
 
           if (videos.length + jtxmen.length) {
