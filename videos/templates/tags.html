@@ -2,16 +2,19 @@
 {% block body %}
 
 {% if tags %}
-<div class="container_no_bs">
-	<h1>Tags</h1>
-		{% for t in tags %}
-	    <a class="tag"  href="{% url 'tag' t.id 1 %}">{{ t.titre }}</a>
-		{% endfor %}
+<div class="card">
+		<div class="card-header" >
+		  <h2 class="">Tags </h2>
+		</div>
+		<div class="card-body container-fluid" style="background-color:white;">
 
-	{% else %}
-	    <p>Errors.</p>
-	{% endif %}
+			{% for t in tags %}
+			<a class="tag"  href="{% url 'tag' t.id 1 %}">{{ t.titre }}</a>
+			{% endfor %}
+		</div>
 </div>
+
+{% endif %}
 
 
 {% endblock %}

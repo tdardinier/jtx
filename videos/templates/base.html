@@ -268,10 +268,12 @@
 
               <div class="container-fluid" style="max-width:1400px;padding-right:2px;padding-left:2px;" >
                     {% if titre_tag %}
+                    <div class="card">
+                      <div class="card-header" >
+                        <h2 class="">Tag affiché : <span class="tag">{{titre}}</span></h2>
+                      </div>
+                      <div class="card-body container-fluid" style="background-color:white;">
 
-                      <div class="shadow-div container-fluid" style="background-color:white;">
-                       <h1>Tags affichés :</h1> <span class="tag">{{titre}}</span>
-                       <hr class="container_hr"><br> 
          
                     {% elif titre and not titre_search %}
                     <div class="card">
@@ -292,46 +294,48 @@
                       </div>     
                     </div>        
                     {% endif %} 
-                      
+                
+                    {% if pages and page and adress %}
+                    <br>    
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                         
+                         
+                          {% for p in pages %} 
+                            {% if p != page %} 
+                              {% if id %}
+                                <li class="page-item"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
+                                 
+                              {% else %}
+                                <li class="page-item"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
+                              
+                              {% endif %} 
+                            {% else %}
+                              <li class="page-item active"><a class="page-link" href="#">{{p}}</a></li>
+                            {% endif %} 
+                          {% endfor %}
+      
+                          
+                        </ul>
+                    </nav>
+      
+                    <!-- <div class="choisir_page">
+                      Page : {% for p in pages %} {% if p != page %} {% if id %}
+                      <a href="{% url adress id p %}">{{p}}</a> {% else %}
+                      <a href="{% url adress p %}">{{p}}</a> {% endif %} {% else %}
+                      <b style="color:black">{{p}}</b> {% endif %} {% endfor %}
+      
+                    </div> -->
+                    {% endif %}
+                <div class="alert alert-secondary" role="alert" style='margin-top:50px; '>
+                        Site codé par Thibault Dardinier et Guillaume Vidon du JTX2015.
+                </div>
               </div>
 
 
-              {% if pages and page and adress %}
-              <br>    
-              <nav aria-label="Page navigation example">
-                  <ul class="pagination justify-content-center">
-                   
-                   
-                    {% for p in pages %} 
-                      {% if p != page %} 
-                        {% if id %}
-                          <li class="page-item"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
-                           
-                        {% else %}
-                          <li class="page-item"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
-                        
-                        {% endif %} 
-                      {% else %}
-                        <li class="page-item active"><a class="page-link" href="#">{{p}}</a></li>
-                      {% endif %} 
-                    {% endfor %}
+             
 
-                    
-                  </ul>
-              </nav>
-
-              <!-- <div class="choisir_page">
-                Page : {% for p in pages %} {% if p != page %} {% if id %}
-                <a href="{% url adress id p %}">{{p}}</a> {% else %}
-                <a href="{% url adress p %}">{{p}}</a> {% endif %} {% else %}
-                <b style="color:black">{{p}}</b> {% endif %} {% endfor %}
-
-              </div> -->
-              {% endif %}
-
-              <div class="alert alert-secondary" role="alert" style='margin-top:50px; '>
-                 Site codé par Thibault Dardinier et Guillaume Vidon du JTX2015.
-              </div>
+              
 
 
 
