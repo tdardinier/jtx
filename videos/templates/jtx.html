@@ -1,119 +1,73 @@
 {% extends 'base.html' %}
 {% block body %}
 {% load app_filters %}
-
+{% load static %}
 {% if year %}
 
-<div class="jtx_titre">JTX{{year}}</div>
-<div class="jtx_sous_titre">On intuite et on disrupte.</div>
+<div class="jumbotron" style="background-color:white;text-align:center;">
+		<h1 class="display-3">JTX {{year}}</h1>
+		<p class="lead">On intuite et on disrupte.</p>
+		
+</div>
 
-
-	<div class="display_proj">
-		  {% for p in projs_jtx %}
-			<div class="page_jtx_proj">
-
-				<span class="page_jtx_proj_titre">{{p.titre}}</span>
-				<hr class="jtx_hr">
-
-
-				<div class="page_jtx_proj_image">
-					<a href="{% url 'proj' p.id %}">
-							<figure class="figure_liste">
-									<img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
-									<div class="legende_vid_duree">
-												{{p|duration_proj}}
-									</div>
-
-							</figure>
-					</a>
-
-					<a href="{% url 'proj' p.id %}">
-							<div class="legende_vid_titre">
-									{{p.titre|short}}
-							</div>
-					</a>
-
-					<div class="legende_vid_auteur">
-								<a href="{% url 'jtx' 2015 %}">
-									  JTX 20{{ p | short_promo }}
-								</a>
+<div class="d-flex justify-content-center">
+		{% for p in projs_jtx|dictsort:"date" %}
+			<div class="col-3">
+				<div class="card">
+					<h3 class="card-header">Hello</h3>
+					<div class="card-body">
+							{% include "block_video_proj_liste.html" with video=0 elmt=p col_large=1 %}
 					</div>
-					<div class="legende_vid_auteur">
-									{{p.views}}
-								 vues
-								 <span class="petit_point">&#9679;</span>
-
-								  {{ p.date|date:"d/m/Y" }}
-					</div>
+					
 				</div>
-
-
-				<div class="page_jtx_proj_description">
-					<b>Le mot du JTX</b><br>
-					Cette proj était vraiment toute pourrie, je ne me rappelle pas avoir aussi mal travaillé de toute ma vie. Franchement
-					on ne s'est pas trop donnés et ça se voit.
-				</div>
-
-
-
 			</div>
-			{% endfor %}
-	</div>
+		
+		{% endfor %}
+</div>
+<br>
+<div class="card">
+	<h2 class="card-header">Autres projections du JTX {{year}}</h2>
+	<div class="card-body">
+		
+			
+				<!-- <div class="progress">
+					
+					{% for p in projs_autres %}
+					<div class="progress-bar  progress_bar_class" id="progress_{{forloop.counter0}}" role="progressbar" style="width: 10%" 
+					data-toggle="tooltip" data-placement="top" title="{{p.titre}}" >
+					{% with next=forloop.counter %}
+						{% if not forloop.last %}
+							
+							{{projs_autres.0}}
 
-
-
-
-	<div class="container_no_bs">
-
-
-
-	<h1>Projs lors d'évènements</h1>
-
-<div class="jtx_liste_evnt">
-
-{% for p in projs_autres%}
-<div class="bloc_video">
-
-	<a href="{% url 'proj' p.id %}">
-			<figure class="figure_liste">
-					<img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
-					<div class="legende_vid_duree">
-								{{p|duration_proj}}
+						{% endif %}
+					{% endwith %}
+					
 					</div>
-
-			</figure>
-	</a>
-
-	<a href="{% url 'proj' p.id %}">
-			<div class="legende_vid_titre">
-					{{p.titre|short}}
+					<span style="width:1px;"></span>
+					{% endfor %}
+				</div> -->
+			
+		
+		<div class="container-fluid">
+			<div class="row">
+					{% for p in projs_autres|dictsort:"date" %}
+						{% include "block_video_proj_liste.html" with video=0 elmt=p %}
+					{% endfor %}
 			</div>
-	</a>
-
-	<div class="legende_vid_auteur">
-				<a href="{% url 'jtx' 2015 %}">
-						JTX 20{{ p | short_promo }}
-				</a>
+		</div>
 	</div>
-	<div class="legende_vid_auteur">
-					{{p.views}}
-				 vues
-				 <span class="petit_point">&#9679;</span>
-
-					{{ p.date|date:"d/m/Y" }}
-	</div>
-
-</div>
-{% endfor %}
-
 </div>
 
-<hr class="container_hr">
+<script type="text/javascript">
+	
+	 
+	$(function () {
+	  $('[data-toggle="tooltip"]').tooltip()
+	});
+</script>
 
-	<h1>Vidéos les plus vues</h1>
-
-</div>
-
+	
 {% endif %}
 
 {% endblock %}

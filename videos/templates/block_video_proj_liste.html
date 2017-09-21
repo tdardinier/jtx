@@ -4,7 +4,11 @@
     {% if horizontal %}
         <div class="col-12" style="margin-bottom:10px;">
     {% else %}
-        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" style="padding:5px;">
+        {% if col_large %}
+            <div class="col-12" style="padding:5px;">
+        {% else %}
+            <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" style="padding:5px;">
+        {% endif %}
     {% endif %} 
 
 <div class="card" style="margin:0 auto;border-style:none;">
