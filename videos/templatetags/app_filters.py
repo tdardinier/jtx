@@ -71,3 +71,4 @@ def get_promo_video(video,typ):
 def get_percent(video,proj_duree):
     s = 0
     return 100*video.duree/proj_duree
+

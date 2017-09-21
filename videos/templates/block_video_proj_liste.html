@@ -121,6 +121,12 @@
             {% endif %}
 
              </div>
+
+            {% if description %}
+             <div style="font-size:11px;color:rgb(118, 118, 118);">
+                {{elmt.description}}
+              </div>
+            {% endif %}
         {% if horizontal %}
             </div></div>
     {% endif %}
