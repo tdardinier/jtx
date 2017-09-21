@@ -264,28 +264,69 @@
 
         <div id="body" >
 
-          {% if titre_tag %}
-          <div class="container_no_bs">
-            <h1>
-              Tags affichés :</h1> <span class="tag">{{titre}}</span>
-            <hr class="container_hr"><br> {% elif titre and not titre_search %}
-            <!-- container_no_bs -->
-            <div class="container" style="background-color:white;">
-              <h1>{{titre}}</h1>
 
-              {% endif %} 
+
               <div class="container-fluid" style="max-width:1400px;padding-right:2px;padding-left:2px;" >
-                
-              {% block body %} {% endblock %}
+                    {% if titre_tag %}
+
+                      <div class="shadow-div container-fluid" style="background-color:white;">
+                       <h1>Tags affichés :</h1> <span class="tag">{{titre}}</span>
+                       <hr class="container_hr"><br> 
+         
+                    {% elif titre and not titre_search %}
+                    <div class="card">
+                        <div class="card-header" >
+                          <h2 class="">{{titre}}</h2>
+                        </div>
+                        <div class="card-body container-fluid" style="background-color:white;">
+                        
+                    {% endif %} 
+
+              {% block body %} 
+              {% endblock %}
+
+                    {% if titre_tag %}
+                    </div>
+                  </div>
+                    {% elif titre and not titre_search %}
+                      </div>     
+                    </div>        
+                    {% endif %} 
+                      
               </div>
+
+
               {% if pages and page and adress %}
-              <div class="choisir_page">
+              <br>    
+              <nav aria-label="Page navigation example">
+                  <ul class="pagination justify-content-center">
+                   
+                   
+                    {% for p in pages %} 
+                      {% if p != page %} 
+                        {% if id %}
+                          <li class="page-item"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
+                           
+                        {% else %}
+                          <li class="page-item"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
+                        
+                        {% endif %} 
+                      {% else %}
+                        <li class="page-item active"><a class="page-link" href="#">{{p}}</a></li>
+                      {% endif %} 
+                    {% endfor %}
+
+                    
+                  </ul>
+              </nav>
+
+              <!-- <div class="choisir_page">
                 Page : {% for p in pages %} {% if p != page %} {% if id %}
                 <a href="{% url adress id p %}">{{p}}</a> {% else %}
                 <a href="{% url adress p %}">{{p}}</a> {% endif %} {% else %}
                 <b style="color:black">{{p}}</b> {% endif %} {% endfor %}
 
-              </div>
+              </div> -->
               {% endif %}
 
               <div class="alert alert-secondary" role="alert" style='margin-top:50px; '>

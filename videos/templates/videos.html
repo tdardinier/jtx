@@ -6,11 +6,13 @@
 {% load app_filters %}
 
 <!-- liste_videos -->
+
 <div class="row">
 	{% for v in elements %}
 		{% include "block_video_proj_liste.html" with video=1 elmt=v %}
 	{% endfor %}
 </div>
+
 
 
 {% endif %}
