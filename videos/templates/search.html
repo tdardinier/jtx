@@ -5,140 +5,105 @@
 
 
 {% if elements_proj %}
-<div class="search_container">
-<span class='search_titre_section'><span class='tag_search_proj' >Projs</span></span>
-<span class="search_masquer" onclick="search_hide_proj('search_proj_liste')">Masquer</span>
-<hr>
-
-<div class="search_liste_videos" id='search_proj_liste'>
-{% for p in elements_proj %}
-
-
-		<div class="search_bloc_video">
-
-			<a href="{% url 'proj' p.id %}">
-					<figure class="figure_liste">
-							<img class="img_vid" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Aspect_ratio_16_9_example.jpg"/>
-							<div class="legende_vid_duree">
-										{{p|duration_proj}}
-							</div>
-
-					</figure>
-			</a>
-
-			<div class="colonne_droite">
-				<a href="{% url 'proj' p.id %}">
-						<div class="legende_vid_titre">
-								{{p.titre}}
-						</div>
-				</a>
-
-				<div class="legende_v_a_d">
-					<div class="legende_vid_auteur">
-								<a href="{% url 'jtx' 2015 %}">
-										JTX 20{{ p | short_promo }}
-								</a>
-					</div>
-					<div class="legende_vid_auteur">
-									{{p.views}}
-								 vues
-								 <span class="petit_point">&#9679;</span>
-
-									{{ p.date|date:"d/m/Y" }}
-					</div>
+<div class="d-flex justify-content-center" style="margin-bottom:15px;">
+	<div class="col-12 col-md-6 shadow-div" style="background-color:white;padding:0;">
+		<div class='dropdown-header' style='padding-top:15px;'>
+			<div class="d-flex justify-content-between align-items-center">
+				<div style='color:#CC181E;font-size:20px;' >
+					Projections
 				</div>
-
-				<div class="search_description">
-					{{ p.description }}
-				</div>
+				<div class='' onclick="search_hide_proj('search_proj_liste')">Masquer</div>
 			</div>
-
-
-
-</div>
-{% endfor %}
-</div>
-
+			
+			
+		</div>
+		<div class="dropdown-divider"></div>
+		<div style="padding:5px;padding-bottom:0px;" id="search_proj_liste">
+		{% for p in elements_proj %}
+			{% include "block_video_proj_liste.html" with video=0 elmt=p horizontal=1 description=1 %}
+		{% endfor %}
+		</div>
+	</div>
 </div>
 {% endif %}
 
 {% if elements_vid %}
-
-
-<div class="search_container">
-<span class='search_titre_section'><span class='tag_search_video' >Vidéos</span></span>
-<span class="search_masquer" onclick="search_hide_proj('search_vid_liste')">Masquer</span>
-<hr>
-
-<div class="search_liste_videos" id='search_vid_liste'>
-	{% for v in elements_vid %}
-
-	<div class="search_bloc_video">
-		<a href="{% url 'video' v.id %}">
-		<figure class="figure_liste">
-				<img class="img_vid" src="{{v.screenshot}}"/>
-				<figcaption class="legende_vid_duree">
-						{{v|duration}}
-				</figcaption>
-
-		</figure>
-		</a>
-
-		<div class="colonne_droite">
-			<a href="{% url 'video' v.id %}">
-					<div class="legende_vid_titre">
-							{{v.titre}}
+<div class="d-flex justify-content-center" style="margin-bottom:15px;">
+	<div class="col-12 col-md-6 shadow-div" style="background-color:white;padding:0;">
+		<div class='dropdown-header' style='padding-top:15px;'>
+			<div class="d-flex justify-content-between align-items-center">
+						<div style='color:#27ae60;font-size:20px;' >
+								Vidéos
+						</div>
+						<div class='' onclick="search_hide_proj('search_vid_liste')">Masquer</div>
 					</div>
-			</a>
-
-			<div class="legende_v_a_d">
-				<div class="legende_vid_auteur" id="auteur_{{v.id}}">
-					{% autoescape off %}
-						{{ v|auteurs}}
-					{% endautoescape %}
-				</div>
-
-
-				<div class="legende_vid_auteur">
-								{{v.views}}
-							 vues
-							 <span class="petit_point">&#9679;</span>
-
-							 {{ v.date|date:"d/m/Y" }}
-				</div>
 			</div>
-
-			<div class="search_description">
-				{{ v.description }}
-			</div>
+		<div class="dropdown-divider"></div>
+		<div style="padding:5px;padding-bottom:0px;" id='search_vid_liste'>
+		{% for v in elements_vid %}
+			{% include "block_video_proj_liste.html" with video=1 elmt=v horizontal=1 description=1 %}
+		{% endfor %}
+		</div>
 	</div>
-	</div>
-
-	{% endfor %}
-	</div>
-
 </div>
 {% endif %}
 
 {% if elements_auteurs %}
-
-	<div class="search_container">
-		<span class='search_titre_section'><span class='tag_search_jtxman' >JTXWOMEN.MEN</span></span>
-		<span class="search_masquer" onclick="search_hide_proj('search_auteurs_liste')">Masquer</span>
-		<hr>
-		<div id='search_auteurs_liste'>
-
-
+<div class="d-flex justify-content-center" style="margin-bottom:15px;">
+	<div class="col-12 col-md-6 shadow-div" style="background-color:white;padding:0;">
+		<div class='dropdown-header' style='padding-top:15px;'>
+				<div class="d-flex justify-content-between align-items-center">
+						<div style='color:#3498db;font-size:20px;' >
+								JTXWOMEN.MEN
+						</div>
+						<div class='' onclick="search_hide_proj('search_membre_liste')">Masquer</div>
+					</div>
+			</div>
+			
+		
+		<div class="dropdown-divider"></div>
+		<div style="padding:5px;padding-bottom:0px;" id='search_membre_liste'>
 		{% for a in elements_auteurs %}
-			<a href="{{ a|url_auteur }}" class='search_jtxwoman'>{{ a.firstname }} {{ a.lastname }} - {{ a.promo }}</a>
+			<div style="margin-bottom:5px;">
+				<div class="d-flex align-items-center">
+
+					<div>
+						
+							<a href="/jtx/{{a.promo}}" class="d-flex align-items-center justify-content-center no-hover-link {% if a.promo|divisibleby:'2' %}bg-danger{%else%}bg-warning{% endif %}" style="width:50px;height:50px;"
+							data-toggle="tooltip" data-placement="bottom" title="Aller sur la page du JTX {{a.promo}}">
+							 
+								<div class="no-hover-link" style="font-size:30px;color:white;">
+									{{a|short_promo}}
+								</div>
+							  
+							  </a>
+					</div>
+				
+					<div style="margin-left:10px;">
+						<a href="{{ a|url_auteur }}" class='search_jtxwoman' >{{ a.firstname }} {{ a.lastname }} </a>
+						<br>
+						<small style="color:rgb(150, 150, 150)">Respo bullshit.</small>	
+					</div>
+
+				</div>
+			</div>
+			
 		{% endfor %}
 		</div>
 	</div>
-
-
+</div>
 {% endif %}
 
+
+
+
  <script type="text/javascript">
+
+ 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+
  	function search_hide_proj(arg){
 
 		var e=document.getElementById(arg);
