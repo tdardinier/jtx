@@ -6,55 +6,193 @@
 {% endif %}
 {% load static %}
 
-<div class="container" id="div_form">
+<div class="card" id="div_form">
 
 
 
-<h1>Édition d'une vidéo</h1>
+<h2 class="card-header">Édition d'une vidéo</h2>
 
 {% if v %}
 
-<form action="{% url 'edit_video' v.id %}" method="post" class='edit_form'>
+<div class="card-body">
+<form action="{% url 'edit_video' v.id %}" method="post" >
 
     {% csrf_token %}
 
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Titre</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control"  id="titre" value="{{v.titre}}" name="titre">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Lien HD</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="hd" value="{{v.hd}}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Lien MD</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="md" value="{{v.md}}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Lien SD</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="sd" value="{{v.sd}}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Screenshot</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="screenshot" value="{{v.screenshot}}">
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Durée</label>
+        <div class="col-sm-10">
+            <input class="form-control" id="duree" type="number" name="duree" value="{{v.duree}}" min="1" step="1" onkeyup="update_time()" >
+            <span id="time_fr"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Catégorie</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="category" id="select_category_edit_vid">
+                {% for c in categories %}
+                    <option {% if v.category == c %} selected {% endif %} value="{{c.id}}">{{c.titre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Auteurs</label>
+        <div class="col-sm-10">
+            <div class="input-group mb-2 mb-sm-0">
+              <input id="input_auteur" class="form-control col-11" list="auteurs">
+              <datalist id="auteurs" class="">
+                  <select id="select_auteur">
+                  {% for a in auteurs %}
+                      <option value="{{a.id}}">{{a.firstname}} {{a.lastname}}</option>
+                  {% endfor %}
+                  </select>
+              </datalist>
+                 <input type="button" class="input-group-addon btn btn-secondary col-1 display-inline" value="Ajouter" onclick="ajouter('auteur')"/>
+                
+        </div>
+    </div>
+  </div>
+
+    
+    <div class="form-group row">
+        <div class="col-2"></div>
+       
+        <div class="col-sm-10">
+            déjà ajoutés :
+            <span id="ls_auteur">
+                {% for r in v.relation_auteur_video_set.all %}
+          
+                  <span id="s_auteur_{{r.auteur.id}}">
+                    {{r.auteur.firstname}} {{r.auteur.lastname}} <a href="#" onclick="supprimer('auteur',{{r.auteur.id}})"><img src={% static "admin/img/icon-deletelink.svg" %} alt="(Supprimer)" class='commentaires_supprimer'></a>
+                  <input type="hidden" name="auteur_{{r.auteur.id}}" value="1">  </span>
+          
+          
+                {% endfor %}
+                </span>
+        </div>
+    </div>
+
+
+
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Tags</label>
+        
+        <div class="col-sm-10">
+            <div class="input-group mb-2 mb-sm-0">
+                <input class="input_edit form-control col-11" list="tags" id="input_tag">
+                <datalist id="tags">
+                    <select>
+                    {% for t in tags %}
+                        <option value="{{t.id}}">{{t.titre}}</option>
+                    {% endfor %}
+                    </select>
+                </datalist>
+                 <input type="button" class="input-group-addon btn btn-secondary col-1 display-inline" value="Ajouter" onclick="ajouter('tag')"/>
+                
+        </div>
+    </div>
+  </div>
+
+    
+    <div class="form-group row">
+        <div class="col-2"></div>
+       
+        <div class="col-sm-10">
+            déjà ajoutés :
+          <span id="ls_tag">
+            {% for t in v.relation_tag_set.all %}
+              <span id="s_tag_{{t.tag.id}}"><span class='tag'>{{t.tag.titre}}</span> <a href="#" onclick="supprimer('tag',{{t.tag.id}})"><img src={% static "admin/img/icon-deletelink.svg" %} alt="(Supprimer)" class='commentaires_supprimer'></a>
+              <input type="hidden" name="tag_{{t.tag.id}}" value="1"></span>
+          {% endfor %}
+          </span>
+        </div>
+    </div>
+  
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-10">
+            <textarea class="form-control" id="" name="description">{{v.description}}</textarea>
+        </div>
+    </div>
+    
+   
+
   <table style="width:100%" class="edit_video">
-  <tr>
+  <!-- <tr>
     <th class="col1">  <label for="titre">Titre :</label></th>
     <th><input class="input_edit" id="titre" size="50" type="text" value="{{v.titre}}" name="titre" onfocus="ffocus('titre')" onblur="defocus('titre')"/></th>
-  </tr>
+  </tr> -->
 
-  <tr>
+  <!-- <tr>
     <th class="col1">   <label  for="hd">HD :<label> </th>
     <th>  <input class="input_edit" id="hd" size="100" type="text" name="hd" value="{{v.hd}}" onfocus="ffocus('hd')" onblur="defocus('hd')"/></th>
-  </tr>
+  </tr> -->
 
-  <tr>
+  <!-- <tr>
     <th class="col1">   <label  for="md">md :<label> </th>
     <th>  <input class="input_edit" id="md" size="100" type="text" name="md" value="{{v.md}}" onfocus="ffocus('md')" onblur="defocus('md')"/></th>
-  </tr>
+  </tr> -->
 
-  <tr>
+  <!-- <tr>
     <th class="col1">   <label  for="sd">sd :<label> </th>
     <th>  <input class="input_edit" id="sd" size="100" type="text" name="sd" value="{{v.sd}}" onfocus="ffocus('sd')" onblur="defocus('sd')"/></th>
-  </tr>
-
+  </tr> -->
+<!-- 
   <tr>
     <th class="col1">   <label  for="screenshot">screenshot :<label> </th>
     <th>  <input class="input_edit" id="screenshot" size="100" type="text" name="screenshot" value="{{v.screenshot}}" onfocus="ffocus('screenshot')" onblur="defocus('screenshot')"/></th>
-  </tr>
+  </tr> -->
 
 
 
 
-  <tr>
+  <!-- <tr>
     <th class="col1">   <label for="duree">Durée :<label> </th>
     <th> <input class="input_edit" id="duree" type="number" name="duree" value="{{v.duree}}" min="1" step="1" onkeyup="update_time()" onchange="update_time()"/>
       <span id="time_fr"></span>
     </th>
-  </tr>
+  </tr> -->
 
-  <tr>
+  <!-- <tr>
     <th class="col1">     <label for="category">Catégorie :<label> </th>
     <th>   <select class="input_edit" name="category" id="select_category_edit_vid">
       {% for c in categories %}
@@ -62,9 +200,9 @@
       {% endfor %}
       </select>
     </th>
-  </tr>
+  </tr> -->
 
-  <tr>
+  <!-- <tr>
     <th class="col1">  Auteurs :</th>
     <th>  <input id="input_auteur" class="input_edit" list="auteurs">
       <datalist id="auteurs">
@@ -92,10 +230,10 @@
       </span>
     </td>
 
-  </tr>
+  </tr> -->
 
 
-  <tr>
+  <!-- <tr>
     <th class="col1">Tags :</th>
     <th>  <input class="input_edit" list="tags" id="input_tag">
       <datalist id="tags">
@@ -115,17 +253,17 @@
         <span id="s_tag_{{t.tag.id}}"><span class='tag'>{{t.tag.titre}}</span> <a href="#" onclick="supprimer('tag',{{t.tag.id}})"><img src={% static "admin/img/icon-deletelink.svg" %} alt="(Supprimer)" class='commentaires_supprimer'></a>
         <input type="hidden" name="tag_{{t.tag.id}}" value="1"></span>
     {% endfor %}</span></td>
-  </tr>
+  </tr> -->
 
-  <tr>
+  <!-- <tr>
     <th class="col1"><label for="description">Description :</label><br>  </th>
     <th>    <textarea class="input_edit" id="description_edit" name="description">{{v.description}}</textarea></th>
-  </tr>
+  </tr> -->
 
 
 
 </table>
-    <input type="submit" class="edit_bouton" value="Modifier la vidéo"/>
+    <input type="submit" class="btn btn-success float-right" value="Modifier la vidéo"/>
 </form>
 
 </div>
@@ -135,16 +273,18 @@
     <p id="hidden_url" style="display:inline-block;font-size:14px;color:#f1f1f1;position:relative; top:-100000px;" style="display:hidden;"></p>
 
 </div>
+
+</div>
 <script type="text/javascript">
 
 
 
 
-defocus('titre');
-defocus('url');
+// defocus('titre');
+// defocus('url');
 update_time();
 
-set_size_duree();
+// set_size_duree();
 
 
   function ajouter(cat) {
