@@ -1370,24 +1370,29 @@ padding-top: 5px;
 
 
 .proj_video_titre{
-  text-decoration: none;
-  color:black !important;
-  font-size: 13px;
-  font-weight: 400;
-  padding-left: 3px;
-  padding-right: 3px;
-  padding:3px;
-  color:#444444;
+  
+  color:black ;
+  padding: 3px;
+  border-radius: 3px;
+  margin: 1px;
   background-color: unset;
+  border-color: rgba(39, 174, 95, 0.7);
+  border-width: 1px;
 }
 
 .proj_video_titre_checked{
-  background-color: #c8c8c8;
+  background-color: white;
+  margin: 0px;
+  border-style: solid;
+  color:rgba(39, 174, 95, 1) !important;
 }
 
 
 .proj_video_titre:hover{
-  background-color: #c8c8c8;
+  background-color: white;
+  margin: 0px;
+  border-style: solid;
+  color:rgba(39, 174, 95, 1) !important;
   cursor: pointer;
 }
 

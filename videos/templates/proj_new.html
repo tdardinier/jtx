@@ -203,7 +203,7 @@
       <div class="titre_et_vues_date">Ajoutée le {{ proj.date|date:"d/m/Y" }}.</div>
       {{ proj.description }}
 
-      <table id="proj_elements" class="table table-striped table-bordered dt-responsive nowrap  " width="100%" cellspacing="0">
+      <table id="proj_elements" class="table table-striped table-bordered dt-responsive nowrap " width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>Ordre</th>
@@ -215,8 +215,9 @@
   
         <tbody>
           {% for r in proj.relation_proj_set.all %}
-        <tr>
+        <tr class="">
           <td> {{r.ordre}} </td>
+          <!-- proj_video_titre -->
           <td> <a  onclick="launch({{forloop.counter}})" id="video_{{ r.video.id }}" class="proj_video_titre">{{ r.video.titre }}</a></td>
           <td> {{ r.video|duration }}</td>
           <!-- proj_video_voir -->
@@ -366,9 +367,10 @@
 
 <script type="text/javascript">
 
-$(document).ready(function() {
-    $('#proj_elements').DataTable();
-} );
+// $(document).ready(function() {
+//     $('#proj_elements').DataTable();
+// } );
+var table = $('#proj_elements').DataTable();
 
 var video = document.getElementById('video');
 var source = document.createElement('source');
@@ -382,6 +384,8 @@ var current = 0;
 
 var playlist = []
 var tags = [];
+
+
 {% for r in proj.relation_proj_set.all %}
 
     playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.hd}}', '{{r.video|auteurs|striptags}}', '{{r.video.id}}',{{r.ordre}}]
@@ -394,14 +398,15 @@ var tags = [];
 {% endfor %}
 
 function launch(id) {
+
 	if(current>=1){
-  var table = $('#proj_elements').DataTable();
-  table.page.jumpToData( current.toString(), 0 );
+  var table2 = $('#proj_elements').DataTable();
+  table2.page.jumpToData( current.toString(), 0 );
 
 	document.getElementById('video_'+playlist[current][3]).classList.remove('proj_video_titre_checked');}
 	current = id;
-  var table = $('#proj_elements').DataTable();
-  table.page.jumpToData( current.toString(), 0 );
+  var table2 = $('#proj_elements').DataTable();
+  table2.page.jumpToData( current.toString(), 0 );
 	video.pause();
 
 		document.getElementById('video_'+playlist[id][3]).classList.add('proj_video_titre_checked');
