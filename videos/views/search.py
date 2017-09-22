@@ -47,14 +47,28 @@ def auteurs_request(request, q):
         auteurs = auteurs.filter(Q(firstname__contains = x) | Q(lastname__contains = x))
     return auteurs.all()
 
+
+def jtx_request(request, q):
+    l = q.split(" ")
+    liste = range(1980,2050)
+    liste=[str(w) for w in liste]
+    rep=[]
+    for x in l:
+        for date in liste:
+            if x in date:
+                rep.append(date)
+    return rep
+
 def suggestions(request, q):
     videos = []
     projs = []
     auteurs = []
+    jtx=[]
     if len(q) >= 2:
         videos = videos_request(request, q)
         projs = proj_request(request, q)
         auteurs = auteurs_request(request, q)
+        dates = jtx_request(request, q)
     elements_video = [
         {
             'url': reverse('video', args=(v.id,)),
@@ -76,10 +90,18 @@ def suggestions(request, q):
             'lastname': a.lastname,
         }
         for a in auteurs]
+    elements_jtx= [
+        {
+            'url':reverse('jtx',args=(int(a),)),
+            'titre': 'JTX '+str(a)
+        }
+        for a in dates
+    ]
     data = {
         'videos': elements_video[:10],
         'projs': elements_proj[:10],
         'auteurs': elements_auteur[:10],
+        'jtx':elements_jtx[:10],
     }
     return JsonResponse(data)
 

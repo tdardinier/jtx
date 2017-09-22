@@ -75,19 +75,25 @@ def pagination(request, template, context, elements, page, adress, f = id):
 def category(request, category_id, page=1):
     cat = get_object_or_404(Category, pk=category_id)
     if cat.public or request.user.is_authenticated:
-        projs = Proj.objects.filter(category=cat)
-        context = {
-            'titre': cat.titre,
-            'id': category_id,
-        }
-        return pagination(request, 'projs.html', context, projs, page, 'category')
+        # projs = Proj.objects.filter(category=cat)
+        # context = {
+        #     'titre': cat.titre,
+        #     'id': category_id,
+        # }
+        # return pagination(request, 'projs.html', context, projs, page, 'category')
+        return projs(request,page,category=cat)
     else:
         return index(request)
 
-def projs(request, page=1):
+def projs(request, page=1, category=-1):
+    categories = filter_category(request, Category.objects)
     projs = filter(request, Proj.objects)
+    if not category==-1:
+        projs=projs.filter(category=category)
     context = {
-        'titre': 'Toutes les projs visibles',
+        'titre': 'Projections',
+        'categories': categories.all(),
+        'current_cat':category,
     }
     return pagination(request, 'projs.html', context, projs, page, 'projs')
 

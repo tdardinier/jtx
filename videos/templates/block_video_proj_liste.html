@@ -102,22 +102,22 @@
                         {% if elmt.category.titre.lower == 'proj en .k' %}
                             
                            
-                                <a class='titre_et_vues_info_cat_proj tag '  href="">PROJ .K</a>
+                                <a class='titre_et_vues_info_cat_proj tag '  href="{% url 'category' elmt.category.id 1  %}">PROJ .K</a>
                             
                         {% elif elmt.category.titre.lower == 'amphi binets' %}
                     
                             
-                                <a class='titre_et_vues_info_cat_amphi tag' href="">BINETS</a>
+                                <a class='titre_et_vues_info_cat_amphi tag' href="{% url 'category' elmt.category.id 1  %}">BINETS</a>
                             
                         {% elif elmt.category.titre.lower == 'semaine internationale' %}
                         
                             
-                                <a class='titre_et_vues_info_cat_semaine tag' href="">S.INT.</a>
+                                <a class='titre_et_vues_info_cat_semaine tag' href="{% url 'category' elmt.category.id 1  %}">S.INT.</a>
                            
                         {% elif elmt.category.titre.lower == "coupe de l'x" %}
                     
                             
-                                <a class='titre_et_vues_info_cat_coupe tag' href="">COUPE</a>
+                                <a class='titre_et_vues_info_cat_coupe tag' href="{% url 'category' elmt.category.id 1  %}">COUPE</a>
                            
                         {% endif %}
                         </span>

@@ -409,6 +409,11 @@
 
           });
 
+          var jtx = data.jtx.map(function (jtx) {
+            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + jtx.url + '"><div class="">' + highlight(jtx.titre,str) + "</div></a>";
+
+          });
+
           var projs = data.projs.map(function (proj) {
             var s = proj.titre;
             if (proj.titre.length > 80) {
@@ -443,8 +448,13 @@
             projs=["<div class='dropdown-header' style='color:#CC181E'>Projections</div>"].concat(projs);
           }
 
-          if (videos.length + jtxmen.length) {
-            elements = projs.concat(videos).concat(jtxmen);
+          if(jtx.length>0){
+            jtx=["<div class='dropdown-header' style='color:#FDC500;'>Pages JTX</div>"].concat(jtx);
+          }
+          
+
+          if (videos.length + jtxmen.length + projs.length + jtx.length) {
+            elements = projs.concat(videos).concat(jtxmen).concat(jtx);
 
             document.getElementById("txtHint").style.display = "unset";
             var content = elements.join(' ');
