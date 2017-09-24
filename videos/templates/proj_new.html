@@ -203,7 +203,7 @@
       <div class="titre_et_vues_date">Ajoutée le {{ proj.date|date:"d/m/Y" }}.</div>
       {{ proj.description }}
 
-      <table id="proj_elements" class="table table-striped table-bordered dt-responsive nowrap " width="100%" cellspacing="0">
+      <table id="proj_elements" class="table table  dt-responsive nowrap " width="100%" cellspacing="0">
         <thead>
           <tr>
             <th>Ordre</th>
@@ -216,12 +216,12 @@
         <tbody>
           {% for r in proj.relation_proj_set.all %}
         <tr class="">
-          <td> {{r.ordre}} </td>
+          <td style="text-align:center;"> {{r.ordre}} </td>
           <!-- proj_video_titre -->
           <td> <a  onclick="launch({{forloop.counter}})" id="video_{{ r.video.id }}" class="proj_video_titre">{{ r.video.titre }}</a></td>
-          <td> {{ r.video|duration }}</td>
+          <td style="text-align:center;"> {{ r.video|duration }}</td>
           <!-- proj_video_voir -->
-          <td><a href="{% url 'video' r.video.id %}" class="">Voir en solo</a></td>
+          <td style="text-align:center;"><a href="{% url 'video' r.video.id %}" class="">Voir en solo</a></td>
         </tr>
         {% endfor %}
   
