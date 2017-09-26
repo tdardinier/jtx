@@ -10,7 +10,7 @@
     
       <video id="video" class="embed-responsive-item" controls autoplay>
         <source id="src_video" src="{{video.md}}"> Your browser does not support the video tag.
-        <track label="Français" kind="subtitles" srclang="fr" src="{% static "admin/test_subtitle.vtt" %}" default >
+        <track label="Français" kind="subtitles" srclang="fr" src="{{video.subtitles}}" default >
       </video> 
     
     
@@ -52,7 +52,7 @@
            <div class="d-flex flex-row align-items-center">
             
            
-            <a href="/jtx/{{video|get_promo_video:""}}" class="d-flex align-items-center justify-content-center no-hover-link {% if video|get_promo_video:""|divisibleby:'2' %}bg-danger{%else%}bg-warning{% endif %}" style="width:50px;height:50px;"
+            <a href="/jtx/jtx/{{video|get_promo_video:""}}" class="d-flex align-items-center justify-content-center no-hover-link {% if video|get_promo_video:""|divisibleby:'2' %}bg-danger{%else%}bg-warning{% endif %}" style="width:50px;height:50px;"
             data-toggle="tooltip" data-placement="bottom" title="Aller sur la page du JTX {{video|get_promo_video:""}}">
              
                 <div class="no-hover-link" style="font-size:30px;color:white;">

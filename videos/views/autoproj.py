@@ -1,41 +1,84 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import subprocess as sp
+import json
+
+def probe(vid_file_path):
+    ''' Give a json from ffprobe command line
+
+    @vid_file_path : The absolute (full) path of the video file, string.
+    '''
+    if type(vid_file_path) != str:
+        raise Exception('Give ffprobe a full file path of the video')
+        return
+
+    command = ["ffprobe",
+            "-loglevel",  "quiet",
+            "-print_format", "json",
+             "-show_format",
+             "-show_streams",
+             vid_file_path
+             ]
+
+    pipe = sp.Popen(command, stdout=sp.PIPE, stderr=sp.STDOUT)
+    out, err = pipe.communicate()
+    return json.loads(out)
+
+def duration(vid_file_path):
+    ''' Video's duration in seconds, return a float number
+    '''
+    _json = probe(vid_file_path)
+
+    if 'format' in _json:
+        if 'duration' in _json['format']:
+            return float(_json['format']['duration'])
+
+    if 'streams' in _json:
+        # commonly stream 0 is the video
+        for s in _json['streams']:
+            if 'duration' in s:
+                return float(s['duration'])
+
+    # if everything didn't happen,
+    # we got here because no single 'return' in the above happen.
+    raise Exception('I found no duration')
+    #return None
+
 from django.shortcuts import render, get_object_or_404
 
 from ..models import *
 from .edit import *
 
-use_duration = False
-
-if use_duration:
-    from ffprobe import FFProbe
-
 def real_add_proj(titre_proj, folder, c, promo):
 
-    base_url = "http://binet-jtx.com/videos"
+    base_url = "/videos"
     base_folder = "/nfs/serveur/ftp"
     extensions_acceptees = ['mp4', 'avi']
 
     p = Proj(titre = titre_proj, category = c, promo = promo)
     p.save()
-    files = [str(f) for f in listdir(str(base_folder + "/" + folder)) if str(f)[-3:] in extensions_acceptees]
+    files = [str(f) for f in listdir(str(base_folder + "/" + folder + "/HD")) if str(f)[-3:] in extensions_acceptees]
     files.sort()
+
     i = 1
     for f in files:
-        base = '.'.join(f.split('.')[:-1])
-        filename = str(base_folder + "/" + folder + "/" + f)
-        ld = []
-        if use_duration:
-            ld = FFProbe(filename).video
-        d = 0
-        if len(ld) > 0:
-            dd = ld[0].duration
-            d = int(float(dd if dd != "N/A" else "0"))
-        titre = base.split('_')
+
+        basename = '.'.join(f.split('.')[:-1])
+        filename = str(base_folder + "/" + folder + "/HD/" + f)
+        d = duration(filename)
+        titre = basename.split('_')
+
+        base_liens = base_url + "/" + folder + "/"
+        hd = base_liens + "HD/" + f
+        md = base_liens + "MD/" + f
+        sd = base_liens + "SD/" + f
+        sub = base_liens + "sub/" + basename + ".srt.vtt"
+        snap = base_liens + "snaps/" + f + ".png"
+
         if titre[0][0] in ['0', '1']:
             titre = titre[1:]
-        v = Video(titre = ' '.join(titre), url = base_url + "/" + folder + "/" + f, duree=d, category=c)
+        v = Video(titre = ' '.join(titre), duree=d, category=c, hd=hd, md=md, sd=sd, screenshot=snap, subtitles=sub)
         v.save()
         r = Relation_proj(proj = p, video = v, ordre = i)
         r.save()
@@ -44,7 +87,7 @@ def real_add_proj(titre_proj, folder, c, promo):
 def read_line_proj(line):
     l = line.split("@@")
     titre = l[0]
-    folder = l[1] + "/MQ"
+    folder = l[1]
     c = Category.objects.get(titre=l[2])
     promo = int(l[3])
     real_add_proj(titre, folder, c, promo)
@@ -71,7 +114,6 @@ def add_proj(request):
             folder = str(p['folder'])
             if folder[-1] == '/':
                 folder = folder[:-1]
-            folder = folder + "/MQ"
             titre_proj = p['titre']
             c = get_object_or_404(Category, pk=int(p['category']))
 
@@ -84,5 +126,3 @@ def add_proj(request):
     else:
         context['message'] = "Vous ne pouvez pas !"
     return render(request, 'add_proj.html', context)
-
- 

@@ -43,13 +43,7 @@ class Category(models.Model):
     public = models.BooleanField(default=False)
     def __unicode__(self):
         return self.titre
-    
-    
-    def __str__(self):
-        return self.titre
 
-    def __repr__(self):
-        return self.titre
 class Video(models.Model):
 
     class Meta:
@@ -63,6 +57,7 @@ class Video(models.Model):
     sd = models.CharField(max_length=1000, default="")
 
     screenshot = models.CharField(max_length=1000, default="")
+    subtitles = models.CharField(max_length=1000, default="")
 
     promo = models.IntegerField(default=2015)
 
@@ -73,12 +68,6 @@ class Video(models.Model):
     description = models.CharField(max_length=1000, default="Pas de description disponible.")
 
     def __unicode__(self):
-        return self.titre
-
-    def __str__(self):
-        return self.titre
-
-    def __repr__(self):
         return self.titre
 
 class Auteur(models.Model):
