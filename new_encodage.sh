@@ -47,3 +47,5 @@ do
     mv "$fic" HD
 
 done
+
+rm new_encodage.sh

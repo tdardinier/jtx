@@ -88,7 +88,10 @@ def read_line_proj(line):
     l = line.split("@@")
     titre = l[0]
     folder = l[1]
-    c = Category.objects.get(titre=l[2])
+    c = Category.objects.get(titre="Divers")
+    a = Category.objects.filter(titre=l[2])
+    if a.exists():
+        c = a.first()
     promo = int(l[3])
     real_add_proj(titre, folder, c, promo)
 
