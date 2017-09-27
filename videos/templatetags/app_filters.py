@@ -70,5 +70,16 @@ def get_promo_video(video,typ):
 @register.filter(name='get_percent')
 def get_percent(video,proj_duree):
     s = 0
-    return 100*video.duree/proj_duree
+    return 100.0*video.duree/(proj_duree+0.0)
 
+@register.filter(name='get_list')
+def get_list(name):
+    from videos.models import Category
+    if name=='categories':
+        return  Category.objects.all()
+
+@register.filter(name='replace_opacity')
+def replace_opacity(color_string,opa):
+    l=color_string.split(',')
+    l[-1]=opa+')'
+    return ','.join(l)

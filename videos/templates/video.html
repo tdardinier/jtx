@@ -68,22 +68,11 @@
               {% endautoescape %}
               <div class="titre_et_vues_info">
 
-                {% if video.category.titre.lower == 'proj en .k' %}
-                <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{video.category.titre}}</a>-->
+                
                 {% for r in video.relation_proj_set.all %}
-                <a class='titre_et_vues_info_cat_proj' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> {% endfor %} 
-                {%elif video.category.titre.lower == 'amphi binets' %}
-                <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_amphi">{{video.category.titre}}</a>-->
-                {% for r in video.relation_proj_set.all %}
-                <a class='titre_et_vues_info_cat_amphi' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> {% endfor %} 
-                {% elif video.category.titre.lower == 'semaine internationale' %}
-                <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_semaine">{{video.category.titre}}</a>-->
-                {% for r in video.relation_proj_set.all %}
-                <a class='titre_et_vues_info_cat_semaine' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> {% endfor %}
-                {% elif video.category.titre.lower == "coupe de l'x" %}
-                <!--<a href="{% url 'category' video.category.id 1 %}" class="titre_et_vues_info_cat_coupe">{{video.category.titre}}</a>-->
-                {% for r in video.relation_proj_set.all %}
-                <a class='titre_et_vues_info_cat_coupe' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> {% endfor %} {% endif %}
+                <a class='cat_{{ video.category.id}}' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> 
+                {% endfor %} 
+               
 
                 </div>
               </div>
@@ -623,7 +612,7 @@ if(quality=='md'){
   document.getElementById('btn_quality_md').classList.add('active');
 }
 if(quality=='sd'){
-  change_flux_to('{{video.sd}}',3);
+  change_flux_to('{{video.sd}',3);
   document.getElementById('btn_quality_sd').classList.add('active');
 }
 

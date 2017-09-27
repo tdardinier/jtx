@@ -57,20 +57,9 @@
               {% endautoescape %}
               <div class="titre_et_vues_info">
 
-                {% if proj.category.titre.lower == 'proj en .k' %}
-                <!--<a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{proj.category.titre}}</a>-->
-                
-                <a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{proj.category.titre}}</a>
-                {%elif proj.category.titre.lower == 'amphi binets' %}
-                <!--<a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_amphi">{{proj.category.titre}}</a>-->
-                <a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_amphi">{{proj.category.titre}}</a>
-                {% elif proj.category.titre.lower == 'semaine internationale' %}
-                <!--<a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_semaine">{{proj.category.titre}}</a>-->
-                <a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_semaine">{{proj.category.titre}}</a>
-                {% elif proj.category.titre.lower == "coupe de l'x" %}
-                <!--<a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_coupe">{{proj.category.titre}}</a>-->
-                <a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_coupe">{{proj.category.titre}}</a>
-                 {% endif %}
+               
+                <a href="{% url 'category' proj.category.id 1 %}" class="cat_{{proj.category.id}}">{{proj.category.titre}}</a>
+              
 
                 </div>
               </div>

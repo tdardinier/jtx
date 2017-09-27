@@ -41,6 +41,8 @@ class Utilisateur(models.Model):
 class Category(models.Model):
     titre = models.CharField(max_length=100)
     public = models.BooleanField(default=False)
+    titre_short = models.CharField(max_length=100, default='cat')
+    color=models.CharField(max_length=100, default='rgba(26, 188, 156,1.0)')
     def __unicode__(self):
         return self.titre
 
