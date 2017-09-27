@@ -119,10 +119,14 @@
           
 
           <a class="dropdown-item" href="{% url 'logout' %}">
+              <div class="d-flex ">
+                  
+                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/sign-out.svg" %}" alt="hello"></div>
             <div class="">
               <!-- <img src={% static "admin/img/deconnexion.png" %} alt="->" style="width:10px;">  -->
-              <span class="glyphicon glyphicon-log-out"></span>Se déconnecter
+              Se déconnecter
             </div>
+          </div>
           </a>
 
           <div class="dropdown-divider"></div>
@@ -131,31 +135,41 @@
           <h3 class="dropdown-header"> <span class="glyphicon glyphicon-option-vertical" ></span>Menu</h3>
 
           <a href="{% url 'index'  %}" class="dropdown-item">
-            <div class="">
-              Accueil
-            </div>
+              <div class="d-flex ">
+                  
+                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/home.svg" %}" alt="hello"></div>
+                  <div class="">
+                    Accueil
+                  </div>
+          </div>
           </a>
 
           <a href="{% url 'projs' 1 %}" class="dropdown-item">
-            <div class="">
-              <span class="glyphicon glyphicon-film"></span> Projections
+            <div class="d-flex ">
+              
+              <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/eye.svg" %}" alt="hello"></div>
+              <div>Projections</div> 
             </div>
           </a>
 
           
           <a href="{% url 'videos' 1 %}" class="dropdown-item">
 
-            <div class="d-flex justify-content-between">
+            <div class="d-flex ">
+              <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/device-camera-video.svg" %}" alt="hello"></div>
               <div>Vidéos</div>
-              <div><img src="{% static "admin/img/opticons/device-camera-video.svg" %}" alt="hello"></div>
+              
             </div>
           </a>
 
           {% if request.user.is_authenticated %}
           <a href="{% url 'favorites' 1 %}" class="dropdown-item">
-            <div class="">
-              <span class="glyphicon glyphicon-star"></span>Favoris
-            </div>
+              <div class="d-flex ">
+                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/star.svg" %}" alt="hello"></div>
+                  <div >
+                      Favoris
+                  </div>
+                </div>
           </a>
           {% endif %}
 
@@ -174,15 +188,23 @@
           
 
           <a href="{% url 'tags' %}" class="dropdown-item">
-            <div class="">
-              <span class="glyphicon glyphicon-text-background"></span> Tags
-            </div>
+              <div class="d-flex ">
+                  
+                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/code.svg" %}" alt="hello"></div>
+                <div class="">
+                  <span class="glyphicon glyphicon-text-background"></span> Tags
+                </div>
+          </div>
           </a>
 
           <a href="{% url 'jtx' 2015 %}" class="dropdown-item">
+              <div class="d-flex ">
+                  
+                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/bookmark.svg" %}" alt="hello"></div>
             <div class="">
-             <span class="glyphicon glyphicon-sound-dolby"></span> JTX 2015
+              JTX 2015
             </div>
+          </div>
           </a>
 
           <div class="dropdown-divider"></div>
