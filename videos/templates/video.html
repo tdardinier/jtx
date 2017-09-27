@@ -9,7 +9,7 @@
     
     
       <video id="video" class="embed-responsive-item" controls autoplay>
-        <source id="src_video" src="{{video.md}}"> Your browser does not support the video tag.
+        <source id="src_video" src=""> Your browser does not support the video tag.
         <track label="Français" kind="subtitles" srclang="fr" src="{{video.subtitles}}" default >
       </video> 
     
@@ -28,18 +28,18 @@
 
         <div class="btn-group" data-toggle="buttons">
           {% if video.sd %}
-          <label class="btn btn-primary btn-sm" onclick="change_flux_to('{{video.sd}}')">
-            <input type="radio" name="options" id="option3" autocomplete="off" > 360p
+          <label class="btn btn-primary btn-sm" onclick="change_flux_to('{{video.sd}}',3)" id='btn_quality_sd'>
+            <input type="radio" name="options" id="option3" autocomplete="off" > SD
           </label>
           {% endif %}
           {% if video.md %}
-          <label class="btn btn-primary active btn-sm"  onclick="change_flux_to('{{video.md}}')">
-            <input type="radio" name="options" id="option2" autocomplete="off" checked> 720p
+          <label class="btn btn-primary btn-sm"  onclick="change_flux_to('{{video.md}}',2)"  id='btn_quality_md'>
+            <input type="radio" name="options" id="option2" autocomplete="off" checked> MD
           </label>
           {% endif %}
           {% if video.hd %}
-          <label class="btn btn-primary  btn-sm" onclick="change_flux_to('{{video.hd}}')">
-            <input type="radio" name="options" id="option1" autocomplete="off" > 1080p
+          <label class="btn btn-primary  btn-sm" onclick="change_flux_to('{{video.hd}}',1)"  id='btn_quality_hd'>
+            <input type="radio" name="options" id="option1" autocomplete="off" > Full HD
           </label>
           {% endif %}
         </div>
@@ -570,7 +570,31 @@ $(function () {
 //     }
 //  }
 
-function change_flux_to(link){
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+
+function change_flux_to(link,indice){
   var video = document.getElementById('video'); 
   var time=video.currentTime;
   video.removeChild(document.getElementById('src_video'));
@@ -582,9 +606,26 @@ function change_flux_to(link){
       
   video.load();
   video.play();
+
+
+  if(indice==1){setCookie('quality','hd',365)}
+  if(indice==2){setCookie('quality','md',365)}
+  if(indice==3){setCookie('quality','sd',365)}
 }
 
-quality='hd';
+quality=getCookie('quality');
+if(quality=='hd'){
+  change_flux_to('{{video.hd}}',1);
+  document.getElementById('btn_quality_hd').classList.add('active');
+}
+if(quality=='md'){
+  change_flux_to('{{video.md}}',2);
+  document.getElementById('btn_quality_md').classList.add('active');
+}
+if(quality=='sd'){
+  change_flux_to('{{video.sd}}',3);
+  document.getElementById('btn_quality_sd').classList.add('active');
+}
 
 </script>
 
