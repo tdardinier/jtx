@@ -19,12 +19,30 @@ JTX 2015 - Proj de février@@Projections_JTX/JTX2015_23_02_17@@Proj en .K@@2015
 
 # JTX 2013 - Proj de novembre@@Projections_JTX/JTX2013_12-11-15@@Proj en .K@@2013
 # JTX 2013 - Proj de juin@@Projections_JTX/JTX2013_10-06-15@@Proj en .K@@2013
-# JTX 2013 - Proj de février@@Projections_JTX/JTX2013_18-02-15@@Proj en .K@@2013
+JTX 2013 - Proj de février@@Projections_JTX/JTX2013_18-02-15@@Proj en .K@@2013
 
 JTX 2012 - Proj de novembre@@Projections_JTX/JTX2012_18-11-14@@Proj en .K@@2012
-# JTX 2012 - Proj de juin@@Projections_JTX/JTX2012_18-06-14@@Proj en .K@@2012
-# JTX 2012 - Proj de mars@@Projections_JTX/JTX2012_18-03-14@@Proj en .K@@2012
+JTX 2012 - Proj de juin@@Projections_JTX/JTX2012_18-06-14@@Proj en .K@@2012
+JTX 2012 - Proj de mars@@Projections_JTX/JTX2012_18-03-14@@Proj en .K@@2012
 
 # JTX 2011 - Proj de novembre@@Projections_JTX/JTX2011_14-11-13@@Proj en .K@@2011
 # JTX 2011 - Proj de juin@@Projections_JTX/JTX2011_10-07-13@@Proj en .K@@2011
 # JTX 2011 - Proj de mars@@Projections_JTX/JTX2011_21-03-13@@Proj en .K@@2011
+
+# Coupe de l'X 2016@@Evenements/Coupe_de_l_X/Coupe_de_l_X_2016@@Évènement sportif@@2015
+# Coupe de l'X 2015@@Evenements/Coupe_de_l_X/Coupe_de_l_X_2015@@Évènement sportif@@2014
+# Tournoi ParisTech 2014@@Evenements/Coupe_de_l_X/Tournoi_ParisTech_2014@@Évènement sportif@@2013
+### Tournoi ParisTech 2010@@Evenements/Coupe_de_l_X/Tournoi_ParisTech_2010@@Évènement sportif@@2009
+
+### TSGED 2006@@Evenements/TSGED/TSGED_2006@@Évènement sportif@@2006
+### TSGED 2007@@Evenements/TSGED/TSGED_2007@@Évènement sportif@@2007
+### TSGED 2008@@Evenements/TSGED/TSGED_2008@@Évènement sportif@@2008
+### TSGED 2009@@Evenements/TSGED/TSGED_2009@@Évènement sportif@@2009
+### TSGED 2010@@Evenements/TSGED/TSGED_2010@@Évènement sportif@@2010
+### TSGED 2011@@Evenements/TSGED/TSGED_2011@@Évènement sportif@@2011
+### TSGED 2012@@Evenements/TSGED/TSGED_2012@@Évènement sportif@@2012
+### TSGED 2013@@Evenements/TSGED/TSGED_2013@@Évènement sportif@@2013
+## TSGED 2014@@Evenements/TSGED/TSGED_2014@@Évènement sportif@@2014
+## TSGED 2015@@Evenements/TSGED/TSGED_2015@@Évènement sportif@@2015
+## TSGED 2016@@Evenements/TSGED/TSGED_2016@@Évènement sportif@@2016
+## TSGED 2017@@Evenements/TSGED/TSGED_2017@@Évènement sportif@@2017
