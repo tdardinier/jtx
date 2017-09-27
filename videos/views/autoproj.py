@@ -97,9 +97,12 @@ def read_line_proj(line):
 
 def auto_proj(l):
     for x in l:
-        print("Reading " + x + "...")
-        read_line_proj(x)
-        print("Done")
+        if x != "\n" and x[0] != "#":
+            print("Reading " + x + "...")
+            read_line_proj(x)
+            print("Done")
+        elif x != "\n":
+            print("Ignoring " + x[:-2])
 
 def add_proj(request):
 
