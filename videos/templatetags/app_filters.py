@@ -83,3 +83,8 @@ def replace_opacity(color_string,opa):
     l=color_string.split(',')
     l[-1]=opa+')'
     return ','.join(l)
+
+@register.filter(name='get_jaime')
+def get_jaime(proj):
+    from videos.models import Favorite_proj
+    return Favorite_proj.objects.filter(proj = proj).count()

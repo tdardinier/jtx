@@ -45,12 +45,15 @@ def index(request):
 def jtx(request, year):
     c = Category.objects.get(titre="Proj en .K")
     v = filter(request, Proj.objects.filter(promo=year))
+    videos = filter(request, Video.objects)
+    videos_jtx=videos.filter(promo=year)
     context = {
         'year': year,
         'projs_jtx': v.filter(category=c),
         'projs_autres': v.exclude(category=c),
+        'toutes_projs':v,
         'jtxmen': Auteur.objects.filter(promo=year),
-        'videos': Video.objects.order_by('-views')[:12]
+        'videos': videos_jtx,
     }
     return render(request, 'jtx.html', context)
 

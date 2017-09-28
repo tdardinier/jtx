@@ -12,9 +12,9 @@
 
 <div class="d-flex justify-content-center">
 		{% for p in projs_jtx|dictsort:"date" %}
-			<div class="col-3">
+			<div class="col-10 col-md-4  col-lg-3">
 				<div class="card">
-					<h3 class="card-header">Hello</h3>
+					<h3 class="card-header">Projection du {{p.date}}</h3>
 					<div class="card-body">
 							{% include "block_video_proj_liste.html" with video=0 elmt=p col_large=1 %}
 					</div>
@@ -56,15 +56,124 @@
 					{% endfor %}
 			</div>
 		</div>
+
+
+
 	</div>
+	<div class="dropdown-divider"></div>
+	<br>
+	<div class="d-flex" id='charts'>
+		<div id='projs_data' class="" style="width:70%"></div>
+		<div id='videos_data'style="width:30%"></div>
+	</div>
+	
 </div>
 
 <script type="text/javascript">
+
+
+var x1 = [
+	{% for p in toutes_projs|dictsort:"date" %}
+		"{{p.titre}}",
+	{% endfor %}
+];
+
+var link_projs=[
+	{% for p in toutes_projs|dictsort:"date" %}
+		"{% url 'proj' p.id %}",
+	{% endfor %}
+];
+
+
+var trace1 = {
+  x:x1,
+  y:[
+  	{% for p in toutes_projs|dictsort:"date" %}
+		{{p|get_jaime}},
+	{% endfor %}
 	
-	 
+  ],
+  type: "bar",
+  name: "J'aime",
+};
+
+var trace2 = {
+	x:x1,
+  y:[
+  	{% for p in toutes_projs|dictsort:"date" %}
+		{{p.views}},
+	{% endfor %}
+  ],
+  type: "bar",
+  name: "Vues",
+};
+
+var data = [trace1, trace2];
+var layout = {
+	title: 'Statistiques des projections du JTX {{year}}',
+	legend: {
+    x: 0,
+    y: 1,
+
+	},
+};
+Plotly.newPlot("projs_data", data, layout);
+
+var videos_titres=[
+		{% for v in videos|dictsortreversed:"views"|slice:":10" reversed %}
+			"{{v.titre}}",
+		{% endfor %}
+];
+
+var link_videos=[
+	{% for v in videos|dictsortreversed:"views"|slice:":10" reversed %}
+		"{% url 'video' v.id %}",
+	{% endfor %}
+];
+
+var top_videos={
+	name:'Video les plus vues',
+	y:videos_titres,
+	x:[
+	{% for v in videos|dictsortreversed:"views"|slice:":10" reversed  %}
+			{{v.views}},
+		{% endfor %}
+	],
+	type:"bar",
+	orientation: 'h'
+};
+
+Plotly.newPlot("videos_data", [top_videos], {title: 'Vidéos du JTX {{year}} les plus vues',});
+
 	$(function () {
 	  $('[data-toggle="tooltip"]').tooltip()
 	});
+
+	
+
+	var SEPARATION_POURCENT=70;
+	window.addEventListener("resize", update_charts);
+	function update_charts() {
+		
+		update = {
+		width: document.getElementById('charts').clientWidth*SEPARATION_POURCENT/100,  // or any new width
+		height: 500  // " "
+		};
+		update_vids = {
+		width: document.getElementById('charts').clientWidth*(100-SEPARATION_POURCENT)/100,  // or any new width
+		height: 500  // " "
+		};
+		Plotly.relayout('projs_data', update);
+		Plotly.relayout('videos_data', update_vids);
+	};
+
+document.getElementById("projs_data").on('plotly_click', function(data){
+	document.location.href=link_projs[x1.indexOf(data.points[0].x)];
+});
+
+document.getElementById("videos_data").on('plotly_click', function(data){
+	document.location.href=link_videos[videos_titres.indexOf(data.points[0].y)];
+});
 </script>
 
 	
