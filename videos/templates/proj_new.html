@@ -570,7 +570,7 @@ function launch(id) {
 
 video.addEventListener('ended',next,false);
 function next(e) {
-	document.getElementById('video_'+playlist[current][3]).classList.remove('proj_video_titre_checked');
+	document.getElementById('video_'+playlist[current][5]).classList.remove('proj_video_titre_checked');
 	current += 1;
 	if (current < playlist.length) {
 		launch(current);
