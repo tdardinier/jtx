@@ -20,15 +20,15 @@
         <h3>{{ proj.titre }} </h3>
         <div class="btn-group" data-toggle="buttons">
             
-            <label class="btn btn-primary btn-sm" onclick="change_flux_to('sd')" id='btn_quality_sd'>
+            <label class="btn btn-primary btn-sm" onclick="change_flux_to('sd', 'non')" id='btn_quality_sd'>
               <input type="radio" name="options" id="option3" autocomplete="off" > SD
             </label>
             
-            <label class="btn btn-primary active btn-sm"  onclick="change_flux_to('md')" id='btn_quality_md'>
+            <label class="btn btn-primary active btn-sm"  onclick="change_flux_to('md', 'non')" id='btn_quality_md'>
               <input type="radio" name="options" id="option2" autocomplete="off" checked> MD
             </label>
             
-            <label class="btn btn-primary  btn-sm" onclick="change_flux_to('hd')" id='btn_quality_hd'>
+            <label class="btn btn-primary  btn-sm" onclick="change_flux_to('hd', 'non')" id='btn_quality_hd'>
               <input type="radio" name="options" id="option1" autocomplete="off" > Full HD
             </label>
            
@@ -477,7 +477,7 @@ function update_btn_quality(){
 }
 
 
-function change_flux_to(qualite){
+function change_flux_to(qualite, from_strart='oui'){
   var indice=0;
   glob_quality=qualite;
   if(qualite=='hd' && playlist[current][1] != 'non'){indice=1}
@@ -494,7 +494,13 @@ function change_flux_to(qualite){
   if(indice==3){setCookie('quality','sd',365)}
 
   var time=video.currentTime;
-  source.setAttribute('src', playlist[current][indice]+'#t='+time.toString());
+  if(from_strart=='oui'){
+    source.setAttribute('src', playlist[current][indice]);
+  }
+  else{
+    source.setAttribute('src', playlist[current][indice]+'#t='+time.toString());
+  }
+  
   
   video.load();
   video.play();
@@ -510,7 +516,7 @@ function change_flux_to(qualite){
   }
 }
 
-function launch(id) {
+function launch(id,  from_strart='oui') {
 
 	if(current>=1){
   // var table2 = $('#proj_elements')
@@ -538,7 +544,7 @@ function launch(id) {
     // source.setAttribute('src', playlist[id][1]);
     // video.load();
     // video.play();
-    change_flux_to(glob_quality);
+    change_flux_to(glob_quality, from_strart=from_strart);
     
     var liste_prog=document.getElementsByClassName('progress_bar_class')
     for(i=0;i<liste_prog.length;i++){
