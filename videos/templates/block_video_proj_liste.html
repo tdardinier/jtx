@@ -72,54 +72,22 @@
                 <div class="" style="">
                 <span style="position:relative;top:-3px;">
                     
-                    {% if v.category.titre.lower == 'proj en .k' %}
+                  
                         
                         {% for r in v.relation_proj_set.all  %}
-                            <a class='titre_et_vues_info_cat_proj tag '  href="{% url 'proj' r.proj.id %}">PROJ .K</a>
+                            <a class='cat_{{v.category.id}} tag '  href="{% url 'proj' r.proj.id %}">{{v.category.titre_short}}</a>
                         {% endfor %}
-                    {% elif v.category.titre.lower == 'amphi binets' %}
-                
-                        {% for r in v.relation_proj_set.all  %}
-                            <a class='titre_et_vues_info_cat_amphi tag' href="{% url 'proj' r.proj.id %}">BINETS</a>
-                        {% endfor %}
-                    {% elif v.category.titre.lower == 'semaine internationale' %}
-                    
-                        {% for r in v.relation_proj_set.all  %}
-                            <a class='titre_et_vues_info_cat_semaine tag' href="{% url 'proj' r.proj.id %}">S.INT.</a>
-                        {% endfor %}
-                    {% elif v.category.titre.lower == "coupe de l'x" %}
-                
-                        {% for r in v.relation_proj_set.all  %}
-                            <a class='titre_et_vues_info_cat_coupe tag' href="{% url 'proj' r.proj.id %}">COUPE</a>
-                        {% endfor %}
-                    {% endif %}
+                   
                     </span>
                 </div>
             {% else %}
                 <div class="" style="">
                     <span style="position:relative;top:-3px;">
                         
-                        {% if elmt.category.titre.lower == 'proj en .k' %}
-                            
-                           
-                                <a class='titre_et_vues_info_cat_proj tag '  href="{% url 'category' elmt.category.id 1  %}">PROJ .K</a>
-                            
-                        {% elif elmt.category.titre.lower == 'amphi binets' %}
                     
-                            
-                                <a class='titre_et_vues_info_cat_amphi tag' href="{% url 'category' elmt.category.id 1  %}">BINETS</a>
-                            
-                        {% elif elmt.category.titre.lower == 'semaine internationale' %}
-                        
-                            
-                                <a class='titre_et_vues_info_cat_semaine tag' href="{% url 'category' elmt.category.id 1  %}">S.INT.</a>
                            
-                        {% elif elmt.category.titre.lower == "coupe de l'x" %}
-                    
-                            
-                                <a class='titre_et_vues_info_cat_coupe tag' href="{% url 'category' elmt.category.id 1  %}">COUPE</a>
-                           
-                        {% endif %}
+                                <a class='cat_{{elmt.category.id}} tag '  href="{% url 'category' elmt.category.id 1  %}">{{elmt.category.titre_short}}</a>
+                     
                         </span>
                     </div>
             {% endif %}

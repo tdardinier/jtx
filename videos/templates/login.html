@@ -1,13 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
-
-<div class="container_login">
-	<h1>Se connecter</h1>
-	<form method="post">
+<div class="d-flex justify-content-center">
+<div class="col-12 col-md-4">
+<div class="card ">
+	<h1 class="card-header">Se connecter</h1>
+	<form method="post" class="form card-body  ">
 		{% csrf_token %}
-		{{ form.as_p }}
-		<button type="submit" class="login_button">Login</button>
+		
+		
+		<div class="input-group" style="margin-bottom:10px;">
+			<span class="input-group-addon"><img src="{% static 'admin/img/opticons/person.svg' %}" alt="ID"></span>
+			<input class="form-control" id="id_username" maxlength="30" name="username" placeholder="Identifiant" type="text"> 
+		</div>
+
+		<div class="input-group" style="margin-bottom:10px;">
+			<span class="input-group-addon"><img src="{% static 'admin/img/opticons/key.svg' %}" alt="PW"></span>
+			<input class="form-control" id="id_password" maxlength="30" name="password"  placeholder="Mot de passe" type="password"> 
+		</div>
+		<div style="text-align:right;"><button type="submit" class="btn btn-success">Ça part</button></div>
+		
 	</form>
 </div>
-
+</div>
+</div>
 {% endblock %}

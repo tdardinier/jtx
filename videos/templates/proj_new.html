@@ -16,7 +16,24 @@
 
     <div class="col-12 shadow-div" id="" style="background-color:white;padding:10px;margin-top:10px;">
 
-      <div class=" col-12" style="padding:0;"><h3>{{ proj.titre }} </h3></div>
+      <div class=" col-12 d-flex  justify-content-between align-items-start" style="padding:0;">
+        <h3>{{ proj.titre }} </h3>
+        <div class="btn-group" data-toggle="buttons">
+            
+            <label class="btn btn-primary btn-sm" onclick="change_flux_to('sd')" id='btn_quality_sd'>
+              <input type="radio" name="options" id="option3" autocomplete="off" > SD
+            </label>
+            
+            <label class="btn btn-primary active btn-sm"  onclick="change_flux_to('md')" id='btn_quality_md'>
+              <input type="radio" name="options" id="option2" autocomplete="off" checked> MD
+            </label>
+            
+            <label class="btn btn-primary  btn-sm" onclick="change_flux_to('hd')" id='btn_quality_hd'>
+              <input type="radio" name="options" id="option1" autocomplete="off" > Full HD
+            </label>
+           
+        </div>
+      </div>
 
       <div class="col-12" style="">
         <div class="row justify-content-between">
@@ -40,20 +57,9 @@
               {% endautoescape %}
               <div class="titre_et_vues_info">
 
-                {% if proj.category.titre.lower == 'proj en .k' %}
-                <!--<a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{proj.category.titre}}</a>-->
-                
-                <a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_proj">{{proj.category.titre}}</a>
-                {%elif proj.category.titre.lower == 'amphi binets' %}
-                <!--<a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_amphi">{{proj.category.titre}}</a>-->
-                <a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_amphi">{{proj.category.titre}}</a>
-                {% elif proj.category.titre.lower == 'semaine internationale' %}
-                <!--<a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_semaine">{{proj.category.titre}}</a>-->
-                <a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_semaine">{{proj.category.titre}}</a>
-                {% elif proj.category.titre.lower == "coupe de l'x" %}
-                <!--<a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_coupe">{{proj.category.titre}}</a>-->
-                <a href="{% url 'category' proj.category.id 1 %}" class="titre_et_vues_info_cat_coupe">{{proj.category.titre}}</a>
-                 {% endif %}
+               
+                <a href="{% url 'category' proj.category.id 1 %}" class="cat_{{proj.category.id}}">{{proj.category.titre}}</a>
+              
 
                 </div>
               </div>
@@ -370,10 +376,17 @@
 // $(document).ready(function() {
 //     $('#proj_elements').DataTable();
 // } );
-var table = $('#proj_elements').DataTable();
+var table = $('#proj_elements').DataTable({
+  paging:false,
+  "bInfo" : false,
+  "oLanguage": {
+"sSearch": "Filtrer : "
+}
+});
 
 var video = document.getElementById('video');
 var source = document.createElement('source');
+
 var titre_en_cours = document.getElementById('titre_en_cours');
 var titre_video_suivante = document.getElementById('titre_video_suivante');
 var proj_auteurs = document.getElementById('proj_auteurs');
@@ -384,11 +397,31 @@ var current = 0;
 
 var playlist = []
 var tags = [];
-
+var glob_quality=getCookie('quality');
+if(glob_quality==''){glob_quality='md'}
 
 {% for r in proj.relation_proj_set.all %}
 
-    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', '{{r.video.hd}}', '{{r.video|auteurs|striptags}}', '{{r.video.id}}',{{r.ordre}}]
+    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', 
+    {% if r.video.hd %}
+    '{{r.video.hd}}', 
+    {% else %}
+    'non',
+    {% endif %}
+
+    {% if r.video.md %}
+    '{{r.video.md}}', 
+    {% else %}
+    'non',
+    {% endif %}
+
+    {% if r.video.sd %}
+    '{{r.video.sd}}', 
+    {% else %}
+    'non',
+    {% endif %}
+
+    '{{r.video|auteurs|striptags}}', '{{r.video.id}}',{{r.ordre}}]
 
     x = [];
 	{% for r2 in r.video.relation_tag_set.all %}
@@ -397,21 +430,102 @@ var tags = [];
     tags[{{forloop.counter}}] = x;
 {% endfor %}
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+
+//Création des boutons hd et sd
+function update_btn_quality(){
+  if(playlist[current][1]!='non'){
+      document.getElementById('btn_quality_hd').style.display='unset';
+  }
+  else{
+      document.getElementById('btn_quality_hd').style.display='none';
+  }
+  if(playlist[current][2]!='non'){
+      document.getElementById('btn_quality_md').style.display='unset';
+  }
+  else{
+      document.getElementById('btn_quality_md').style.display='none';
+  }
+  if(playlist[current][3]!='non'){
+      document.getElementById('btn_quality_sd').style.display='unset';
+  }
+  else{
+      document.getElementById('btn_quality_sd').style.display='none';
+  }
+}
+
+
+function change_flux_to(qualite){
+  var indice=0;
+  glob_quality=qualite;
+  if(qualite=='hd' && playlist[current][1] != 'non'){indice=1}
+  if(qualite=='md' && playlist[current][2] != 'non'){indice=2}
+  if(qualite=='sd' && playlist[current][3] != 'non'){indice=3}
+  if(indice==0){
+    if(playlist[current][3] != 'non'){indice=3}
+    if(playlist[current][2] != 'non'){indice=2}
+    if(playlist[current][1] != 'non'){indice=1}
+  }
+  
+  if(indice==1){setCookie('quality','hd',365)}
+  if(indice==2){setCookie('quality','md',365)}
+  if(indice==3){setCookie('quality','sd',365)}
+
+  var time=video.currentTime;
+  source.setAttribute('src', playlist[current][indice]+'#t='+time.toString());
+  
+  video.load();
+  video.play();
+
+  ids=['btn_quality_hd','btn_quality_md','btn_quality_sd']
+  for(i in ids){
+    if(i==indice-1){
+      document.getElementById(ids[i]).classList.add('active');
+    }
+    else{
+      document.getElementById(ids[i]).classList.remove('active');
+    }
+  }
+}
+
 function launch(id) {
 
 	if(current>=1){
-  var table2 = $('#proj_elements').DataTable();
-  table2.page.jumpToData( current.toString(), 0 );
+  // var table2 = $('#proj_elements')
+  // table2.page.jumpToData( current.toString(), 0 );
 
-	document.getElementById('video_'+playlist[current][3]).classList.remove('proj_video_titre_checked');}
+	document.getElementById('video_'+playlist[current][5]).classList.remove('proj_video_titre_checked');}
 	current = id;
-  var table2 = $('#proj_elements').DataTable();
-  table2.page.jumpToData( current.toString(), 0 );
+  update_btn_quality();
+  // var table2 = $('#proj_elements')
+  // table2.page.jumpToData( current.toString(), 0 );
 	video.pause();
 
-		document.getElementById('video_'+playlist[id][3]).classList.add('proj_video_titre_checked');
+		document.getElementById('video_'+playlist[id][5]).classList.add('proj_video_titre_checked');
     titre_en_cours.innerHTML = playlist[id][0];
-    proj_auteurs.innerHTML = playlist[id][2];
+    proj_auteurs.innerHTML = playlist[id][4];
 
     if (id + 1 < playlist.length) {
         titre_video_suivante.innerHTML = playlist[(id+1)][0]+"<img src={% static 'admin/img/droite.png' %} alt='Vaneau' class='proj_vid_suiv_img'>";
@@ -421,13 +535,14 @@ function launch(id) {
     }
 
 
-	source.setAttribute('src', playlist[id][1]);
-	video.load();
-	video.play();
-  
-  var liste_prog=document.getElementsByClassName('progress_bar_class')
-  for(i=0;i<liste_prog.length;i++){
-    var pg=liste_prog[i];
+    // source.setAttribute('src', playlist[id][1]);
+    // video.load();
+    // video.play();
+    change_flux_to(glob_quality);
+    
+    var liste_prog=document.getElementsByClassName('progress_bar_class')
+    for(i=0;i<liste_prog.length;i++){
+      var pg=liste_prog[i];
       if(parseInt(pg.id.replace('progress_',''))<current){
         pg.classList.remove('bg-danger');
         pg.classList.remove('progress-bar-striped'); 
@@ -450,7 +565,7 @@ function launch(id) {
 
   document.getElementById('lien_precedente').onclick=function(){ launch(Math.max(1,current-1)) };
   document.getElementById('lien_suivante').onclick=function(){ launch(Math.min(playlist.length-1,current+1)) };
-  document.getElementById('lien_en_cours_solo').href='/video/'+playlist[current][3].toString();
+  document.getElementById('lien_en_cours_solo').href='/video/'+playlist[current][5].toString();
 }
 
 video.addEventListener('ended',next,false);
