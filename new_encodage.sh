@@ -49,3 +49,4 @@ do
 done
 
 rm new_encodage.sh
+touch encoding_proj_fini

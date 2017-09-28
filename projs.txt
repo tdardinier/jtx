@@ -13,25 +13,25 @@ JTX 2015 - Proj de février@@Projections_JTX/JTX2015_23_02_17@@Proj en .K@@2015
 
 #############################################"
 
-# JTX 2014 - Proj de novembre@@Projections_JTX/JTX2014_16-11-09@@Proj en .K@@2014
-# JTX 2014 - Proj de juin@@Projections_JTX/JTX2014_16-06-08@@Proj en .K@@2014
-# JTX 2014 - Proj de février@@Projections_JTX/JTX2014_16-02-18@@Proj en .K@@2014
+JTX 2014 - Proj de novembre@@Projections_JTX/JTX2014_16-11-09@@Proj en .K@@2014
+JTX 2014 - Proj de juin@@Projections_JTX/JTX2014_16-06-08@@Proj en .K@@2014
+JTX 2014 - Proj de février@@Projections_JTX/JTX2014_16-02-18@@Proj en .K@@2014
 
-# JTX 2013 - Proj de novembre@@Projections_JTX/JTX2013_12-11-15@@Proj en .K@@2013
-# JTX 2013 - Proj de juin@@Projections_JTX/JTX2013_10-06-15@@Proj en .K@@2013
+JTX 2013 - Proj de novembre@@Projections_JTX/JTX2013_12-11-15@@Proj en .K@@2013
+JTX 2013 - Proj de juin@@Projections_JTX/JTX2013_10-06-15@@Proj en .K@@2013
 JTX 2013 - Proj de février@@Projections_JTX/JTX2013_18-02-15@@Proj en .K@@2013
 
 JTX 2012 - Proj de novembre@@Projections_JTX/JTX2012_18-11-14@@Proj en .K@@2012
 JTX 2012 - Proj de juin@@Projections_JTX/JTX2012_18-06-14@@Proj en .K@@2012
 JTX 2012 - Proj de mars@@Projections_JTX/JTX2012_18-03-14@@Proj en .K@@2012
 
-# JTX 2011 - Proj de novembre@@Projections_JTX/JTX2011_14-11-13@@Proj en .K@@2011
-# JTX 2011 - Proj de juin@@Projections_JTX/JTX2011_10-07-13@@Proj en .K@@2011
-# JTX 2011 - Proj de mars@@Projections_JTX/JTX2011_21-03-13@@Proj en .K@@2011
+JTX 2011 - Proj de novembre@@Projections_JTX/JTX2011_14-11-13@@Proj en .K@@2011
+JTX 2011 - Proj de juin@@Projections_JTX/JTX2011_10-07-13@@Proj en .K@@2011
+JTX 2011 - Proj de mars@@Projections_JTX/JTX2011_21-03-13@@Proj en .K@@2011
 
-# Coupe de l'X 2016@@Evenements/Coupe_de_l_X/Coupe_de_l_X_2016@@Évènement sportif@@2015
-# Coupe de l'X 2015@@Evenements/Coupe_de_l_X/Coupe_de_l_X_2015@@Évènement sportif@@2014
-# Tournoi ParisTech 2014@@Evenements/Coupe_de_l_X/Tournoi_ParisTech_2014@@Évènement sportif@@2013
+Coupe de l'X 2016@@Evenements/Coupe_de_l_X/Coupe_de_l_X_2016@@Évènement sportif@@2015
+Coupe de l'X 2015@@Evenements/Coupe_de_l_X/Coupe_de_l_X_2015@@Évènement sportif@@2014
+Tournoi ParisTech 2014@@Evenements/Coupe_de_l_X/Tournoi_ParisTech_2014@@Évènement sportif@@2013
 ### Tournoi ParisTech 2010@@Evenements/Coupe_de_l_X/Tournoi_ParisTech_2010@@Évènement sportif@@2009
 
 ### TSGED 2006@@Evenements/TSGED/TSGED_2006@@Évènement sportif@@2006
@@ -46,3 +46,52 @@ JTX 2012 - Proj de mars@@Projections_JTX/JTX2012_18-03-14@@Proj en .K@@2012
 ## TSGED 2015@@Evenements/TSGED/TSGED_2015@@Évènement sportif@@2015
 ## TSGED 2016@@Evenements/TSGED/TSGED_2016@@Évènement sportif@@2016
 ## TSGED 2017@@Evenements/TSGED/TSGED_2017@@Évènement sportif@@2017
+
+### JTX 1991 - Proj de *@@Projections_JTX/JTX1991_xx-10-94@@Proj en .K@@1991
+### JTX 1991 - Proj de *@@Projections_JTX/JTX1991_xx-xx-xx@@Proj en .K@@1991
+### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-01-95@@Proj en .K@@1992
+### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-02-95@@Proj en .K@@1992
+### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-03-95@@Proj en .K@@1992
+### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-04-95@@Proj en .K@@1992
+### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-05-95@@Proj en .K@@1992
+### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-06-95@@Proj en .K@@1992
+### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-11-94@@Proj en .K@@1992
+### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-12-94@@Proj en .K@@1992
+### JTX 1997 - Proj de *@@Projections_JTX/JTX1997_09-11-99@@Proj en .K@@1997
+### JTX 1997 - Proj de *@@Projections_JTX/JTX1997_28-01-99@@Proj en .K@@1997
+### JTX 1997 - Proj de *@@Projections_JTX/JTX1997_29-03-99@@Proj en .K@@1997
+### JTX 1998 - Proj de *@@Projections_JTX/JTX1998_03-02-00@@Proj en .K@@1998
+### JTX 1998 - Proj de *@@Projections_JTX/JTX1998_05-07-00@@Proj en .K@@1998
+### JTX 1998 - Proj de *@@Projections_JTX/JTX1998_28-03-00@@Proj en .K@@1998
+### JTX 1998 - Proj de *@@Projections_JTX/JTX1998_30-11-00@@Proj en .K@@1998
+### JTX 1999 - Proj de *@@Projections_JTX/JTX1999_01-03-01@@Proj en .K@@1999
+### JTX 1999 - Proj de *@@Projections_JTX/JTX1999_07-07-01@@Proj en .K@@1999
+### JTX 1999 - Proj de *@@Projections_JTX/JTX1999_27-02-02@@Proj en .K@@1999
+### JTX **** - Proj de *@@Projections_JTX/JTX2000_04-07-02@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2000_22-03-02@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2001_03-04-03@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2001_17-12-02@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2002_16-03-04@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2003_02-11-05@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2003_05-07-05@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2003_07-02-05@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2004_12-04-06@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2004_23-10-06@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2005_05-02-07@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2005_12-07-07@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2005_22-10-07@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2006_09-07-08@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2006_22-10-08@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2006_31-03-08@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2007_09-07-09@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2007_12-03-09@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2007_17-11-09@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2008_07-07-10@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2008_15-03-10@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2008_16-11-10@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2009_10-03-11@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2009_12-07-11@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2009_15-11-11@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2010_01-03-12@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2010_10-07-12@@Proj en .K@@****
+### JTX **** - Proj de *@@Projections_JTX/JTX2010_15-11-12@@Proj en .K@@****
