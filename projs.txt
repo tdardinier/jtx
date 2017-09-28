@@ -47,9 +47,9 @@ Tournoi ParisTech 2014@@Evenements/Coupe_de_l_X/Tournoi_ParisTech_2014@@Évènem
 ### TSGED 2012@@Evenements/TSGED/TSGED_2012@@Évènement sportif@@2012 (LQ)
 ### TSGED 2013@@Evenements/TSGED/TSGED_2013@@Évènement sportif@@2013 (MQ)
 # TSGED 2014@@Evenements/TSGED/TSGED_2014@@Évènement sportif@@2014
-# TSGED 2015@@Evenements/TSGED/TSGED_2015@@Évènement sportif@@2015
+TSGED 2015@@Evenements/TSGED/TSGED_2015@@Évènement sportif@@2015
 # TSGED 2016@@Evenements/TSGED/TSGED_2016@@Évènement sportif@@2016
-# TSGED 2017@@Evenements/TSGED/TSGED_2017@@Évènement sportif@@2017
+TSGED 2017@@Evenements/TSGED/TSGED_2017@@Évènement sportif@@2017
 
 ### JTX 1991 - Proj de *@@Projections_JTX/JTX1991_xx-10-94@@Proj en .K@@1991
 ### JTX 1991 - Proj de *@@Projections_JTX/JTX1991_xx-xx-xx@@Proj en .K@@1991
