@@ -44,10 +44,10 @@
 							<div class="p-0" style="width:100%;margin-left:10px;">
 								<div class="progress">	
 									<div class="progress-bar  progress_bar_class" role="progressbar" style="width: {{elmt.jaime_du_mois|get_percent_abs:max_nb_jaime}}%">
-											{{elmt.jaime_du_mois}}
+											{{elmt.jaime_du_mois}} j'aime
 									</div>
 								</div>
-								<div><a href="">{{elmt.video.titre}}</a> -
+								<div><a href="{% url 'video' elmt.video.id %}">{{elmt.video.titre}}</a> -
 									<span style="color:black">
 										{% autoescape off %} 
 											{{ elmt.video|auteurs }} 
@@ -65,22 +65,7 @@
 						{% endfor %}
 					
 
-						<div class="d-flex align-items-top" style="margin-top:10px;">
-								<div class="p-0 d-flex align-items-center" style="width:40px;height:38px;text-align:center;font-size:25px;border-radius:200px;border-color:rgb(216,216,216);border-style:solid;border-width:1px;color:rgb(190,190,190);">
-									<div style="text-align:center;width:100%;padding-bottom:2.5px;">2</div>	
-								</div>
-								<div class="p-0" style="width:100%;margin-left:10px;">
-									<div class="progress">	
-										<div class="progress-bar  progress_bar_class" id="progress_0" role="progressbar" style="width: 76%" 
-											data-toggle="tooltip" data-placement="top" title="3 J'aime">
-												18 J'aime
-										</div>
-									</div>
-									Sherlock - JTX2012
-								</div>
-							</div>
-						{% for v in vid_tendances %}
-						{% endfor %}
+					
 					</div>
 				</div>
 			</div>
