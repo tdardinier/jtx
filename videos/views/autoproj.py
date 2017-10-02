@@ -3,6 +3,7 @@
 
 import subprocess as sp
 import json
+import os
 
 def probe(vid_file_path):
     ''' Give a json from ffprobe command line
@@ -58,7 +59,15 @@ def real_add_proj(titre_proj, folder, c, promo):
 
     p = Proj(titre = titre_proj, category = c, promo = promo)
     p.save()
-    files = [str(f) for f in listdir(str(base_folder + "/" + folder + "/HD")) if str(f)[-3:] in extensions_acceptees]
+    base_basique = str(base_folder + "/" + folder + "/")
+
+    quality = "HD"
+    if !os.path.exists(base_basique + quality):
+        quality = "MD"
+    if !os.path.exists(base_basique + quality):
+        quality = "LQ"
+
+    files = [str(f) for f in listdir(base_basique + quality)) if str(f)[-3:] in extensions_acceptees]
     files.sort()
 
     i = 1
@@ -72,8 +81,15 @@ def real_add_proj(titre_proj, folder, c, promo):
         base_liens = base_url + "/" + folder + "/"
         hd = base_liens + "HD/" + f
         md = base_liens + "MD/" + f
-        sd = base_liens + "SD/" + f
+        sd = base_liens + "LQ/" + f
+        if quality == "MD":
+            hd = ""
+        if quality == "LQ":
+            hd = ""
+            md = ""
         sub = base_liens + "sub/" + basename + ".srt.vtt"
+        if !os.path.exists(sub):
+            sub = ""
         snap = base_liens + "snaps/" + f + ".png"
 
         if titre[0][0] in ['0', '1']:

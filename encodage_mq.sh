@@ -4,8 +4,8 @@ if  [ ! -d "MD" ]; then
   mkdir MD
 fi
 
-if  [ ! -d "SD" ]; then
-  mkdir SD
+if  [ ! -d "LQ" ]; then
+  mkdir LQ
 fi
 
 if  [ ! -d "snaps" ]; then
@@ -29,7 +29,7 @@ do
 
     echo "$fic"
 
-    ffmpeg -i "${fic}" -threads 0 -c:v libx264 -b:v 512K -r 25 -s 1280x720 -x264opts level=3.1 -pix_fmt yuv420p -c:a aac -strict experimental -b:a 192k -y "SD/${fic}"
+    ffmpeg -i "${fic}" -threads 0 -c:v libx264 -b:v 512K -r 25 -s 1280x720 -x264opts level=3.1 -pix_fmt yuv420p -c:a aac -strict experimental -b:a 192k -y "LQ/${fic}"
 
     ffmpeg -y -ss 00:00:01 -i "${fic}" -vframes 1 -filter:v scale="320:180" "snaps/$fic.png"
     ffmpeg -y -ss 00:00:02 -i "${fic}" -vframes 1 -filter:v scale="320:180" "snaps/$fic.png"

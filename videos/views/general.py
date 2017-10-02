@@ -34,11 +34,19 @@ def index(request):
     projs = filter(request, Proj.objects)
     videos = filter(request, Video.objects)
     categories = filter_category(request, Category.objects)
+    video_tendances=[]
+    maxi=0
+    for video in Video.objects.all():
+        nb_mois=Favorite.objects.filter(video=video, date__gte=datetime.datetime.now()-datetime.timedelta(days=30))
+        video_tendances.append({'video':video, 'jaime_du_mois':nb_mois})
+        maxi=max(maxi,nb_mois)
     context = {
         'request': request,
         'projs': projs.all()[:n_index],
         'videos': videos.all().order_by('?')[:n_index],
         'categories': categories.all(),
+        'video_tendances':video_tendances,
+        'max_nb_jaime':maxi,
     }
     return render(request, 'index.html', context)
 
