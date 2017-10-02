@@ -1,10 +1,10 @@
 Raid X-Areva - 2017@@Evenements/Raid_X-Areva/2017@@Évènement sportif@@2015
 
 WEI X2016@@Evenements/WEI/WEI_X2016@@WEI@@2015
-# WEI X2015@@Evenements/WEI/WEI_X2015@@WEI@@2014
-# WEI X2014@@Evenements/WEI/WEI_X2014@@WEI@@2013
-# WEI X2013@@Evenements/WEI/WEI_X2013@@WEI@@2012
-# WEI X2012@@Evenements/WEI/WEI_X2012@@WEI@@2011
+WEI X2015@@Evenements/WEI/WEI_X2015@@WEI@@2014
+WEI X2014@@Evenements/WEI/WEI_X2014@@WEI@@2013
+WEI X2013@@Evenements/WEI/WEI_X2013@@WEI@@2012
+WEI X2012@@Evenements/WEI/WEI_X2012@@WEI@@2011
 
 Semaine internationale - Houlgate 2017@@Evenements/Semaine_internationale/Houlgate_2017@@@@2015
 
@@ -46,10 +46,10 @@ Tournoi ParisTech 2014@@Evenements/Coupe_de_l_X/Tournoi_ParisTech_2014@@Évènem
 ### TSGED 2011@@Evenements/TSGED/TSGED_2011@@Évènement sportif@@2011
 ### TSGED 2012@@Evenements/TSGED/TSGED_2012@@Évènement sportif@@2012 (LQ)
 ### TSGED 2013@@Evenements/TSGED/TSGED_2013@@Évènement sportif@@2013 (MQ)
-# TSGED 2014@@Evenements/TSGED/TSGED_2014@@Évènement sportif@@2014
-# TSGED 2015@@Evenements/TSGED/TSGED_2015@@Évènement sportif@@2015
-# TSGED 2016@@Evenements/TSGED/TSGED_2016@@Évènement sportif@@2016
-# TSGED 2017@@Evenements/TSGED/TSGED_2017@@Évènement sportif@@2017
+TSGED 2014@@Evenements/TSGED/TSGED_2014@@Évènement sportif@@2014
+TSGED 2015@@Evenements/TSGED/TSGED_2015@@Évènement sportif@@2015
+TSGED 2016@@Evenements/TSGED/TSGED_2016@@Évènement sportif@@2016
+TSGED 2017@@Evenements/TSGED/TSGED_2017@@Évènement sportif@@2017
 
 ### JTX 1991 - Proj de *@@Projections_JTX/JTX1991_xx-10-94@@Proj en .K@@1991
 ### JTX 1991 - Proj de *@@Projections_JTX/JTX1991_xx-xx-xx@@Proj en .K@@1991
