@@ -62,9 +62,9 @@ def real_add_proj(titre_proj, folder, c, promo):
     base_basique = str(base_folder + "/" + folder + "/")
 
     quality = "HD"
-    if !os.path.exists(base_basique + quality):
+    if not os.path.exists(base_basique + quality):
         quality = "MD"
-    if !os.path.exists(base_basique + quality):
+    if not os.path.exists(base_basique + quality):
         quality = "LQ"
 
     files = [str(f) for f in listdir(base_basique + quality)) if str(f)[-3:] in extensions_acceptees]
@@ -88,7 +88,7 @@ def real_add_proj(titre_proj, folder, c, promo):
             hd = ""
             md = ""
         sub = base_liens + "sub/" + basename + ".srt.vtt"
-        if !os.path.exists(sub):
+        if not os.path.exists(sub):
             sub = ""
         snap = base_liens + "snaps/" + f + ".png"
 
