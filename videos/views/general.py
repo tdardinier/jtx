@@ -37,10 +37,10 @@ def index(request):
     video_tendances=[]
     maxi=0
     for video in Video.objects.all():
-        nb_mois=len(Favorite.objects.filter(video=video, date__gte=datetime.datetime.now()-datetime.timedelta(days=30)))
+        nb_mois=len(Favorite.objects.filter(video__id=video.id, date__gte=datetime.datetime.now()-datetime.timedelta(days=30)))
         if nb_mois>0:
             video_tendances.append({'video':video, 'jaime_du_mois':nb_mois})
-            maxi=max(maxi,nb_mois)
+            maxi=max(maxi,nb_mois)  
     context = {
         'request': request,
         'projs': projs.all()[:n_index],
