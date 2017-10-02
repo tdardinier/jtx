@@ -10,7 +10,9 @@
     
       <video id="video" class="embed-responsive-item" controls autoplay>
         <source id="src" src=""> Your browser does not support the video tag.
-        <track label="Français" kind="subtitles" srclang="fr" src="{{video.subtitles}}" default >
+          {% if  video.subtitles %}
+          <track label="Français" kind="subtitles" srclang="fr" src="{{video.subtitles}}" default >
+          {% endif %}
       </video> 
     
     
