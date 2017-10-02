@@ -57,7 +57,7 @@ def exists_user(elements, user):
     return elements.filter(user = user).exists()
 
 @register.filter(name='get_promo_video')
-def get_promo_video(video,typ):
+def get_promo_video(video,typ=''):
     r=Relation_proj.objects.get(video=video)
     if r:
         if typ=='short':
