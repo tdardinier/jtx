@@ -16,21 +16,60 @@
 
 		{% endif %}
 
+{% if request.user.is_authenticated %}
+		<div class="d-flex flex-wrap">
+		
+			<div class="col-12 col-md-6">
+				<div class="card">
+					<h2 class="card-header">Vidéo du jour</h2>
+					<div class="card-body">
+						<video style="width:100%;" controls >
+								<source src="/vdj/vdj.mp4">
+							Your browser does not support the video tag.
+						</video>
+					</div>
+				</div>
+			</div>
 
+			<div class="col-12 col-md-6">
+				<div class="card">
+					<h2 class="card-header">Tendances <small>ce mois ci</small></h2>
+					<div class="card-body">
 
-		{% if request.user.is_authenticated %}
+						{% for elmt in video_tendances|dictsortreversed:'jaime_du_mois'|slice:"5" %}
+						<div class="d-flex align-items-top">
+							<div class="p-0 d-flex align-items-center" style="width:40px;height:38px;text-align:center;font-size:25px;border-radius:200px;border-color:rgb(216,216,216);border-style:solid;border-width:1px;color:rgb(190,190,190);">
+								<div style="text-align:center;width:100%;padding-bottom:2.5px;">forloop.counter</div>	
+							</div>
+							<div class="p-0" style="width:100%;margin-left:10px;">
+								<div class="progress">	
+									<div class="progress-bar  progress_bar_class" role="progressbar" style="width: {{elmt.jaime_du_mois|get_percent_abs:max_nb_jaime}}%">
+											{{elmt.jaime_du_mois}} j'aime
+									</div>
+								</div>
+								<div><a href="{% url 'video' elmt.video.id %}">{{elmt.video.titre}}</a> -
+									<span style="color:black">
+										{% autoescape off %} 
+											{{ elmt.video|auteurs }} 
+										{% endautoescape %}
+									</span>
+								</div>
+								<small style="position:relative;top:-6px;color:grey;"> 
+										<a href="{% url 'jtx' elmt.promo %}" style="color:grey;">
+												JTX {{elmt.video.promo}}
+										</a>
+												- {{elmt.video.views}} vues
+								</small> 
+							</div>
+						</div>
+						{% endfor %}
+					
 
-		<div class="card">
-	<h2 class="card-header">Vidéo du jour</h2>
-	<div class="card-body">
-	<video style="width:100%;max-width:600px;" controls >
-			<source src="/vdj/vdj.mp4">
-			Your browser does not support the video tag.
-		</video>
-</div>
-	</div>
-	
-
+					
+					</div>
+				</div>
+			</div>
+		</div>
 {% endif %}
 
 {% if projs %}
@@ -137,10 +176,7 @@
 			</div>
 		</div>
 </div>
-{% endif %}
-<br>
-<br>
-<br>
-<br>
 </div>
+{% endif %}
+
 {% endblock %}

@@ -69,8 +69,11 @@ def get_promo_video(video,typ):
 
 @register.filter(name='get_percent')
 def get_percent(video,proj_duree):
-    s = 0
     return 100.0*video.duree/(proj_duree+0.0)
+
+@register.filter(name='get_percent_abs')
+def get_percent(float1,float2):
+    return 100.0*float1/(float2+0.0)
 
 @register.filter(name='get_list')
 def get_list(name):
