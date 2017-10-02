@@ -424,7 +424,7 @@ if(glob_quality==''){glob_quality='md'}
     'non',
     {% endif %}
 
-    '{{r.video|auteurs|striptags}}', '{{r.video.id}}',{{r.ordre}}, {{r.video.subtitles}}]
+    '{{r.video|auteurs|striptags}}', '{{r.video.id}}',{{r.ordre}}, "{{r.video.subtitles}}"]
 
     x = [];
 	{% for r2 in r.video.relation_tag_set.all %}
