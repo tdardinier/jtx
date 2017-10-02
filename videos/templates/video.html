@@ -504,7 +504,7 @@ $(function () {
           video.play();
         }
         else{
-          // video.pause();
+          video.pause();
         }
         
         }
@@ -586,12 +586,12 @@ function setCookie(cname, cvalue, exdays) {
 function change_flux_to(link,indice){
   var video = document.getElementById('video'); 
   var time=video.currentTime;
-  video.removeChild(document.getElementById('src_video'));
+  // video.removeChild(document.getElementById('src_video'));
      
-  var source = document.createElement('source');
+  var source = document.getElementById('src_video');
   source.setAttribute('src', link+'#t='+time.toString());
-  source.setAttribute('id', 'src_video');
-  video.appendChild(source);
+  // source.setAttribute('id', 'src_video');
+  // video.appendChild(source);
       
   video.load();
   video.play();
