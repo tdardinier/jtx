@@ -102,7 +102,7 @@ def real_add_proj(titre_proj, folder, c, promo):
         i += 1
 
 def read_line_proj(line):
-    l = line.split("@@")
+    l = line.split("| - |")
     titre = l[0]
     folder = l[1]
     c = Category.objects.get(titre="Divers")
