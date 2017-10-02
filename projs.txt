@@ -38,14 +38,14 @@ Coupe de l'X 2015@@Evenements/Coupe_de_l_X/Coupe_de_l_X_2015@@Évènement sporti
 Tournoi ParisTech 2014@@Evenements/Coupe_de_l_X/Tournoi_ParisTech_2014@@Évènement sportif@@2013
 ### Tournoi ParisTech 2010@@Evenements/Coupe_de_l_X/Tournoi_ParisTech_2010@@Évènement sportif@@2009
 
-### TSGED 2006@@Evenements/TSGED/TSGED_2006@@Évènement sportif@@2006
-### TSGED 2007@@Evenements/TSGED/TSGED_2007@@Évènement sportif@@2007
-### TSGED 2008@@Evenements/TSGED/TSGED_2008@@Évènement sportif@@2008
-### TSGED 2009@@Evenements/TSGED/TSGED_2009@@Évènement sportif@@2009
-### TSGED 2010@@Evenements/TSGED/TSGED_2010@@Évènement sportif@@2010
-### TSGED 2011@@Evenements/TSGED/TSGED_2011@@Évènement sportif@@2011
-### TSGED 2012@@Evenements/TSGED/TSGED_2012@@Évènement sportif@@2012 (LQ)
-### TSGED 2013@@Evenements/TSGED/TSGED_2013@@Évènement sportif@@2013 (MQ)
+TSGED 2006@@Evenements/TSGED/TSGED_2006@@Évènement sportif@@2006
+TSGED 2007@@Evenements/TSGED/TSGED_2007@@Évènement sportif@@2007
+TSGED 2008@@Evenements/TSGED/TSGED_2008@@Évènement sportif@@2008
+TSGED 2009@@Evenements/TSGED/TSGED_2009@@Évènement sportif@@2009
+TSGED 2010@@Evenements/TSGED/TSGED_2010@@Évènement sportif@@2010
+TSGED 2011@@Evenements/TSGED/TSGED_2011@@Évènement sportif@@2011
+TSGED 2012@@Evenements/TSGED/TSGED_2012@@Évènement sportif@@2012
+TSGED 2013@@Evenements/TSGED/TSGED_2013@@Évènement sportif@@2013
 TSGED 2014@@Evenements/TSGED/TSGED_2014@@Évènement sportif@@2014
 TSGED 2015@@Evenements/TSGED/TSGED_2015@@Évènement sportif@@2015
 TSGED 2016@@Evenements/TSGED/TSGED_2016@@Évènement sportif@@2016
