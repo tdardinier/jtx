@@ -9,8 +9,10 @@
     
     
       <video id="video" class="embed-responsive-item" controls autoplay>
-        <source id="src_video" src=""> Your browser does not support the video tag.
-        <track label="Français" kind="subtitles" srclang="fr" src="{{video.subtitles}}" default >
+        <source id="src" src=""> Your browser does not support the video tag.
+          {% if  video.subtitles %}
+          <track label="Français" kind="subtitles" srclang="fr" src="{{video.subtitles}}" default >
+          {% endif %}
       </video> 
     
     
@@ -586,11 +588,11 @@ function setCookie(cname, cvalue, exdays) {
 function change_flux_to(link,indice){
   var video = document.getElementById('video'); 
   var time=video.currentTime;
-  // video.removeChild(document.getElementById('src_video'));
+  // video.removeChild(document.getElementById('src'));
      
-  var source = document.getElementById('src_video');
+  var source = document.getElementById('src');
   source.setAttribute('src', link+'#t='+time.toString());
-  // source.setAttribute('id', 'src_video');
+  // source.setAttribute('id', 'src');
   // video.appendChild(source);
       
   video.load();
