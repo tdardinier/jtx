@@ -42,7 +42,13 @@ def index(request):
     #     if nb_mois>0:
     #         video_tendances.append({'video':video, 'jaime_du_mois':nb_mois})
     #         maxi=max(maxi,nb_mois)  
-    video_tendances=Favorite.objects.values('video').annotate(jaime_du_mois=Count('video'))
+    # video_tendances=Favorite.objects.values('video').annotate(jaime_du_mois=Count('video'))
+    qs=Favorite.objects.filter(ate__gte=datetime.datetime.now()-datetime.timedelta(days=30)).values('video').values()
+    diff_vids=set(qs)
+    maxi=0
+    for id_vid in diff_vids:
+         video_tendances.append({'video':Video.objects.get(id=id_vid), 'jaime_du_mois':qs.count(id_vid)})
+         maxi=max(maxi,nb_mois) 
     context = {
         'request': request,
         'projs': projs.all()[:n_index],
