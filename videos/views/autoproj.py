@@ -12,7 +12,7 @@ def probe(vid_file_path):
     '''
     if type(vid_file_path) != str:
         # raise Exception('Give ffprobe a full file path of the video')
-        return 0
+        return 1.
 
     command = ["ffprobe",
             "-loglevel",  "quiet",
@@ -44,7 +44,7 @@ def duration(vid_file_path):
     # if everything didn't happen,
     # we got here because no single 'return' in the above happen.
     # raise Exception('I found no duration')
-    return 0
+    return 1.
     #return None
 
 from django.shortcuts import render, get_object_or_404
@@ -89,7 +89,7 @@ def real_add_proj(titre_proj, folder, c, promo):
             hd = ""
             md = ""
         sub = base_liens + "sub/" + basename + ".srt.vtt"
-        if not os.path.exists(sub):
+        if not os.path.exists(base_folder + "/" + folder + "/sub/" + basename + ".srt.vtt"):
             sub = ""
         snap = base_liens + "snaps/" + f + ".png"
 
@@ -102,7 +102,7 @@ def real_add_proj(titre_proj, folder, c, promo):
         i += 1
 
 def read_line_proj(line):
-    l = line.split("@@")
+    l = line.split("| - |")
     titre = l[0]
     folder = l[1]
     c = Category.objects.get(titre="Divers")
