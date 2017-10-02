@@ -55,8 +55,8 @@
 									</span>
 								</div>
 								<small style="position:relative;top:-6px;color:grey;"> 
-										<a href="{% url 'jtx' elmt.video.promo %}" style="color:grey;">
-												JTX {{elmt.video.promo}}
+										<a href="{% url 'jtx' elmt.video|get_promo_video %}" style="color:grey;">
+												JTX {{elmt.video|get_promo_video}}
 										</a>
 												- {{elmt.video.views}} vues
 								</small> 
