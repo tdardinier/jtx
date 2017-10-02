@@ -11,8 +11,8 @@ def probe(vid_file_path):
     @vid_file_path : The absolute (full) path of the video file, string.
     '''
     if type(vid_file_path) != str:
-        raise Exception('Give ffprobe a full file path of the video')
-        return
+        # raise Exception('Give ffprobe a full file path of the video')
+        return 0
 
     command = ["ffprobe",
             "-loglevel",  "quiet",
@@ -43,7 +43,8 @@ def duration(vid_file_path):
 
     # if everything didn't happen,
     # we got here because no single 'return' in the above happen.
-    raise Exception('I found no duration')
+    # raise Exception('I found no duration')
+    return 0
     #return None
 
 from django.shortcuts import render, get_object_or_404
