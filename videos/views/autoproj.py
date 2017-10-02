@@ -75,7 +75,7 @@ def real_add_proj(titre_proj, folder, c, promo):
     for f in files:
 
         basename = '.'.join(f.split('.')[:-1])
-        filename = str(base_folder + "/" + folder + "/HD/" + f)
+        filename = str(base_basique + quality + "/" + f)
         d = duration(filename)
         titre = basename.split('_')
 
