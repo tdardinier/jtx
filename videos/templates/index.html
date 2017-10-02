@@ -39,7 +39,7 @@
 						{% for elmt in video_tendances|dictsortreversed:'jaime_du_mois'|slice:"5" %}
 						<div class="d-flex align-items-top">
 							<div class="p-0 d-flex align-items-center" style="width:40px;height:38px;text-align:center;font-size:25px;border-radius:200px;border-color:rgb(216,216,216);border-style:solid;border-width:1px;color:rgb(190,190,190);">
-								<div style="text-align:center;width:100%;padding-bottom:2.5px;">forloop.counter</div>	
+								<div style="text-align:center;width:100%;padding-bottom:2.5px;">{{forloop.counter}}</div>	
 							</div>
 							<div class="p-0" style="width:100%;margin-left:10px;">
 								<div class="progress">	
@@ -55,7 +55,7 @@
 									</span>
 								</div>
 								<small style="position:relative;top:-6px;color:grey;"> 
-										<a href="" style="color:grey;">
+										<a href="{% url 'jtx' elmt.video.promo %}" style="color:grey;">
 												JTX {{elmt.video.promo}}
 										</a>
 												- {{elmt.video.views}} vues
