@@ -586,6 +586,9 @@ function setCookie(cname, cvalue, exdays) {
 
 
 function change_flux_to(link,indice){
+
+
+
   var video = document.getElementById('video'); 
   var time=video.currentTime;
   // video.removeChild(document.getElementById('src'));
@@ -606,12 +609,22 @@ function change_flux_to(link,indice){
 
 quality=getCookie('quality');
 if(quality=='hd'){
-  change_flux_to('{{video.hd}}',1);
-  document.getElementById('btn_quality_hd').classList.add('active');
+  if("{{video.hd}}"==""){
+    change_flux_to('{{video.md}}',2)
+  }
+  else{
+    change_flux_to('{{video.hd}}',1);
+    document.getElementById('btn_quality_hd').classList.add('active');
+  }
 }
 if(quality=='md'){
+  if("{{video.md}}"==""){
+    change_flux_to('{{video.sd}}',3)
+  }
+  else{
   change_flux_to('{{video.md}}',2);
   document.getElementById('btn_quality_md').classList.add('active');
+  }
 }
 if(quality=='sd'){
   change_flux_to('{{video.sd}}',3);
