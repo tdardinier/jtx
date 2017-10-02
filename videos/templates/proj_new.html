@@ -503,7 +503,13 @@ function change_flux_to(qualite, from_strart='oui'){
   else{
     source.setAttribute('src', playlist[current][indice]+'#t='+time.toString());
   }
-  subtitle.setAttribute('src', playlist[current][7]);
+  if(playlist[current][7]){
+    subtitle.setAttribute('src', playlist[current][7]);
+  }
+  else{
+    subtitle.setAttribute('src', "/");
+  }
+  
   
   video.load();
   video.play();
