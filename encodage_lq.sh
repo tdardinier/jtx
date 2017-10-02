@@ -36,5 +36,4 @@ done
 
 cd ..
 
-rm encodage_mq.sh
-touch encoding_proj_fini
+rm encodage_lq.sh
