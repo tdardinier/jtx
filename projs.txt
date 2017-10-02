@@ -1,10 +1,10 @@
 Raid X-Areva - 2017@@Evenements/Raid_X-Areva/2017@@Évènement sportif@@2015
 
 WEI X2016@@Evenements/WEI/WEI_X2016@@WEI@@2015
-WEI X2015@@Evenements/WEI/WEI_X2015@@WEI@@2014
-WEI X2014@@Evenements/WEI/WEI_X2014@@WEI@@2013
-WEI X2013@@Evenements/WEI/WEI_X2013@@WEI@@2012
-WEI X2012@@Evenements/WEI/WEI_X2012@@WEI@@2011
+WEI X2015@@Evenements/WEI/WEI_des_2k15@@WEI@@2014
+WEI X2014@@Evenements/WEI/WEI_des_2k14@@WEI@@2013
+WEI X2013@@Evenements/WEI/WEI_des_2k13@@WEI@@2012
+WEI X2012@@Evenements/WEI/WEI_des_2k12@@WEI@@2011
 
 Semaine internationale - Houlgate 2017@@Evenements/Semaine_internationale/Houlgate_2017@@@@2015
 

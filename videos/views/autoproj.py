@@ -67,7 +67,7 @@ def real_add_proj(titre_proj, folder, c, promo):
     if not os.path.exists(base_basique + quality):
         quality = "LQ"
 
-    files = [str(f) for f in listdir(base_basique + quality)) if str(f)[-3:] in extensions_acceptees]
+    files = [str(f) for f in listdir(base_basique + quality) if str(f)[-3:] in extensions_acceptees]
     files.sort()
 
     i = 1
