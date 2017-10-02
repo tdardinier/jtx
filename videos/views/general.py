@@ -4,6 +4,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
+from django.db.models import Count
 
 import random
 from os import listdir
@@ -36,11 +37,12 @@ def index(request):
     categories = filter_category(request, Category.objects)
     video_tendances=[]
     maxi=0
-    for video in Video.objects.all():
-        nb_mois=len(Favorite.objects.filter(video__id=video.id, date__gte=datetime.datetime.now()-datetime.timedelta(days=30)))
-        if nb_mois>0:
-            video_tendances.append({'video':video, 'jaime_du_mois':nb_mois})
-            maxi=max(maxi,nb_mois)  
+    # for video in Video.objects.all():
+    #     nb_mois=len(Favorite.objects.filter(video__id=video.id, date__gte=datetime.datetime.now()-datetime.timedelta(days=30)))
+    #     if nb_mois>0:
+    #         video_tendances.append({'video':video, 'jaime_du_mois':nb_mois})
+    #         maxi=max(maxi,nb_mois)  
+    video_tendances=Favorite.objects.values('video').annotate(dcount=Count('video'))
     context = {
         'request': request,
         'projs': projs.all()[:n_index],
