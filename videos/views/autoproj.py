@@ -89,7 +89,7 @@ def real_add_proj(titre_proj, folder, c, promo):
             hd = ""
             md = ""
         sub = base_liens + "sub/" + basename + ".srt.vtt"
-        if not os.path.exists(sub):
+        if not os.path.exists(base_folder + "/" + folder + "/sub/" + basename + ".srt.vtt"):
             sub = ""
         snap = base_liens + "snaps/" + f + ".png"
 

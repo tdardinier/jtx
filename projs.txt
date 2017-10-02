@@ -50,26 +50,26 @@ TSGED 2015@@Evenements/TSGED/TSGED_2015@@√âv√®nement sportif@@2015
 TSGED 2016@@Evenements/TSGED/TSGED_2016@@√âv√®nement sportif@@2016
 TSGED 2017@@Evenements/TSGED/TSGED_2017@@√âv√®nement sportif@@2017
 
-### JTX 1991 - Proj de *@@Projections_JTX/JTX1991_xx-10-94@@Proj en .K@@1991
-### JTX 1991 - Proj de *@@Projections_JTX/JTX1991_xx-xx-xx@@Proj en .K@@1991
-### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-01-95@@Proj en .K@@1992
-### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-02-95@@Proj en .K@@1992
-### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-03-95@@Proj en .K@@1992
-### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-04-95@@Proj en .K@@1992
-### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-05-95@@Proj en .K@@1992
-### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-06-95@@Proj en .K@@1992
-### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-11-94@@Proj en .K@@1992
-### JTX 1992 - Proj de *@@Projections_JTX/JTX1992_xx-12-94@@Proj en .K@@1992
-### JTX 1997 - Proj de *@@Projections_JTX/JTX1997_09-11-99@@Proj en .K@@1997
-### JTX 1997 - Proj de *@@Projections_JTX/JTX1997_28-01-99@@Proj en .K@@1997
-### JTX 1997 - Proj de *@@Projections_JTX/JTX1997_29-03-99@@Proj en .K@@1997
-### JTX 1998 - Proj de *@@Projections_JTX/JTX1998_03-02-00@@Proj en .K@@1998
-### JTX 1998 - Proj de *@@Projections_JTX/JTX1998_05-07-00@@Proj en .K@@1998
-### JTX 1998 - Proj de *@@Projections_JTX/JTX1998_28-03-00@@Proj en .K@@1998
-### JTX 1998 - Proj de *@@Projections_JTX/JTX1998_30-11-00@@Proj en .K@@1998
-### JTX 1999 - Proj de *@@Projections_JTX/JTX1999_01-03-01@@Proj en .K@@1999
-### JTX 1999 - Proj de *@@Projections_JTX/JTX1999_07-07-01@@Proj en .K@@1999
-### JTX 1999 - Proj de *@@Projections_JTX/JTX1999_27-02-02@@Proj en .K@@1999
+JTX 1991 - Proj 1@@Projections_JTX/JTX1991_xx-10-94@@Proj en .K@@1991
+JTX 1991 - Proj 2@@Projections_JTX/JTX1991_xx-xx-xx@@Proj en .K@@1991
+JTX 1992 - Proj de janvier@@Projections_JTX/JTX1992_xx-01-95@@Proj en .K@@1992
+JTX 1992 - Proj de f√vrier@@Projections_JTX/JTX1992_xx-02-95@@Proj en .K@@1992
+JTX 1992 - Proj de mars@@Projections_JTX/JTX1992_xx-03-95@@Proj en .K@@1992
+JTX 1992 - Proj d'avril@@Projections_JTX/JTX1992_xx-04-95@@Proj en .K@@1992
+JTX 1992 - Proj de mai@@Projections_JTX/JTX1992_xx-05-95@@Proj en .K@@1992
+JTX 1992 - Proj de juin@@Projections_JTX/JTX1992_xx-06-95@@Proj en .K@@1992
+JTX 1992 - Proj de novembre@@Projections_JTX/JTX1992_xx-11-94@@Proj en .K@@1992
+JTX 1992 - Proj de d√cembre@@Projections_JTX/JTX1992_xx-12-94@@Proj en .K@@1992
+JTX 1997 - Proj de novembre@@Projections_JTX/JTX1997_09-11-99@@Proj en .K@@1997
+JTX 1997 - Proj de janvier@@Projections_JTX/JTX1997_28-01-99@@Proj en .K@@1997
+JTX 1997 - Proj de mars@@Projections_JTX/JTX1997_29-03-99@@Proj en .K@@1997
+JTX 1998 - Proj de f√vrier@@Projections_JTX/JTX1998_03-02-00@@Proj en .K@@1998
+JTX 1998 - Proj de juillet@@Projections_JTX/JTX1998_05-07-00@@Proj en .K@@1998
+JTX 1998 - Proj de mars@@Projections_JTX/JTX1998_28-03-00@@Proj en .K@@1998
+JTX 1998 - Proj de novembre@@Projections_JTX/JTX1998_30-11-00@@Proj en .K@@1998
+JTX 1999 - Proj de mars@@Projections_JTX/JTX1999_01-03-01@@Proj en .K@@1999
+JTX 1999 - Proj de juillet@@Projections_JTX/JTX1999_07-07-01@@Proj en .K@@1999
+JTX 1999 - Proj de f√vrier@@Projections_JTX/JTX1999_27-02-02@@Proj en .K@@1999
 ### JTX **** - Proj de *@@Projections_JTX/JTX2000_04-07-02@@Proj en .K@@****
 ### JTX **** - Proj de *@@Projections_JTX/JTX2000_22-03-02@@Proj en .K@@****
 ### JTX **** - Proj de *@@Projections_JTX/JTX2001_03-04-03@@Proj en .K@@****
