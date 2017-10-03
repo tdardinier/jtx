@@ -62,6 +62,11 @@ def real_add_proj(titre_proj, folder, c, promo):
     p.save()
     base_basique = str(base_folder + "/" + folder + "/")
 
+    if not os.path.exists(base_basique + "snaps"):
+        os.system("cd " + base_basique)
+        print("cd " + base_basique)
+        os.system("encodage_lq")
+
     quality = "HD"
     if not os.path.exists(base_basique + quality):
         quality = "MD"
@@ -75,7 +80,7 @@ def real_add_proj(titre_proj, folder, c, promo):
     for f in files:
 
         basename = '.'.join(f.split('.')[:-1])
-        filename = str(base_folder + "/" + folder + "/HD/" + f)
+        filename = str(base_basique + quality + "/" + f)
         d = duration(filename)
         titre = basename.split('_')
 
