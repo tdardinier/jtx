@@ -30,10 +30,9 @@ do
     ffmpeg -y -ss 00:00:30 -i "${fic}" -vframes 1 -filter:v scale="320:180" "../snaps/$fic.png"
     ffmpeg -y -ss 00:01:00 -i "${fic}" -vframes 1 -filter:v scale="320:180" "../snaps/$fic.png"
 
-    mv "$fic" MD
-
 done
 
 cd ..
 
 rm encodage_lq.sh
+pwd
