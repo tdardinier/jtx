@@ -56,11 +56,19 @@ def real_add_proj(titre_proj, folder, c, promo):
 
     base_url = "/videos"
     base_folder = "/nfs/serveur/ftp"
-    extensions_acceptees = ['mp4', 'avi']
-
-    p = Proj(titre = titre_proj, category = c, promo = promo)
-    p.save()
+    base_liens = base_url + "/" + folder + "/"
+    extensions_acceptees = ['mp4', 'avi', 'webm', 'mkv']
     base_basique = str(base_folder + "/" + folder + "/")
+
+    image = "/videos/default_proj.jpg"
+
+    if os.path.exists(base_basique + "affiche.jpg"):
+        image = base_liens + "affiche.jpg"
+    if os.path.exists(base_basique + "affiche.png"):
+        image = base_liens + "affiche.png"
+
+    p = Proj(titre = titre_proj, category = c, promo = promo, image = image)
+    p.save()
 
     if not os.path.exists(base_basique + "snaps"):
         sp.call(['cp', '/home/django/jtx/encodage_lq.sh', base_basique])
@@ -84,7 +92,6 @@ def real_add_proj(titre_proj, folder, c, promo):
         d = duration(filename)
         titre = basename.split('_')
 
-        base_liens = base_url + "/" + folder + "/"
         hd = base_liens + "HD/" + f
         md = base_liens + "MD/" + f
         sd = base_liens + "LQ/" + f

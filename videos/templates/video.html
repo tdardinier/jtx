@@ -610,7 +610,13 @@ function change_flux_to(link,indice){
 quality=getCookie('quality');
 if(quality=='hd'){
   if("{{video.hd}}"==""){
-    change_flux_to('{{video.md}}',2)
+    if("{{video.md}}"==""){
+      change_flux_to('{{video.sd}}',3)
+    }
+    else{
+      change_flux_to('{{video.md}}',2);
+    }
+   
   }
   else{
     change_flux_to('{{video.hd}}',1);

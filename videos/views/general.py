@@ -67,7 +67,7 @@ def jtx(request, year):
     videos = filter(request, Video.objects)
     # videos_jtx=videos.filter(promo=year)
     r=Relation_proj.objects.filter(proj__promo=year)
-    videos_jtx=[w.videos for w in r]
+    videos_jtx=[w.video for w in r]
     context = {
         'year': year,
         'projs_jtx': v.filter(category=c),
