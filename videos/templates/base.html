@@ -334,17 +334,17 @@
                           {% for p in pages %} 
                             {% if p|page_toujours:pages %}
                             
-                              {% if p == pages|length|add:"-1" and page < pages|length|add:"-5"%}
+                              {% if p == pages|length|add:"-1" and page < pages|length|add:"-4"%}
                               <li class="page-item"><a class="page-link" href="">...</a></li>
                               {% endif %}
 
                               {% if id %}
-                              <li class="page-item"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
+                              <li class="page-item {% if p == page %} active {% endif %}"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
                               {% else %}
-                                <li class="page-item"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
+                                <li class="page-item {% if p == page %} active {% endif %}"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
                               {% endif %}
                               
-                              {% if p == 2 and page > 6%}
+                              {% if p == 2 and page > 5%}
                               <li class="page-item"><a class="page-link" href="">...</a></li>
                               {% endif %}
 

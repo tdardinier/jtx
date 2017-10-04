@@ -94,7 +94,7 @@ def get_jaime(proj):
 
 @register.filter(name='abs_minus')
 def abs_minus(f1,f2):
-    return abs(f1-f2)<=3
+    return abs(f1-f2)<=2
 
 @register.filter(name='page_toujours')
 def page_toujours(entier,liste):
