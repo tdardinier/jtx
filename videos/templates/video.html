@@ -162,7 +162,11 @@
             </div>
             {% endif %}
            
-
+            <div style=" padding:0;margin-right:-5px;">
+              <a  href="{{video.subtitles}}" download="" class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Télécharger les sous-titres">
+                <img src={% static "admin/img/opticons/desktop-download.svg" %} alt="edit" style="height:25px;margin-top:0px;" >
+              </a>
+            </div>
            
             <!-- <div class="titre_et_vues_vues_et_jaime_nb_jaime" id='video_nb_jaime'>
               {{ nb_jaimes }}
