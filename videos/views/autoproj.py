@@ -57,7 +57,7 @@ def real_add_proj(titre_proj, folder, c, promo):
     base_url = "/videos"
     base_folder = "/nfs/serveur/ftp"
     base_liens = base_url + "/" + folder + "/"
-    extensions_acceptees = ['mp4', 'avi', 'webm']
+    extensions_acceptees = ['mp4', 'avi', 'webm', 'mkv']
     base_basique = str(base_folder + "/" + folder + "/")
 
     image = "/videos/default_proj.jpg"
