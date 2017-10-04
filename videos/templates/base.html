@@ -332,17 +332,35 @@
                          
                          
                           {% for p in pages %} 
-                            {% if p != page and p|abs_minus:page  %} 
+                            {% if p|page_toujours:pages %}
+                            
+                              {% if p == pages|length|add:"-1" and page < pages|length|add:"-4"%}
+                              <li class="page-item"><a class="page-link" href="">...</a></li>
+                              {% endif %}
+
                               {% if id %}
-                                <li class="page-item"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
-                                 
+                              <li class="page-item {% if p == page %} active {% endif %}"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
                               {% else %}
-                                <li class="page-item"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
+                                <li class="page-item {% if p == page %} active {% endif %}"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
+                              {% endif %}
                               
-                              {% endif %} 
-                            {% elif p == page %}
-                              <li class="page-item active"><a class="page-link" href="#">{{p}}</a></li>
-                            {% endif %}   
+                              {% if p == 2 and page > 5%}
+                              <li class="page-item"><a class="page-link" href="">...</a></li>
+                              {% endif %}
+
+                            {% else %}
+                              {% if p != page and p|abs_minus:page  %} 
+                                {% if id %}
+                                  <li class="page-item"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
+                                  
+                                {% else %}
+                                  <li class="page-item"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
+                                
+                                {% endif %} 
+                              {% elif p == page %}
+                                <li class="page-item active"><a class="page-link" href="#">{{p}}</a></li>
+                              {% endif %}   
+                            {% endif %}
                           {% endfor %}
       
                           
