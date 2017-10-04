@@ -96,6 +96,19 @@ def pagination(request, template, context, elements, page, adress, f = id):
     context['adress'] = adress
     return render(request, template, context)
 
+def projs(request, page=1, category=-1, origin='projs', c_id=-1):
+    categories = filter_category(request, Category.objects)
+    projs = filter(request, Proj.objects)
+    context = {
+        'titre': 'Projections',
+        'categories': categories.all(),
+        'current_cat':category,
+    }
+    if not category==-1:
+        projs=projs.filter(category=category)
+        context['id'] = c_id
+    return pagination(request, 'projs.html', context, projs, page, origin)
+
 def category(request, category_id, page=1):
     cat = get_object_or_404(Category, pk=category_id)
     if cat.public or request.user.is_authenticated:
@@ -105,21 +118,9 @@ def category(request, category_id, page=1):
         #     'id': category_id,
         # }
         # return pagination(request, 'projs.html', context, projs, page, 'category')
-        return projs(request,page,category=cat)
+        return projs(request,page,category=cat,origin='category',c_id=category_id)
     else:
         return index(request)
-
-def projs(request, page=1, category=-1):
-    categories = filter_category(request, Category.objects)
-    projs = filter(request, Proj.objects)
-    if not category==-1:
-        projs=projs.filter(category=category)
-    context = {
-        'titre': 'Projections',
-        'categories': categories.all(),
-        'current_cat':category,
-    }
-    return pagination(request, 'projs.html', context, projs, page, 'projs')
 
 #AJOUT VIDON
 def fil(request, page=1):
