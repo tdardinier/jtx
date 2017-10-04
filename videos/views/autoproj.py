@@ -70,6 +70,10 @@ def real_add_proj(titre_proj, folder, c, promo):
     p = Proj(titre = titre_proj, category = c, promo = promo, image = image)
     p.save()
 
+    # Temporaire
+    if not os.path.exists(base_basique + "MD"):
+        sp.call(['rm', '-rf', base_basique + "snaps"])
+
     if not os.path.exists(base_basique + "snaps"):
         sp.call(['cp', '/home/django/jtx/encodage_lq.sh', base_basique])
         os.chdir(base_basique)

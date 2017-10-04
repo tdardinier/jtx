@@ -24,7 +24,7 @@ do
     mv "$fic.vtt" sub
 done
 
-for fic in *.mp4 *.avi
+for fic in *.mp4 *.avi *.webm *.mkv
 do
 
     echo "$fic"
