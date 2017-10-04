@@ -63,9 +63,9 @@ def real_add_proj(titre_proj, folder, c, promo):
     base_basique = str(base_folder + "/" + folder + "/")
 
     if not os.path.exists(base_basique + "snaps"):
-        os.system("cd " + base_basique)
-        print("cd " + base_basique)
-        os.system("encodage_lq")
+        sp.call(['cp', '/home/django/jtx/encodage_lq.sh', base_basique])
+        os.chdir(base_basique)
+        sp.call(['sh', base_basique + 'encodage_lq.sh'])
 
     quality = "HD"
     if not os.path.exists(base_basique + quality):
