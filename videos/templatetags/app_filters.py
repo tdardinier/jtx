@@ -91,3 +91,7 @@ def replace_opacity(color_string,opa):
 def get_jaime(proj):
     from videos.models import Favorite_proj
     return Favorite_proj.objects.filter(proj = proj).count()
+
+@register.filter(name='abs_minus')
+def abs_minus(f1,f2):
+    return abs(f1-f2)<=3

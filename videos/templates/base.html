@@ -332,7 +332,7 @@
                          
                          
                           {% for p in pages %} 
-                            {% if p != page %} 
+                            {% if p != page and p|abs_minus:page  %} 
                               {% if id %}
                                 <li class="page-item"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
                                  
@@ -340,9 +340,9 @@
                                 <li class="page-item"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
                               
                               {% endif %} 
-                            {% else %}
+                            {% elif p == page %}
                               <li class="page-item active"><a class="page-link" href="#">{{p}}</a></li>
-                            {% endif %} 
+                            {% endif %}   
                           {% endfor %}
       
                           
