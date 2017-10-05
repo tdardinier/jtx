@@ -14,11 +14,94 @@ Amphi binets 2009| - |Evenements/Amphi_presentation_binets/Amphi_des_2k9| - |Év
 
 Amphi binets 2010| - |Evenements/Amphi_presentation_binets/Amphi_des_2K10| - |Évènement sportif| - |2009
 Amphi binets 2011| - |Evenements/Amphi_presentation_binets/Amphi_des_2k11| - |Évènement sportif| - |2010
-Amphi binets 2012| - |Evenements/Amphi_presentation_binets/Amphi_des_2k12| - |Évènement sportif| - |2011
-Amphi binets 2013| - |Evenements/Amphi_presentation_binets/Amphi_des_2k13| - |Évènement sportif| - |2012
-Amphi binets 2014| - |Evenements/Amphi_presentation_binets/Amphi_des_2k14| - |Évènement sportif| - |2013
-Amphi binets 2014| - |Evenements/Amphi_presentation_binets/Amphi_des_2k15| - |Évènement sportif| - |2014
-Amphi binets 2016| - |Evenements/Amphi_presentation_binets/2016| - |Évènement sportif| - |2015
+
+# Amphi binets 2012| - |Evenements/Amphi_presentation_binets/Amphi_des_2k12| - |Évènement sportif| - |2011
+# Amphi binets 2013| - |Evenements/Amphi_presentation_binets/Amphi_des_2k13| - |Évènement sportif| - |2012
+# Amphi binets 2014| - |Evenements/Amphi_presentation_binets/Amphi_des_2k14| - |Évènement sportif| - |2013
+# Amphi binets 2015| - |Evenements/Amphi_presentation_binets/Amphi_des_2k15| - |Évènement sportif| - |2014
+# Amphi binets 2016| - |Evenements/Amphi_presentation_binets/2016| - |Évènement sportif| - |2015
+
+######### Incorpo ################
+
+Incorpo X1994| - |Evenements/Incorpo/Incorpo_des_94| - |Incorpo| - |1992
+Incorpo X1996| - |Evenements/Incorpo/Incorpo_des_96| - |Incorpo| - |1994
+Incorpo X1997| - |Evenements/Incorpo/Incorpo_des_97| - |Incorpo| - |1995
+Incorpo X2000| - |Evenements/Incorpo/Incorpo_des_2k| - |Incorpo| - |1998
+Incorpo X2002| - |Evenements/Incorpo/Incorpo_des_2k2| - |Incorpo| - |2000
+Incorpo X2003| - |Evenements/Incorpo/Incorpo_des_2k3| - |Incorpo| - |2001
+Incorpo X2004| - |Evenements/Incorpo/Incorpo_des_2k4| - |Incorpo| - |2002
+
+Incorpo X2005 - Sections| - |Evenements/Incorpo/Incorpo_des_2k5/1-Palaiseau_proj_mercredi| - |Incorpo| - |2003
+Incorpo X2005 - Stages| - |Evenements/Incorpo/Incorpo_des_2k5/2-Palaiseau_proj_samedi| - |Incorpo| - |2003
+Incorpo X2005 - Barcelonnette| - |Evenements/Incorpo/Incorpo_des_2k5/3-Barcelo| - |Incorpo| - |2003
+Incorpo X2005 - Élèves étrangers| - |Evenements/Incorpo/Incorpo_des_2k5/Incorpo_eleves_etrangers| - |Incorpo| - |2003
+
+Incorpo X2006 - Sections| - |Evenements/Incorpo/Incorpo_des_2k6/1-Palaiseau_proj_mercredi| - |Incorpo| - |2004
+Incorpo X2006 - Stages| - |Evenements/Incorpo/Incorpo_des_2k6/2-Palaiseau_proj_samedi| - |Incorpo| - |2004
+Incorpo X2006 - Barcelonnette| - |Evenements/Incorpo/Incorpo_des_2k6/3-Barcelo| - |Incorpo| - |2004
+Incorpo X2006 - Élèves étrangers| - |Evenements/Incorpo/Incorpo_des_2k6/4-Incorpo_des_eleves_etrangers| - |Incorpo| - |2004
+
+Incorpo X2007 - Sections| - |Evenements/Incorpo/Incorpo_des_2k7/1-Palaiseau_proj_mercredi| - |Incorpo| - |2005
+Incorpo X2007 - Stages| - |Evenements/Incorpo/Incorpo_des_2k7/2-Palaiseau_proj_samedi| - |Incorpo| - |2005
+Incorpo X2007 - Barcelonnette| - |Evenements/Incorpo/Incorpo_des_2k7/3-Barcelo| - |Incorpo| - |2005
+Incorpo X2007 - Élèves étrangers| - |Evenements/Incorpo/Incorpo_des_2k7/4-Incorpo_des_eleves_etrangers| - |Incorpo| - |2005
+
+Incorpo X2008 - Sections| - |Evenements/Incorpo/Incorpo_des_2k8/1-Palaiseau_proj_mercredi| - |Incorpo| - |2006
+Incorpo X2008 - Stages| - |Evenements/Incorpo/Incorpo_des_2k8/2-Palaiseau_proj_samedi| - |Incorpo| - |2006
+Incorpo X2008 - Barcelonnette| - |Evenements/Incorpo/Incorpo_des_2k8/3-Barcelo| - |Incorpo| - |2006
+Incorpo X2008 - Élèves étrangers| - |Evenements/Incorpo/Incorpo_des_2k8/4-Incorpo_des_eleves_etrangers| - |Incorpo| - |2006
+
+Incorpo X2009 - Sections| - |Evenements/Incorpo/Incorpo_des_2k9/1-Palaiseau_proj_mardi| - |Incorpo| - |2007
+Incorpo X2009 - Stages| - |Evenements/Incorpo/Incorpo_des_2k9/2-Palaiseau_proj_samedi| - |Incorpo| - |2007
+Incorpo X2009 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k9/3-La_Courtine| - |Incorpo| - |2007
+
+Incorpo X2010 - Sections| - |Evenements/Incorpo/Incorpo_des_2k10/1-Palaiseau_proj_mardi| - |Incorpo| - |2008
+Incorpo X2010 - Stages| - |Evenements/Incorpo/Incorpo_des_2k10/2-Palaiseau_proj_samedi| - |Incorpo| - |2008
+Incorpo X2010 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k10/3-La_Courtine| - |Incorpo| - |2008
+
+Incorpo X2011 - Sections| - |Evenements/Incorpo/Incorpo_des_2k11/01-Proj_Palaiseau_Mardi| - |Incorpo| - |2009
+Incorpo X2011 - Stages| - |Evenements/Incorpo/Incorpo_des_2k11/02-Proj_Palaiseau_Samedi| - |Incorpo| - |2009
+Incorpo X2011 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k11/03-Proj_Courtine| - |Incorpo| - |2009
+Incorpo X2011 - Bonus| - |Evenements/Incorpo/Incorpo_des_2k11/04-Bonus| - |Incorpo| - |2009
+
+Incorpo X2012 - Sections| - |Evenements/Incorpo/Incorpo_des_2k12/01-Palaiseau_proj_mardi| - |Incorpo| - |2010
+Incorpo X2012 - Stages| - |Evenements/Incorpo/Incorpo_des_2k12/02-Proj_Palaiseau_Samedi| - |Incorpo| - |2010
+Incorpo X2012 - WED| - |Evenements/Incorpo/Incorpo_des_2k12/03-Proj_WED| - |Incorpo| - |2010
+Incorpo X2012 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k12/04-Proj_La_Courtine| - |Incorpo| - |2010
+Incorpo X2012 - Bonus| - |Evenements/Incorpo/Incorpo_des_2k12/bonus| - |Incorpo| - |2010
+
+#### MQ
+
+## Incorpo X2013 - Sections| - |Evenements/Incorpo/Incorpo_des_2k13/Mardi_03-09-13| - |Incorpo| - |2011
+## Incorpo X2013 - WED| - |Evenements/Incorpo/Incorpo_des_2k13/WED| - |Incorpo| - |2011
+
+## Incorpo X2014 - Sections| - |Evenements/Incorpo/Incorpo_des_2k14/Mardi_2014-09-02| - |Incorpo| - |2012
+## Incorpo X2014 - Stages| - |Evenements/Incorpo/Incorpo_des_2k14/Samedi_2014-09-06| - |Incorpo| - |2012
+## Incorpo X2014 - WED| - |Evenements/Incorpo/Incorpo_des_2k14/WED_2014-09-14| - |Incorpo| - |2012
+
+## Incorpo X2015 - WED| - |Evenements/Incorpo/Incorpo_des_2k15/2015-09-13_WED| - |Incorpo| - |2013
+
+#### HQ
+
+## Incorpo X2013 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k13/La_Courtine| - |Incorpo| - |2011
+## Incorpo X2013 - Stages| - |Evenements/Incorpo/Incorpo_des_2k13/Samedi_07-09-13| - |Incorpo| - |2011
+
+## Incorpo X2014 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k14/La_Courtine_2014-09-25| - |Incorpo| - |2012
+
+## Incorpo X2015 - Sections| - |Evenements/Incorpo/Incorpo_des_2k15/mardi| - |Incorpo| - |2013
+## Incorpo X2015 - Stages| - |Evenements/Incorpo/Incorpo_des_2k15/samedi| - |Incorpo| - |2013
+## Incorpo X2015 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k15/2015-09-24_ProjCourtine2015| - |Incorpo| - |2013
+
+## Incorpo X2016 - Sections| - |Evenements/Incorpo/Incorpo_des_2k16/ProjSections-Mardi| - |Incorpo| - |2014
+## Incorpo X2016 - Stages| - |Evenements/Incorpo/Incorpo_des_2k16/ProjStages-Mercredi| - |Incorpo| - |2014
+## Incorpo X2016 - Chasse au trésor| - |Evenements/Incorpo/Incorpo_des_2k16/ProjTresors-Samedi| - |Incorpo| - |2014
+## Incorpo X2016 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k16/LaCourtine| - |Incorpo| - |2014
+## Incorpo X2016 - NOVA| - |Evenements/Incorpo/Incorpo_des_2k16/Nova| - |Incorpo| - |2014
+
+## Incorpo X2017 - Sections| - |Evenements/Incorpo/Incorpo_des_2k17/1-Palaiseau_proj_sections| - |Incorpo| - |2015
+## Incorpo X2017 - Stages| - |Evenements/Incorpo/Incorpo_des_2k17/2-Palaiseau_proj_stages| - |Incorpo| - |2015
+
+# Incorpo X2017 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k17/3-Courtine| - |Incorpo| - |2015
 
 ######### RAID ##########
 
