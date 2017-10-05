@@ -5,6 +5,156 @@
 
 
 {% if elements_proj %}
+<!-- <div class="d-flex justify-content-center" style="margin-bottom:15px;">
+	<div class="col-12 col-md-6 shadow-div" style="background-color:white;padding:0;">
+		<div class='dropdown-header' style='padding-top:15px;'>
+			<div class="d-flex justify-content-between align-items-center">
+				<div style='color:#CC181E;font-size:20px;' >
+					Projections
+				</div>
+				<div class='' onclick="search_hide_proj('search_proj_liste')">Masquer</div>
+			</div>
+			
+			
+		</div>
+		<div class="dropdown-divider"></div>
+		<div style="padding:5px;padding-bottom:0px;" id="search_proj_liste">
+					<div id="position_proj_0"></div>
+					<table id="table_projs" class="display" width="100%" cellspacing="0">
+							<thead>
+								<tr>
+									<th>Titre</th>
+									<th>JTX</th>
+									<th>Durée</th>
+									<th>Vues</th>
+									<th>Catégorie</th>
+								</tr>
+							</thead>
+							<tfoot>
+									<tr>
+											<th>Titre</th>
+											<th>JTX</th>
+											<th>Durée</th>
+											<th>Vues</th>
+											<th>Catégorie</th>
+										</tr>
+							</tfoot>
+							
+							<tbody>
+								{% for p in elements_proj %}
+								<tr style="" id='proj_{{forloop.counter0}}'>
+									<td>{{p.titre}}</td>
+									<td>{{p.promo}}</td>
+									<td>{{p|duration_proj}}</td>
+									<td>{{p.views}}</td>
+									<td>{{p.category.titre}}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+					
+					</table>
+		
+		</div>
+	</div>
+</div> -->
+{% endif %}
+<div class="d-flex justify-content-center" style="margin-bottom:15px;">
+<div class="col-12 col-md-6">
+<div class="card">
+	<div class="card-header">
+		<h2>{{titre}}</h2>
+			<div class="d-none d-sm-block">
+					<ul class=" nav nav-tabs card-header-tabs no-wrap">
+	
+						{% if elements_proj %}
+						<li class="nav-item" >
+							<a class="nav-link active" href="#affiche_projs" data-toggle="tab"  role="tab">Projections</a>
+						</li>
+						{% endif %}
+						
+							
+						{% if elements_vid %}
+						<li class="nav-item " >
+							<a class="nav-link {% if not elements_proj %} active {% endif %}" href="#affiche_vids" data-toggle="tab"  role="tab">Vidéos</a>
+						</li>
+						{% endif %}
+
+						{% if elements_auteurs %}
+						<li class="nav-item " >
+							<a class="nav-link 	{% if not elements_proj%} {% if not element_vid %} active {% endif %} {% endif %}" href="#affiche_auteurs" data-toggle="tab"  role="tab">JTXWOMEN.MEN	</a>
+						</li>
+						{% endif %}
+
+					</ul>
+			</div>
+	</div>
+	<div class="card-body">
+			
+
+			<div class="tab-content">
+
+					{% if elements_proj %}
+					<div class="tab-pane fade show active" id="affiche_projs">
+						{% for p in elements_proj %}
+							{% include "block_video_proj_liste.html" with video=0 elmt=p horizontal=1 description=1 %}
+						{% endfor %}
+					</div>	
+					{% endif %}
+
+					{% if elements_vid %}
+					<div class="tab-pane fade show {% if not elements_proj %} active {% endif %}" id="affiche_vids">
+						{% for v in elements_vid %}
+							{% include "block_video_proj_liste.html" with video=1 elmt=v horizontal=1 description=1 %}
+						{% endfor %}
+					</div>	
+					{% endif %}
+
+					{% if elements_auteurs %}
+					<div class="tab-pane fade show {% if not elements_proj%} {% if not element_vid %} active {% endif %} {% endif %}" id="affiche_auteurs">
+						{% for a in elements_auteurs %}
+							<div style="margin-bottom:5px;">
+								<div class="d-flex align-items-center">
+				
+									<div>
+										
+											<a href="/jtx/{{a.promo}}" class="d-flex align-items-center justify-content-center no-hover-link {% if a.promo|divisibleby:'2' %}bg-danger{%else%}bg-warning{% endif %}" style="width:50px;height:50px;"
+											data-toggle="tooltip" data-placement="bottom" title="Aller sur la page du JTX {{a.promo}}">
+											 
+												<div class="no-hover-link" style="font-size:30px;color:white;">
+													{{a|short_promo}}
+												</div>
+											  
+											  </a>
+									</div>
+								
+									<div style="margin-left:10px;">
+										<a href="{{ a|url_auteur }}" class='search_jtxwoman' >{{ a.firstname }} {{ a.lastname }} </a>
+										<br>
+										<small style="color:rgb(150, 150, 150)">Respo bullshit.</small>	
+									</div>
+				
+								</div>
+							</div>
+							
+						{% endfor %}
+					</div>	
+					{% endif %}
+			</div>
+		{% if not element_projs %}
+			{% if not element_vid  %}
+				{% if not elements_auteurs %}
+				Désolé il n'y a aucun résultat.
+				{% endif %}
+			{% endif %}
+		{% endif %}
+
+	</div>
+</div>
+</div>
+</div>
+
+
+{% if elements_proj %}
 <div class="d-flex justify-content-center" style="margin-bottom:15px;">
 	<div class="col-12 col-md-6 shadow-div" style="background-color:white;padding:0;">
 		<div class='dropdown-header' style='padding-top:15px;'>
@@ -114,6 +264,46 @@ $(function () {
 			e.style.display='none';
 		}
 	}
+
+	
+	// cols=[];
+
+	// $(document).ready(function() {
+	// 	$('#table_projs').DataTable({
+	// 		initComplete: function () {
+    //         this.api().columns().every( function () {
+    //             var column = this;
+	// 			cols.push(column);
+	// 			if(cols.length==2 || cols.length==5){
+	// 				var select = $('<select><option value=""></option></select>')
+    //                 .appendTo( $(column.footer()).empty() )
+    //                 .on( 'change', function () {
+    //                     var val = $.fn.dataTable.util.escapeRegex(
+    //                         $(this).val()
+    //                     );
+ 
+    //                     column
+    //                         .search( val ? '^'+val+'$' : '', true, false )
+    //                         .draw();
+    //                 } );
+ 
+    //             column.data().unique().sort().each( function ( d, j ) {
+    //                 select.append( '<option value="'+d+'">'+d+'</option>' )
+    //             } );
+	// 			}
+
+    //         } );
+    //     }
+	// 	});
+
+	
+	// } );
+
+	// window.addEventListener("click", update_index, false); 
+
+	// function update_index(){
+	// 	document.getElementById('position_proj_0').innerHTML=document.getElementById('proj_0').sectionRowIndex;
+	// }
  </script>
 
 {% endblock %}
