@@ -612,6 +612,8 @@ function change_flux_to(link,indice){
 }
 
 quality=getCookie('quality');
+if(quality==''){quality='md'}
+
 if(quality=='hd'){
   if("{{video.hd}}"==""){
     if("{{video.md}}"==""){
