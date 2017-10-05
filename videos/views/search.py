@@ -29,6 +29,7 @@ def filter(request, x):
 def videos_request(request, q):
     l = q.split(" ")
     videos = filter(request, Video.objects)
+    
     for x in l:
         videos = videos.filter(titre__contains = x)
     return videos.all()

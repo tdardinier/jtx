@@ -4,62 +4,9 @@
 {% load app_filters %}
 
 
-{% if elements_proj %}
-<!-- <div class="d-flex justify-content-center" style="margin-bottom:15px;">
-	<div class="col-12 col-md-6 shadow-div" style="background-color:white;padding:0;">
-		<div class='dropdown-header' style='padding-top:15px;'>
-			<div class="d-flex justify-content-between align-items-center">
-				<div style='color:#CC181E;font-size:20px;' >
-					Projections
-				</div>
-				<div class='' onclick="search_hide_proj('search_proj_liste')">Masquer</div>
-			</div>
-			
-			
-		</div>
-		<div class="dropdown-divider"></div>
-		<div style="padding:5px;padding-bottom:0px;" id="search_proj_liste">
-					<div id="position_proj_0"></div>
-					<table id="table_projs" class="display" width="100%" cellspacing="0">
-							<thead>
-								<tr>
-									<th>Titre</th>
-									<th>JTX</th>
-									<th>Durée</th>
-									<th>Vues</th>
-									<th>Catégorie</th>
-								</tr>
-							</thead>
-							<tfoot>
-									<tr>
-											<th>Titre</th>
-											<th>JTX</th>
-											<th>Durée</th>
-											<th>Vues</th>
-											<th>Catégorie</th>
-										</tr>
-							</tfoot>
-							
-							<tbody>
-								{% for p in elements_proj %}
-								<tr style="" id='proj_{{forloop.counter0}}'>
-									<td>{{p.titre}}</td>
-									<td>{{p.promo}}</td>
-									<td>{{p|duration_proj}}</td>
-									<td>{{p.views}}</td>
-									<td>{{p.category.titre}}</td>
-								</tr>
-								{% endfor %}
-							</tbody>
-					
-					</table>
-		
-		</div>
-	</div>
-</div> -->
-{% endif %}
+
 <div class="d-flex justify-content-center" style="margin-bottom:15px;">
-<div class="col-12 col-md-6">
+<div class="col-12 col-md-10 col-lg-6">
 <div class="card">
 	<div class="card-header">
 		<h2>{{titre}}</h2>
@@ -95,19 +42,92 @@
 
 					{% if elements_proj %}
 					<div class="tab-pane fade show active" id="affiche_projs">
-						{% for p in elements_proj %}
-							{% include "block_video_proj_liste.html" with video=0 elmt=p horizontal=1 description=1 %}
-						{% endfor %}
+
+						<table id="table_projs" class="table dt-responsive nowrap " width="100%" cellspacing="0">
+							<thead>
+								<tr>
+									<th>Titre</th>
+									<th>JTX</th>
+									<th>Durée</th>
+									<th>Vues</th>
+									<th>Catégorie</th>
+								</tr>
+							</thead>
+						
+							
+							<tbody style="display:none;" id="table_proj_body">
+								{% for p in elements_proj %}
+								<tr style="" id='table_proj_{{forloop.counter0}}'>
+									<td>{{p.titre}}</td>
+									<td>{{p.promo}}</td>
+									<td>{{p|duration_proj_seconds}}</td>
+									<td>{{p.views}}</td>
+									<td>{{p.category.titre}}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+					
+					</table>
+
+						
+						<div class="d-flex flex-column" id="liste_proj" style="margin-top:10px;">
+							{% for p in elements_proj %}
+								<div id="liste_proj_{{forloop.counter0}}">
+								{% include "block_video_proj_liste.html" with video=0 elmt=p horizontal=1 description=1 %}
+								</div>
+							{% endfor %}
+						</div>
+						
 					</div>	
 					{% endif %}
 
+
+
+
+
+
 					{% if elements_vid %}
 					<div class="tab-pane fade show {% if not elements_proj %} active {% endif %}" id="affiche_vids">
-						{% for v in elements_vid %}
-							{% include "block_video_proj_liste.html" with video=1 elmt=v horizontal=1 description=1 %}
-						{% endfor %}
+							<table id="table_vids" class="table dt-responsive nowrap " width="100%" cellspacing="0">
+									<thead>
+										<tr>
+											<th>Titre</th>
+											<th>Date</th>
+											<th>Durée</th>
+											<th>Vues</th>
+											<th>Catégorie</th>
+										</tr>
+									</thead>
+								
+									
+									<tbody style="display:none;" id="table_vid_body">
+										{% for v in elements_vid %}
+										<tr style="" id='table_vid_{{forloop.counter0}}'>
+											<td>{{v.titre}}</td>
+											<td>{{v|get_promo_video}}</td>
+											<td>{{v.duree}}</td>
+											<td>{{v.views}}</td>
+											<td>{{v.category.titre}}</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+							
+							</table>
+
+							<div class="d-flex flex-column" id="liste_vid" style="margin-top:10px;">
+								{% for v in elements_vid %}
+									<div id="liste_vid_{{forloop.counter0}}">
+										{% include "block_video_proj_liste.html" with video=1 elmt=v horizontal=1 description=1 %}
+									</div>
+								{% endfor %}
+							</div>
 					</div>	
 					{% endif %}
+
+
+
+
+
 
 					{% if elements_auteurs %}
 					<div class="tab-pane fade show {% if not elements_proj%} {% if not element_vid %} active {% endif %} {% endif %}" id="affiche_auteurs">
@@ -140,8 +160,8 @@
 					</div>	
 					{% endif %}
 			</div>
-		{% if not element_projs %}
-			{% if not element_vid  %}
+		{% if not elements_proj %}
+			{% if not elements_vid  %}
 				{% if not elements_auteurs %}
 				Désolé il n'y a aucun résultat.
 				{% endif %}
@@ -152,98 +172,6 @@
 </div>
 </div>
 </div>
-
-
-{% if elements_proj %}
-<div class="d-flex justify-content-center" style="margin-bottom:15px;">
-	<div class="col-12 col-md-6 shadow-div" style="background-color:white;padding:0;">
-		<div class='dropdown-header' style='padding-top:15px;'>
-			<div class="d-flex justify-content-between align-items-center">
-				<div style='color:#CC181E;font-size:20px;' >
-					Projections
-				</div>
-				<div class='' onclick="search_hide_proj('search_proj_liste')">Masquer</div>
-			</div>
-			
-			
-		</div>
-		<div class="dropdown-divider"></div>
-		<div style="padding:5px;padding-bottom:0px;" id="search_proj_liste">
-		{% for p in elements_proj %}
-			{% include "block_video_proj_liste.html" with video=0 elmt=p horizontal=1 description=1 %}
-		{% endfor %}
-		</div>
-	</div>
-</div>
-{% endif %}
-
-{% if elements_vid %}
-<div class="d-flex justify-content-center" style="margin-bottom:15px;">
-	<div class="col-12 col-md-6 shadow-div" style="background-color:white;padding:0;">
-		<div class='dropdown-header' style='padding-top:15px;'>
-			<div class="d-flex justify-content-between align-items-center">
-						<div style='color:#27ae60;font-size:20px;' >
-								Vidéos
-						</div>
-						<div class='' onclick="search_hide_proj('search_vid_liste')">Masquer</div>
-					</div>
-			</div>
-		<div class="dropdown-divider"></div>
-		<div style="padding:5px;padding-bottom:0px;" id='search_vid_liste'>
-		{% for v in elements_vid %}
-			{% include "block_video_proj_liste.html" with video=1 elmt=v horizontal=1 description=1 %}
-		{% endfor %}
-		</div>
-	</div>
-</div>
-{% endif %}
-
-{% if elements_auteurs %}
-<div class="d-flex justify-content-center" style="margin-bottom:15px;">
-	<div class="col-12 col-md-6 shadow-div" style="background-color:white;padding:0;">
-		<div class='dropdown-header' style='padding-top:15px;'>
-				<div class="d-flex justify-content-between align-items-center">
-						<div style='color:#3498db;font-size:20px;' >
-								JTXWOMEN.MEN
-						</div>
-						<div class='' onclick="search_hide_proj('search_membre_liste')">Masquer</div>
-					</div>
-			</div>
-			
-		
-		<div class="dropdown-divider"></div>
-		<div style="padding:5px;padding-bottom:0px;" id='search_membre_liste'>
-		{% for a in elements_auteurs %}
-			<div style="margin-bottom:5px;">
-				<div class="d-flex align-items-center">
-
-					<div>
-						
-							<a href="/jtx/{{a.promo}}" class="d-flex align-items-center justify-content-center no-hover-link {% if a.promo|divisibleby:'2' %}bg-danger{%else%}bg-warning{% endif %}" style="width:50px;height:50px;"
-							data-toggle="tooltip" data-placement="bottom" title="Aller sur la page du JTX {{a.promo}}">
-							 
-								<div class="no-hover-link" style="font-size:30px;color:white;">
-									{{a|short_promo}}
-								</div>
-							  
-							  </a>
-					</div>
-				
-					<div style="margin-left:10px;">
-						<a href="{{ a|url_auteur }}" class='search_jtxwoman' >{{ a.firstname }} {{ a.lastname }} </a>
-						<br>
-						<small style="color:rgb(150, 150, 150)">Respo bullshit.</small>	
-					</div>
-
-				</div>
-			</div>
-			
-		{% endfor %}
-		</div>
-	</div>
-</div>
-{% endif %}
-
 
 
 
@@ -265,45 +193,72 @@ $(function () {
 		}
 	}
 
-	
-	// cols=[];
-
-	// $(document).ready(function() {
-	// 	$('#table_projs').DataTable({
-	// 		initComplete: function () {
-    //         this.api().columns().every( function () {
-    //             var column = this;
-	// 			cols.push(column);
-	// 			if(cols.length==2 || cols.length==5){
-	// 				var select = $('<select><option value=""></option></select>')
-    //                 .appendTo( $(column.footer()).empty() )
-    //                 .on( 'change', function () {
-    //                     var val = $.fn.dataTable.util.escapeRegex(
-    //                         $(this).val()
-    //                     );
- 
-    //                     column
-    //                         .search( val ? '^'+val+'$' : '', true, false )
-    //                         .draw();
-    //                 } );
- 
-    //             column.data().unique().sort().each( function ( d, j ) {
-    //                 select.append( '<option value="'+d+'">'+d+'</option>' )
-    //             } );
-	// 			}
-
-    //         } );
-    //     }
-	// 	});
 
 	
-	// } );
 
-	// window.addEventListener("click", update_index, false); 
+	
+	{% if elements_proj %}
+	
+	$(document).ready(function() {
+		$('#table_projs').DataTable({
+			searching: false,
+			paging:false,
+			"bInfo" : false,
+			"oLanguage": {
+			"sSearch": "Filtrer : "
+			}
+		});
+	});
 
-	// function update_index(){
-	// 	document.getElementById('position_proj_0').innerHTML=document.getElementById('proj_0').sectionRowIndex;
-	// }
+
+	document.getElementById('table_projs').addEventListener("click", update_index_proj, false); 
+	function update_index_proj(){
+
+		var new_proj_order=[];
+		for(i=0;i<document.getElementById('table_proj_body').children.length;i++){
+			var k = parseInt(document.getElementById('table_proj_body').children[i].id.split('_')[2]);
+			new_proj_order.push(k);
+		}
+		var new_proj_children=[];
+		for(i=0;i<document.getElementById('table_proj_body').children.length;i++){
+			new_proj_children.push($('#liste_proj_'+new_proj_order[i].toString()).get(0).outerHTML);
+		}
+		document.getElementById('liste_proj').innerHTML=new_proj_children.join(" ");
+		
+	}
+	{% endif %}
+
+	{% if elements_vid %}
+
+	$(document).ready(function() {
+		$('#table_vids').DataTable({
+			searching: false,
+			paging:false,
+			"bInfo" : false,
+			"oLanguage": {
+			"sSearch": "Filtrer : "
+			}
+		});
+	});
+
+	document.getElementById('table_vids').addEventListener("click", update_index_vid, false); 
+	function update_index_vid(){
+
+		var new_vid_order=[];
+		for(i=0;i<document.getElementById('table_vid_body').children.length;i++){
+			var k = parseInt(document.getElementById('table_vid_body').children[i].id.split('_')[2]);
+			new_vid_order.push(k);
+		}
+
+		var new_vid_children=[];
+		for(i=0;i<document.getElementById('table_vid_body').children.length;i++){
+			new_vid_children.push($('#liste_vid_'+new_vid_order[i].toString()).get(0).outerHTML);
+		}
+		document.getElementById('liste_vid').innerHTML=new_vid_children.join(" ");
+		
+	}
+	{% endif %}
+
  </script>
 
 {% endblock %}
