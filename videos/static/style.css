@@ -605,6 +605,33 @@ Concerne l'affichage des légendes des vidéos
   margin-bottom: -22px;
 }
 
+.legende_vid_annee{
+  
+  float: left;
+  position: relative;
+  top:-27px;
+  left:5px;
+
+  padding-left: 3px;
+  padding-right: 3px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+
+  text-align: right;
+  font-weight: 500;
+  color:white;
+  font-size: 13px;
+  /* text-shadow: 0px 0px 3px black; */
+
+  opacity: 0.7;
+
+  margin-bottom: -22px;
+}
+
+.img_link:hover .legende_vid_annee{
+  opacity: 1;
+}
+
 .legende_vid_titre{
   /* color:#167AC6; */
   color:rgb(22, 122, 198);
