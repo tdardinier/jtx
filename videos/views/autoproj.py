@@ -52,6 +52,11 @@ from django.shortcuts import render, get_object_or_404
 from ..models import *
 from .edit import *
 
+def render_title(t):
+    x = t.lstrip('0123456789_')
+    x = x.split('_')
+    return ' '.join(x)
+
 def real_add_proj(titre_proj, folder, c, promo):
 
     base_url = "/videos"
@@ -90,7 +95,6 @@ def real_add_proj(titre_proj, folder, c, promo):
         basename = '.'.join(f.split('.')[:-1])
         filename = str(base_basique + quality + "/" + f)
         d = duration(filename)
-        titre = basename.split('_')
 
         hd = base_liens + "HD/" + f
         md = base_liens + "MD/" + f
@@ -105,9 +109,8 @@ def real_add_proj(titre_proj, folder, c, promo):
             sub = ""
         snap = base_liens + "snaps/" + f + ".png"
 
-        if titre[0][0] in ['0', '1']:
-            titre = titre[1:]
-        v = Video(titre = ' '.join(titre), duree=d, category=c, hd=hd, md=md, sd=sd, screenshot=snap, subtitles=sub)
+        titre = render_title(basename)
+        v = Video(titre = titre, duree=d, category=c, hd=hd, md=md, sd=sd, screenshot=snap, subtitles=sub)
         v.save()
         r = Relation_proj(proj = p, video = v, ordre = i)
         r.save()
