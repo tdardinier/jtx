@@ -1,3 +1,25 @@
+######### Amphi binets ##############
+
+Amphi binets 1998| - |Evenements/Amphi_presentation_binets/Amphi_des_1998| - |Évènement sportif| - |1997
+
+Amphi binets 2001| - |Evenements/Amphi_presentation_binets/Amphi_des_2k1| - |Évènement sportif| - |2000
+
+Amphi binets 2003| - |Evenements/Amphi_presentation_binets/Amphi_des_2k3| - |Évènement sportif| - |2002
+Amphi binets 2004| - |Evenements/Amphi_presentation_binets/Amphi_des_2k4| - |Évènement sportif| - |2003
+Amphi binets 2005| - |Evenements/Amphi_presentation_binets/Amphi_des_2k5| - |Évènement sportif| - |2004
+Amphi binets 2006| - |Evenements/Amphi_presentation_binets/Amphi_des_2k6| - |Évènement sportif| - |2005
+Amphi binets 2007| - |Evenements/Amphi_presentation_binets/Amphi_des_2k7| - |Évènement sportif| - |2006
+Amphi binets 2008| - |Evenements/Amphi_presentation_binets/Amphi_des_2k8| - |Évènement sportif| - |2007
+Amphi binets 2009| - |Evenements/Amphi_presentation_binets/Amphi_des_2k9| - |Évènement sportif| - |2008
+
+Amphi binets 2010| - |Evenements/Amphi_presentation_binets/Amphi_des_2K10| - |Évènement sportif| - |2009
+Amphi binets 2011| - |Evenements/Amphi_presentation_binets/Amphi_des_2k11| - |Évènement sportif| - |2010
+Amphi binets 2012| - |Evenements/Amphi_presentation_binets/Amphi_des_2k12| - |Évènement sportif| - |2011
+Amphi binets 2013| - |Evenements/Amphi_presentation_binets/Amphi_des_2k13| - |Évènement sportif| - |2012
+Amphi binets 2014| - |Evenements/Amphi_presentation_binets/Amphi_des_2k14| - |Évènement sportif| - |2013
+Amphi binets 2014| - |Evenements/Amphi_presentation_binets/Amphi_des_2k15| - |Évènement sportif| - |2014
+Amphi binets 2016| - |Evenements/Amphi_presentation_binets/2016| - |Évènement sportif| - |2015
+
 ######### RAID ##########
 
 Raid X-Areva - 2017| - |Evenements/Raid_X-Areva/2017| - |Évènement sportif| - |2015
