@@ -2,131 +2,130 @@
 
 # LQ
 
-Campagne Kès des X1989| - |Evenements/Campagne_Kes_des_89| - |Campagne Kès| - |1989
-Campagne Kès des X1991| - |Evenements/Campagne_Kes_des_91| - |Campagne Kès| - |1991
+Campagne Kès des X1989| - |Evenements/Campagne_Kes/Campagne_Kes_des_89| - |Campagne Kès| - |1989
+Campagne Kès des X1991| - |Evenements/Campagne_Kes/Campagne_Kes_des_91| - |Campagne Kès| - |1991
 
-Campagne Kès des X1992| - |Evenements/Campagne_Kes_des_92/Amphi_listes_Kes| - |Campagne Kès| - |1992
-Campagne Kès des X1992| - |Evenements/Campagne_Kes_des_92| - |Campagne Kès| - |1992
+Campagne Kès des X1992 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_92/Amphi_listes_Kes| - |Campagne Kès| - |1992
+Campagne Kès des X1992 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_92| - |Campagne Kès| - |1992
 
-Campagne Kès des X1993| - |Evenements/Campagne_Kes_des_93/Listes_Kes/Cassette_1| - |Campagne Kès| - |1993
-Campagne Kès des X1993| - |Evenements/Campagne_Kes_des_93/Listes_Kes/Cassette_2| - |Campagne Kès| - |1993
+Campagne Kès des X1993 - 1| - |Evenements/Campagne_Kes/Campagne_Kes_des_93/Listes_Kes/Cassette_1| - |Campagne Kès| - |1993
+Campagne Kès des X1993 - 2| - |Evenements/Campagne_Kes/Campagne_Kes_des_93/Listes_Kes/Cassette_2| - |Campagne Kès| - |1993
 
-Campagne Kès des X1994| - |Evenements/Campagne_Kes_des_94| - |Campagne Kès| - |1994
-Campagne Kès des X1996| - |Evenements/Campagne_Kes_des_96| - |Campagne Kès| - |1996
+Campagne Kès des X1994| - |Evenements/Campagne_Kes/Campagne_Kes_des_94| - |Campagne Kès| - |1994
+Campagne Kès des X1996| - |Evenements/Campagne_Kes/Campagne_Kes_des_96| - |Campagne Kès| - |1996
 
-Campagne Kès des X1997| - |Evenements/Campagne_Kes_des_97/Listes_Kes| - |Campagne Kès| - |1997
-Campagne Kès des X1997| - |Evenements/Campagne_Kes_des_97| - |Campagne Kès| - |1997
+Campagne Kès des X1997 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_97/Listes_Kes| - |Campagne Kès| - |1997
+Campagne Kès des X1997 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_97| - |Campagne Kès| - |1997
 
-Campagne Kès des X1998| - |Evenements/Campagne_Kes_des_98| - |Campagne Kès| - |1998
-Campagne Kès des X1999| - |Evenements/Campagne_Kes_des_99| - |Campagne Kès| - |1999
-Campagne Kès des X2000| - |Evenements/Campagne_Kes_des_2k| - |Campagne Kès| - |2000
+Campagne Kès des X1998| - |Evenements/Campagne_Kes/Campagne_Kes_des_98| - |Campagne Kès| - |1998
+Campagne Kès des X1999| - |Evenements/Campagne_Kes/Campagne_Kes_des_99| - |Campagne Kès| - |1999
+Campagne Kès des X2000| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k| - |Campagne Kès| - |2000
 
-Campagne Kès des X2001| - |Evenements/Campagne_Kes_des_2k1/Gags_en_amphi| - |Campagne Kès| - |2001
-Campagne Kès des X2001| - |Evenements/Campagne_Kes_des_2k1/Amphi_Kes| - |Campagne Kès| - |2001
-Campagne Kès des X2001| - |Evenements/Campagne_Kes_des_2k1| - |Campagne Kès| - |2001
+Campagne Kès des X2001 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k1/Amphi_Kes| - |Campagne Kès| - 2001
+Campagne Kès des X2001 - Gags en amphi| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k1/Gags_en_amphi| - |Campagne Kès| - |2001
+Campagne Kès des X2001 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k1| - |Campagne Kès| - |2001
 
-Campagne Kès des X2002| - |Evenements/Campagne_Kes_des_2k2/Amphi_kes| - |Campagne Kès| - |2002
-Campagne Kès des X2002| - |Evenements/Campagne_Kes_des_2k2/Debat_vendredi| - |Campagne Kès| - |2002
-Campagne Kès des X2002| - |Evenements/Campagne_Kes_des_2k2/Gags_en_amphi| - |Campagne Kès| - |2002
-Campagne Kès des X2002| - |Evenements/Campagne_Kes_des_2k2| - |Campagne Kès| - |2002
+Campagne Kès des X2002 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k2/Amphi_kes| - |Campagne Kès| - |2002
+Campagne Kès des X2002 - Débat| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k2/Debat_vendredi| - |Campagne Kès| - |2002
+Campagne Kès des X2002 - Gags en amphi| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k2/Gags_en_amphi| - |Campagne Kès| - |2002
+Campagne Kès des X2002 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k2| - |Campagne Kès| - |2002
 
-Campagne Kès des X2003| - |Evenements/Campagne_Kes_des_2k3/Gags_en_amphi| - |Campagne Kès| - |2003
-Campagne Kès des X2003| - |Evenements/Campagne_Kes_des_2k3/Passage_sur_scene| - |Campagne Kès| - |2003
-Campagne Kès des X2003| - |Evenements/Campagne_Kes_des_2k3/Amphi_Listes_Kes| - |Campagne Kès| - |2003
-Campagne Kès des X2003| - |Evenements/Campagne_Kes_des_2k3| - |Campagne Kès| - |2003
+Campagne Kès des X2003 - Gags en amphi| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k3/Gags_en_amphi| - |Campagne Kès| - |2003
+Campagne Kès des X2003 - Passage sur scène| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k3/Passage_sur_scene| - |Campagne Kès| - |2003
+Campagne Kès des X2003 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k3/Amphi_Listes_Kes| - |Campagne Kès| - |2003
+Campagne Kès des X2003 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k3| - |Campagne Kès| - |2003
 
-Campagne Kès des X2004| - |Evenements/Campagne_Kes_des_2k4/Amphi_kes/Passage_sur_scene| - |Campagne Kès| - |2004
-Campagne Kès des X2004| - |Evenements/Campagne_Kes_des_2k4/Amphi_kes| - |Campagne Kès| - |2004
-Campagne Kès des X2004| - |Evenements/Campagne_Kes_des_2k4/Gags_en_amphi| - |Campagne Kès| - |2004
-Campagne Kès des X2004| - |Evenements/Campagne_Kes_des_2k4| - |Campagne Kès| - |2004
+Campagne Kès des X2004 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k4/Amphi_kes| - |Campagne Kès| - |2004
+Campagne Kès des X2004 - Passage sur scène| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k4/Amphi_kes/Passage_sur_scene| - |Campagne Kès| - |2004
+Campagne Kès des X2004 - Gags en amphi| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k4/Gags_en_amphi| - |Campagne Kès| - |2004
+Campagne Kès des X2004 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k4| - |Campagne Kès| - |2004
 
-Campagne Kès des X2005| - |Evenements/Campagne_Kes_des_2k5/1-Amphi_Kes/Passage_sur_scene| - |Campagne Kès| - |2005
-Campagne Kès des X2005| - |Evenements/Campagne_Kes_des_2k5/1-Amphi_Kes| - |Campagne Kès| - |2005
-Campagne Kès des X2005| - |Evenements/Campagne_Kes_des_2k5/2-Proj_mardi| - |Campagne Kès| - |2005
-Campagne Kès des X2005| - |Evenements/Campagne_Kes_des_2k5/3-Proj_mercredi| - |Campagne Kès| - |2005
-Campagne Kès des X2005| - |Evenements/Campagne_Kes_des_2k5/4-Proj_jeudi| - |Campagne Kès| - |2005
-Campagne Kès des X2005| - |Evenements/Campagne_Kes_des_2k5/Gags_en_amphi| - |Campagne Kès| - |2005
-Campagne Kès des X2005| - |Evenements/Campagne_Kes_des_2k5| - |Campagne Kès| - |2005
+Campagne Kès des X2005 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k5/1-Amphi_Kes| - |Campagne Kès| - |2005
+Campagne Kès des X2005 - Passage sur scène| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k5/1-Amphi_Kes/Passage_sur_scene| - |Campagne Kès| - |2005
+Campagne Kès des X2005 - Gags en amphi| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k5/Gags_en_amphi| - |Campagne Kès| - |2005
+Campagne Kès des X2005 - Campagne 1| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k5/2-Proj_mardi| - |Campagne Kès| - |2005
+Campagne Kès des X2005 - Campagne 2| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k5/3-Proj_mercredi| - |Campagne Kès| - |2005
+Campagne Kès des X2005 - Campagne 3| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k5| - |Campagne Kès| - |2005
+Campagne Kès des X2005 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k5/4-Proj_jeudi| - |Campagne Kès| - |2005
 
-Campagne Kès des X2006| - |Evenements/Campagne_Kes_des_2k6/1-Amphi_Kes| - |Campagne Kès| - |2006
-Campagne Kès des X2006| - |Evenements/Campagne_Kes_des_2k6/2-Proj_mardi| - |Campagne Kès| - |2006
-Campagne Kès des X2006| - |Evenements/Campagne_Kes_des_2k6/3-Proj_mercredi| - |Campagne Kès| - |2006
-Campagne Kès des X2006| - |Evenements/Campagne_Kes_des_2k6/4-Proj_jeudi| - |Campagne Kès| - |2006
+Campagne Kès des X2006 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k6/1-Amphi_Kes| - |Campagne Kès| - |2006
+Campagne Kès des X2006 - Campagne 1| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k6/2-Proj_mardi| - |Campagne Kès| - |2006
+Campagne Kès des X2006 - Campagne 2| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k6/3-Proj_mercredi| - |Campagne Kès| - |2006
+Campagne Kès des X2006 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k6/4-Proj_jeudi| - |Campagne Kès| - |2006
 
-Campagne Kès des X2007| - |Evenements/Campagne_Kes_des_2k7/1-Amphi_Kes| - |Campagne Kès| - |2007
-Campagne Kès des X2007| - |Evenements/Campagne_Kes_des_2k7/2-Proj_Mardi| - |Campagne Kès| - |2007
-Campagne Kès des X2007| - |Evenements/Campagne_Kes_des_2k7/3-Proj_Mercredi| - |Campagne Kès| - |2007
-Campagne Kès des X2007| - |Evenements/Campagne_Kes_des_2k7/4-Proj_Jeudi| - |Campagne Kès| - |2007
+Campagne Kès des X2007 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k7/1-Amphi_Kes| - |Campagne Kès| - |2007
+Campagne Kès des X2007 - Campagne 1| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k7/2-Proj_Mardi| - |Campagne Kès| - |2007
+Campagne Kès des X2007 - Campagne 2| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k7/3-Proj_Mercredi| - |Campagne Kès| - |2007
+Campagne Kès des X2007 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k7/4-Proj_Jeudi| - |Campagne Kès| - |2007
 
-Campagne Kès des X2008| - |Evenements/Campagne_Kes_des_2k8/Amphi_kes| - |Campagne Kès| - |2008
-Campagne Kès des X2008| - |Evenements/Campagne_Kes_des_2k8/Chores| - |Campagne Kès| - |2008
-Campagne Kès des X2008| - |Evenements/Campagne_Kes_des_2k8/Proj_jeudi| - |Campagne Kès| - |2008
-Campagne Kès des X2008| - |Evenements/Campagne_Kes_des_2k8/Proj_mardi| - |Campagne Kès| - |2008
-Campagne Kès des X2008| - |Evenements/Campagne_Kes_des_2k8/Proj_mercredi| - |Campagne Kès| - |2008
+Campagne Kès des X2008 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k8/Amphi_kes| - |Campagne Kès| - |2008
+Campagne Kès des X2008 - Passage sur scène| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k8/Chores| - |Campagne Kès| - |2008
+Campagne Kès des X2008 - Campagne 1| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k8/Proj_jeudi| - |Campagne Kès| - |2008
+Campagne Kès des X2008 - Campagne 2| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k8/Proj_mardi| - |Campagne Kès| - |2008
+Campagne Kès des X2008 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k8/Proj_mercredi| - |Campagne Kès| - |2008
 
-Campagne Kès des X2009| - |Evenements/Campagne_Kes_des_2k9/Amphi_Kes| - |Campagne Kès| - |2009
-Campagne Kès des X2009| - |Evenements/Campagne_Kes_des_2k9/Proj_lundi| - |Campagne Kès| - |2009
-Campagne Kès des X2009| - |Evenements/Campagne_Kes_des_2k9/Proj_mardi| - |Campagne Kès| - |2009
-Campagne Kès des X2009| - |Evenements/Campagne_Kes_des_2k9/Proj_mercredi| - |Campagne Kès| - |2009
+Campagne Kès des X2009 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k9/Amphi_Kes| - |Campagne Kès| - |2009
+Campagne Kès des X2009 - Campagne 1| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k9/Proj_lundi| - |Campagne Kès| - |2009
+Campagne Kès des X2009 - Campagne 2| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k9/Proj_mardi| - |Campagne Kès| - |2009
+Campagne Kès des X2009 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k9/Proj_mercredi| - |Campagne Kès| - |2009
 
-Campagne Kès des X2010| - |Evenements/Campagne_Kes_des_2k10/1-Amphi_Kes| - |Campagne Kès| - |2010
-Campagne Kès des X2010| - |Evenements/Campagne_Kes_des_2k10/1b-Chores| - |Campagne Kès| - |2010
-Campagne Kès des X2010| - |Evenements/Campagne_Kes_des_2k10/2-Proj_Mardi| - |Campagne Kès| - |2010
-Campagne Kès des X2010| - |Evenements/Campagne_Kes_des_2k10/3-Proj_Jeudi| - |Campagne Kès| - |2010
-Campagne Kès des X2010| - |Evenements/Campagne_Kes_des_2k10/4-Proj_Lundi| - |Campagne Kès| - |2010
+Campagne Kès des X2010 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k10/1-Amphi_Kes| - |Campagne Kès| - |2010
+Campagne Kès des X2010 - Passage sur scène| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k10/1b-Chores| - |Campagne Kès| - |2010
+Campagne Kès des X2010 - Campagne 1| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k10/2-Proj_Mardi| - |Campagne Kès| - |2010
+Campagne Kès des X2010 - Campagne 2| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k10/3-Proj_Jeudi| - |Campagne Kès| - |2010
+Campagne Kès des X2010 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k10/4-Proj_Lundi| - |Campagne Kès| - |2010
 
 # MQ
 
-Campagne Kès des X2011| - |Evenements/Campagne_Kes_des_2k11/1-Amphi_Kes| - |Campagne Kès| - |2011
-Campagne Kès des X2011| - |Evenements/Campagne_Kes_des_2k11/2-Proj_Mardi| - |Campagne Kès| - |2011
-Campagne Kès des X2011| - |Evenements/Campagne_Kes_des_2k11/3-Proj_Jeudi| - |Campagne Kès| - |2011
-Campagne Kès des X2011| - |Evenements/Campagne_Kes_des_2k11/4-Proj_Lundi| - |Campagne Kès| - |2011
+Campagne Kès des X2011 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k11/1-Amphi_Kes| - |Campagne Kès| - |2011
+Campagne Kès des X2011 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k11/2-Proj_Mardi| - |Campagne Kès| - |2011
+Campagne Kès des X2011 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k11/3-Proj_Jeudi| - |Campagne Kès| - |2011
+Campagne Kès des X2011 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k11/4-Proj_Lundi| - |Campagne Kès| - |2011
 
 # HQ
 
-Campagne Kès des X2012| - |Evenements/Campagne_Kes_des_2k12/1-Amphi_Kes| - |Campagne Kès| - |2012
-Campagne Kès des X2012| - |Evenements/Campagne_Kes_des_2k12/2-Proj_Jeudi| - |Campagne Kès| - |2012
-Campagne Kès des X2012| - |Evenements/Campagne_Kes_des_2k12/3-Proj_Lundi| - |Campagne Kès| - |2012
-Campagne Kès des X2012| - |Evenements/Campagne_Kes_des_2k12/AGPresentationListe| - |Campagne Kès| - |2012
-Campagne Kès des X2012| - |Evenements/Campagne_Kes_des_2k12/Debat| - |Campagne Kès| - |2012
+Campagne Kès des X2012 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k12/1-Amphi_Kes| - |Campagne Kès| - |2012
+Campagne Kès des X2012 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k12/2-Proj_Jeudi| - |Campagne Kès| - |2012
+Campagne Kès des X2012 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k12/3-Proj_Lundi| - |Campagne Kès| - |2012
+Campagne Kès des X2012 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k12/AGPresentationListe| - |Campagne Kès| - |2012
+Campagne Kès des X2012 - Débat| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k12/Debat| - |Campagne Kès| - |2012
 
-Campagne Kès des X2013| - |Evenements/Campagne_Kes_des_2k13/1-Amphi_Kes| - |Campagne Kès| - |2013
-Campagne Kès des X2013| - |Evenements/Campagne_Kes_des_2k13/2-Proj_Jeudi| - |Campagne Kès| - |2013
-Campagne Kès des X2013| - |Evenements/Campagne_Kes_des_2k13/4-Second_Tour| - |Campagne Kès| - |2013
-Campagne Kès des X2013| - |Evenements/Campagne_Kes_des_2k13/3-Premier_Tour| - |Campagne Kès| - |2013
+Campagne Kès des X2013 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k13/1-Amphi_Kes| - |Campagne Kès| - |2013
+Campagne Kès des X2013 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k13/2-Proj_Jeudi| - |Campagne Kès| - |2013
+Campagne Kès des X2013 - Premier tour| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k13/3-Premier_Tour| - |Campagne Kès| - |2013
+Campagne Kès des X2013 - Second tour| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k13/4-Second_Tour| - |Campagne Kès| - |2013
 
-Campagne Kès des X2014| - |Evenements/Campagne_Kes_des_2k14/1-Amphi_Kes| - |Campagne Kès| - |2014
-Campagne Kès des X2014| - |Evenements/Campagne_Kes_des_2k14/2-Proj_Jeudi| - |Campagne Kès| - |2014
-Campagne Kès des X2014| - |Evenements/Campagne_Kes_des_2k14/3-Resultats| - |Campagne Kès| - |2014
-Campagne Kès des X2014| - |Evenements/Campagne_Kes_des_2k14/Debat| - |Campagne Kès| - |2014
+Campagne Kès des X2014 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k14/1-Amphi_Kes| - |Campagne Kès| - |2014
+Campagne Kès des X2014 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k14/2-Proj_Jeudi| - |Campagne Kès| - |2014
+Campagne Kès des X2014 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k14/3-Resultats| - |Campagne Kès| - |2014
+Campagne Kès des X2014 - Débat| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k14/Debat| - |Campagne Kès| - |2014
 
-Campagne Kès des X2015| - |Evenements/Campagne_Kes_des_2k15/2-Proj_jeudi| - |Campagne Kès| - |2015
-Campagne Kès des X2015| - |Evenements/Campagne_Kes_des_2k15/3-Resultats| - |Campagne Kès| - |2015
-Campagne Kès des X2015| - |Evenements/Campagne_Kes_des_2k15/1-Amphi_Kes| - |Campagne Kès| - |2015
-
+Campagne Kès des X2015 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k15/1-Amphi_Kes| - |Campagne Kès| - |2015
+Campagne Kès des X2015 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k15/2-Proj_jeudi| - |Campagne Kès| - |2015
+Campagne Kès des X2015 - Résultats| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k15/3-Resultats| - |Campagne Kès| - |2015
 
 ######### Amphi binets ##############
 
-Amphi binets 1998| - |Evenements/Amphi_presentation_binets/Amphi_des_1998| - |Évènement sportif| - |1997
+Amphi binets 1998| - |Evenements/Amphi_presentation_binets/Amphi_des_1998| - |Amphi binets| - |1997
 
-Amphi binets 2001| - |Evenements/Amphi_presentation_binets/Amphi_des_2k1| - |Évènement sportif| - |2000
+Amphi binets 2001| - |Evenements/Amphi_presentation_binets/Amphi_des_2k1| - |Amphi binets| - |2000
 
-Amphi binets 2003| - |Evenements/Amphi_presentation_binets/Amphi_des_2k3| - |Évènement sportif| - |2002
-Amphi binets 2004| - |Evenements/Amphi_presentation_binets/Amphi_des_2k4| - |Évènement sportif| - |2003
-Amphi binets 2005| - |Evenements/Amphi_presentation_binets/Amphi_des_2k5| - |Évènement sportif| - |2004
-Amphi binets 2006| - |Evenements/Amphi_presentation_binets/Amphi_des_2k6| - |Évènement sportif| - |2005
-Amphi binets 2007| - |Evenements/Amphi_presentation_binets/Amphi_des_2k7| - |Évènement sportif| - |2006
-Amphi binets 2008| - |Evenements/Amphi_presentation_binets/Amphi_des_2k8| - |Évènement sportif| - |2007
-Amphi binets 2009| - |Evenements/Amphi_presentation_binets/Amphi_des_2k9| - |Évènement sportif| - |2008
+Amphi binets 2003| - |Evenements/Amphi_presentation_binets/Amphi_des_2k3| - |Amphi binets| - |2002
+Amphi binets 2004| - |Evenements/Amphi_presentation_binets/Amphi_des_2k4| - |Amphi binets| - |2003
+Amphi binets 2005| - |Evenements/Amphi_presentation_binets/Amphi_des_2k5| - |Amphi binets| - |2004
+Amphi binets 2006| - |Evenements/Amphi_presentation_binets/Amphi_des_2k6| - |Amphi binets| - |2005
+Amphi binets 2007| - |Evenements/Amphi_presentation_binets/Amphi_des_2k7| - |Amphi binets| - |2006
+Amphi binets 2008| - |Evenements/Amphi_presentation_binets/Amphi_des_2k8| - |Amphi binets| - |2007
+Amphi binets 2009| - |Evenements/Amphi_presentation_binets/Amphi_des_2k9| - |Amphi binets| - |2008
 
-Amphi binets 2010| - |Evenements/Amphi_presentation_binets/Amphi_des_2K10| - |Évènement sportif| - |2009
-Amphi binets 2011| - |Evenements/Amphi_presentation_binets/Amphi_des_2k11| - |Évènement sportif| - |2010
-Amphi binets 2012| - |Evenements/Amphi_presentation_binets/Amphi_des_2k12| - |Évènement sportif| - |2011
+Amphi binets 2010| - |Evenements/Amphi_presentation_binets/Amphi_des_2K10| - |Amphi binets| - |2009
+Amphi binets 2011| - |Evenements/Amphi_presentation_binets/Amphi_des_2k11| - |Amphi binets| - |2010
+Amphi binets 2012| - |Evenements/Amphi_presentation_binets/Amphi_des_2k12| - |Amphi binets| - |2011
 
-# Amphi binets 2013| - |Evenements/Amphi_presentation_binets/Amphi_des_2k13| - |Évènement sportif| - |2012
-# Amphi binets 2014| - |Evenements/Amphi_presentation_binets/Amphi_des_2k14| - |Évènement sportif| - |2013
-# Amphi binets 2015| - |Evenements/Amphi_presentation_binets/Amphi_des_2k15| - |Évènement sportif| - |2014
-# Amphi binets 2016| - |Evenements/Amphi_presentation_binets/2016| - |Évènement sportif| - |2015
+Amphi binets 2013| - |Evenements/Amphi_presentation_binets/Amphi_des_2k13| - |Amphi binets| - |2012
+Amphi binets 2014| - |Evenements/Amphi_presentation_binets/Amphi_des_2k14| - |Amphi binets| - |2013
+Amphi binets 2015| - |Evenements/Amphi_presentation_binets/Amphi_des_2k15| - |Amphi binets| - |2014
+Amphi binets 2016| - |Evenements/Amphi_presentation_binets/2016| - |Amphi binets| - |2015
 
 ######### Incorpo ################
 
@@ -179,36 +178,35 @@ Incorpo X2012 - Bonus| - |Evenements/Incorpo/Incorpo_des_2k12/bonus| - |Incorpo|
 
 #### MQ
 
-## Incorpo X2013 - Sections| - |Evenements/Incorpo/Incorpo_des_2k13/Mardi_03-09-13| - |Incorpo| - |2011
-## Incorpo X2013 - WED| - |Evenements/Incorpo/Incorpo_des_2k13/WED| - |Incorpo| - |2011
+Incorpo X2013 - Sections| - |Evenements/Incorpo/Incorpo_des_2k13/Mardi_03-09-13| - |Incorpo| - |2011
+Incorpo X2013 - WED| - |Evenements/Incorpo/Incorpo_des_2k13/WED| - |Incorpo| - |2011
 
-## Incorpo X2014 - Sections| - |Evenements/Incorpo/Incorpo_des_2k14/Mardi_2014-09-02| - |Incorpo| - |2012
-## Incorpo X2014 - Stages| - |Evenements/Incorpo/Incorpo_des_2k14/Samedi_2014-09-06| - |Incorpo| - |2012
-## Incorpo X2014 - WED| - |Evenements/Incorpo/Incorpo_des_2k14/WED_2014-09-14| - |Incorpo| - |2012
+Incorpo X2014 - Sections| - |Evenements/Incorpo/Incorpo_des_2k14/Mardi_2014-09-02| - |Incorpo| - |2012
+Incorpo X2014 - Stages| - |Evenements/Incorpo/Incorpo_des_2k14/Samedi_2014-09-06| - |Incorpo| - |2012
+Incorpo X2014 - WED| - |Evenements/Incorpo/Incorpo_des_2k14/WED_2014-09-14| - |Incorpo| - |2012
 
-## Incorpo X2015 - WED| - |Evenements/Incorpo/Incorpo_des_2k15/2015-09-13_WED| - |Incorpo| - |2013
+Incorpo X2015 - WED| - |Evenements/Incorpo/Incorpo_des_2k15/2015-09-13_WED| - |Incorpo| - |2013
 
 #### HQ
 
-## Incorpo X2013 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k13/La_Courtine| - |Incorpo| - |2011
-## Incorpo X2013 - Stages| - |Evenements/Incorpo/Incorpo_des_2k13/Samedi_07-09-13| - |Incorpo| - |2011
+Incorpo X2013 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k13/La_Courtine| - |Incorpo| - |2011
+Incorpo X2013 - Stages| - |Evenements/Incorpo/Incorpo_des_2k13/Samedi_07-09-13| - |Incorpo| - |2011
 
-## Incorpo X2014 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k14/La_Courtine_2014-09-25| - |Incorpo| - |2012
+Incorpo X2014 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k14/La_Courtine_2014-09-25| - |Incorpo| - |2012
 
-## Incorpo X2015 - Sections| - |Evenements/Incorpo/Incorpo_des_2k15/mardi| - |Incorpo| - |2013
-## Incorpo X2015 - Stages| - |Evenements/Incorpo/Incorpo_des_2k15/samedi| - |Incorpo| - |2013
-## Incorpo X2015 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k15/2015-09-24_ProjCourtine2015| - |Incorpo| - |2013
+Incorpo X2015 - Sections| - |Evenements/Incorpo/Incorpo_des_2k15/mardi| - |Incorpo| - |2013
+Incorpo X2015 - Stages| - |Evenements/Incorpo/Incorpo_des_2k15/samedi| - |Incorpo| - |2013
+Incorpo X2015 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k15/2015-09-24_ProjCourtine2015| - |Incorpo| - |2013
 
-## Incorpo X2016 - Sections| - |Evenements/Incorpo/Incorpo_des_2k16/ProjSections-Mardi| - |Incorpo| - |2014
-## Incorpo X2016 - Stages| - |Evenements/Incorpo/Incorpo_des_2k16/ProjStages-Mercredi| - |Incorpo| - |2014
-## Incorpo X2016 - Chasse au trésor| - |Evenements/Incorpo/Incorpo_des_2k16/ProjTresors-Samedi| - |Incorpo| - |2014
-## Incorpo X2016 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k16/LaCourtine| - |Incorpo| - |2014
-## Incorpo X2016 - NOVA| - |Evenements/Incorpo/Incorpo_des_2k16/Nova| - |Incorpo| - |2014
+Incorpo X2016 - Sections| - |Evenements/Incorpo/Incorpo_des_2k16/ProjSections-Mardi| - |Incorpo| - |2014
+Incorpo X2016 - Stages| - |Evenements/Incorpo/Incorpo_des_2k16/ProjStages-Mercredi| - |Incorpo| - |2014
+Incorpo X2016 - Chasse au trésor| - |Evenements/Incorpo/Incorpo_des_2k16/ProjTresors-Samedi| - |Incorpo| - |2014
+Incorpo X2016 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k16/LaCourtine| - |Incorpo| - |2014
+Incorpo X2016 - NOVA| - |Evenements/Incorpo/Incorpo_des_2k16/Nova| - |Incorpo| - |2014
 
-## Incorpo X2017 - Sections| - |Evenements/Incorpo/Incorpo_des_2k17/1-Palaiseau_proj_sections| - |Incorpo| - |2015
-## Incorpo X2017 - Stages| - |Evenements/Incorpo/Incorpo_des_2k17/2-Palaiseau_proj_stages| - |Incorpo| - |2015
-
-# Incorpo X2017 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k17/3-Courtine| - |Incorpo| - |2015
+Incorpo X2017 - Sections| - |Evenements/Incorpo/Incorpo_des_2k17/1-Palaiseau_proj_sections| - |Incorpo| - |2015
+Incorpo X2017 - Stages| - |Evenements/Incorpo/Incorpo_des_2k17/2-Palaiseau_proj_stages| - |Incorpo| - |2015
+Incorpo X2017 - La Courtine| - |Evenements/Incorpo/Incorpo_des_2k17/3-Courtine| - |Incorpo| - |2015
 
 ######### RAID ##########
 
