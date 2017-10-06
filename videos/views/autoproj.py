@@ -53,7 +53,7 @@ from ..models import *
 from .edit import *
 
 def render_title(t):
-    x = t.lstrip('0123456789_')
+    x = t.lstrip('0123456789ab_-')
     x = x.split('_')
     return ' '.join(x)
 

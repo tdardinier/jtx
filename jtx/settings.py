@@ -22,7 +22,7 @@ SECRET_KEY = '980@=$gsohdj=xcy%efe3*a4ufjnpeb@m1k1%ej=2kwtxopgyv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'binet-jtx.com', u'127.0.0.1','pc-guillaume','192.168.0.29', u'jtx']
+ALLOWED_HOSTS = [u'binet-jtx.com', u'127.0.0.1','pc-guillaume','192.168.0.29', u'jtx', u'jtx.eleves.polytechnique.fr']
 
 
 # Application definition
