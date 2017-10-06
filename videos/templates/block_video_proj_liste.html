@@ -19,12 +19,19 @@
     {% endif %}  
 
     {% if video %}
-        <a href="{% url 'video' elmt.id %}">
+        <a href="{% url 'video' elmt.id %}" class="img_link">
         <img class="card-img-top" src="{{elmt.screenshot}}" style="width:100%;border-radius:0px;" />
         <span class="legende_vid_duree" >
             {{elmt|duration}}
         </span>  
+        
+        <span class="legende_vid_annee {% if elmt|get_promo_video:""|divisibleby:'2' %}bg-danger{%else%}bg-warning{% endif %}" >
+            {{elmt|get_promo_video:""}}
+        </span>  
         </a>
+
+       
+        
     {% else %}
         <a  href="{% url 'proj' elmt.id %}">
         <img class="card-img-top" src="{{elmt.image}}"  style="width:100%;border-radius:0px;"/>
