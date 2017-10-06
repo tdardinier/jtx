@@ -21,7 +21,7 @@ Campagne Kès des X1998| - |Evenements/Campagne_Kes/Campagne_Kes_des_98| - |Camp
 Campagne Kès des X1999| - |Evenements/Campagne_Kes/Campagne_Kes_des_99| - |Campagne Kès| - |1999
 Campagne Kès des X2000| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k| - |Campagne Kès| - |2000
 
-Campagne Kès des X2001 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k1/Amphi_Kes| - |Campagne Kès| - 2001
+Campagne Kès des X2001 - Listes| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k1/Amphi_Kes| - |Campagne Kès| - |2001
 Campagne Kès des X2001 - Gags en amphi| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k1/Gags_en_amphi| - |Campagne Kès| - |2001
 Campagne Kès des X2001 - Campagne| - |Evenements/Campagne_Kes/Campagne_Kes_des_2k1| - |Campagne Kès| - |2001
 
