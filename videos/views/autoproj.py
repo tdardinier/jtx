@@ -62,7 +62,7 @@ def real_add_proj(titre_proj, folder, c, promo):
     base_url = "/videos"
     base_folder = "/nfs/serveur/ftp"
     base_liens = base_url + "/" + folder + "/"
-    extensions_acceptees = ['mp4', 'avi', 'webm', 'mkv']
+    # extensions_acceptees = ['mp4', 'avi', 'webm', 'mkv']
     base_basique = str(base_folder + "/" + folder + "/")
 
     image = "/videos/default_proj.jpg"
@@ -86,7 +86,7 @@ def real_add_proj(titre_proj, folder, c, promo):
     if not os.path.exists(base_basique + quality):
         quality = "LQ"
 
-    files = [str(f) for f in listdir(base_basique + quality) if str(f)[-3:] in extensions_acceptees or str(f)[-4:] in extensions_acceptees]
+    files = [str(f) for f in listdir(base_basique + quality) if str(f)[-4:] == ".mp4"]
     files.sort()
 
     i = 1
