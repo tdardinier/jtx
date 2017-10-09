@@ -32,6 +32,11 @@ def id(x):
     return x
 
 def index(request):
+    s = 0.0
+    c = 0
+    for x in Video.objects.all():
+        s += x.duree
+        c += 1
     projs = filter(request, Proj.objects)
     videos = filter(request, Video.objects)
     categories = filter_category(request, Category.objects)
@@ -58,6 +63,8 @@ def index(request):
         'categories': categories.all(),
         'video_tendances':video_tendances,
         'max_nb_jaime':maxi,
+        'duree': int(round(s / 3600.)),
+        'n_videos': c,
     }
     return render(request, 'index.html', context)
 
