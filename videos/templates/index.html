@@ -4,6 +4,12 @@
 
 {% load app_filters %}
 
+<div class="jumbotron" style="background-color:white;">
+	<h1 class="display-3">Bienvenue sur le site du JTX!</h1>
+	<p class="lead">{{n_videos}} vidéos en ligne, {{duree}} heures de (relatif) fun.</p>
+	
+  </div>
+
 		{% if not request.user.is_authenticated %}
 		<div class="alert alert-warning alert-dismissible fade show" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -16,12 +22,12 @@
 
 		{% endif %}
 
-        <h1>{{n_videos}} vidéos en ligne, pour {{duree}} heures !</h1>
+    
 
 {% if request.user.is_authenticated %}
 		<div class="d-flex flex-wrap">
 		
-			<div class="col-12 col-md-6">
+			<div class="col-12 col-md-6" style="padding-left:0;">
 				<div class="card">
 					<h2 class="card-header">Vidéo du jour</h2>
 					<div class="card-body">
@@ -33,7 +39,7 @@
 				</div>
 			</div>
 
-			<div class="col-12 col-md-6">
+			<div class="col-12 col-md-6" style="padding-right:0;">
 				<div class="card">
 					<h2 class="card-header">Tendances <small>ce mois ci</small></h2>
 					<div class="card-body">
