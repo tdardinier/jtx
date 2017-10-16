@@ -120,11 +120,13 @@
 					</div>
 					<div class="d-block   d-sm-none">
 						<div class="row ">
-								{% for p in projs %}
+								{% for p in projs|dictsortreversed:'date' %}
 									{% include "block_video_proj_liste.html" with video=0 elmt=p horizontal=1%}
 								{% endfor %}
 						</div>
+						
 					</div>
+					<a class='btn btn-primary float-right' href="{% url 'projs'  1 %}">Voir plus</a>
 			</div>
 
 			{% for c in categories %}
@@ -150,6 +152,7 @@
 										{% endfor %}
 								</div>
 							</div>
+							<a class='btn btn-primary float-right' href="{% url 'category' c.id 1 %}">Voir plus</a>
 				</div>
 
 			{% endfor %}
