@@ -288,6 +288,7 @@ Campagne CA - X2013| - |Evenements/Campagne_CA/X2013| - || - |2012
 
 ####### Coupes de l'X ########
 
+Coupe de l'X 2017| - |Evenements/Coupe_de_l_X/Coupe_de_l_X_2017| - |Évènement sportif| - |2016
 Coupe de l'X 2016| - |Evenements/Coupe_de_l_X/Coupe_de_l_X_2016| - |Évènement sportif| - |2015
 Coupe de l'X 2015| - |Evenements/Coupe_de_l_X/Coupe_de_l_X_2015| - |Évènement sportif| - |2014
 Tournoi ParisTech 2014| - |Evenements/Coupe_de_l_X/Tournoi_ParisTech_2014| - |Évènement sportif| - |2013
