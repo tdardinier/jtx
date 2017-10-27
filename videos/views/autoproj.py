@@ -126,7 +126,12 @@ def read_line_proj(line):
     c = Category.objects.get(titre="Divers")
     tags = []
     if (len(l) > 4):
-        tags = [Tag.objects.get(titre=l[4])]
+        if Tag.objects.filter(titre=l[4]).exists():
+            tags = [Tag.objects.get(titre=l[4])]
+        else:
+            tag = Tag(titre=l[4].rstrip())
+            tag.save()
+            tags = [tag]
     a = Category.objects.filter(titre=l[2])
     if a.exists():
         c = a.first()
