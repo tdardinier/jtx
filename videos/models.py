@@ -59,7 +59,7 @@ class Video(models.Model):
     sd = models.CharField(max_length=1000, default="")
 
     screenshot = models.CharField(max_length=1000, default="")
-    subtitles = models.CharField(max_length=1000, default="")
+    subtitles = models.CharField(max_length=1000, default="/videos/empty.vtt")
 
     promo = models.IntegerField(default=2015)
 
