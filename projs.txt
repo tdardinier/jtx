@@ -1,3 +1,7 @@
+###### Autre ########
+
+Semaine internationale - Houlgate 2017| - |Evenements/Semaine_internationale/Houlgate_2017| - || - |2015| - |Semaine internationale
+
 ######## Campagne Kès ######
 
 # LQ
@@ -275,10 +279,6 @@ WEI X2002 - Jeudi| - |Evenements/WEI/WEI_des_2k2/1-Jeudi| - |WEI| - |2001
 
 WEI X2001| - |Evenements/WEI/WEI_des_2k1| - |WEI| - |1999
 WEI X1999| - |Evenements/WEI/WEI_des_99| - |WEI| - |1998
-
-###### Autre ########
-
-Semaine internationale - Houlgate 2017| - |Evenements/Semaine_internationale/Houlgate_2017| - || - |2015| - |Semaine internationale
 
 ####### Campagnes CA ########
 
