@@ -57,7 +57,7 @@ def render_title(t):
     x = x.split('_')
     return ' '.join(x)
 
-def real_add_proj(titre_proj, folder, c, promo):
+def real_add_proj(titre_proj, folder, c, promo, tags = []):
 
     base_url = "/videos"
     base_folder = "/nfs/serveur/ftp"
@@ -121,11 +121,14 @@ def read_line_proj(line):
     titre = l[0]
     folder = l[1]
     c = Category.objects.get(titre="Divers")
+    tags = []
+    if (len(l) > 4):
+        tags = [Tag.objects.get(titre=l[4])]
     a = Category.objects.filter(titre=l[2])
     if a.exists():
         c = a.first()
     promo = int(l[3])
-    real_add_proj(titre, folder, c, promo)
+    real_add_proj(titre, folder, c, promo, tags)
 
 def auto_proj(l):
     for x in l:
