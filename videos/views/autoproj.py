@@ -114,6 +114,9 @@ def real_add_proj(titre_proj, folder, c, promo, tags = []):
         v.save()
         r = Relation_proj(proj = p, video = v, ordre = i)
         r.save()
+        for tag in tags:
+            t = Relation_tag(tag=tag, video = v)
+            t.save()
         i += 1
 
 def read_line_proj(line):
