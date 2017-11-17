@@ -4,23 +4,25 @@
 
 {% load app_filters %}
 
+{% if not request.user.is_authenticated %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+  </button>
+	<h4><strong> Vous n'êtes pas connecté !</strong></h4>
+Connectez vous pour pouvoir voir toutes les vidéos, et accéder a toutes les fonctionnalités du site.
+Tant que vous n'êtes pas connecté, vous ne pouvez voir que les videos ouvertes au public.
+</div>
+
+{% endif %}
+
 <div class="jumbotron" style="background-color:white;">
 	<h1 class="display-3">Bienvenue sur le site du JTX!</h1>
 	<p class="lead">{{n_videos}} vidéos en ligne, {{duree}} heures de (relatif) fun.</p>
 	
   </div>
 
-		{% if not request.user.is_authenticated %}
-		<div class="alert alert-warning alert-dismissible fade show" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    	<span aria-hidden="true">&times;</span>
-  		</button>
-			<h4><strong> Vous n'êtes pas connecté !</strong></h4>
-		Connectez vous pour pouvoir voir toutes les vidéos, et accéder a toutes les fonctionnalités du site.
-		Tant que vous n'êtes pas connecté, vous ne pouvez voir que les videos ouvertes au public.
-		</div>
-
-		{% endif %}
+		
 
     
 
