@@ -503,11 +503,20 @@ function change_flux_to(qualite, from_strart='oui'){
   else{
     source.setAttribute('src', playlist[current][indice]+'#t='+time.toString());
   }
+
   if(playlist[current][7]){
-    subtitle.setAttribute('src', playlist[current][7]);
+    document.getElementById("sub").remove();
+    var new_t = document.createElement('track');
+    video.appendChild(new_t);
+    // label="Français" kind="subtitles" srclang="fr" default id='sub' src="/"
+    new_t.setAttribute('label', 'Français');
+    new_t.setAttribute('kind',"subtitles");
+    new_t.setAttribute('srclang',"fr");
+    new_t.setAttribute('id', "sub");
+    new_t.setAttribute('src', playlist[current][7]);
   }
   else{
-    subtitle.setAttribute('src', "/");
+    document.getElementById("sub").remove();
   }
   
   
