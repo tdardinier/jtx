@@ -513,8 +513,9 @@ function change_flux_to(qualite, from_strart='oui'){
     new_t.setAttribute('kind',"subtitles");
     new_t.setAttribute('srclang',"fr");
     new_t.setAttribute('id', "sub");
-    new_t.setAttribute('selected','selected');
     new_t.setAttribute('src', playlist[current][7]);
+    new_t.setAttribute('selected','selected');
+    new_t.setAttribute('default','');
   }
   else{
     document.getElementById("sub").remove();
