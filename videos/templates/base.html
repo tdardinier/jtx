@@ -145,11 +145,19 @@
           </div>
           </a> -->
 
-         
-
           {% else %}
           <div class="dropdown-header" style="margin-top:10px;">Connectez vous pour avoir <br> accès au site complet.</div>
-           
+          <a class="dropdown-item" href="/org">
+          <div class="" id="connexion">
+              Connexion (polytechnique.org)
+          </div>
+          </a>
+
+          <a class="dropdown-item" href="{% url 'login' %}?next={% url 'index' %}">
+          <div class="" id="connexion">
+              Connexion manuelle
+          </div>
+          </a>
 
           <!-- <h3 class="dropdown-header" style="margin-top:10px;">  
             <div class="d-flex justify-content-between">
