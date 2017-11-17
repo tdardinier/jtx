@@ -106,7 +106,7 @@ def real_add_proj(titre_proj, folder, c, promo, tags = []):
             md = ""
         sub = base_liens + "sub/" + basename + ".srt.vtt"
         if not os.path.exists(base_folder + "/" + folder + "/sub/" + basename + ".srt.vtt"):
-            sub = ""
+            sub = "/videos/empty.vtt"
         snap = base_liens + "snaps/" + f + ".png"
 
         titre = render_title(basename)
