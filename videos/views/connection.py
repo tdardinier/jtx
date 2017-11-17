@@ -18,7 +18,7 @@ def connection(request):
     nom = request.GET.get('nom', '')
     promo = request.GET.get('promo', '')
 
-    pw = "automatic"
+    pw = ""
 
     user = authenticate(username = forlife, password = pw)
 
