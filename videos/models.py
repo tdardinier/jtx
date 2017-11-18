@@ -64,7 +64,7 @@ class Video(models.Model):
     promo = models.IntegerField(default=2015)
 
     views = models.IntegerField(default=0)
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     duree = models.IntegerField(default=0)
 
     description = models.CharField(max_length=1000, default="Pas de description disponible.")
