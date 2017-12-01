@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% if message %}
+{{message}}
+{% endif %}
+
+<h1>Ajout d'une playlist</h1>
+
+<form action="{% url 'create_playlist' %}" method="post">
+
+
+{% csrf_token %}
+            <label for="titre_playlist">Nom de la playlist</label>
+            <input class="form-control" id="titre_playlist" size="40" type="text" name="titre_playlist" placeholder="Nom de la playlist"/>
+            <br/><br/>
+
+
+            
+
+            <button class="btn btn-primary" type="submit" value="Ajouter la playlist">Ajouter la playlist</button>
+
+
+
+</form>
+
+{% endblock %}

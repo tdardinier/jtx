@@ -38,6 +38,10 @@ class Utilisateur(models.Model):
 #def save_user_utilisateur(sender, instance, **kwargs):
 #    instance.utilisateur.save()
 
+class Jtx(models.Model):
+    promo = models.IntegerField()
+    devise = models.CharField(max_length=200)
+
 class Category(models.Model):
     titre = models.CharField(max_length=100)
     public = models.BooleanField(default=False)
@@ -59,7 +63,7 @@ class Video(models.Model):
     sd = models.CharField(max_length=1000, default="")
 
     screenshot = models.CharField(max_length=1000, default="")
-    subtitles = models.CharField(max_length=1000, default="/videos/empty.vtt")
+    subtitles = models.CharField(max_length=1000, default="")
 
     promo = models.IntegerField(default=2015)
 
@@ -197,3 +201,27 @@ class Like_comment_proj(models.Model):
 
     def __unicode__(self):
         return self.user.username + " : " + self.comment.proj.titre
+
+
+class Titreplaylist(models.Model):
+    class Meta:
+        ordering = ['label']
+    label = models.CharField(max_length=1000)
+    last_video = models.ForeignKey(Video, blank=True, null=True)
+    def __unicode__(self):
+        return self.label
+
+
+class Playlist(models.Model):
+    class Meta:
+        ordering = ['titre_playlist']
+    titre_playlist = models.ForeignKey(Titreplaylist, related_name = "titre_playlist")
+    video_precedente = models.ForeignKey(Video, related_name = "video_precedente")
+    video_suivante = models.ForeignKey(Video, related_name = "video_suivante")
+    def __unicode__(self):
+        return self.Titreplaylist.label + u" : " + self.videoPrecedente.titre + u" => " + self.videoSuivante.titre
+
+
+
+
+
