@@ -429,11 +429,10 @@ $(function () {
   video.addEventListener('ended', next, false);
   function next(e) {
     {% if playlist_existe %}
-    window.location.href("{% url 'video' playlists.0.video_suivante.id %}");
+    window.location.replace("{% url 'video' playlists.0.video_suivante.id %}");
     {% else %}
-    window.location.href("{% url 'video' suggestions.0.id %}");
+    window.location.replace("{% url 'video' suggestions.0.id %}");
     {% endif %}
-    }
   }
 
   function like(val, link) {
