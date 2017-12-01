@@ -81,7 +81,7 @@
               <datalist id="auteurs" class="">
                   <select id="select_auteur">
                   {% for a in auteurs %}
-                      <option value="{{a.id}}">{{a.firstname}} {{a.lastname}}</option>
+                      <option value="{{a.id}}">{{a.firstname}} {{a.lastname}} ({{a.id}})</option>
                   {% endfor %}
                   </select>
               </datalist>
@@ -122,7 +122,7 @@
                 <datalist id="tags">
                     <select>
                     {% for t in tags %}
-                        <option value="{{t.id}}">{{t.titre}}</option>
+                        <option value="{{t.id}}">{{t.titre}} ({{t.id}})</option>
                     {% endfor %}
                     </select>
                 </datalist>
