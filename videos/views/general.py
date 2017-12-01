@@ -14,6 +14,7 @@ from .search import *
 from .autoproj import *
 from .likes import *
 from .connection import *
+from .playlists import *
 
 n_page = 36
 n_index = 12
@@ -65,6 +66,7 @@ def index(request):
         'max_nb_jaime':maxi,
         'duree': int(round(s / 3600.)),
         'n_videos': c,
+        'can_proj': can_proj(request)
     }
     return render(request, 'index.html', context)
 
@@ -75,6 +77,11 @@ def jtx(request, year):
     # videos_jtx=videos.filter(promo=year)
     r=Relation_proj.objects.filter(proj__promo=year)
     videos_jtx=[w.video for w in r]
+    try:
+        jtx = Jtx.objects.get(promo=year)
+        devise = jtx.devise
+    except:        
+        devise = "Pas de devise pour le moment"
     context = {
         'year': year,
         'projs_jtx': v.filter(category=c),
@@ -82,6 +89,7 @@ def jtx(request, year):
         'toutes_projs':v,
         'jtxmen': Auteur.objects.filter(promo=year),
         'videos': videos_jtx,
+        'devise': devise,
     }
     return render(request, 'jtx.html', context)
 
@@ -196,13 +204,19 @@ def video(request, video_id):
             favorite = Favorite.objects.filter(user = user, video = video).exists()
             epingle = Favorite.objects.filter(user = user, video = video, epingle = True).exists()
         suggestions = all_videos.all().order_by('?')[:n_suggestions]
+        playlists = Playlist.objects.filter(video_precedente=video)
+        playlist_existe = playlists.exists()
+        
         context = {
             'can_edit': can_edit(request),
+            'can_proj' : can_proj(request),
             'video': video,
             'suggestions': suggestions,
             'favorite': favorite,
             'epingle': epingle,
             'nb_jaimes': n,
+            'playlist_existe': playlist_existe,
+            'playlists': playlists,
         }
         return render(request, 'video.html', context)
     return index(request)

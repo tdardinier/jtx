@@ -24,8 +24,8 @@
       <div class=" col-12 d-flex  justify-content-between align-items-start" style="padding:0;">
         <h3>{{ video.titre }} </h3>
         <!-- <div class="btn-group" data-toggle="buttons">
-            <a href="#" id="btn_sd" class="btn btn-secondary btn-sm " onclick="tosd(\"{{video.md}}\")">SD</a>
-            <a href="#" id="btn_hd" class="btn btn-success btn-sm" onclick="tohd(\"{{video.hd}}\")">HD</a>
+            <a href="#" id="btn_sd" class="btn btn-secondary btn-sm " onclick="tosd('{{video.md}}')">SD</a>
+            <a href="#" id="btn_hd" class="btn btn-success btn-sm" onclick="tohd('{{video.hd}}')">HD</a>
         </div> -->
 
         <div class="btn-group" data-toggle="buttons">
@@ -153,6 +153,16 @@
               {% endif %}
             </div>
 
+              {% if can_proj %}
+            <div style=" padding:0;margin-right:-10px;">
+                <a  href="{% url 'add_playlist' video.id %}" class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Ajouter la viéo à une playlist">
+                    <img src={% static "admin/img/opticons/bookmark.svg" %} alt="edit" style="height:25px;margin-top:0px;" >
+                
+                </a>
+            </div>
+            {% endif %}
+
+
             {% if can_edit %}
             <div style=" padding:0;margin-right:-10px;">
                 <a  href="{% url 'edit_video' video.id %}" class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Éditer les informations de la vidéo">
@@ -211,7 +221,7 @@
 
     <div class="col-12 shadow-div" style="background-color:white;padding:10px;margin-top:10px;">
       <div class="titre_et_vues_date">Ajoutée le {{ video.date|date:"d/m/Y" }}.</div>
-      <span style ="white-space: pre-wrap;">{{ video.description }}</span>
+      {{ video.description }}
     </div>
 
 
@@ -326,9 +336,34 @@
   <!-- suggestion -->
   <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4 " style="padding:5px;" >
     <div class="shadow-div" style="background-color:white;margin:0;padding:20px;">
-        <h4>À suivre</h4>
         
         <div class='row' style=" padding:0px;">
+
+
+       {% if playlist_existe %}
+          <h4> Playlists </h4>
+          </div>
+          <div class='row' style=" padding:0px;">
+                      
+                {% for p in playlists %}
+
+
+                    <h5>{{p.titre_playlist.label}}</h5>
+                    {% include "block_video_proj_liste.html" with video=1 elmt=p.video_suivante horizontal=1%}
+                    
+
+                {% endfor %}
+
+
+        {% endif %} 
+
+</div>
+<div class = "row" style="padding:0px">
+
+        <h4>Suggestions</h4>
+
+
+
             {% for v in suggestions %}
                     
                   {% include "block_video_proj_liste.html" with video=1 elmt=v horizontal=1%}
@@ -393,7 +428,12 @@ $(function () {
 
   video.addEventListener('ended', next, false);
   function next(e) {
-    window.location.replace("{% url 'video' suggestions.0.id %}");
+    {% if playlist_existe %}
+    window.location.href("{% url 'video' playlists.0.video_suivante.id %}");
+    {% else %}
+    window.location.href("{% url 'video' suggestions.0.id %}");
+    {% endif %}
+    }
   }
 
   function like(val, link) {

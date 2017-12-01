@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block body %}
+
+{% if message %}
+{{message}}
+{% endif %}
+
+<h1>À quelle playlist voulez-vous ajouter la vidéo ?</h1>
+
+<form action="{% url 'add_playlist' video_id %}" method="post">
+
+    {% csrf_token %}
+             <label for="titres_playlists">Playlist</label>
+                <select class="form-control" name="titres_playlists">
+                {% for c in titres_playlists %}
+                    <option value="{{c.id}}">{{c.label}}</option>
+                {% endfor %}
+                </select>
+                <br/><br/>
+
+            <label for="video">Vidéo</label>
+            <input class="form-control" id="video" size="60" type="text" name="video" value="{{video_id}}" />
+            <br/><br/>
+
+
+
+            
+
+            <button class="btn btn-primary" type="submit" value="Ajouter la playlist">Ajouter la playlist</button>
+
+
+
+</form>
+
+{% endblock %}
