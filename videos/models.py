@@ -41,6 +41,8 @@ class Utilisateur(models.Model):
 class Jtx(models.Model):
     promo = models.IntegerField()
     devise = models.CharField(max_length=200)
+    def __unicode__(self):
+        return u'JTX ' + str(self.promo) + devise
 
 class Category(models.Model):
     titre = models.CharField(max_length=100)
@@ -219,9 +221,4 @@ class Playlist(models.Model):
     video_precedente = models.ForeignKey(Video, related_name = "video_precedente")
     video_suivante = models.ForeignKey(Video, related_name = "video_suivante")
     def __unicode__(self):
-        return self.Titreplaylist.label + u" : " + self.videoPrecedente.titre + u" => " + self.videoSuivante.titre
-
-
-
-
-
+        return self.titre_playlist.label + u" : " + self.video_precedente.titre + u" => " + self.video_suivante.titre
