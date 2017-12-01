@@ -42,7 +42,7 @@ class Jtx(models.Model):
     promo = models.IntegerField()
     devise = models.CharField(max_length=200)
     def __unicode__(self):
-        return u'JTX ' + str(self.promo) + devise
+        return u'JTX ' + str(self.promo) + self.devise
 
 class Category(models.Model):
     titre = models.CharField(max_length=100)
