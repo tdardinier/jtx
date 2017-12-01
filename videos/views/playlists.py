@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render, get_object_or_404
 
 from ..models import *
@@ -27,12 +30,12 @@ def create_playlist(request):
             a = Titreplaylist.objects.filter(label=p['titre_playlist']).exists()
 
             if a:
-                context['message'] = u'Désolé mon lieutenant, la playlist ' + p['titre_playlist'] + ' existe déjà'
+                context['message'] = u'Désolé mon lieutenant, la playlist ' + p['titre_playlist'] + u' existe déjà'
 
             else:
                 b = Titreplaylist(label=str(p['titre_playlist']))
                 b.save()
-                context['message'] = u'PLaylist "' + p['titre_playlist'] + u'" ajoutée avec succès !'
+                context['message'] = u'Playlist "' + p['titre_playlist'] + u'" ajoutée avec succès !'
 
         else:
             context['message'] = "Version " + version
