@@ -33,7 +33,7 @@ def create_playlist(request):
                 context['message'] = u'Désolé mon lieutenant, la playlist ' + p['titre_playlist'] + u' existe déjà'
 
             else:
-                b = Titreplaylist(label=str(p['titre_playlist']))
+                b = Titreplaylist(label=p['titre_playlist'])
                 b.save()
                 context['message'] = u'Playlist "' + p['titre_playlist'] + u'" ajoutée avec succès !'
 
