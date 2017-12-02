@@ -656,29 +656,29 @@ if(quality==''){quality='md'}
 if(quality=='hd'){
   if("{{video.hd}}"==""){
     if("{{video.md}}"==""){
-      change_flux_to('{{video.sd}}',3)
+      change_flux_to('{{video.sd|echappe}}',3)
     }
     else{
-      change_flux_to('{{video.md}}',2);
+      change_flux_to('{{video.md|echappe}}',2);
     }
    
   }
   else{
-    change_flux_to('{{video.hd}}',1);
+    change_flux_to('{{video.hd|echappe}}',1);
     document.getElementById('btn_quality_hd').classList.add('active');
   }
 }
 if(quality=='md'){
   if("{{video.md}}"==""){
-    change_flux_to('{{video.sd}}',3)
+    change_flux_to('{{video.sd|echappe}}',3)
   }
   else{
-  change_flux_to('{{video.md}}',2);
+  change_flux_to('{{video.md|echappe}}',2);
   document.getElementById('btn_quality_md').classList.add('active');
   }
 }
 if(quality=='sd'){
-  change_flux_to('{{video.sd}}',3);
+  change_flux_to('{{video.sd|echappe}}',3);
   document.getElementById('btn_quality_sd').classList.add('active');
 }
 
