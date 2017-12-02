@@ -498,10 +498,10 @@ function change_flux_to(qualite, from_strart='oui'){
 
   var time=video.currentTime;
   if(from_strart=='oui'){
-    source.setAttribute('src', playlist[current][indice]);
+    source.setAttribute('src', playlist[current][indice].replace("&#39;","'"));
   }
   else{
-    source.setAttribute('src', playlist[current][indice]+'#t='+time.toString());
+    source.setAttribute('src', playlist[current][indice].replace("&#39;","'")+'#t='+time.toString());
   }
 
   if(playlist[current][7]){
