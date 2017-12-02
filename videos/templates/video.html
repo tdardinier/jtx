@@ -30,17 +30,17 @@
 
         <div class="btn-group" data-toggle="buttons">
           {% if video.sd %}
-          <label class="btn btn-primary btn-sm" onclick="change_flux_to('{{video.sd}}',3)" id='btn_quality_sd'>
+          <label class="btn btn-primary btn-sm" onclick="change_flux_to('{{video.sd|echappe}}',3)" id='btn_quality_sd'>
             <input type="radio" name="options" id="option3" autocomplete="off" > SD
           </label>
           {% endif %}
           {% if video.md %}
-          <label class="btn btn-primary btn-sm"  onclick="change_flux_to('{{video.md}}',2)"  id='btn_quality_md'>
+          <label class="btn btn-primary btn-sm"  onclick="change_flux_to('{{video.md|echappe}}',2)"  id='btn_quality_md'>
             <input type="radio" name="options" id="option2" autocomplete="off" checked> MD
           </label>
           {% endif %}
           {% if video.hd %}
-          <label class="btn btn-primary  btn-sm" onclick="change_flux_to('{{video.hd}}',1)"  id='btn_quality_hd'>
+          <label class="btn btn-primary  btn-sm" onclick="change_flux_to('{{video.hd|echappe}}',1)"  id='btn_quality_hd'>
             <input type="radio" name="options" id="option1" autocomplete="off" > Full HD
           </label>
           {% endif %}

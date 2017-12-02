@@ -407,19 +407,19 @@ if(glob_quality==''){glob_quality='md'}
 
     playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', 
     {% if r.video.hd %}
-    '{{r.video.hd}}', 
+    '{{r.video.hd|echappe}}', 
     {% else %}
     'non',
     {% endif %}
 
     {% if r.video.md %}
-    '{{r.video.md}}', 
+    '{{r.video.md|echappe}}', 
     {% else %}
     'non',
     {% endif %}
 
     {% if r.video.sd %}
-    '{{r.video.sd}}', 
+    '{{r.video.sd|echappe}}', 
     {% else %}
     'non',
     {% endif %}

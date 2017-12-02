@@ -9,6 +9,18 @@ register = template.Library()
 def duration(v):
     return '{:01}'.format(v.duree // 60) + ':' + '{:02}'.format(v.duree % 60)
 
+@register.filter(name='echappe')
+def echappe(x):
+    a = ""
+    for i in x:
+        if i == "'":
+            a += "\\'"
+        elif i == '&':
+            a += "\&"
+        else:
+            a += i
+    return a
+
 @register.filter(name='auteurs')
 def auteurs(v):
     s = v.relation_auteur_video_set.all()
