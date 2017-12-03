@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+<div class="card" id="div_form">
+  
+  
+  
+  <h2 class="card-header">Playlist : {{titre_playlist}}</h2>
+
+      <div class="card-body">
+
+          <div class="row">
+
+          {% for p in playlists %}
+
+                    {% include "block_video_proj_liste.html" with video=1 elmt=p.video_precedente horizontal=1%}
+
+          {% endfor %}
+
+                    {% include "block_video_proj_liste.html" with video=1 elmt=last_video horizontal=1%}
+
+          </div>
+
+      </div>
+</div>
+
+
+
+
+{% endblock %}

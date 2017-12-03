@@ -195,7 +195,7 @@
                   </div>
                 </div>
           </a>
-          {% endif %}
+          
 
 
 
@@ -208,6 +208,18 @@
                 </div>
           </div>
           </a>
+
+          <a href="{% url 'playlists' %}" class="dropdown-item">
+              <div class="d-flex ">
+                  
+                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/code.svg" %}" alt="hello"></div>
+                <div class="">
+                  <span class="glyphicon glyphicon-text-background"></span> Playlists
+                </div>
+          </div>
+          </a>
+
+          {% endif %}
 
           <a href="{% url 'jtx' 2015 %}" class="dropdown-item">
               <div class="d-flex ">

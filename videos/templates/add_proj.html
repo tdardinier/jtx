@@ -12,26 +12,32 @@
     {% csrf_token %}
 
     <label for="titre">Titre :</label>
-    <input id="titre" size="30" type="text" value="Proj de février" name="titre"/>
+    <input class="form-control" id="titre" size="30" type="text" value="Proj de février" name="titre"/>
     <br/><br/>
 
-    <label for="folder">Dossier :<label>
-    <input id="folder" size="60" type="text" name="folder" value="Evenements/Semaine_internationale/Houlgate_2017"/>
+
+
+    <label for="folder">Dossier :</label>
+    <input class="form-control" id="folder" size="60" type="text" name="folder" value="Evenements/Semaine_internationale/Houlgate_2017"/>
     <br/><br/>
+
+        
     
-    <label for="promo">Promo :<label>
-    <input id="promo" type="number" name="promo" value="2015" min="1991" max="2030" step="1"/>
+    <label for="promo">Promo :</label>
+    <input class="form-control" id="promo" type="number" name="promo" value="2015" min="1991" max="2030" step="1"/>
     <br/><br/>
 
-    <label for="category">Catégorie :<label>
-    <select name="category">
+       
+
+    <label for="category">Catégorie :</label>
+    <select class="form-control" name="category">
     {% for c in categories %}
         <option value="{{c.id}}">{{c.titre}}</option>
     {% endfor %}
     </select>
     <br/><br/>
 
-    <input type="submit" value="Ajouter la proj"/>
+    <input class="btn btn-success" type="submit" value="Ajouter la proj"/>
 
 </form>
 

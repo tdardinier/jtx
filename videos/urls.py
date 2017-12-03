@@ -4,9 +4,11 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^test/$', views.add_proj, name='add_proj'),
+    url(r'^jtxisawesome/$', views.add_proj, name='add_proj'),
     url(r'^add_playlist/(?P<video_id>[0-9]+)/$', views.add_playlist, name='add_playlist'),
     url(r'^create_playlist/$', views.create_playlist, name='create_playlist'),
+    url(r'^playlists/$', views.playlists, name='playlists'),
+    url(r'^playlist/(?P<playlist_id>[0-9]+)/$', views.visualiser_playlist, name='visualiser_playlist'),
     url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': views.index}, name='logout'),
     url(r'^projs/(?P<page>[0-9]+)/$', views.projs, name='projs'),

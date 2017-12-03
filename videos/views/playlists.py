@@ -93,3 +93,29 @@ def add_playlist(request, video_id):
     else:
         context['message'] = "Vous ne pouvez pas !"
     return HttpResponseRedirect(reverse('video', args=(video_id,)))
+
+def visualiser_playlist(request, playlist_id):
+    if request.user.is_authenticated:
+        titre_playlist = get_object_or_404(Titreplaylist, pk=playlist_id)
+        playlists = Playlist.objects.filter(titre_playlist=titre_playlist)
+        context = {}
+        context["titre_playlist"] = titre_playlist.label
+        context['playlists'] = playlists
+        context['last_video'] = titre_playlist.last_video
+        context['can_proj'] = can_proj(request)
+        return render(request, 'playlist.html', context)
+
+    else:
+        return HttpResponseRedirect(reverse('index'))
+
+def playlists(request):
+    if request.user.is_authenticated:
+        titres_playlists= Titreplaylist.objects.all()
+        context = {}
+        context['playlists'] = titres_playlists
+        return render(request, 'playlists.html', context)
+
+    else:
+        return HttpResponseRedirect(reverse('index'))
+
+

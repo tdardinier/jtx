@@ -348,7 +348,7 @@
                 {% for p in playlists %}
 
 
-                    <h5>{{p.titre_playlist.label}}</h5>
+                    <a href="{% url 'visualiser_playlist' p.titre_playlist.id %}"><h5>{{p.titre_playlist.label}}</h5></a>
                     {% include "block_video_proj_liste.html" with video=1 elmt=p.video_suivante horizontal=1%}
                     
 

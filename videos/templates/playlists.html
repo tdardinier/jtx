@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block body %}
+
+
+<div class="card" id="div_form">
+  
+  
+  
+  <h2 class="card-header">Playlists</h2>
+
+  		<div class="col-lg-12">
+  		</p>
+  		<p class="text"> Voici les playlists que vous ont pour l'instant concocté vos JTXmen préférés</p>
+  		</div>
+      <div class="card-body">
+
+          <div class="row">
+
+          {% for p in playlists %}
+
+          		<div class = "col lg-4">
+          			
+          			<a href=" {% url 'visualiser_playlist' p.id %}">
+          			<div class="card">
+
+          				<h3 class = "card-header">{{p.label}}</h3>
+
+          			</div>
+          			</a>
+
+          		</div>
+                    
+
+          {% endfor %}
+
+
+          </div>
+
+      </div>
+</div>
+
+
+
+
+{% endblock %}
