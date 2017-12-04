@@ -68,6 +68,8 @@ def index(request):
         'n_videos': c,
         'can_proj': can_proj(request)
     }
+    if can_proj(request):
+        context['can_proj'] = True
     return render(request, 'index.html', context)
 
 def jtx(request, year):
