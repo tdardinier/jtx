@@ -6,7 +6,7 @@
   
   
   
-  <h2 class="card-header">Playlist : {{titre_playlist}}</h2>
+  <h2 class="card-header">Playlist : {{titre_playlist.label}} {% if can_proj %}  <a href="{% url 'edit_playlist' titre_playlist.id %}">  (Modifier la playlist)</a>   {% endif %}</h2>
 
       <div class="card-body">
 

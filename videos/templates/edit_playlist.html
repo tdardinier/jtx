@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% block body %}
+
+<style>
+
+.radiobtn .notActive{
+    color: #3276b1;
+    background-color: #fff;
+}
+
+</style>
+
+
+<div class="card" id="div_form">
+  
+  
+  
+  <h2 class="card-header">Édition d'une playlist</h2>
+
+<div class="card-body">
+  <form action="{% url 'edit_playlist' p.id %}" method="post" >
+  
+      {% csrf_token %}
+  
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Titre</label>
+          <div class="col-sm-10">
+              <input type="text" class="form-control"  id="titre" value="{{p.label}}" name="titre">
+          </div>
+      </div>
+
+      
+  
+
+
+
+<hr>
+
+{% for r in playlists %}
+<div class="form-group row justify-content-center">
+  <label class="col-3 col-md-3 col-form-label">{{r.video_precedente.titre}}</label> 
+  <input class="form-control col-2" type="number" id="r_playlist_{{r.id}}" name ="r_playlist_{{r.id}}" value="{{forloop.counter}}" max="999" min="-999"/>
+        <label class="col-3 col-md-3 col-form-label">Laisser la vidéo dans la playlist</label> 
+        <div class="col-md-3">
+         <div class="input-group">
+            <div id="radioBtn_{{r.id}}" class="btn-group radiobtn">
+              <a class="btn btn-primary btn-sm active" data-toggle="happy_{{r.id}}" data-title="Y">Oui</a>
+              <a class="btn btn-primary btn-sm notActive" data-toggle="happy_{{r.id}}" data-title="N">Non</a>
+            </div>
+            <input type="hidden" name="v_playlist_{{r.id}}" id="v_playlist_{{r.id}}" value = 'Y'>
+          </div>
+          </div>
+          </div>
+{% endfor %}
+<div class="form-group row justify-content-center">
+  <label class="col-3 col-md-3 col-form-label">{{last_video.titre}}</label> 
+  <input class="form-control col-2" type="number" id="last_video" name ="last_video" value="{{nbr}}" max="999" min="-999"/>
+<label class="col-3 col-md-3 col-form-label">Laisser la vidéo dans la playlist</label> 
+        <div class="col-md-3">
+         <div class="input-group">
+            <div id="radioBtn_v" class="btn-group radiobtn">
+              <a class="btn btn-primary btn-sm active" data-toggle="happy_v" data-title="Y">Oui</a>
+              <a class="btn btn-primary btn-sm notActive" data-toggle="happy_v" data-title="N">Non</a>
+            </div>
+            <input type="hidden" name="vlastvideo" id="happy" value="Y">
+          </div>
+          </div>
+          </div>
+
+<input type="submit" value="Modifier la playlist" class="btn btn-success float-right"/>
+</form>
+
+</div>
+</div>
+
+<script type="text/javascript">
+{% for r in playlists %}
+
+$('#radioBtn_{{r.id}} a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('#'+tog).prop('value', sel);
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+    if($("#v_playlist_{{r.id}}").attr('value') == 'Y'){
+      $("#v_playlist_{{r.id}}").attr('value','N');
+    } else {
+       $("#v_playlist_{{r.id}}").attr('value','Y');
+    }
+})
+
+
+
+
+
+{% endfor %}
+
+
+
+
+
+
+
+$('#radioBtn_v a').on('click', function(){
+    var sel = $(this).data('title');
+    var tog = $(this).data('toggle');
+    $('#'+tog).prop('value', sel);
+
+    $('a[data-toggle="'+tog+'"]').not('[data-title="'+sel+'"]').removeClass('active').addClass('notActive');
+    $('a[data-toggle="'+tog+'"][data-title="'+sel+'"]').removeClass('notActive').addClass('active');
+    if($("#happy").attr('value') == 'Y'){
+      $("#happy").attr('value','N');
+    } else {
+       $("#happy").attr('value','Y');
+    }
+})
+
+</script>
+
+
+
+
+{% endblock %}

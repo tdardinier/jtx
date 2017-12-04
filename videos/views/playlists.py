@@ -69,7 +69,7 @@ def add_playlist(request, video_id):
 
             a = Playlist.objects.filter(titre_playlist=titre_playlist)
             last_video = titre_playlist.last_video
-            if a.filter(video_suivante=video).exists() or (last_video != None and last_video.pk == video.pk):
+            if a.filter(video_suivante=video).exists() or a.filter(video_precedente=video).exists() or (last_video != None and last_video == video):
                 context['message'] = u'Désolé mais la vidéo est déjà dans cette playlist'
             else:
                 if last_video == None:
@@ -79,8 +79,7 @@ def add_playlist(request, video_id):
                     real_add_playlist(titre_playlist, last_video, video)
                     titre_playlist.last_video = video
                     titre_playlist.save()
-                context['message'] = u'PLaylist "' + titre_playlist.label + u'" ajoutée avec succès !'
-                context['video_id'] = video_id
+
                 return HttpResponseRedirect(reverse('video', args=(video_id,)))
  
 
@@ -99,7 +98,7 @@ def visualiser_playlist(request, playlist_id):
         titre_playlist = get_object_or_404(Titreplaylist, pk=playlist_id)
         playlists = Playlist.objects.filter(titre_playlist=titre_playlist)
         context = {}
-        context["titre_playlist"] = titre_playlist.label
+        context["titre_playlist"] = titre_playlist
         context['playlists'] = playlists
         context['last_video'] = titre_playlist.last_video
         context['can_proj'] = can_proj(request)
@@ -117,5 +116,69 @@ def playlists(request):
 
     else:
         return HttpResponseRedirect(reverse('index'))
+
+def tri(A):
+    return A[1]
+
+def edit_playlist(request, playlist_id):
+
+    context = {}
+
+    if can_proj(request):
+
+        p = get_object_or_404(Titreplaylist, pk=playlist_id)
+        post = request.POST
+
+        if 'titre' in post:
+
+            titre = post['titre']
+            p.label = titre
+
+            p.save()
+            videos = []
+
+            for x in post:
+                if x[:11] == "r_playlist_":
+                    y = int(x[11:])
+                    ordre = int(post[x])
+                    if post['v_playlist_' + str(y)] == 'Y':
+                        videos.append([get_object_or_404(Playlist,pk=y).video_precedente, ordre])
+                    a = get_object_or_404(Playlist, pk=y)
+                    a.delete()
+                if x == 'last_video':
+                    ordre = int(post[x])
+                    if post['vlastvideo'] == 'Y':
+                        videos.append([p.last_video,ordre])
+
+
+            videos.sort(key=tri)
+            try:
+                for i in range(len(videos)-1):
+                    if i >= 0:
+                        r = Playlist(titre_playlist=p,video_precedente=videos[i][0],video_suivante=videos[i+1][0])
+                        r.save()
+                        p.last_video = videos[len(videos)-1][0]
+                        p.save()
+            except:
+                try:
+                    p.last_video = videos[0][0]
+                    p.save()
+                except:
+                    p.last_video = None
+                    p.save() 
+
+
+
+            return HttpResponseRedirect(reverse('visualiser_playlist', args=(p.id,)))
+
+        context['p'] = p
+        context['playlists'] = Playlist.objects.filter(titre_playlist=p)
+        context['last_video'] = p.last_video
+        context['nbr'] = len(context['playlists']) + 1
+        return render(request, 'edit_playlist.html', context)
+
+    else:
+        return HttpResponseRedirect(reverse('index'))
+
 
 
