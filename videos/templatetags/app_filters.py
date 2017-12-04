@@ -15,6 +15,8 @@ def echappe(x):
     for i in x:
         if i == "'":
             a += "\\'"
+        elif i == '&':
+            a += "\&"
         else:
             a += i
     return a
