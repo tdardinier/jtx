@@ -637,7 +637,7 @@ function change_flux_to(link,indice){
   // video.removeChild(document.getElementById('src'));
      
   var source = document.getElementById('src');
-  source.setAttribute('src', link.replace("&#39;","'")+'#t='+time.toString());
+  source.setAttribute('src', link.replace("&#39;","'").replace("&amp;","&")+'#t='+time.toString());
   // source.setAttribute('id', 'src');
   // video.appendChild(source);
       
