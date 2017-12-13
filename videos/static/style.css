@@ -258,7 +258,7 @@ form .biginput:focus {
     
     
     
-    color:#FDC500;
+    color:#CC181E;
 
     text-align:center;
 
@@ -276,7 +276,8 @@ form .biginput:focus {
 }
 
 #titre_site:hover{
-  color:#CC181E;
+  
+  color:#FDC500;
   text-decoration: none;
 }
 
