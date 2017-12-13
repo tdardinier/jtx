@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^edit_playlist/(?P<playlist_id>[0-9]+)/$', views.edit_playlist, name='edit_playlist'),
     url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': views.index}, name='logout'),
+    url(r'^facade/$', views.facade, name='facade'),
     url(r'^projs/(?P<page>[0-9]+)/$', views.projs, name='projs'),
 
     #AJOUT VIDON 01/07
