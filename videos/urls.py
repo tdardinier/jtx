@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': views.index}, name='logout'),
     url(r'^facade/$', views.facade, name='facade'),
+    url(r'^modifier_facade/$', views.modifier_facade, name='modifier_facade'),
     url(r'^projs/(?P<page>[0-9]+)/$', views.projs, name='projs'),
 
     #AJOUT VIDON 01/07

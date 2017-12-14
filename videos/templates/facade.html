@@ -88,6 +88,9 @@
               <li><a class="section-scroll" href="#alt-features">Features</a></li>
               <li><a class="section-scroll" href="#savoir-plus">En savoir plus</a></li>
               <li><a class="section-scroll" href="/org">Accès polytechnicien</a></li>
+              {% if can_proj %}
+              <li><a class="section-scroll" href="{% url 'modifier_facade' %}">Modifier la page</a></li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -97,8 +100,8 @@
           <div class="caption-content">
 
  <div id="video_video">
-            <video id="bgvid" playsinline autoplay muted loop>
-              <source src="/videos/Projections_JTX/JTX2015_15_11_17/HD/00_ChronoX2014.mp4" type="video/mp4">
+            <video id="bgvid" playsinline autoplay muted loop poster="{{background.screenshot}}">
+              <source src="{{background.hd}}" type="video/mp4">
             </video>
           </div>
 
@@ -179,12 +182,12 @@
             </div>
           </div>
         </section>
-        <section class="module bg-dark-60" data-background="{% static 'assets/images/section-6.jpg' %}">
+        <section class="module bg-dark-60" data-background="{{presta.screenshot}}">
           <div class="container">
             <div class="row">
               <div class="col-sm-12">
                 <div class="video-box">
-                  <div class="video-box-icon"><a class="video-pop-up" href="/videos/Projections_JTX/JTX2015_15_11_17/HD/00_ChronoX2014.mp4"><span class="icon-video"></span></a></div>
+                  <div class="video-box-icon"><a class="video-pop-up" href="{{presta.hd}}"><span class="icon-video"></span></a></div>
                   <div class="video-title font-alt">Dernière presta</div>
                   <div class="video-subtitle font-alt">Regardez la vidéo</div>
                 </div>
@@ -206,51 +209,71 @@
               <div class="col-sm-12">
                 <ul class="filter font-alt" id="filters">
                   <li><a class="current wow fadeInUp" href="#" data-filter="*">All</a></li>
-                  <li><a class="wow fadeInUp" href="#" data-filter=".illustration" data-wow-delay="0.2s">Illustration</a></li>
-                  <li><a class="wow fadeInUp" href="#" data-filter=".marketing" data-wow-delay="0.4s">Marketing</a></li>
-                  <li><a class="wow fadeInUp" href="#" data-filter=".photography" data-wow-delay="0.6s">Photography</a></li>
-                  <li><a class="wow fadeInUp" href="#" data-filter=".webdesign" data-wow-delay="0.6s">Web Design</a></li>
+                  <li><a class="wow fadeInUp" href="#" data-filter=".cat1" data-wow-delay="0.2s">{{nom_cat1}}</a></li>
+                  <li><a class="wow fadeInUp" href="#" data-filter=".cat2" data-wow-delay="0.4s">{{nom_cat2}}</a></li>
+                  <li><a class="wow fadeInUp" href="#" data-filter=".cat3" data-wow-delay="0.6s">{{nom_cat3}}</a></li>
                 </ul>
               </div>
             </div>
           </div>
           <ul class="works-grid works-grid-gut works-grid-3 works-hover-w" id="works-grid">
-            <li class="work-item illustration webdesign"><a class="video-pop-up" href="portfolio-single-1.html">
-                <div class="work-image"><img src="{% static 'assets/images/work-1.jpg' %}" alt="Portfolio Item"/></div>
+            <li class="work-item cat1 "><a class="video-pop-up" href="{{vid_1.hd}}">
+                <div class="work-image"><img src="{{vid_1.screenshot}}" alt="Portfolio Item"/></div>
                 <div class="work-caption font-alt">
-                  <h3 class="work-title">Mettre videos</h3>
-                  <div class="work-descr">Illustration</div>
+                  <h3 class="work-title">{{vid_1.titre}}</h3>
+                  <div class="work-descr">{{vid_1.description}}</div>
                 </div></a></li>
-            <li class="work-item marketing photography"><a class="video-pop-up"  href="portfolio-single-1.html">
-                <div class="work-image"><img src="{% static 'assets/images/work-2.jpg' %}" alt="Portfolio Item"/></div>
+            <li class="work-item cat2"><a class="video-pop-up"  href="{{vid_4.hd}}">
+                <div class="work-image"><img src="{{vid_4.screenshot}}" alt="Portfolio Item"/></div>
                 <div class="work-caption font-alt">
-                  <h3 class="work-title">Bag MockUp</h3>
-                  <div class="work-descr">Marketing</div>
+                  <h3 class="work-title">{{vid_4.titre}}</h3>
+                  <div class="work-descr">{{vid_4.description}}</div>
                 </div></a></li>
-            <li class="work-item illustration photography"><a href="portfolio-single-1.html">
-                <div class="work-image"><img src="{% static 'assets/images/work-3.jpg' %}" alt="Portfolio Item"/></div>
+            <li class="work-item cat3"><a class="video-pop-up"  href="{{vid_7.hd}}">
+                <div class="work-image"><img src="{{vid_7.screenshot}}" alt="Portfolio Item"/></div>
                 <div class="work-caption font-alt">
-                  <h3 class="work-title">Disk Cover</h3>
-                  <div class="work-descr">Illustration</div>
+                  <h3 class="work-title">{{vid_7.titre}}</h3>
+                  <div class="work-descr">{{vid_7.description}}</div>
                 </div></a></li>
-            <li class="work-item marketing photography"><a href="portfolio-single-1.html">
-                <div class="work-image"><img src="{% static 'assets/images/work-4.jpg' %}" alt="Portfolio Item"/></div>
+            <li class="work-item cat1"><a class="video-pop-up" href="{{vid_2.hd}}">
+                <div class="work-image"><img src="{{vid_2.screenshot}}" alt="Portfolio Item"/></div>
                 <div class="work-caption font-alt">
-                  <h3 class="work-title">Business Card</h3>
-                  <div class="work-descr">Photography</div>
+                  <h3 class="work-title">{{vid_2.titre}}</h3>
+                  <div class="work-descr">{{vid_2.description}}</div>
                 </div></a></li>
-            <li class="work-item illustration webdesign"><a href="portfolio-single-1.html">
-                <div class="work-image"><img src="{% static 'assets/images/work-5.jpg' %}" alt="Portfolio Item"/></div>
+            <li class="work-item cat2"><a class="video-pop-up" href="{{vid_5.hd}}">
+                <div class="work-image"><img src="{{vid_5.screenshot}}" alt="Portfolio Item"/></div>
                 <div class="work-caption font-alt">
-                  <h3 class="work-title">Business Card</h3>
-                  <div class="work-descr">Webdesign</div>
+                  <h3 class="work-title">{{vid_5.titre}}</h3>
+                  <div class="work-descr">{{vid_5.description}}</div>
                 </div></a></li>
-            <li class="work-item marketing webdesign"><a href="portfolio-single-1.html">
-                <div class="work-image"><img src="{% static 'assets/images/work-6.jpg' %}" alt="Portfolio Item"/></div>
+            <li class="work-item cat3"><a class="video-pop-up" href="{{vid_8.hd}}">
+                <div class="work-image"><img src="{{vid_8.screenshot}}" alt="Portfolio Item"/></div>
                 <div class="work-caption font-alt">
-                  <h3 class="work-title">Business Cards in paper clip</h3>
-                  <div class="work-descr">Marketing</div>
+                  <h3 class="work-title">{{vid_8.titre}}</h3>
+                  <div class="work-descr">{{vid_8.description}}</div>
                 </div></a></li>
+            <li class="work-item cat1"><a class="video-pop-up" href="{{vid_3.hd}}">
+                <div class="work-image"><img src="{{vid_3.screenshot}}" alt="Portfolio Item"/></div>
+                <div class="work-caption font-alt">
+                  <h3 class="work-title">{{vid_3.titre}}</h3>
+                  <div class="work-descr">{{vid_3.description}}</div>
+                </div></a></li>
+            <li class="work-item cat2"><a class="video-pop-up" href="{{vid_6.hd}}">
+                <div class="work-image"><img src="{{vid_6.screenshot}}" alt="Portfolio Item"/></div>
+                <div class="work-caption font-alt">
+                  <h3 class="work-title">{{vid_6.titre}}</h3>
+                  <div class="work-descr">{{vid_6.description}}</div>
+                </div></a></li>
+            <li class="work-item cat3"><a class="video-pop-up" href="{{vid_9.hd}}">
+                <div class="work-image"><img src="{{vid_9.screenshot}}" alt="Portfolio Item"/></div>
+                <div class="work-caption font-alt">
+                  <h3 class="work-title">{{vid_9.titre}}</h3>
+                  <div class="work-descr">{{vid_9.description}}</div>
+                </div></a></li>
+
+
+
           </ul>
         </section>
         <section class="module-small bg-dark">

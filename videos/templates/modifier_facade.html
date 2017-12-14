@@ -1,0 +1,161 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--  
+    Document Title
+    =============================================
+    -->
+    <title>JTX | (se branle) </title>
+    <!--  
+    Favicons
+    =============================================
+    -->
+
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/TRUC.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="assets/images/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+
+    <!--  
+    Stylesheets
+    =============================================
+    
+    -->
+    <!-- Default stylesheets-->
+    <link href="{% static 'assets/lib/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Template specific stylesheets-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Volkhov:400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link href="{% static 'assets/lib/animate.css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/lib/components-font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/lib/et-line-font/et-line-font.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/lib/flexslider/flexslider.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/lib/owl.carousel/dist/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/lib/owl.carousel/dist/assets/owl.theme.default.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/lib/magnific-popup/dist/magnific-popup.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/lib/simple-text-rotator/simpletextrotator.css' %}" rel="stylesheet">
+    <!-- Main stylesheet and color file-->
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet">
+    <link id="color-scheme" href="{% static 'assets/css/colors/default.css' %}" rel="stylesheet">
+
+
+
+<script src="https://use.fontawesome.com/7dd50ac6cd.js"></script>
+
+
+  </head>
+  <body>
+    <main>
+<div class="container">
+            <div class="row">
+              <div class="col-md-12">
+                <form method="post" action="{% url 'modifier_facade' %}">
+
+                {% csrf_token %}
+
+                  <div class="form-group">
+                    <label for="vid_background">Vidéo en background</label>
+                    <input class="form-control" type="number" id="vid_background" name="vid_background" placeholder="Id de la vidéo" required="required" data-validation-required-message="Ce site n'est pas conçu sans vidéo de background" value="{{background}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo presta</label>
+                    <input class="form-control" type="number" id="vid_background" name="vid_presta" placeholder="Id de la vidéo" required="required" data-validation-required-message="Ce site n'est pas conçu sans vidéo de Presta" value="{{presta}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Nom de la première catégorie du portfolio</label>
+                    <input class="form-control" type="text" id="nom_cat1" name="nom_cat1" placeholder="Nom" required="required" data-validation-required-message="Il faut vraiment rentrer un nom sinon c'est tendu" value="{{nom_cat1}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Nom de la deuxième catégorie du portfolio</label>
+                    <input class="form-control" type="text" id="nom_cat2" name="nom_cat2" placeholder="Nom" required="required" data-validation-required-message="Il faut vraiment rentrer un nom sinon c'est tendu" value="{{nom_cat2}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Nom de la troisième catégorie du portfolio</label>
+                    <input class="form-control" type="text" id="nom_cat3" name="nom_cat3" placeholder="Nom" required="required" data-validation-required-message="Il faut vraiment rentrer un nom sinon c'est tendu" value="{{nom_cat3}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo 1 de la catégorie 1</label>
+                    <input class="form-control" type="number" id="vid_1" name="vid_1" placeholder="Id de la vidéo" required="required" data-validation-required-message="En vrai c'est classe, donc c'est mieux" value="{{vid_1}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo 2 de la catégorie 1</label>
+                    <input class="form-control" type="number" id="vid_2" name="vid_2" placeholder="Id de la vidéo" required="required" data-validation-required-message="En vrai c'est classe, donc c'est mieux" value="{{vid_2}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo 3 de la catégorie 1</label>
+                    <input class="form-control" type="number" id="vid_3" name="vid_3" placeholder="Id de la vidéo" required="required" data-validation-required-message="En vrai c'est classe, donc c'est mieux" value="{{vid_3}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo 1 de la catégorie 2</label>
+                    <input class="form-control" type="number" id="vid_4" name="vid_4" placeholder="Id de la vidéo" required="required" data-validation-required-message="En vrai c'est classe, donc c'est mieux" value="{{vid_4}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo 2 de la catégorie 2</label>
+                    <input class="form-control" type="number" id="vid_5" name="vid_5" placeholder="Id de la vidéo" required="required" data-validation-required-message="En vrai c'est classe, donc c'est mieux" value="{{vid_5}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo 3 de la catégorie 2</label>
+                    <input class="form-control" type="number" id="vid_6" name="vid_6" placeholder="Id de la vidéo" required="required" data-validation-required-message="En vrai c'est classe, donc c'est mieux" value="{{vid_6}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo 1 de la catégorie 3</label>
+                    <input class="form-control" type="number" id="vid_7" name="vid_7" placeholder="Id de la vidéo" required="required" data-validation-required-message="En vrai c'est classe, donc c'est mieux" value="{{vid_7}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo 2 de la catégorie 3</label>
+                    <input class="form-control" type="number" id="vid_8" name="vid_8" placeholder="Id de la vidéo" required="required" data-validation-required-message="En vrai c'est classe, donc c'est mieux" value="{{vid_8}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="form-group">
+                    <label for="vid_presta">Vidéo 3 de la catégorie 3</label>
+                    <input class="form-control" type="number" id="vid_9" name="vid_9" placeholder="Id de la vidéo" required="required" data-validation-required-message="En vrai c'est classe, donc c'est mieux" value="{{vid_9}}"/>
+                    <p class="help-block text-danger"></p>
+                  </div>
+                  <div class="text-center">
+                    <button class="btn btn-block btn-round btn-d" id="fsubmit" type="submit">Enregistrer les modifications</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+    </main>
+    <!--  
+    JavaScripts
+    =============================================
+    -->
+    <script src="{% static 'assets/lib/jquery/dist/jquery.js' %}"></script>
+    <script src="{% static 'assets/lib/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/lib/wow/dist/wow.js' %}"></script>
+    <script src="{% static 'assets/lib/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.js' %}"></script>
+    <script src="{% static 'assets/lib/isotope/dist/isotope.pkgd.js' %}"></script>
+    <script src="{% static 'assets/lib/imagesloaded/imagesloaded.pkgd.js' %}"></script>
+    <script src="{% static 'assets/lib/flexslider/jquery.flexslider.js' %}"></script>
+    <script src="{% static 'assets/lib/owl.carousel/dist/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'assets/lib/smoothscroll.js' %}"></script>
+    <script src="{% static 'assets/lib/magnific-popup/dist/jquery.magnific-popup.js' %}"></script>
+    <script src="{% static 'assets/lib/simple-text-rotator/jquery.simple-text-rotator.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugins.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+  </body>
+</html>
