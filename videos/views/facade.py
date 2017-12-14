@@ -20,7 +20,7 @@ def facade(request):
 		#a = open("facade.txt",'w')
 		#a.write(u"Trailers;Rétros;éèàùêûîôû%§;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988")
 		#a.close()
-		a = open("facade.txt","r")
+		a = open(u"facade.txt","r")
 		videos = a.read().split(";")
 			
 		context={'background': videos[3],
