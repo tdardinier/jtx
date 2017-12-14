@@ -49,7 +49,11 @@ def modifier_facade(request):
 		post = request.POST
 		if 'vid_background' in post:
 			a = open("/home/django/jtx/facade.txt","w")
-			fichier = post["nom_cat1"] + ";" + post["nom_cat2"] + ";" + post["nom_cat3"] + ";" + post["vid_background"] + ";" + post["vid_presta"] + ";" + post["vid_1"] + ";" + post["vid_2"] + ";" + post["vid_3"] + ";" + post["vid_4"] + ";" + post["vid_5"] + ";" + post["vid_6"] + ";" + post["vid_7"] + ";" + post["vid_8"] + ";" + post["vid_9"]
+			fichier = post["nom_cat1"] + ";" + post["nom_cat2"] + ";" + post["nom_cat3"]
+
+			for i in post:
+				if i[:3] == "vid":
+					fichier = fichier + ";" + post[i]
 			a.write(fichier.encode('utf-8'))
 			a.close()
 			return HttpResponseRedirect(reverse('facade'))
