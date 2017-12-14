@@ -48,7 +48,7 @@ def modifier_facade(request):
 	if can_proj(request):
 		post = request.POST
 		if 'vid_background' in post:
-			a = open("facade.txt","w")
+			a = open("/home/django/jtx/facade.txt","w")
 			fichier = post["nom_cat1"] + ";" + post["nom_cat2"] + ";" + post["nom_cat3"]
 
 			for i in post:
@@ -59,8 +59,8 @@ def modifier_facade(request):
 			return HttpResponseRedirect(reverse('facade'))
 
 		else:
-			a = open("facade.txt","r")
-			videos = a.read().split(";")
+			a = open("/home/django/jtx/facade.txt","r")
+			videos = a.read()decode('utf-8').split(";")
 			
 			context={'background': videos[3],
 					 'presta':videos[4],
