@@ -21,7 +21,7 @@ def facade(request):
 		#a.write(u"Trailers;Rétros;éèàùêûîôû%§;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988")
 		#a.close()
 		a = open("/home/django/jtx/facade.txt","r")
-		videos = a.read().split(u";")
+		videos = a.read().decode('unicode').split(u";")
 			
 		context={'background': videos[3],
 					 'presta':videos[4],
