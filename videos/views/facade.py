@@ -27,8 +27,8 @@ def facade(request):
 					 'presta':videos[4],
 						}
 		a.close()
-		for i in range(2,len(videos)):
-			context["vid_"+str(i-2)] = videos[i]
+		for i in range(5,len(videos)):
+			context["vid_"+str(i-4)] = videos[i]
 
 		for i in context:
 			try:
@@ -65,8 +65,8 @@ def modifier_facade(request):
 					 'nom_cat3':videos[2],
 						}
 			a.close()
-			for i in range(2,len(videos)):
-				context["vid_"+str(i-2)] = videos[i]
+			for i in range(5,len(videos)):
+				context["vid_"+str(i-4)] = videos[i]
 
 			return render(request,'modifier_facade.html',context)
 
