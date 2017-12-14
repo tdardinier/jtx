@@ -60,7 +60,7 @@ def modifier_facade(request):
 
 		else:
 			a = open("/home/django/jtx/facade.txt","r")
-			videos = a.read()decode('utf-8').split(";")
+			videos = a.read().decode('utf-8').split(";")
 			
 			context={'background': videos[3],
 					 'presta':videos[4],
