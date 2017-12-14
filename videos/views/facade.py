@@ -54,7 +54,7 @@ def modifier_facade(request):
 			for i in post:
 				if i[:3] == "vid":
 					fichier = fichier + ";" + post[i]
-			a.write(fichier)
+			a.write(fichier.encode('utf-8'))
 			a.close()
 			return HttpResponseRedirect(reverse('facade'))
 
