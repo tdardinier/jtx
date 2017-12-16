@@ -643,8 +643,9 @@ function change_flux_to(link,indice){
   // video.appendChild(source);
       
   video.load();
-  $(".page-loader").hide();
+
   video.play();
+    $(".page-loader").hide();
 
 
   if(indice==1){setCookie('quality','hd',365)}
