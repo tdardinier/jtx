@@ -164,6 +164,10 @@ def proj(request, proj_id):
         suggestions = all_projs.all().order_by('?')[:n_suggestions]
         proj.views += 1
         proj.save()
+        if request.user.is_authenticated:
+        	a = open("/home/django/jtx/proj_logs.csv","a")
+        	a.write(str(request.user.id) + ";"+ str(proj_id) +"\n")
+        	a.close()
         context = {
             'can_proj': can_proj(request),
             'proj': proj,
@@ -198,6 +202,10 @@ def video(request, video_id):
     if video.category.public or request.user.is_authenticated:
         video.views += 1
         video.save()
+        if request.user.is_authenticated:
+        	a = open("/home/django/jtx/video_logs.csv","a")
+        	a.write(str(request.user.id) + ";"+ str(video_id) +"\n")
+        	a.close()
         n = Favorite.objects.filter(video = video).count()
         favorite = False
         epingle = False
