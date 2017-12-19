@@ -420,6 +420,17 @@
 
 <script type="text/javascript">
 
+var ali = true;
+
+ function video_vue(){
+ 	$.ajax({
+	type: "GET",
+	url: "{% url 'video_vue' video.id %}",
+	dataType: "html",
+	});
+ 	ali = false;
+ }
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 });
@@ -466,6 +477,8 @@ $(function () {
       }
     });
   }
+
+
 
   function epingle(val, link) {
     $.get(link, function (data, status) {
@@ -578,6 +591,7 @@ $(function () {
 //       video.load();
 
 //       video.play();
+
 //     }
 //  }
 
@@ -645,7 +659,12 @@ function change_flux_to(link,indice){
   video.load();
 
   video.play();
-    $(".page-loader").hide();
+  $(".page-loader").hide();
+  if(ali){
+  	ali = false;
+  	setTimeout(video_vue(),40000);
+  }
+
 
 
   if(indice==1){setCookie('quality','hd',365)}

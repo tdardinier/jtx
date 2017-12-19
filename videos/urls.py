@@ -60,4 +60,7 @@ urlpatterns = [
 
     url(r'^connection/$', views.connection, name='connection'),
 
+    url(r'^video_vue/(?P<video_id>[0-9]+)/$', views.video_vue, name='video_vue'),
+
+
 ]

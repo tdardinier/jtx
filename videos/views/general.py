@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from django.db.models import Count
+import datetime
 
 import random
 from os import listdir
@@ -200,12 +201,7 @@ def videos(request, page=1):
 def video(request, video_id):
     video = get_object_or_404(Video, pk=video_id)
     if video.category.public or request.user.is_authenticated:
-        video.views += 1
         video.save()
-        if request.user.is_authenticated:
-        	a = open("/home/django/jtx/video_logs.csv","a")
-        	a.write(str(request.user.id) + ";"+ str(video_id) +"\n")
-        	a.close()
         n = Favorite.objects.filter(video = video).count()
         favorite = False
         epingle = False
@@ -266,6 +262,19 @@ def comment_proj(request, proj_id):
         c = Relation_comment_proj(author = user, proj = proj, comment = comment)
         c.save()
     return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
+
+
+def video_vue(request, video_id):
+	video = get_object_or_404(Video,pk=video_id)
+	video.views += 1
+	video.save()
+	if request.user.is_authenticated:
+		a = open("/home/django/jtx/video_logs.csv","a")
+		a.write(str(request.user.id) + ";"+ str(video_id) + ";" + str(datetime.datetime.now()) + "\n")
+		a.close()
+	return HttpResponse("fais_pas_le_fou")
+
+
 
 def delete_comment_video(request, comment_id):
     if request.user.is_authenticated:

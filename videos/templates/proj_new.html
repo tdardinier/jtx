@@ -398,7 +398,16 @@ var subtitle = document.getElementById('sub');
 var titre = document.getElementById('titre_video');
 var current = 0;
 
-var playlist = []
+ function video_vue(video_id){
+  $.ajax({
+  type: "GET",
+  url: "/video_vue/" + video_id + "/",
+  dataType: "html",
+  });
+ }
+
+
+var playlist = [];
 var tags = [];
 var glob_quality=getCookie('quality');
 if(glob_quality==''){glob_quality='md'}
@@ -544,6 +553,10 @@ function launch(id,  from_strart='oui') {
   // var table2 = $('#proj_elements')
   // table2.page.jumpToData( current.toString(), 0 );
 
+  if (current != id){
+    video_vue(playlist[id][5]);
+  }
+
 	document.getElementById('video_'+playlist[current][5]).classList.remove('proj_video_titre_checked');}
 	current = id;
   update_btn_quality();
@@ -602,7 +615,10 @@ function next(e) {
 	current += 1;
 	if (current < playlist.length) {
 		launch(current);
-	}
+	} else {
+    current = 1;
+    lauch(current);
+  }
 
   
 }
