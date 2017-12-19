@@ -167,7 +167,11 @@ def proj(request, proj_id):
         proj.save()
         if request.user.is_authenticated:
         	a = open("/home/django/jtx/proj_logs.csv","a")
-        	a.write(str(request.user.id) + ";"+ str(proj_id) +"\n")
+        	a.write(str(request.user.id) + ";"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
+        	a.close()
+        else:
+        	a = open("/home/django/jtx/proj_logs.csv","a")
+        	a.write("0;"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
         	a.close()
         context = {
             'can_proj': can_proj(request),
@@ -272,6 +276,10 @@ def video_vue(request, video_id):
 		a = open("/home/django/jtx/video_logs.csv","a")
 		a.write(str(request.user.id) + ";"+ str(video_id) + ";" + str(datetime.datetime.now()) + "\n")
 		a.close()
+	else:
+    	a = open("/home/django/jtx/proj_logs.csv","a")
+    	a.write("0;"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
+    	a.close()
 	return HttpResponse("fais_pas_le_fou")
 
 
