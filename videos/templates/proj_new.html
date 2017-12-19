@@ -399,7 +399,7 @@ var titre = document.getElementById('titre_video');
 var current = 0;
 
  function video_vue(video_id){
-  print("/video_vue/" + video_id + "/");
+  console.log("/video_vue/" + video_id + "/");
   $.ajax({
   type: "GET",
   url: "/video_vue/" + video_id + "/",
