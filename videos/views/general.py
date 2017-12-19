@@ -277,9 +277,9 @@ def video_vue(request, video_id):
 		a.write(str(request.user.id) + ";"+ str(video_id) + ";" + str(datetime.datetime.now()) + "\n")
 		a.close()
 	else:
-    	a = open("/home/django/jtx/proj_logs.csv","a")
-    	a.write("0;"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
-    	a.close()
+		a = open("/home/django/jtx/proj_logs.csv","a")
+		a.write("0;"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
+		a.close()
 	return HttpResponse("fais_pas_le_fou")
 
 
