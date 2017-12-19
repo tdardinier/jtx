@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '980@=$gsohdj=xcy%efe3*a4ufjnpeb@m1k1%ej=2kwtxopgyv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = [u'binet-jtx.com', u'127.0.0.1','pc-guillaume','192.168.0.29', u'jtx', u'jtx.eleves.polytechnique.fr', u'37.187.51.171']
 
 
