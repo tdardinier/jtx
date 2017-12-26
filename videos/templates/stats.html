@@ -1,0 +1,207 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+{% load app_filters %}
+<link href="{% static 'chartist.min.css' %}" rel="stylesheet">
+
+
+<div class="d-flex justify-content-center">
+	<div class="col-12">
+		<div class="card ">
+			<h1 class="card-header">Statistiques</h1>
+			<div class="card-content">
+				<div class="row">
+
+
+					<div class="col-lg-4">
+						<div id="videos_plus_vues" style="padding-left:10px;padding-top:10px;padding-right:10px">
+							<h2 class="d-flex justify-content-center">Vidéos les plus vues</h2>
+
+							{% for elmt in video_plus_vues %}
+							<div class="d-flex align-items-top">
+								<div class="p-0 d-flex align-items-center" style="width:40px;height:38px;text-align:center;font-size:25px;border-radius:200px;border-color:rgb(216,216,216);border-style:solid;border-width:1px;color:rgb(190,190,190);">
+									<div style="text-align:center;width:100%;padding-bottom:2.5px;">{{forloop.counter}}</div>	
+								</div>
+								<div class="p-0" style="width:100%;margin-left:10px;">
+									<div class="progress">	
+										<div class="progress-bar bg-danger progress_bar_class" role="progressbar" style="width: {{elmt.views|get_percent_abs:max_nb_video}}%">
+												{{elmt.views}} vues
+										</div>
+									</div>
+									<div><a href="{% url 'video' elmt.id %}">{{elmt.titre}}</a> -
+										<span style="color:black">
+											{% autoescape off %} 
+												{{ elmt|auteurs }} 
+											{% endautoescape %}
+										</span>
+									</div>
+									<small style="position:relative;top:-6px;color:grey;"> 
+											<a href="{% url 'jtx' elmt|get_promo_video %}" style="color:grey;">
+													JTX {{elmt|get_promo_video}}
+											</a>
+											
+									</small> 
+								</div>
+							</div>
+							{% endfor %}
+
+
+
+						</div>
+					</div>
+
+					<div class="col-lg-4">
+						<div id="proj_plus_vues" style="padding-left:10px;padding-top:10px;padding-right:10px">
+							<h2 class="d-flex justify-content-center">Projs les plus vues</h2>
+
+							{% for elmt in proj_plus_vues %}
+							<div class="d-flex align-items-top">
+								<div class="p-0 d-flex align-items-center" style="width:40px;height:38px;text-align:center;font-size:25px;border-radius:200px;border-color:rgb(216,216,216);border-style:solid;border-width:1px;color:rgb(190,190,190);">
+									<div style="text-align:center;width:100%;padding-bottom:2.5px;">{{forloop.counter}}</div>	
+								</div>
+								<div class="p-0" style="width:100%;margin-left:10px;">
+									<div class="progress">	
+										<div class="progress-bar bg-danger progress_bar_class" role="progressbar" style="width: {{elmt.views|get_percent_abs:max_nb_proj}}%">
+												{{elmt.views}} vues
+										</div>
+									</div>
+									<div><a href="{% url 'proj' elmt.id %}">{{elmt.titre}}</a>
+									</div>
+									<small style="position:relative;top:-6px;color:grey;"> 
+											<a href="{% url 'jtx' elmt.promo %}" style="color:grey;">
+													JTX {{elmt.promo}}
+											</a>
+											
+									</small> 
+								</div>
+							</div>
+							{% endfor %}
+
+						</div>
+					</div>
+
+					<div class="col-lg-4">
+						<div id="utilisateurs_plus_actifs" style="padding-left:10px;padding-top:10px;padding-right:10px">
+							<h2 class="d-flex justify-content-center">Utilisateurs les plus actifs</h2>
+
+							{% for elmt in utilisateurs_plus_actifs %}
+							<div class="d-flex align-items-top">
+								<div class="p-0 d-flex align-items-center" style="width:40px;height:38px;text-align:center;font-size:25px;border-radius:200px;border-color:rgb(216,216,216);border-style:solid;border-width:1px;color:rgb(190,190,190);">
+									<div style="text-align:center;width:100%;padding-bottom:2.5px;">{{forloop.counter}}</div>	
+								</div>
+								<div class="p-0" style="width:100%;margin-left:10px;">
+									<div class="progress">	
+										<div class="progress-bar bg-danger progress_bar_class" role="progressbar" style="width: {{elmt.1|get_percent_abs:max_nb_utilisateurs}}%">
+												{{elmt.1}} vues
+										</div>
+									</div>
+									<div>
+										<span style="color:black">
+											{{elmt.0.username}}
+										</span>
+									</div>
+								</div>
+							</div>
+							{% endfor %}
+
+
+
+						</div>
+					</div>
+
+
+
+					
+
+
+				</div>
+
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div id="visiteurs_par_jour" style="padding-left:10px;padding-top:10px">
+							<h2 class="d-flex justify-content-center">Nombre de visiteurs par jour</h2>
+						</div>
+					</div>
+
+					<div class="col-lg-6">
+						<div id="vues_par_jour" style="padding-left:10px;padding-top:10px">
+							<h2 class="d-flex justify-content-center">Nombre de vues par jour</h2>
+						</div>
+					</div>
+
+					<div class="col-lg-6">
+						<div id="vues_par_heure" style="padding-left:10px;padding-top:10px">
+							<h2 class="d-flex justify-content-center">Nombre de vues en fonction de l'heure</h2>
+						</div>
+					</div>
+
+				</div>
+
+
+
+			</div>		
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" charset="utf8" src="{% static 'chartist.min.js' %}"></script>
+
+
+<script type="text/javascript">
+
+
+
+var data = {
+  // A labels array that can contain any sort of values
+  labels: [{% for k in vues_par_jour.1 %} "{{k}}", {% endfor %}],
+  // Our series array that contains series objects or in this case series data arrays
+  series: [
+    [{% for k in vues_par_jour.0 %} {{k}}, {% endfor %}]
+  ]
+};
+
+// As options we currently only set a static size of 300x200 px
+var options = {
+  low: 0,
+  width: '100%',
+  height: '500px',
+  showPoint:false,
+};
+
+// In the global name space Chartist we call the Line function to initialize a line chart. As a first parameter we pass in a selector where we would like to get our chart created. Second parameter is the actual data object and as a third parameter we pass in our options
+new Chartist.Line('#vues_par_jour', data, options);
+
+var data2 = {
+  // A labels array that can contain any sort of values
+  labels: [{% for k in vues_par_heure.1 %} "{{k}}", {% endfor %}],
+  // Our series array that contains series objects or in this case series data arrays
+  series: [
+    [{% for k in vues_par_heure.0 %} {{k}}, {% endfor %}]
+  ]
+};
+
+
+// In the global name space Chartist we call the Line function to initialize a line chart. As a first parameter we pass in a selector where we would like to get our chart created. Second parameter is the actual data object and as a third parameter we pass in our options
+new Chartist.Line('#vues_par_heure', data2, options);
+
+var data3 = {
+  // A labels array that can contain any sort of values
+  labels: [{% for k in visiteurs_par_jour.1 %} "{{k}}", {% endfor %}],
+  // Our series array that contains series objects or in this case series data arrays
+  series: [
+    [{% for k in visiteurs_par_jour.0 %} {{k}}, {% endfor %}]
+  ]
+};
+
+
+// In the global name space Chartist we call the Line function to initialize a line chart. As a first parameter we pass in a selector where we would like to get our chart created. Second parameter is the actual data object and as a third parameter we pass in our options
+new Chartist.Line('#visiteurs_par_jour', data3, options);
+
+
+
+</script>
+
+{% endblock %}

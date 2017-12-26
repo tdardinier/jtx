@@ -85,7 +85,7 @@ def get_percent(video,proj_duree):
 
 @register.filter(name='get_percent_abs')
 def get_percent_abs(float1,float2):
-    return 100.0*float1/(float2+0.0)
+    return 100.0*float(float1)/(float(float2)+0.0)
 
 @register.filter(name='get_list')
 def get_list(name):

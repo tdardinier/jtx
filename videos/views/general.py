@@ -17,6 +17,7 @@ from .likes import *
 from .connection import *
 from .playlists import *
 from .facade import *
+from .stats import *
 
 n_page = 36
 n_index = 12

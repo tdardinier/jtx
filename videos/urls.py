@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^facade/$', views.facade, name='facade'),
     url(r'^modifier_facade/$', views.modifier_facade, name='modifier_facade'),
     url(r'^projs/(?P<page>[0-9]+)/$', views.projs, name='projs'),
+    url(r'^stats/$', views.stats, name='stats'),
+
 
     #AJOUT VIDON 01/07
     url(r'^fil/(?P<page>[0-9]+)/$', views.fil, name='fil'),
