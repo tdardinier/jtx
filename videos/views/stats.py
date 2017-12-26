@@ -121,7 +121,7 @@ def utilisateurs_plus_actifs(video_logs):
 
 def stats(request):
 	if can_proj(request):
-		"""
+		
 		context={}
 
 		a = open("/home/django/jtx/video_logs.csv","r")
@@ -153,17 +153,7 @@ def stats(request):
 
 
 		return render(request,'stats.html',context)
-		"""
-		a = open("/home/django/jtx/video_logs.csv","r")
-		videologs = a.read().split("\n")
-		a.close()
-		b = ""
-		for i in range(325,len(videologs)-1):
-			b += str(videologs[i]) + "\n"
-		a = open("/home/django/jtx/video_logs.csv","w")
-		a.write(b)
-		a.close()
-
+		
 		return HttpResponse("<html>C'est fait</html>")
 	else:
 		return HttpResponseRedirect(reverse('index'))
