@@ -180,7 +180,7 @@ def profil(request,user_id):
 					C[video_logs[i][1]] = 1
 
 
-		context['pourcentage_vu'] = str(len(C) / (Video.objects.all().count()) * 100)[:4]
+		context['pourcentage_vu'] = int(len(C) / (Video.objects.all().count()) * 100*100)/100
 		context['nb_videos_vues'] = len(C)
 		context['historique'] = A[:10]
 		B = sorted(C.items(),key=lambda x: x[1],reverse=True)
