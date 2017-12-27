@@ -17,6 +17,8 @@ urlpatterns = [
     url(r'^projs/(?P<page>[0-9]+)/$', views.projs, name='projs'),
     url(r'^stats/$', views.stats, name='stats'),
 
+    url(r'^profil/(?P<user_id>[0-9]+)/$', views.profil, name='profil'),
+
 
     #AJOUT VIDON 01/07
     url(r'^fil/(?P<page>[0-9]+)/$', views.fil, name='fil'),

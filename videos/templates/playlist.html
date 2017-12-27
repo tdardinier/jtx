@@ -14,11 +14,11 @@
 
           {% for p in playlists %}
 
-                    {% include "block_video_proj_liste.html" with video=1 elmt=p.video_precedente horizontal=1%}
+                    {% include "block_video_proj_liste.html" with video=0 elmt=p.video_precedente horizontal=1%}
 
           {% endfor %}
 
-                    {% include "block_video_proj_liste.html" with video=1 elmt=last_video horizontal=1%}
+                    {% include "block_video_proj_liste.html" with video=0 elmt=last_video horizontal=1%}
 
           </div>
 

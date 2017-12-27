@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+{% load app_filters %}
+
+
+<div class="d-flex justify-content-center">
+	<div class="col-12">
+		<div class="card ">
+			<h1 class="card-header">Statistiques de {{user.username}}</h1>
+			<div class="card-content">
+				<div class="row">
+					<div class="col-lg-4">
+						<div id="videos_plus_vues" style="padding-left:10px;padding-top:10px;padding-right:10px">
+							<h2 class="d-flex justify-content-center">Vidéos préférées</h2>
+
+							{% for elmt in videos_prefere %}
+							<div class="d-flex align-items-top">
+								<div class="p-0 d-flex align-items-center" style="width:40px;height:38px;text-align:center;font-size:25px;border-radius:200px;border-color:rgb(216,216,216);border-style:solid;border-width:1px;color:rgb(190,190,190);">
+									<div style="text-align:center;width:100%;padding-bottom:2.5px;">{{forloop.counter}}</div>	
+								</div>
+								<div class="p-0" style="width:100%;margin-left:10px;">
+									<div class="progress">	
+										<div class="progress-bar bg-danger progress_bar_class" role="progressbar" style="width: {{elmt.1|get_percent_abs:nb_video_prefere}}%">
+												{{elmt.1}} vues
+										</div>
+									</div>
+									<div><a href="{% url 'video' elmt.0.id %}">{{elmt.0.titre}}</a> -
+										<span style="color:black">
+											{% autoescape off %} 
+												{{ elmt.0|auteurs }} 
+											{% endautoescape %}
+										</span>
+									</div>
+									<small style="position:relative;top:-6px;color:grey;"> 
+											<a href="{% url 'jtx' elmt.0|get_promo_video %}" style="color:grey;">
+													JTX {{elmt.0|get_promo_video}}
+											</a>
+											
+									</small> 
+								</div>
+							</div>
+							{% endfor %}
+
+
+
+						</div>
+
+
+					</div>
+
+					<div class="col-lg-4">
+
+						<div id="videos_plus_vues" style="padding-left:10px;padding-top:10px;padding-right:10px">
+							<h2 class="d-flex justify-content-center">Nombre de vidéos visionnées</h2>
+							<h1 class="d-flex justify-content-center">{{nb_videos_vues}}</h1>
+						</div>
+
+					</div>
+
+					<div class="col-lg-4">
+
+						<div id="videos_plus_vues" style="padding-left:10px;padding-top:10px;padding-right:10px">
+							<h2 class="d-flex justify-content-center">Pourcentage vu des vidéos du site</h2>
+							<h1 class="d-flex justify-content-center">{{pourcentage_vu}} %</h1>
+						</div>
+
+					</div>
+
+				</div>
+
+
+				<div class="col-lg-12">
+					
+					<h2 class="d-flex justify-content-center">Historique de visionnage</h2>
+
+					{% for i in historique %}
+
+						{% include "block_video_proj_liste.html" with video=0 elmt=i horizontal=1%}
+
+					{% endfor %}
+
+				</div>
+
+
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+{% endblock %}

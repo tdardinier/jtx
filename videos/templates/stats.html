@@ -97,9 +97,11 @@
 										</div>
 									</div>
 									<div>
-										<span style="color:black">
-											{{elmt.0.username}}
-										</span>
+										<a href="{% url 'profil' elmt.0.id %}">
+											<span style="color:black">
+												{{elmt.0.username}}
+											</span>
+										</a>
 									</div>
 								</div>
 							</div>

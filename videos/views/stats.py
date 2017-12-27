@@ -124,7 +124,8 @@ def stats(request):
 		
 		context={}
 
-		a = open("/home/django/jtx/video_logs.csv","r")
+		#a = open("/home/django/jtx/video_logs.csv","r")
+		a = open("C:/Users/Benoit/Documents/GitHub/jtx/video_logs.csv","r")
 		videologs = a.read()
 		a.close()
 		videologs = videologs.split("\n")
@@ -153,7 +154,46 @@ def stats(request):
 
 
 		return render(request,'stats.html',context)
-		
-		return HttpResponse("<html>C'est fait</html>")
+	
 	else:
 		return HttpResponseRedirect(reverse('index'))
+
+def profil(request,user_id):
+	if request.user.is_superuser:
+		context = {}
+		
+		#a = open("/home/django/jtx/video_logs.csv","r")
+		a = open("C:/Users/Benoit/Documents/GitHub/jtx/video_logs.csv","r")
+		videologs = a.read()
+		a.close()
+		videologs = videologs.split("\n")
+		video_logs = [ videologs[i].split(";") for i in range(len(videologs)-1)]
+		A = []
+		C = {}
+		for i in range(len(video_logs)):
+			video_logs[i][2] = transform_date(video_logs[i][2])
+			if video_logs[i][0] == str(user_id):
+				A.append(get_object_or_404(Video,pk=int(video_logs[i][1])))
+				try:
+					C[video_logs[i][1]] += 1
+				except:
+					C[video_logs[i][1]] = 1
+
+
+		context['pourcentage_vu'] = str(len(C) / (Video.objects.all().count()) * 100)[:4]
+		context['nb_videos_vues'] = len(C)
+		context['historique'] = A[:10]
+		B = sorted(C.items(),key=lambda x: x[1],reverse=True)
+		D = []
+		for i in B:
+			D.append([get_object_or_404(Video,pk=int(i[0])),i[1]])
+		print(D)
+		context['videos_prefere'] = D[:5]
+		context['nb_video_prefere'] = D[0][1]
+		context['user'] = get_object_or_404(User,pk=user_id)
+
+		return render(request,'profil.html',context)
+
+
+	else:
+		return HttpResponseRedirect(reverse('stats'))
