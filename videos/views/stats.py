@@ -124,8 +124,8 @@ def stats(request):
 		
 		context={}
 
-		#a = open("/home/django/jtx/video_logs.csv","r")
-		a = open("C:/Users/Benoit/Documents/GitHub/jtx/video_logs.csv","r")
+		a = open("/home/django/jtx/video_logs.csv","r")
+		#a = open("C:/Users/Benoit/Documents/GitHub/jtx/video_logs.csv","r")
 		videologs = a.read()
 		a.close()
 		videologs = videologs.split("\n")
@@ -162,8 +162,8 @@ def profil(request,user_id):
 	if request.user.is_superuser:
 		context = {}
 		
-		#a = open("/home/django/jtx/video_logs.csv","r")
-		a = open("C:/Users/Benoit/Documents/GitHub/jtx/video_logs.csv","r")
+		a = open("/home/django/jtx/video_logs.csv","r")
+		#a = open("C:/Users/Benoit/Documents/GitHub/jtx/video_logs.csv","r")
 		videologs = a.read()
 		a.close()
 		videologs = videologs.split("\n")
