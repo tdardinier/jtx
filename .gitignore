@@ -3,3 +3,5 @@ videos/views/connection.py
 db.sqlite3
 videos/migrations
 facade.txt
+video_logs.csv
+proj_logs.csv

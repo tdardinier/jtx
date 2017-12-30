@@ -1,4 +1,4 @@
-{% load static %}
+  {% load static %}
 {% load app_filters %}
 
 <!DOCTYPE html>
@@ -66,8 +66,8 @@
 
 
           
-            <a  class="p-2" onclick="h_r_lateral_bar()">
-              <img class="" style="width:25px;" src={% static "admin/img/opticons/three-bars.svg" %} alt="Menu">
+            <a  class="p-2" onclick="h_r_lateral_bar()" style="cursor:pointer">
+              <img class="" style="width:25px;" src='{% static "admin/img/opticons/three-bars.svg" %}' alt="Menu">
             </a>
           
 
@@ -609,12 +609,14 @@
     if (show != "") {
       if (show == 'oui' && taille>1800) {
 
-        document.getElementById("lateral_bar").style.display = "unset";
+        $("#lateral_bar").show();
       }
-      else { document.getElementById("lateral_bar").style.display = "none"; }
+      else {
+        $("#lateral_bar").hide();
+      }
     }
     else {
-      document.getElementById("lateral_bar").style.display = "none";
+      $("#lateral_bar").hide();
 
     }
   }
@@ -654,14 +656,17 @@
 
   function h_r_lateral_bar() {
 
-    if (document.getElementById("lateral_bar").style.display != "none") {
-      document.getElementById("lateral_bar").style.display = "none";
+    lateral_bar=$("#lateral_bar");
+
+    if (lateral_bar.is(":visible")) {
+
+      lateral_bar.hide(200),
 
       setCookie("show", "non", 365);
     }
 
     else {
-      document.getElementById("lateral_bar").style.display = "unset";
+      lateral_bar.show(200);
 
       setCookie("show", "oui", 365);
     }
