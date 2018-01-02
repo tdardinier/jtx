@@ -75,9 +75,26 @@
 					
 					<h2 class="d-flex justify-content-center">Historique de visionnage</h2>
 
-					{% for i in historique %}
 
-						{% include "block_video_proj_liste.html" with video=0 elmt=i horizontal=1%}
+					{% for i in historique %}
+				<div style="padding-top:10px">
+					<div class="card" style="padding-top:10px">
+
+							<div class="card-content">
+
+									<h4>	{{i.1}} </h4>
+
+
+						{% include "block_video_proj_liste.html" with video=1 elmt=i.0 horizontal=1%}
+
+
+
+						
+
+							</div>
+
+					</div>
+				</div>
 
 					{% endfor %}
 

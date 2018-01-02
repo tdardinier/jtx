@@ -1,0 +1,625 @@
+{% load static%} {% if video %} {% load app_filters %}
+
+<!-- <div style="margin-top:0;display:table">
+<div style="margin-top:0;display:block">   -->
+<!-- style="margin-top:0;display:table-cell;vertical-align:top;padding-right:10px;" -->
+<div class="row" style="margin:0;">
+  <div class="col-12" style="padding:5px;">
+    
+    
+    
+      <video id="video" class="embed-responsive-item" controls autoplay>
+        <source id="src" src=""> Your browser does not support the video tag.
+          {% if  video.subtitles %}
+          <track label="Français" kind="subtitles" srclang="fr" src="{{video.subtitles}}" default >
+          {% endif %}
+      </video> 
+    
+    
+      
+
+
+    <div class="col-12 shadow-div" id="" style="background-color:white;padding:10px;margin-top:10px;">
+
+      <div class=" col-12 d-flex  justify-content-between align-items-start" style="padding:0;">
+        <h3>{{ video.titre }} </h3>
+        <!-- <div class="btn-group" data-toggle="buttons">
+            <a href="#" id="btn_sd" class="btn btn-secondary btn-sm " onclick="tosd('{{video.md}}')">SD</a>
+            <a href="#" id="btn_hd" class="btn btn-success btn-sm" onclick="tohd('{{video.hd}}')">HD</a>
+        </div> -->
+
+        <div class="btn-group" data-toggle="buttons">
+          {% if video.sd %}
+          <label class="btn btn-primary btn-sm" onclick="change_flux_to('{{video.sd|echappe}}',3)" id='btn_quality_sd'>
+            <input type="radio" name="options" id="option3" autocomplete="off" > SD
+          </label>
+          {% endif %}
+          {% if video.md %}
+          <label class="btn btn-primary btn-sm"  onclick="change_flux_to('{{video.md|echappe}}',2)"  id='btn_quality_md'>
+            <input type="radio" name="options" id="option2" autocomplete="off" checked> MD
+          </label>
+          {% endif %}
+          {% if video.hd %}
+          <label class="btn btn-primary  btn-sm" onclick="change_flux_to('{{video.hd|echappe}}',1)"  id='btn_quality_hd'>
+            <input type="radio" name="options" id="option1" autocomplete="off" > Full HD
+          </label>
+          {% endif %}
+        </div>
+
+      </div>
+
+      <div class="col-12" style="">
+        <div class="row justify-content-between">
+          <div class="col-12 col-sm-9" style="padding:0;">
+           <div class="d-flex flex-row align-items-center">
+            
+           
+            <a href="/jtx/jtx/{{video|get_promo_video:""}}" class="d-flex align-items-center justify-content-center no-hover-link {% if video|get_promo_video:""|divisibleby:'2' %}bg-danger{%else%}bg-warning{% endif %}" style="width:50px;height:50px;"
+            data-toggle="tooltip" data-placement="bottom" title="Aller sur la page du JTX {{video|get_promo_video:""}}">
+             
+                <div class="no-hover-link" style="font-size:30px;color:white;">
+                    {{video|get_promo_video:"short"}}
+                </div>
+              
+              </a>
+           
+
+            <div style="padding:5px;margin-top:-6px;overflow: hidden;">
+              {% autoescape off %}
+              <div class="" style="">{{ video|auteurs}}</div>
+              {% endautoescape %}
+              <div class="titre_et_vues_info">
+
+                
+                {% for r in video.relation_proj_set.all %}
+                <a class='cat_{{ video.category.id}}' href="{% url 'proj' r.proj.id %}">{{ r.proj.titre }}</a> 
+                {% endfor %} 
+               
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3 row align-items-end" style="padding:0;margin:0;">
+            
+              <div class="col-12" style="padding:0;text-align:center;font-size:25px;">
+            {{ video.views }} vues
+           
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+
+      <div class="col-12" style="padding:0;">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-9" style="">
+            Tags : 
+            {% for r in video.relation_tag_set.all %}
+              <a class="tag" href="{% url 'tag' r.tag.id 1 %}">{{ r.tag.titre }}</a> 
+            {% endfor %}
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-3">
+            <div class="d-flex flex-row-reverse align-items-center">
+
+            <div  style="text-align:right;padding:0;">
+            {% if request.user.is_authenticated %}
+              <div class="btn-group" role="group" >
+                <button type="button" id="video_nb_jaime" class="btn btn-secondary btn-sm disabled">{{ nb_jaimes }}</button>
+                
+                {% if favorite %}
+                  <button type="button" id="bouton_jaime" onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="btn btn-danger btn-sm">Je n'aime plus</button>
+                {% else %}
+                  <button type="button" id="bouton_jaime" onclick="like(1,'{% url 'add_favorite' video.id %}')" class="btn btn-success btn-sm">J'aime</button>
+                {% endif %}
+                
+              </div>
+            {% endif %}
+            </div> 
+
+              <div class="" style=" padding:0;text-align:center;">
+            {% if request.user.is_authenticated %}
+
+                  {% if epingle %}
+                  <button type="button" id="btn_epingle" onclick="epingle(0,'{% url 'remove_epingle' video_id=video.id home=0 %}')"class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Désépingler">
+                   <img src={% static "admin/img/opticons/pin.svg" %} alt="pin" style="height:25px;margin-top:0px;" id="img_epingle">
+                    {% else %}
+                  <button type="button" id="btn_epingle" onclick="epingle(1,'{% url 'add_epingle' video.id %}')" class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Épingler">
+                    <img src={% static "admin/img/opticons/pin.svg" %} alt="pin" style="height:25px;margin-top:0px;opacity:0.294;" id="img_epingle">
+                   {% endif %}
+                  </button>
+                  <!-- <span id='bouton_epingle'>
+                  {% if epingle %}
+                    <a onclick="epingle(0,'{% url 'remove_epingle' video_id=video.id home=0 %}')" class="link_epingler" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                      <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_deja_epingler">
+                    </a>
+                    <div class="text_epingler">
+                      désépingler
+                    </div>
+
+                    {% else %}
+                    <a onclick="epingle(1,'{% url 'add_epingle' video.id %}')" class="link_epingler" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+                      <img src={% static "admin/img/pin.png" %} alt="pin" class="bouton_epingler">
+                    </a>
+                    <div class="text_epingler">
+                      épingler
+                    </div>
+                    {% endif %}
+                </span>  -->
+              {% endif %}
+            </div>
+
+              {% if can_proj %}
+            <div style=" padding:0;margin-right:-10px;">
+                <a  href="{% url 'add_playlist' video.id %}" class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Ajouter la vidéo à une playlist">
+                    <img src={% static "admin/img/opticons/bookmark.svg" %} alt="edit" style="height:25px;margin-top:0px;" >
+                
+                </a>
+            </div>
+            {% endif %}
+
+
+            {% if can_edit %}
+            <div style=" padding:0;margin-right:-10px;">
+                <a  href="{% url 'edit_video' video.id %}" class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Éditer les informations de la vidéo">
+                    <img src={% static "admin/img/opticons/pencil.svg" %} alt="edit" style="height:25px;margin-top:0px;" >
+                
+                </a>
+            </div>
+            {% endif %}
+           
+            <div style=" padding:0;margin-right:-5px;">
+              <a  href="{{video.subtitles}}" download="" class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Télécharger les sous-titres">
+                <img src={% static "admin/img/opticons/desktop-download.svg" %} alt="edit" style="height:25px;margin-top:0px;" >
+              </a>
+            </div>
+           
+            <!-- <div class="titre_et_vues_vues_et_jaime_nb_jaime" id='video_nb_jaime'>
+              {{ nb_jaimes }}
+            </div>
+
+              <div class="titre_et_vues_vues_et_jaime_vues_jaime" id='bouton_jaime'>
+
+                {% if request.user.is_authenticated %} {% if favorite %}
+                <a onclick="like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}')" class="lien_jaime_rouge">
+                  <div class="titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+                    Je n'aime plus
+                  </div>
+                </a>
+
+
+                {% else %}
+                
+                <a onclick="like(1,'{% url 'add_favorite' video.id %}')" class="lien_jaime_vert">
+                  <div class="titre_et_vues_vues_et_jaime_bouton_jaime_vert">
+                    J'aime
+                  </div>
+                </a>
+
+                {% endif %} {% endif %}
+
+              </div> -->
+
+              </div> 
+            </div>
+          </div>
+      </div>
+
+     
+
+
+    
+
+
+    </div>
+
+    
+
+    <div class="col-12 shadow-div" style="background-color:white;padding:10px;margin-top:10px;">
+      <div class="titre_et_vues_date">Ajoutée le {{ video.date|date:"d/m/Y" }}.</div>
+      {{ video.description }}
+    </div>
+
+
+
+    
+
+
+    <div class="col-12 shadow-div" style="background-color:white;padding:10px;margin-top:10px;" id="commentaires_video_id">
+      <div class="commentaires_video_titre">
+        Commentaires
+      </div>
+
+      <div class="" style="padding:0;margin-top:10px;">
+        {% if request.user.is_authenticated %}
+
+
+        <form action="{% url 'comment_video' video.id %}" method="post">
+          {% csrf_token %}
+          <textarea name="comment" rows="3" id="comment" class="form-control" type="text" placeholder="Un très gentil commentaire" required></textarea>
+          <div style="text-align:right">
+          <button type="submit" class="btn btn-primary btn-sm ">Poster</button>
+          </div>
+        </form>
+
+        {% endif %}
+      </div>
+
+      {% for r in video.relation_comment_set.all|dictsortreversed:"date" %}
+      <br>
+      <div class="commentaires_supprimer_div">
+        {% if request.user.is_authenticated and request.user == r.author %}
+        <a href="{% url 'delete_comment_video' r.id %}">
+                  <img src={% static "admin/img/icon-deletelink.svg" %} alt="Supprimer" class='commentaires_supprimer'>
+            </a> {% endif %}
+      </div>
+
+      <div class="media">
+      <div  class="rounded-circle mr-2 d-flex align-items-center" style="height:40px;width:40px;background-color:#d35400;margin-top:5px;" >
+        <div style="text-align:center;width:100%;font-size:25px;color:white;margin-top:-2px;">{{r.author.first_name|slice:"1"}}{{r.author.last_name|slice:"1"}} </div>
+      </div>
+
+       <div class="media-body">
+      <div class="d-flex flex-wrap align-items-end">
+        <div class="commentaires_nom ">
+          {{ r.author.first_name|lower }} {{ r.author.last_name|lower }}
+        </div>
+        <div class="commentaires_date ">
+          
+          le {{r.date|date:"d/m/Y" }} à {{r.date|date:"H:i"}}
+        
+        <div class="cellule_com_jaime" style="display:inline-block">
+
+         
+
+            <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime" >
+              <span id="commentaire_{{r.id}}">{{r.like_comment_set.count}}</span> j'aime
+            </div>
+
+            <div style="display:inline-block;margin-left:-4px;">
+
+              {% if request.user.is_authenticated %} {% if r.like_comment_set|exists_user:request.user %}
+<!-- 
+              <a href="{% url 'unlike_comment' r.id %}" class="petit_lien_jaime_rouge">
+                <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+                  Je n'aime plus
+                </div>
+              </a> -->
+
+               <a  id="like_comment_btn_{{r.id}}" onclick="like_comment(0, '/jtx/unlike_comment/{{r.id}}')" style="background-color:white;margin-top:-5px;margin-left:5px;" >
+                    <img src={% static "admin/img/opticons/thumbsdown.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
+               </a>
+              {% else %}
+
+              <!-- <a href="{% url 'like_comment' r.id  %}" class="petit_lien_jaime_vert">
+                <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_vert">
+                  J'aime
+                </div>
+              </a> -->
+
+              <a id="like_comment_btn_{{r.id}}" onclick="like_comment(1, '/jtx/like_comment/{{r.id}}')"  style="background-color:white;margin-top:-5px;margin-left:5px;" >
+                    <img src={% static "admin/img/opticons/thumbsup.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
+              </a>
+
+              {% endif %} {% endif %}
+
+            </div>
+          </div>
+
+
+
+
+
+        
+      </div>
+      </div>
+
+
+      <div class="commentaires_commentaires">
+        {{ r.comment }}
+      </div>
+        </div>
+</div>
+
+      {% endfor %}
+    </div>
+
+
+    <!-- -->
+
+  </div>
+
+  <!-- suggestion -->
+
+</div>
+<!-- </div>
+</div> -->
+
+
+{% endif %}
+
+
+<script type="text/javascript">
+
+var ali = true;
+
+ function video_vue(){
+ 	$.ajax({
+	type: "GET",
+	url: "{% url 'video_vue' video.id %}",
+	dataType: "html",
+	});
+ 	ali = false;
+ }
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+
+  var video = document.getElementById('video');
+
+
+  function like(val, link) {
+
+    $.get(link, function (data, status) {
+      if (data == 'lannoo') {
+
+        if (val == 1) {
+
+          document.getElementById('bouton_jaime').innerHTML = `Je n'aime plus`;
+          document.getElementById('bouton_jaime').classList.remove('btn-success');
+          document.getElementById('bouton_jaime').classList.add('btn-danger');
+          document.getElementById('bouton_jaime').onclick= function(){ like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}'); };
+          c = parseInt(document.getElementById('video_nb_jaime').innerHTML);
+          document.getElementById('video_nb_jaime').innerHTML = c + 1;
+        }
+        if (val == 0) {
+          document.getElementById('bouton_jaime').innerHTML = `J'aime`;
+          document.getElementById('bouton_jaime').classList.add('btn-success');
+          document.getElementById('bouton_jaime').classList.remove('btn-danger');
+          document.getElementById('bouton_jaime').onclick= function(){ like(1,'{% url 'add_favorite' video.id %}'); };
+          c = parseInt(document.getElementById('video_nb_jaime').innerHTML);
+          document.getElementById('video_nb_jaime').innerHTML = c - 1;
+
+          document.getElementById('btn_epingle').onclick= function(){ epingle(1,'{% url 'add_epingle' video.id %}'); };
+          document.getElementById('img_epingle').style.opacity='0.294';
+          document.getElementById('video_epingle_id_+{{video.id}}').innerHTML = "";
+
+          document.getElementById('video_epingle_id_+{{video.id}}').innerHTML = "";
+        }
+      }
+    });
+  }
+
+
+
+  function epingle(val, link) {
+    $.get(link, function (data, status) {
+      if (data == 'lannoo') {
+        if (val == 1) {
+         
+
+        document.getElementById('btn_epingle').onclick= function(){ epingle(0,'{% url 'remove_epingle' video_id=video.id home=0 %}'); };
+        document.getElementById('img_epingle').style.opacity='1';
+
+          a = `
+        <span id='video_epingle_id_+{{video.id}}'>
+          <a class="dropdown-item" href="{% url 'video' video.id %}">
+           
+                  {{ video.titre }}
+             
+        </a>
+        </span>`;
+
+          document.getElementById('video_epingle_liste').innerHTML = a + document.getElementById('video_epingle_liste').innerHTML;
+
+          document.getElementById('bouton_jaime').innerHTML = `Je n'aime plus`;
+          document.getElementById('bouton_jaime').classList.remove('btn-success');
+          document.getElementById('bouton_jaime').classList.add('btn-danger');
+          document.getElementById('bouton_jaime').onclick= function(){ like(0,'{% url 'remove_favorite' video_id=video.id home=0 %}'); };
+          c = parseInt(document.getElementById('video_nb_jaime').innerHTML);
+          document.getElementById('video_nb_jaime').innerHTML = c + 1;
+         
+
+        }
+        if (val == 0) {
+
+          document.getElementById('btn_epingle').onclick= function(){ epingle(1,'{% url 'add_epingle' video.id %}'); };
+          document.getElementById('img_epingle').style.opacity='0.294';
+          document.getElementById('video_epingle_id_+{{video.id}}').innerHTML = "";
+        }
+      }
+    });
+  }
+
+  function like_comment(like,link){
+    $.get(link, function (data, status) {
+      if (data != 'erreur') {
+        var id=parseInt(data);
+        
+        if(like==0){
+          c = parseInt(document.getElementById("commentaire_"+id).innerHTML);
+          document.getElementById("commentaire_"+id).innerHTML=c-1
+
+          var btn=document.getElementById("like_comment_btn_"+id);
+          btn.innerHTML=`
+             <img src={% static "admin/img/opticons/thumbsup.svg" %} alt="+" style="height:15px;margin-top:0px;opacity:0.294;" >
+          `
+          btn.onclick=function() { like_comment(1,'/jtx/like_comment/' +id);};
+         
+        }
+        else{
+          c = parseInt(document.getElementById("commentaire_"+id).innerHTML);
+          document.getElementById("commentaire_"+id).innerHTML=c+1
+
+          var btn=document.getElementById("like_comment_btn_"+id);
+          btn.innerHTML=`
+             <img src={% static "admin/img/opticons/thumbsdown.svg" %} alt="+" style="height:15px;margin-top:0px;opacity:0.294;" >
+          `
+          btn.onclick=function() { like_comment(0, '/jtx/unlike_comment/'+id);};
+         
+        }
+      }
+    });
+  }
+
+  // Play pause quand on appuie sur espace
+  $(document).keypress(function(e){ 
+    
+    if (e.which == 32){
+      
+      if( e.target != document.getElementById('search_input') && e.target!=document.getElementById('comment')){
+        e.preventDefault();
+        var video=document.getElementById('video');
+        if(video.paused){
+          video.play();
+        }
+        else{
+          video.pause();
+        }
+        
+        }
+    }
+ });
+
+//  function tosd(sdlink){
+//     if(quality!='sd'){
+//       var sd_btn=document.getElementById('btn_sd');
+//       var hd_btn=document.getElementById('btn_hd');
+//       sd_btn.classList.remove('btn-secondary');
+//       hd_btn.classList.remove('btn-success');
+//       hd_btn.classList.add('btn-secondary');
+//       sd_btn.classList.add('btn-success');
+//       quality='sd';
+
+//       var video = document.getElementById('video'); 
+//       var time=video.currentTime;
+//       video.removeChild(document.getElementById('src_hd'));
+     
+//       var source = document.createElement('source');
+//       source.setAttribute('src', sdlink+'#t='+time.toString());
+//       source.setAttribute('id', 'src_sd');
+//       video.appendChild(source);
+      
+//       video.load();
+
+//       video.play();
+
+//     }
+//  }
+
+//  function tohd(hdlink){
+//     if(quality!='hd'){
+//       var sd_btn=document.getElementById('btn_sd');
+//       var hd_btn=document.getElementById('btn_hd');
+//       sd_btn.classList.remove('btn-success');
+//       sd_btn.classList.add('btn-secondary');
+//       hd_btn.classList.remove('btn-secondary');
+//       hd_btn.classList.add('btn-success');
+//       quality='hd';
+
+//       var video = document.getElementById('video'); 
+//       var time=video.currentTime;
+//       video.removeChild(document.getElementById('src_sd'));
+     
+//       var source = document.createElement('source');
+//       source.setAttribute('src', hdlink+'#t='+time.toString());
+//       source.setAttribute('id', 'src_hd');
+//       video.appendChild(source);
+      
+//       video.load();
+//       video.play();
+//     }
+//  }
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+
+function change_flux_to(link,indice){
+
+
+
+  var video = document.getElementById('video'); 
+  var time=video.currentTime;
+  // video.removeChild(document.getElementById('src'));
+     
+  var source = document.getElementById('src');
+  source.setAttribute('src', link.replace("&#39;","'").replace("&amp;","&")+'#t='+time.toString());
+  // source.setAttribute('id', 'src');
+  // video.appendChild(source);
+      
+  video.load();
+
+  video.play();
+  $(".page-loader").hide();
+  if(ali){
+  	ali = false;
+  	setTimeout(video_vue(),40000);
+  }
+
+
+
+  if(indice==1){setCookie('quality','hd',365)}
+  if(indice==2){setCookie('quality','md',365)}
+  if(indice==3){setCookie('quality','sd',365)}
+}
+
+quality=getCookie('quality');
+if(quality==''){quality='md'}
+
+if(quality=='hd'){
+  if("{{video.hd}}"==""){
+    if("{{video.md}}"==""){
+      change_flux_to("{{video.sd}}",3)
+    }
+    else{
+      change_flux_to("{{video.md}",2);
+    }
+   
+  }
+  else{
+    change_flux_to("{{video.hd}}",1);
+    document.getElementById('btn_quality_hd').classList.add('active');
+  }
+}
+if(quality=='md'){
+  if("{{video.md}}"==""){
+    change_flux_to("{{video.sd}}",3)
+  }
+  else{
+  change_flux_to("{{video.md}}",2);
+  document.getElementById('btn_quality_md').classList.add('active');
+  }
+}
+if(quality=='sd'){
+  change_flux_to("{{video.sd}}",3);
+  document.getElementById('btn_quality_sd').classList.add('active');
+}
+
+</script>
+

@@ -17,6 +17,12 @@ def can_proj(request):
         return hasattr(user, 'utilisateur') and user.utilisateur.can_proj
     return False
 
+def can_edit(request):
+    if request.user.is_authenticated:
+        user = request.user
+        return hasattr(user, 'utilisateur') and user.utilisateur.can_edit
+    return False
+
 def transform_date(s):
 	b = s.split(" ")
 	b[0] = b[0].split("-")
@@ -121,8 +127,20 @@ def utilisateurs_plus_actifs(video_logs):
 
 def stats(request):
 	if can_proj(request):
-		
-		context={}
+
+		video = video_plus_vues()[0]
+		n = Favorite.objects.filter(video = video).count()
+		user = request.user
+		favorite = Favorite.objects.filter(user = user, video = video).exists()
+		epingle = Favorite.objects.filter(user = user, video = video, epingle = True).exists()
+		context = {
+			'can_edit': can_edit(request),
+			'can_proj' : can_proj(request),
+			'video': video,
+			'favorite': favorite,
+			'epingle': epingle,
+			'nb_jaimes': n,
+			}
 
 		a = open("/home/django/jtx/video_logs.csv","r")
 		#a = open("C:/Users/Benoit/Documents/GitHub/jtx/video_logs.csv","r")
@@ -173,7 +191,7 @@ def profil(request,user_id):
 		for i in range(len(video_logs)):
 			video_logs[i][2] = transform_date(video_logs[i][2])
 			if video_logs[i][0] == str(user_id):
-				A.append(get_object_or_404(Video,pk=int(video_logs[i][1])))
+				A.append([get_object_or_404(Video,pk=int(video_logs[i][1])),video_logs[i][2]])
 				try:
 					C[video_logs[i][1]] += 1
 				except:
@@ -182,7 +200,9 @@ def profil(request,user_id):
 
 		context['pourcentage_vu'] = int(len(C) / (Video.objects.all().count()) * 100*100)/100
 		context['nb_videos_vues'] = len(C)
+		A.sort(key=(lambda x: x[1]),reverse=True)
 		context['historique'] = A[:10]
+
 		B = sorted(C.items(),key=lambda x: x[1],reverse=True)
 		D = []
 		for i in B:

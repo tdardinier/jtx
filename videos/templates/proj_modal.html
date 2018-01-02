@@ -1,0 +1,776 @@
+{% load static %} {% if proj %} {% load app_filters %}
+
+<!-- <div style="margin-top:0;display:table">
+<div style="margin-top:0;display:block">   -->
+<!-- style="margin-top:0;display:table-cell;vertical-align:top;padding-right:10px;" -->
+<div class="row" style="margin:0;">
+  <div class="col-12 col-sm-12 col-md-9 col-lg-8" style="padding:5px;">
+    
+    
+   
+      <video id="video" class="embed-responsive-item" controls autoplay>
+        <track label="Français" kind="subtitles" srclang="fr" default id='sub' src="/">
+      </video> 
+        
+    
+
+    <div class="col-12 shadow-div" id="" style="background-color:white;padding:10px;margin-top:10px;">
+
+      <div class=" col-12 d-flex  justify-content-between align-items-start" style="padding:0;">
+        <h3>{{ proj.titre }} </h3>
+        <div class="btn-group" data-toggle="buttons">
+            
+            <label class="btn btn-primary btn-sm" onclick="change_flux_to('sd', 'non')" id='btn_quality_sd'>
+              <input type="radio" name="options" id="option3" autocomplete="off" > SD
+            </label>
+            
+            <label class="btn btn-primary active btn-sm"  onclick="change_flux_to('md', 'non')" id='btn_quality_md'>
+              <input type="radio" name="options" id="option2" autocomplete="off" checked> MD
+            </label>
+            
+            <label class="btn btn-primary  btn-sm" onclick="change_flux_to('hd', 'non')" id='btn_quality_hd'>
+              <input type="radio" name="options" id="option1" autocomplete="off" > Full HD
+            </label>
+           
+        </div>
+      </div>
+
+      <div class="col-12" style="">
+        <div class="row justify-content-between">
+          <div class="col-12 col-sm-9" style="padding:0;">
+           <div class="d-flex flex-row align-items-center">
+            
+           
+            <a href="/jtx/jtx/{{ proj.promo}}" class="d-flex align-items-center justify-content-center no-hover-link {% if proj.promo|divisibleby:'2' %}bg-danger{%else%}bg-warning{% endif %}" style="width:50px;height:50px;"
+            data-toggle="tooltip" data-placement="bottom" title="Aller sur la page du JTX {{proj.promo}}">
+             
+                <div class="no-hover-link" style="font-size:30px;color:white;">
+                    {{ proj | short_promo }}
+                </div>
+              
+              </a>
+           
+
+            <div style="padding:5px;margin-top:-6px;">
+              {% autoescape off %}
+              <div class="" style="">JTX {{proj.promo }}</div>
+              {% endautoescape %}
+              <div class="titre_et_vues_info">
+
+               
+                <a href="{% url 'category' proj.category.id 1 %}" class="cat_{{proj.category.id}}">{{proj.category.titre}}</a>
+              
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-sm-3 row align-items-end" style="padding:0;margin:0;">
+            
+              <div class="col-12" style="padding:0;text-align:center;font-size:25px;">
+            {{ proj.views }} vues
+           
+            </div>
+           
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+
+      <div class="col-12" style="padding:0;">
+        <div class="row">
+          <div class="col-12 col-sm-12 col-lg-8 col-xl-9" style="">
+           Durée de la projection : <b>{{proj|duration_proj}}</b>
+          </div>
+
+          <div class="col-12 col-sm-12 col-md-12 col-lg-4 col-xl-3">
+            <div class="d-flex flex-row-reverse align-items-center">
+
+            <div  style="text-align:right;padding:0;">
+            {% if request.user.is_authenticated %}
+              <div class="btn-group" role="group" >
+                <button type="button" id="video_nb_jaime" class="btn btn-secondary btn-sm disabled">{{ nb_jaimes }}</button>
+                
+                {% if favorite %}
+                  <button type="button" id="bouton_jaime" onclick="like(0,'{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}')" class="btn btn-danger btn-sm">Je n'aime plus</button>
+                {% else %}
+                  <button type="button" id="bouton_jaime" onclick="like(1,'{% url 'add_favorite_proj' proj.id %}')" class="btn btn-success btn-sm">J'aime</button>
+                {% endif %}
+                
+              </div>
+            {% endif %}
+            </div> 
+
+              <div class="" style=" padding:0;text-align:center;">
+            {% if request.user.is_authenticated %}
+
+                  {% if epingle %}
+                  <button type="button" id="btn_epingle" onclick="epingle(0,'{% url "remove_epingle_proj" proj_id=proj.id home=0 %}')"class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Désépingler">
+                   <img src={% static "admin/img/opticons/pin.svg" %} alt="pin" style="height:25px;margin-top:0px;" id="img_epingle">
+                    {% else %}
+                  <button type="button" id="btn_epingle" onclick="epingle(1,'{% url "add_epingle_proj" proj.id %}')" class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Épingler">
+                    <img src={% static "admin/img/opticons/pin.svg" %} alt="pin" style="height:25px;margin-top:0px;opacity:0.294;" id="img_epingle">
+                   {% endif %}
+                  </button>
+                 
+              {% endif %}
+            </div>
+
+            {% if can_proj %}
+            <div style=" padding:0;margin-right:-10px;">
+                <a  href="{% url 'edit_proj' proj.id %}" class="btn btn-sm" style="background-color:white;" data-toggle="tooltip" data-placement="top" title="Éditer la projection">
+                    <img src={% static "admin/img/opticons/pencil.svg" %} alt="edit" style="height:25px;margin-top:0px;" >
+                
+                </a>
+            </div>
+            {% endif %}
+           
+
+           
+        
+
+              </div> 
+            </div>
+          </div>
+      </div>
+
+     
+
+
+    
+      <hr>
+
+    <!-- </div>
+
+    <div class="col-12 shadow-div" style="background-color:white;padding:10px;margin-top:10px;"> -->
+
+        {% with duree_proj=proj|duration_proj_seconds  %}
+        <div class="progress">
+  
+            {% for r in proj.relation_proj_set.all %}
+            <div class="progress-bar  progress_bar_class" id="progress_{{r.ordre}}" role="progressbar" style="width: {{r.video|get_percent:duree_proj}}%" 
+            data-toggle="tooltip" data-placement="top" title="{{r.video.titre}}" onclick="launch({{forloop.counter}})">
+            </div>
+            <span style="width:1px;"></span>
+            {% endfor %}
+        </div>
+        {%endwith%}
+        <br>  
+
+      <div class="d-flex justify-content-between align-items-center"> 
+        <a  onclick="launch(0)" id="lien_precedente" >
+          <img src={% static "admin/img/opticons/arrow-left.svg" %} alt="Précédente" style="height:50px;margin-top:0px;"
+          data-toggle="tooltip" data-placement="right" title="Vidéo précédente" >
+        </a>
+        <div style="width:90%;"> 
+            
+         Vidéo en cours
+          <div class="dropdown-divider" style=""> </div>
+          
+          <div class="card" style="width:100%;border-style:none;"> 
+              <div class="card-body" style="padding-top:2px;">
+            <h5 class="card-title" >
+          
+              
+                <span id="titre_en_cours" class="float-left"></span>
+                <a href="" id='lien_en_cours_solo' class="float-right">
+                    <img src={% static "admin/img/opticons/diff-renamed.svg" %} alt="Solo" style="height:20px;margin-top:0px;margin-left:5px;"
+                    data-toggle="tooltip" data-placement="top" title="Voir en solo" >
+                </a>
+              
+              <br>   
+              
+            </h5>
+            <h6 class="card-subtitle mb-2 text-muted"> <small>De :  <span id="proj_auteurs"></span></small> </h6>
+        
+            <p class="card-text" style="text-align:right;"> 
+              <span style="font-variant:small-caps;"> à suivre :</span>   <span id="titre_video_suivante"></span>
+            </p>
+            </div>
+          </div>
+          
+      </div>
+      <a   onclick="launch(1)" style="text-align:right" id="lien_suivante">
+          <img src={% static "admin/img/opticons/arrow-right.svg" %} alt="Suivante" style="height:50px;margin-top:0px;"
+          data-toggle="tooltip" data-placement="left" title="Vidéo suivante" >
+      </a>
+      </div> 
+    
+      
+     
+      
+    </div>
+
+    
+
+    <div class="col-12 shadow-div" style="background-color:white;padding:10px;margin-top:10px;">
+      <div class="titre_et_vues_date">Ajoutée le {{ proj.date|date:"d/m/Y" }}.</div>
+      {{ proj.description }}
+
+      <table id="proj_elements" class="table table  dt-responsive nowrap " width="100%" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Ordre</th>
+            <th>Nom du clip</th>
+            <th>Durée</th>
+            <th>Lien solo</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          {% for r in proj.relation_proj_set.all %}
+        <tr class="">
+          <td style="text-align:center;"> {{r.ordre}} </td>
+          <!-- proj_video_titre -->
+          <td> <a  onclick="launch({{forloop.counter}})" id="video_{{ r.video.id }}" class="proj_video_titre">{{ r.video.titre }}</a></td>
+          <td style="text-align:center;"> {{ r.video|duration }}</td>
+          <!-- proj_video_voir -->
+          <td style="text-align:center;"><a href="{% url 'video' r.video.id %}" class="">Voir en solo</a></td>
+        </tr>
+        {% endfor %}
+  
+        </tbody>
+  
+      </table>
+
+    </div>
+
+
+
+    
+
+
+    <div class="col-12 shadow-div" style="background-color:white;padding:10px;margin-top:10px;" id="commentaires_video_id">
+      <div class="commentaires_video_titre">
+        Commentaires
+      </div>
+
+      <div class="" style="padding:0;margin-top:10px;">
+        {% if request.user.is_authenticated %}
+
+
+        <form action="{% url 'comment_proj' proj.id %}" method="post">
+          {% csrf_token %}
+          <textarea name="comment" rows="3" id="comment" class="form-control" type="text" placeholder="Un très gentil commentaire" required></textarea>
+          <div style="text-align:right">
+          <button type="submit" class="btn btn-primary btn-sm ">Poster</button>
+          </div>
+        </form>
+
+        {% endif %}
+      </div>
+
+      {% for r in proj.relation_comment_proj_set.all|dictsortreversed:"date" %}
+      <br>
+      <div class="commentaires_supprimer_div">
+        {% if request.user.is_authenticated and request.user == r.author %}
+        <a href="{% url 'delete_comment_proj' r.id %}">
+                  <img src={% static "admin/img/icon-deletelink.svg" %} alt="Supprimer" class='commentaires_supprimer'>
+            </a> {% endif %}
+      </div>
+
+      <div class="media">
+      <div  class="rounded-circle mr-2 d-flex align-items-center" style="height:40px;width:40px;background-color:#d35400;margin-top:5px;" >
+        <div style="text-align:center;width:100%;font-size:25px;color:white;margin-top:-2px;">{{r.author.first_name|slice:"1"}}{{r.author.last_name|slice:"1"}} </div>
+      </div>
+
+       <div class="media-body">
+          <div class="d-flex flex-wrap align-items-end">
+      
+        <div class="commentaires_nom">
+          {{ r.author.first_name|lower }} {{ r.author.last_name|lower }}
+        </div>
+        <div class="commentaires_date">
+          
+          le {{r.date|date:"d/m/Y" }} à {{r.date|date:"H:i"}}
+        
+        <div class="cellule_com_jaime" style="display:inline-block">
+
+          <div class="commentaires_jaime">
+
+            <div class="petit_titre_et_vues_vues_et_jaime_nb_jaime" >
+              <span id="commentaire_{{r.id}}">{{r.like_comment_proj_set.count}}</span> j'aime
+            </div>
+
+            <div style="display:inline-block;margin-left:-4px;">
+
+              {% if request.user.is_authenticated %} {% if r.like_comment_proj_set|exists_user:request.user %}
+<!-- 
+              <a href="{% url 'unlike_comment' r.id %}" class="petit_lien_jaime_rouge">
+                <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_rouge">
+                  Je n'aime plus
+                </div>
+              </a> -->
+
+               <a  id="like_comment_btn_{{r.id}}" onclick="like_comment(0, '/jtx/unlike_comment_proj/{{r.id}}')" style="background-color:white;margin-top:-5px;margin-left:5px;" >
+                    <img src={% static "admin/img/opticons/thumbsdown.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
+               </a>
+              {% else %}
+
+              <!-- <a href="{% url 'like_comment' r.id  %}" class="petit_lien_jaime_vert">
+                <div class="petit_titre_et_vues_vues_et_jaime_bouton_jaime_vert">
+                  J'aime
+                </div>
+              </a> -->
+
+              <a id="like_comment_btn_{{r.id}}" onclick="like_comment(1, '/jtx/like_comment_proj/{{r.id}}')"  style="background-color:white;margin-top:-5px;margin-left:5px;" >
+                    <img src={% static "admin/img/opticons/thumbsup.svg" %} alt="pin" style="height:15px;margin-top:0px;opacity:0.294;" >
+              </a>
+
+              {% endif %} {% endif %}
+
+            </div>
+          </div>
+
+
+
+
+
+        </div>
+      </div>
+
+      </div>
+
+
+      <div class="commentaires_commentaires">
+        {{ r.comment }}
+      </div>
+        </div>
+</div>
+
+      {% endfor %}
+    </div>
+
+
+    <!-- -->
+
+  </div>
+
+  <!-- suggestion -->
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-4 " style="padding:5px;" >
+    <div class="shadow-div" style="background-color:white;margin:0;padding:20px;">
+        <h4>À suivre</h4>
+        
+        <div class='row' style=" padding:0px;">
+            {% for v in suggestions %}
+                    
+                  {% include "block_video_proj_liste.html" with video=0 elmt=v horizontal=1%}
+                  
+              {% endfor %}
+        </div>
+
+      </div>
+    </div> 
+</div>
+<!-- </div>
+</div> -->
+
+
+{% endif %}
+
+
+<script type="text/javascript">
+
+// $(document).ready(function() {
+//     $('#proj_elements').DataTable();
+// } );
+var table = $('#proj_elements').DataTable({
+  paging:false,
+  "bInfo" : false,
+  "oLanguage": {
+"sSearch": "Filtrer : "
+}
+});
+
+var video = document.getElementById('video');
+var source = document.createElement('source');
+
+var titre_en_cours = document.getElementById('titre_en_cours');
+var titre_video_suivante = document.getElementById('titre_video_suivante');
+var proj_auteurs = document.getElementById('proj_auteurs');
+var source = document.createElement('source');
+video.appendChild(source);
+var subtitle = document.getElementById('sub');
+
+
+var titre = document.getElementById('titre_video');
+var current = 0;
+
+ function video_vue(video_id){
+  console.log("/video_vue/" + video_id + "/");
+  $.ajax({
+  type: "GET",
+  url: "/jtx/video_vue/" + video_id + "/",
+  dataType: "html",
+  });
+ }
+
+
+var playlist = [];
+var tags = [];
+var glob_quality=getCookie('quality');
+if(glob_quality==''){glob_quality='md'}
+
+{% for r in proj.relation_proj_set.all %}
+
+    playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', 
+    {% if r.video.hd %}
+    '{{r.video.hd|echappe}}', 
+    {% else %}
+    'non',
+    {% endif %}
+
+    {% if r.video.md %}
+    '{{r.video.md|echappe}}', 
+    {% else %}
+    'non',
+    {% endif %}
+
+    {% if r.video.sd %}
+    '{{r.video.sd|echappe}}', 
+    {% else %}
+    'non',
+    {% endif %}
+
+    '{{r.video|auteurs|striptags}}', '{{r.video.id}}',{{r.ordre}}, "{{r.video.subtitles}}"]
+
+    x = [];
+	{% for r2 in r.video.relation_tag_set.all %}
+        x[{{forloop.counter}}] = [{{r2.tag.id}}, '{{r2.tag.titre}}'];
+	{% endfor %}
+    tags[{{forloop.counter}}] = x;
+{% endfor %}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+
+//Création des boutons hd et sd
+function update_btn_quality(){
+  if(playlist[current][1]!='non'){
+      document.getElementById('btn_quality_hd').style.display='unset';
+  }
+  else{
+      document.getElementById('btn_quality_hd').style.display='none';
+  }
+  if(playlist[current][2]!='non'){
+      document.getElementById('btn_quality_md').style.display='unset';
+  }
+  else{
+      document.getElementById('btn_quality_md').style.display='none';
+  }
+  if(playlist[current][3]!='non'){
+      document.getElementById('btn_quality_sd').style.display='unset';
+  }
+  else{
+      document.getElementById('btn_quality_sd').style.display='none';
+  }
+}
+
+
+function change_flux_to(qualite, from_strart='oui'){
+  var indice=0;
+  glob_quality=qualite;
+  if(qualite=='hd' && playlist[current][1] != 'non'){indice=1}
+  if(qualite=='md' && playlist[current][2] != 'non'){indice=2}
+  if(qualite=='sd' && playlist[current][3] != 'non'){indice=3}
+  if(indice==0){
+    if(playlist[current][3] != 'non'){indice=3}
+    if(playlist[current][2] != 'non'){indice=2}
+    if(playlist[current][1] != 'non'){indice=1}
+  }
+  
+  if(indice==1){setCookie('quality','hd',365)}
+  if(indice==2){setCookie('quality','md',365)}
+  if(indice==3){setCookie('quality','sd',365)}
+
+  var time=video.currentTime;
+  if(from_strart=='oui'){
+    source.setAttribute('src', playlist[current][indice].replace("&#39;","'").replace("&amp;","&"));
+  }
+  else{
+    source.setAttribute('src', playlist[current][indice].replace("&#39;","'").replace("&amp;","&")+'#t='+time.toString());
+  }
+
+  if(playlist[current][7]){
+    document.getElementById("sub").remove();
+    var new_t = document.createElement('track');
+    video.appendChild(new_t);
+    // label="Français" kind="subtitles" srclang="fr" default id='sub' src="/"
+    new_t.setAttribute('label', 'Français');
+    new_t.setAttribute('kind',"subtitles");
+    new_t.setAttribute('srclang',"fr");
+    new_t.setAttribute('id', "sub");
+    new_t.setAttribute('src', playlist[current][7]);
+    new_t.setAttribute('selected','selected');
+    new_t.setAttribute('default','');
+  }
+  else{
+    document.getElementById("sub").remove();
+  }
+  
+  
+  video.load();
+
+  video.play();
+    $(".page-loader").hide();
+
+  ids=['btn_quality_hd','btn_quality_md','btn_quality_sd']
+  for(i in ids){
+    if(i==indice-1){
+      document.getElementById(ids[i]).classList.add('active');
+    }
+    else{
+      document.getElementById(ids[i]).classList.remove('active');
+    }
+  }
+}
+
+function launch(id,  from_strart='oui') {
+
+	 $('html').animate({scrollTop:0}, 'slow');
+
+	if(current>=1){
+  // var table2 = $('#proj_elements')
+  // table2.page.jumpToData( current.toString(), 0 );
+
+  if (current != id){
+    video_vue(playlist[id][5]);
+  }
+
+	document.getElementById('video_'+playlist[current][5]).classList.remove('proj_video_titre_checked');}
+	current = id;
+  update_btn_quality();
+  // var table2 = $('#proj_elements')
+  // table2.page.jumpToData( current.toString(), 0 );
+	video.pause();
+
+		document.getElementById('video_'+playlist[id][5]).classList.add('proj_video_titre_checked');
+    titre_en_cours.innerHTML = playlist[id][0];
+    proj_auteurs.innerHTML = playlist[id][4];
+
+    if (id + 1 < playlist.length) {
+        titre_video_suivante.innerHTML = playlist[(id+1)][0]+"<img src={% static 'admin/img/droite.png' %} alt='Vaneau' class='proj_vid_suiv_img'>";
+    }
+    else {
+        titre_video_suivante.innerHTML = "...";
+    }
+
+    
+    // source.setAttribute('src', playlist[id][1]);
+    // video.load();
+    // video.play();
+    change_flux_to(glob_quality, from_strart=from_strart);
+    
+    var liste_prog=document.getElementsByClassName('progress_bar_class')
+    for(i=0;i<liste_prog.length;i++){
+      var pg=liste_prog[i];
+      if(parseInt(pg.id.replace('progress_',''))<current){
+        pg.classList.remove('bg-danger');
+        pg.classList.remove('progress-bar-striped'); 
+        pg.classList.remove('progress-bar-animated');
+        pg.classList.add('bg-success');
+      }
+      else if(parseInt(pg.id.replace('progress_',''))>current){
+        pg.classList.remove('bg-danger');
+        pg.classList.remove('progress-bar-striped'); 
+        pg.classList.remove('progress-bar-animated');
+        pg.classList.remove('bg-success');
+      }
+      else{
+        pg.classList.add('bg-danger');
+        pg.classList.add('progress-bar-striped'); 
+        pg.classList.add('progress-bar-animated');
+        
+      }
+  }
+
+  document.getElementById('lien_precedente').onclick=function(){ launch(Math.max(1,current-1)) };
+  document.getElementById('lien_suivante').onclick=function(){ launch(Math.min(playlist.length-1,current+1)) };
+  document.getElementById('lien_en_cours_solo').href='/jtx/video/'+playlist[current][5].toString();
+}
+
+video.addEventListener('ended',next,false);
+function next(e) {
+	document.getElementById('video_'+playlist[current][5]).classList.remove('proj_video_titre_checked');
+	current += 1;
+	if (current < playlist.length) {
+		launch(current);
+	} else {
+    current = 1;
+    lauch(current);
+  }
+
+  
+}
+
+
+
+ 
+
+
+
+  function like(val, link) {
+
+    $.get(link, function (data, status) {
+      if (data == 'lannoo') {
+
+        if (val == 1) {
+
+          document.getElementById('bouton_jaime').innerHTML = `Je n'aime plus`;
+          document.getElementById('bouton_jaime').classList.remove('btn-success');
+          document.getElementById('bouton_jaime').classList.add('btn-danger');
+          document.getElementById('bouton_jaime').onclick= function(){ like(0,'{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}'); };
+          c = parseInt(document.getElementById('video_nb_jaime').innerHTML);
+          document.getElementById('video_nb_jaime').innerHTML = c + 1;
+        }
+        if (val == 0) {
+          document.getElementById('bouton_jaime').innerHTML = `J'aime`;
+          document.getElementById('bouton_jaime').classList.add('btn-success');
+          document.getElementById('bouton_jaime').classList.remove('btn-danger');
+          document.getElementById('bouton_jaime').onclick= function(){ like(1,'{% url 'add_favorite_proj' proj.id %}'); };
+          c = parseInt(document.getElementById('video_nb_jaime').innerHTML);
+          document.getElementById('video_nb_jaime').innerHTML = c - 1;
+
+          document.getElementById('btn_epingle').onclick= function(){ epingle(1,'{% url "add_epingle_proj" proj.id %}'); };
+          document.getElementById('img_epingle').style.opacity='0.294';
+          document.getElementById('video_epingle_id_+{{video.id}}').innerHTML = "";
+
+          document.getElementById('video_epingle_id_+{{video.id}}').innerHTML = "";
+        }
+      }
+    });
+  }
+
+  function epingle(val, link) {
+    $.get(link, function (data, status) {
+      if (data == 'lannoo') {
+        if (val == 1) {
+         
+
+        document.getElementById('btn_epingle').onclick= function(){ epingle(0,'{% url "remove_epingle_proj" proj_id=proj.id home=0 %}'); };
+        document.getElementById('img_epingle').style.opacity='1';
+
+          a = `
+        <span id='video_epingle_id_+{{video.id}}'>
+          <a class="dropdown-item" href="{% url 'proj' proj.id %}">
+           
+                  {{ proj.titre }}
+             
+        </a>
+        </span>`;
+
+          document.getElementById('proj_epingle_liste').innerHTML = a + document.getElementById('proj_epingle_liste').innerHTML;
+
+          document.getElementById('bouton_jaime').innerHTML = `Je n'aime plus`;
+          document.getElementById('bouton_jaime').classList.remove('btn-success');
+          document.getElementById('bouton_jaime').classList.add('btn-danger');
+          document.getElementById('bouton_jaime').onclick= function(){ like(0,'{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}'); };
+          c = parseInt(document.getElementById('video_nb_jaime').innerHTML);
+          document.getElementById('video_nb_jaime').innerHTML = c + 1;
+         
+
+        }
+        if (val == 0) {
+
+          document.getElementById('btn_epingle').onclick= function(){ epingle(1,'{% url "add_epingle_proj" proj.id %}'); };
+          document.getElementById('img_epingle').style.opacity='0.294';
+          document.getElementById('video_epingle_id_+{{video.id}}').innerHTML = "";
+        }
+      }
+    });
+  }
+
+  function like_comment(like,link){
+    $.get(link, function (data, status) {
+      if (data != 'erreur') {
+        var id=parseInt(data);
+        
+        if(like==0){
+          c = parseInt(document.getElementById("commentaire_"+id).innerHTML);
+          document.getElementById("commentaire_"+id).innerHTML=c-1
+
+          var btn=document.getElementById("like_comment_btn_"+id);
+          btn.innerHTML=`
+             <img src={% static "admin/img/opticons/thumbsup.svg" %} alt="+" style="height:15px;margin-top:0px;opacity:0.294;" >
+          `
+          btn.onclick=function() { like_comment(1,'/jtx/like_comment_proj/' +id);};
+         
+        }
+        else{
+          c = parseInt(document.getElementById("commentaire_"+id).innerHTML);
+          document.getElementById("commentaire_"+id).innerHTML=c+1
+
+          var btn=document.getElementById("like_comment_btn_"+id);
+          btn.innerHTML=`
+             <img src={% static "admin/img/opticons/thumbsdown.svg" %} alt="+" style="height:15px;margin-top:0px;opacity:0.294;" >
+          `
+          btn.onclick=function() { like_comment(0, '/jtx/unlike_comment_proj/'+id);};
+         
+        }
+      }
+    });
+  }
+
+  // Play pause quand on appuie sur espace
+  $(document).keypress(function(e){ 
+    if (e.which == 32){
+      if( e.target == document.body){
+        e.preventDefault();
+        var video=document.getElementById('video');
+        if(video.paused){
+          video.play();
+        }
+        else{
+          video.pause();
+        }
+        
+        }
+    }
+ });
+
+
+
+jQuery.fn.dataTable.Api.register( 'page.jumpToData()', function ( data, column ) {
+    var pos = this.column(column, {order:'current'}).data().indexOf( data );
+ 
+    if ( pos >= 0 ) {
+        var page = Math.floor( pos / this.page.info().length );
+        this.page( page ).draw( false );
+    }
+ 
+    return this;
+} );
+
+ launch(1);
+
+ 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+
+</script>
+
+{% endblock %}
