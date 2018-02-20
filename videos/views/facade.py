@@ -91,4 +91,16 @@ def treat_facade(request):
 
 	return HttpResponse(u"Message bien reçu, merci")
 
+def messages_facade(request):
+	if can_proj(request):
 
+		a = open("/home/django/jtx/messages_facade.csv","r")
+		texte = a.read().decode("utf-8").split(u"\n ------ \n")
+		messages = []
+		for i in range(1,len(texte)):
+			messages.append(texte[len(texte)-i])
+
+		return render(request,'messages_facade.html',{"messages":messages})
+
+	else:
+		return HttpResponseRedirect(reverse('index'))

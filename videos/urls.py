@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^stats/$', views.stats, name='stats'),
 
     url(r'^treat_facade/$', views.treat_facade, name='treat_facade'),
+    url(r'^messages_facade/$', views.messages_facade, name='messages_facade'),
 
     url(r'^profil/(?P<user_id>[0-9]+)/$', views.profil, name='profil'),
 
