@@ -3,7 +3,7 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    url(r'index^$', views.index, name='index'),
+    url(r'^index/$', views.index, name='index'),
     url(r'^jtxisawesome/$', views.add_proj, name='add_proj'),
     url(r'^add_playlist/(?P<video_id>[0-9]+)/$', views.add_playlist, name='add_playlist'),
     url(r'^create_playlist/$', views.create_playlist, name='create_playlist'),
