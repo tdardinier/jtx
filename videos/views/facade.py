@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from django.db.models import Count
 from time import sleep
+from django.core.mail import send_mail
 
 from ..models import *
 
@@ -19,6 +20,9 @@ def facade(request):
 	if can_proj(request):
 		#a = open("facade.txt",'w')
 		#a.write(u"Trailers;Rétros;éèàùêûîôû%§;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988")
+		#a.close()
+		#a = open("facade.txt","r")
+		#videos = a.read().split(";")
 		#a.close()
 		a = open("/home/django/jtx/facade.txt","r")
 		videos = a.read().decode('utf-8').split(u";")
@@ -72,5 +76,22 @@ def modifier_facade(request):
 
 	else:
 		HttpResponseRedirect(reverse('facade'))
+
+def treat_facade(request):
+	post = request.POST
+	name = post["name"]
+	email = post["email"]
+	message = post["message"]
+
+
+	send_mail(
+	    'Contact via le site web',
+	    'Voici le message envoyé par "'+ email + '" : ' + message,
+	    'site_du_jtx',
+	    ['bendestcyr@gmail.com'],
+	    fail_silently=False,
+	)
+
+	return HttpResponse("Message bien reçu, merci")
 
 

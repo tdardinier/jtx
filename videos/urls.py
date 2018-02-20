@@ -17,6 +17,8 @@ urlpatterns = [
     url(r'^projs/(?P<page>[0-9]+)/$', views.projs, name='projs'),
     url(r'^stats/$', views.stats, name='stats'),
 
+    url(r'^treat_facade/$', views.treat_facade, name='treat_facade'),
+
     url(r'^profil/(?P<user_id>[0-9]+)/$', views.profil, name='profil'),
 
 
