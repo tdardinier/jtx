@@ -23,7 +23,6 @@ def facade(request):
 		#a.close()
 		#a = open("facade.txt","r")
 		#videos = a.read().split(";")
-		#a.close()
 		a = open("/home/django/jtx/facade.txt","r")
 		videos = a.read().decode('utf-8').split(u";")
 			
@@ -84,11 +83,12 @@ def treat_facade(request):
 	message = post["message"]
 
 	a = open("/home/django/jtx/messages_facade.csv","a")
-	a.write("\n ------ \n")
-	a.write("Nom de l'expéditeur : " + name + "\n Son adresse email : " + email + " \n Son message : " + message)
+	#a = open("message_facade.csv","a")
+	a.write(u"\n ------ \n")
+	a.write(u"Nom de l'expéditeur : " + name + u"\n Son adresse email : " + email + u" \n Son message : " + message)
 	a.close()
 
 
-	return HttpResponse("Message bien reçu, merci")
+	return HttpResponse(u"Message bien reçu, merci")
 
 
