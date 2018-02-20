@@ -84,8 +84,8 @@ def treat_facade(request):
 
 	a = open("/home/django/jtx/messages_facade.csv","a")
 	#a = open("message_facade.csv","a")
-	a.write(u"\n ------ \n")
-	a.write(u"Nom de l'expéditeur : " + name + u"\n Son adresse email : " + email + u" \n Son message : " + message)
+	tout = "\n ------ \n" + "Nom de l'expéditeur : " + name + "\n Son adresse email : " + email + " \n Son message : " + message
+	a.write(tout.encode('utf-8'))
 	a.close()
 
 
