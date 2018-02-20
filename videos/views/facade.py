@@ -83,14 +83,11 @@ def treat_facade(request):
 	email = post["email"]
 	message = post["message"]
 
+	a = open("/home/django/jtx/messages_facade.csv","a")
+	a.write("\n ------ \n")
+	a.write("Nom de l'expéditeur : " + name + "\n Son adresse email : " + email + " \n Son message : " + message)
+	a.close()
 
-	send_mail(
-	    'Contact via le site web',
-	    'Voici le message envoyé par "'+ email + '" : ' + message,
-	    'site_du_jtx',
-	    ['bendestcyr@gmail.com'],
-	    fail_silently=False,
-	)
 
 	return HttpResponse("Message bien reçu, merci")
 
