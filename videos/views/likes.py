@@ -162,4 +162,16 @@ def unlike_comment_proj(request, comment_id):
         r = Like_comment_proj.objects.filter(user = user, comment = c).delete()
         return HttpResponse(str(comment_id))
     return HttpResponse("erreur")
-   
+
+def get_jaime(request,video_id):
+    if request.user.is_authenticated:
+        video = get_object_or_404(Video,pk=int(video_id))
+        n = Favorite.objects.filter(video = video).count()
+        aime = Favorite.objects.filter(user=request.user,video=video).exists()
+        if aime:
+            aime = "true"
+        else:
+            aime = "false"
+        return JsonResponse({"aime":aime,"count_aime":str(n)})
+    else:
+        return HttpResponse("fuck")

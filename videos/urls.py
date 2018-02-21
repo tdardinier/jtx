@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, {'template_name':'login.html'}, name='login'),
     url(r'^logout/$', auth_views.logout, {'next_page': views.index}, name='logout'),
     url(r'^$', views.facade, name='facade'),
-    url(r'^modifier_facade/$', views.modifier_facade, name='modifier_facade'),
+    url(r'^etbahnon/$', views.modifier_facade, name='modifier_facade'),
     url(r'^projs/(?P<page>[0-9]+)/$', views.projs, name='projs'),
     url(r'^stats/$', views.stats, name='stats'),
 
@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'^videos/(?P<page>[0-9]+)/$', views.videos, name='videos'),
     url(r'^video/(?P<video_id>[0-9]+)/$', views.video, name='video'),
     url(r'^favorites/(?P<page>[0-9]+)/$', views.favorites, name='favorites'),
+
+    url(r'^get_jaime/(?P<video_id>[0-9]+)/$', views.get_jaime, name='get_jaime'),
     url(r'^tags/$', views.tags, name='tags'),
     url(r'^tag/(?P<tag_id>[0-9]+)/(?P<page>[0-9]+)/$', views.tag, name='tag'),
     url(r'^jtxman/(?P<auteur_id>[0-9]+)/(?P<page>[0-9]+)/$', views.jtxman, name='jtxman'),

@@ -91,15 +91,21 @@
             <div  style="text-align:right;padding:0;">
             {% if request.user.is_authenticated %}
               <div class="btn-group" role="group" >
-                <button type="button" id="video_nb_jaime" class="btn btn-secondary btn-sm disabled">{{ nb_jaimes }}</button>
-                
+                <button type="button" id="video_nb_jaime" class="btn btn-secondary btn-sm disabled"></button>
+       <!--         
                 {% if favorite %}
-                  <button type="button" id="bouton_jaime" onclick="like(0,'{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}')" class="btn btn-danger btn-sm">Je n'aime plus</button>
+                  <button type="button" id="bouton_jaime jaimeplus" onclick="like(0,'{% url 'remove_favorite_proj' proj_id=proj.id home=0 %}')" class="btn btn-danger btn-sm">Je n'aime plus</button>
                 {% else %}
-                  <button type="button" id="bouton_jaime" onclick="like(1,'{% url 'add_favorite_proj' proj.id %}')" class="btn btn-success btn-sm">J'aime</button>
+                  <button type="button" id="bouton_jaime jaime" onclick="like(1,'{% url 'add_favorite_proj' proj.id %}')" class="btn btn-success btn-sm">J'aime</button>
                 {% endif %}
-                
+        -->
+
+         <button type="button" id="jaimeplus" class="btn btn-danger btn-sm">Je n'aime plus</button>
+        <button type="button" id="jaime" class="btn btn-success btn-sm">J'aime</button>
               </div>
+
+
+
             {% endif %}
             </div> 
 
@@ -399,7 +405,6 @@ var titre = document.getElementById('titre_video');
 var current = 0;
 
  function video_vue(video_id){
-  console.log("/video_vue/" + video_id + "/");
   $.ajax({
   type: "GET",
   url: "/jtx/video_vue/" + video_id + "/",
@@ -442,6 +447,65 @@ if(glob_quality==''){glob_quality='md'}
 	{% endfor %}
     tags[{{forloop.counter}}] = x;
 {% endfor %}
+
+
+
+function update_jaime(){
+  video_id = playlist[current][5];
+  $.ajax({
+  type: "GET",
+  url: "/jtx/get_jaime/" + video_id + "/",
+  dataType: "json",
+
+   success : function(resultat, statut){
+
+          n = resultat["count_aime"];
+          aime = resultat["aime"];
+          if (aime == "true"){
+            $("#jaime").hide();
+            $("#jaimeplus").show();
+          } else {
+            $("#jaime").show();
+            $("#jaimeplus").hide();
+          }
+          console.log(n);
+          console.log(aime);
+          console.log(resultat);
+          $("#video_nb_jaime").text(n);
+       }
+  });
+}
+
+
+$("#jaime").click(function(){
+
+  console.log("test");
+
+  video_id = playlist[current][5];
+
+  $.ajax({
+    type: "GET",
+    url: "/jtx/add_favorite/" + video_id + "/",
+    dataType: "html",
+    });
+
+  update_jaime();
+
+})
+
+$("#jaimeplus").click(function(){
+
+  video_id = playlist[current][5];
+
+  $.ajax({
+    type: "GET",
+    url: "/jtx/remove_favorite/" + video_id + "/" + "0/",
+    dataType: "html",
+    });
+
+  update_jaime();
+
+})
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
@@ -552,6 +616,7 @@ function launch(id,  from_strart='oui') {
 
 	 $('html').animate({scrollTop:0}, 'slow');
 
+
 	if(current>=1){
   // var table2 = $('#proj_elements')
   // table2.page.jumpToData( current.toString(), 0 );
@@ -562,6 +627,7 @@ function launch(id,  from_strart='oui') {
 
 	document.getElementById('video_'+playlist[current][5]).classList.remove('proj_video_titre_checked');}
 	current = id;
+  update_jaime();
   update_btn_quality();
   // var table2 = $('#proj_elements')
   // table2.page.jumpToData( current.toString(), 0 );
