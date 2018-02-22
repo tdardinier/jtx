@@ -166,14 +166,14 @@ def proj(request, proj_id):
         suggestions = all_projs.all().order_by('?')[:n_suggestions]
         proj.views += 1
         proj.save()
-        #if request.user.is_authenticated:
-        #	a = open("/home/django/jtx/proj_logs.csv","a")
-        #	a.write(str(request.user.id) + ";"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
-        #	a.close()
-        #else:
-        #	a = open("/home/django/jtx/proj_logs.csv","a")
-        #	a.write("0;"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
-        #	a.close()
+        if request.user.is_authenticated:
+        	a = open("/home/django/jtx/proj_logs.csv","a")
+        	a.write(str(request.user.id) + ";"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
+        	a.close()
+        else:
+        	a = open("/home/django/jtx/proj_logs.csv","a")
+        	a.write("0;"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
+        	a.close()
         context = {
             'can_proj': can_proj(request),
             'proj': proj,
