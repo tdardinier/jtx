@@ -184,7 +184,7 @@ function engardern(liste,t){
  A = [];
  n = Math.ceil(liste.length/t);
  for(var i = 0; i < liste.length;i++){
- 	if ((liste.length - i - 1)%n == 0){
+ 	if ((jtliste.length - i - 1)%n == 0){
  		A[i] = liste[i];
  	}
  	else{
@@ -218,7 +218,7 @@ new Chartist.Line('#vues_par_jour', data, options);
 
 var data2 = {
   // A labels array that can contain any sort of values
-  labels: [{% for k in vues_par_heure.1 %} "{{k}}", {% endfor %}],
+  labels: engardern([{% for k in vues_par_heure.1 %} "{{k}}", {% endfor %}],12),
   // Our series array that contains series objects or in this case series data arrays
   series: [
     [{% for k in vues_par_heure.0 %} {{k}}, {% endfor %}]
@@ -231,7 +231,7 @@ new Chartist.Line('#vues_par_heure', data2, options);
 
 var data3 = {
   // A labels array that can contain any sort of values
-  labels: engardern([{% for k in visiteurs_par_jour.1 %} "{{k}}", {% endfor %}],10),
+  labels: engardern([{% for k in visiteurs_par_jour.1 %} "{{k}}", {% endfor %}],5),
   // Our series array that contains series objects or in this case series data arrays
   series: [
     [{% for k in visiteurs_par_jour.0 %} {{k}}, {% endfor %}]
