@@ -105,11 +105,11 @@ def visiteurs_par_jour(video_logs):
 
 def video_plus_vues():
 	a = Video.objects.all().order_by('-views')
-	return a[:10]
+	return a[:100]
 
 def proj_plus_vues():
 	a = Proj.objects.all().order_by('-views')
-	return a[:10]
+	return a[:100]
 
 def utilisateurs_plus_actifs(video_logs):
 	A = {}
@@ -122,7 +122,7 @@ def utilisateurs_plus_actifs(video_logs):
 	D4 = []
 	for i in Truc:
 		D4.append([get_object_or_404(User, pk=int(i[0])),i[1]])
-	return D4[:10]
+	return D4[:100]
 
 
 def stats(request):
