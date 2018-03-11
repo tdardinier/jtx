@@ -16,8 +16,14 @@ def can_proj(request):
         return hasattr(user, 'utilisateur') and user.utilisateur.can_proj
     return False
 
+def can_edit(request):
+    if request.user.is_authenticated:
+        user = request.user
+        return hasattr(user, 'utilisateur') and user.utilisateur.can_edit
+    return False
+
 def facade(request):
-	if can_proj(request):
+	if can_edit(request):
 		#a = open("facade.txt",'w')
 		#a.write(u"Trailers;Rétros;éèàùêûîôû%§;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988")
 		#a.close()
