@@ -27,6 +27,7 @@ ALLOWED_HOSTS = [u'binet-jtx.com', u'127.0.0.1','pc-guillaume','192.168.0.29', u
 # Application definition
 
 INSTALLED_APPS = [
+	'vote.apps.VoteConfig',
     'videos.apps.VideosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
