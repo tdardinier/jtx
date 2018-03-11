@@ -98,7 +98,7 @@ def messages_facade(request):
 		texte = a.read().decode("utf-8").split(u"\n ------ \n")
 		messages = []
 		for i in range(1,len(texte)):
-			messages.append(texte[len(texte)-i])
+			messages.append(texte[len(texte)-i].replace("\n","</p>"))
 
 		return render(request,'messages_facade.html',{"messages":messages})
 
