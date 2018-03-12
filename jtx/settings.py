@@ -20,13 +20,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '980@=$gsohdj=xcy%efe3*a4ufjnpeb@m1k1%ej=2kwtxopgyv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = [u'binet-jtx.com', u'127.0.0.1','pc-guillaume','192.168.0.29', u'jtx', u'jtx.eleves.polytechnique.fr', u'37.187.51.171']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
 	'vote.apps.VoteConfig',
     'videos.apps.VideosConfig',
     'django.contrib.admin',
@@ -118,3 +119,26 @@ USE_TZ = True
 
 STATIC_URL = '/jtx/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "videos/static/")
+
+#REST_FRAMEWORK = {
+#    'DEFAULT_MODEL_SERIALIZER_CLASS':
+#        'rest_framework.serializers.HyperlinkedModelSerializer',
+#
+#    'DEFAULT_PERMISSION_CLASSES': (
+#        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+#        # 'rest_framework.permissions.AllowAny',
+#    ),
+#    'DEFAULT_AUTHENTICATION_CLASSES': (
+#        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+#        'rest_framework.authentication.BasicAuthentication',  # TODO: remove
+#    ),
+#    'DEFAULT_FILTER_BACKENDS': (
+#        'rest_framework.filters.DjangoFilterBackend',
+#        'rest_framework.filters.SearchFilter'
+#    )
+#}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': [],
+}
