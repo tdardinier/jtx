@@ -23,35 +23,34 @@ def can_edit(request):
     return False
 
 def facade(request):
-	if can_edit(request):
-		#a = open("facade.txt",'w')
-		#a.write(u"Trailers;Rétros;éèàùêûîôû%§;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988")
-		#a.close()
-		#a = open("facade.txt","r")
-		#videos = a.read().split(";")
-		a = open("/home/django/jtx/facade.txt","r")
-		videos = a.read().decode('utf-8').split(u";")
-			
-		context={'background': videos[3],
-					 'presta':videos[4],
-						}
-		a.close()
-		for i in range(5,len(videos)):
-			context["vid_"+str(i-4)] = videos[i]
 
-		for i in context:
-			try:
-				t = int(context[i])
-				context[i] = get_object_or_404(Video,pk=int(context[i]))
-			except:
-				t = 64
-		context['nom_cat1'] = videos[0]
-		context['nom_cat2'] = videos[1]
-		context['nom_cat3'] = videos[2]
-		context['can_proj'] = can_proj(request)
-		return render(request,'facade.html',context)
-	else:
-		return HttpResponseRedirect(reverse('index'))
+	#a = open("facade.txt",'w')
+	#a.write(u"Trailers;Rétros;éèàùêûîôû%§;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988;9988")
+	#a.close()
+	#a = open("facade.txt","r")
+	#videos = a.read().split(";")
+	a = open("/home/django/jtx/facade.txt","r")
+	videos = a.read().decode('utf-8').split(u";")
+		
+	context={'background': videos[3],
+				 'presta':videos[4],
+					}
+	a.close()
+	for i in range(5,len(videos)):
+		context["vid_"+str(i-4)] = videos[i]
+
+	for i in context:
+		try:
+			t = int(context[i])
+			context[i] = get_object_or_404(Video,pk=int(context[i]))
+		except:
+			t = 64
+	context['nom_cat1'] = videos[0]
+	context['nom_cat2'] = videos[1]
+	context['nom_cat3'] = videos[2]
+	context['can_proj'] = can_proj(request)
+	return render(request,'facade.html',context)
+
 
 def modifier_facade(request):
 	if can_proj(request):
