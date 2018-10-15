@@ -20,15 +20,15 @@
         <h3>{{ proj.titre }} </h3>
         <div class="btn-group" data-toggle="buttons">
             
-            <label class="btn btn-primary btn-sm" onclick="change_flux_to('sd', 'non')" id='btn_quality_sd'>
+            <label class="btn btn-info btn-sm" onclick="change_flux_to('sd', 'non')" id='btn_quality_sd'>
               <input type="radio" name="options" id="option3" autocomplete="off" > SD
             </label>
             
-            <label class="btn btn-primary active btn-sm"  onclick="change_flux_to('md', 'non')" id='btn_quality_md'>
+            <label class="btn btn-info active btn-sm"  onclick="change_flux_to('md', 'non')" id='btn_quality_md'>
               <input type="radio" name="options" id="option2" autocomplete="off" checked> MD
             </label>
             
-            <label class="btn btn-primary  btn-sm" onclick="change_flux_to('hd', 'non')" id='btn_quality_hd'>
+            <label class="btn btn-info  btn-sm" onclick="change_flux_to('hd', 'non')" id='btn_quality_hd'>
               <input type="radio" name="options" id="option1" autocomplete="off" > Full HD
             </label>
            
@@ -420,6 +420,7 @@ if(glob_quality==''){glob_quality='md'}
 
 {% for r in proj.relation_proj_set.all %}
 
+
     playlist[{{ forloop.counter }}] = ['{{ r.video.titre }}', 
     {% if r.video.hd %}
     '{{r.video.hd|echappe}}', 
@@ -468,9 +469,6 @@ function update_jaime(){
             $("#jaime").show();
             $("#jaimeplus").hide();
           }
-          console.log(n);
-          console.log(aime);
-          console.log(resultat);
           $("#video_nb_jaime").text(n);
        }
   });
@@ -479,7 +477,7 @@ function update_jaime(){
 
 $("#jaime").click(function(){
 
-  console.log("test");
+
 
   video_id = playlist[current][5];
 

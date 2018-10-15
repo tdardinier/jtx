@@ -14,7 +14,7 @@
 		{% for p in projs_jtx|dictsort:"date" %}
 			<div class="col-10 col-md-4  col-lg-3">
 				<div class="card">
-					<h3 class="card-header">Projection du {{p.date}}</h3>
+					<h3 class="">Projection du {{p.date}}</h3>
 					<div class="card-body">
 							{% include "block_video_proj_liste.html" with video=0 elmt=p col_large=1 %}
 					</div>
@@ -26,7 +26,7 @@
 </div>
 <br>
 <div class="card">
-	<h2 class="card-header">Autres projections du JTX {{year}}</h2>
+	<h2 class="">Autres projections du JTX {{year}}</h2>
 	<div class="card-body">
 		
 			
@@ -68,6 +68,8 @@
 	</div>
 	
 </div>
+
+{% comment %}
 
 <script type="text/javascript">
 
@@ -176,6 +178,7 @@ document.getElementById("videos_data").on('plotly_click', function(data){
 });
 </script>
 
+{% endcomment %}
 	
 {% endif %}
 

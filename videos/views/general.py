@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.core.urlresolvers import reverse
 from django.db.models import Count
 import datetime
+import time
 
 import random
 from os import listdir
@@ -18,6 +19,8 @@ from .connection import *
 from .playlists import *
 from .facade import *
 from .stats import *
+from .add import *
+from .socialwall import *
 
 n_page = 36
 n_index = 12
@@ -36,6 +39,7 @@ def id(x):
     return x
 
 def index(request):
+    t1 = time.time()
     s = 0.0
     c = 0
     for x in Video.objects.all():
@@ -44,6 +48,7 @@ def index(request):
     projs = filter(request, Proj.objects)
     videos = filter(request, Video.objects)
     categories = filter_category(request, Category.objects)
+    print("premiertemps : " + str(time.time()-t1))
     video_tendances=[]
     maxi=0
     # for video in Video.objects.all():
@@ -59,7 +64,8 @@ def index(request):
     for id_vid in diff_vids:
         nb_mois=qs.count(id_vid)
         video_tendances.append({'video':Video.objects.get(id=id_vid), 'jaime_du_mois':nb_mois})
-        maxi=max(maxi,nb_mois) 
+        maxi=max(maxi,nb_mois)
+    print("deuxiemetemps : " + str(time.time()-t1)) 
     context = {
         'request': request,
         'projs': projs.all()[:n_index],
@@ -73,7 +79,62 @@ def index(request):
     }
     if can_proj(request):
         context['can_proj'] = True
-    return render(request, 'index.html', context)
+    response = render(request, 'index.html', context)
+    print("troisiemetemps : " + str(time.time()-t1)) 
+    if request.user.is_authenticated:
+        response.set_cookie('apeogpfoefYnoeneiz87et8aEz54fe5grR', 'zeffEzerT5zetE57zArer6554rZ')
+    return response
+
+def index2(request):
+    t1 = time.time()
+    s = 0.0
+    c = 0
+    for x in Video.objects.all():
+        s += x.duree
+        c += 1
+    projs = filter(request, Proj.objects)
+    videos = filter(request, Video.objects)
+    categories = filter_category(request, Category.objects)
+    print("premiertemps : " + str(time.time()-t1))
+    video_tendances=[]
+    maxi=0
+    # for video in Video.objects.all():
+    #     nb_mois=len(Favorite.objects.filter(video__id=video.id, date__gte=datetime.datetime.now()-datetime.timedelta(days=30)))
+    #     if nb_mois>0:
+    #         video_tendances.append({'video':video, 'jaime_du_mois':nb_mois})
+    #         maxi=max(maxi,nb_mois)  
+    # video_tendances=Favorite.objects.values('video').annotate(jaime_du_mois=Count('video'))
+    qs=Favorite.objects.filter(date__gte=datetime.datetime.now()-datetime.timedelta(days=30)).values('video_id')
+    qs=[w['video_id'] for w in list(qs)]
+    diff_vids=set(qs)
+    maxi=0
+    for id_vid in diff_vids:
+        nb_mois=qs.count(id_vid)
+        video_tendances.append({'video':Video.objects.get(id=id_vid), 'jaime_du_mois':nb_mois})
+        maxi=max(maxi,nb_mois)
+    print("deuxiemetemps : " + str(time.time()-t1)) 
+    context = {
+        'request': request,
+        'projs': projs.all()[:n_index],
+        'videos': videos.all().order_by('?')[:n_index],
+        'categories': categories.all(),
+        'video_tendances':video_tendances,
+        'max_nb_jaime':maxi,
+        'duree': int(round(s / 3600.)),
+        'n_videos': c,
+        'can_proj': can_proj(request)
+    }
+    if can_proj(request):
+        context['can_proj'] = True
+    response = render(request, 'index2.html', context)
+    print("troisiemetemps : " + str(time.time()-t1)) 
+    if request.user.is_authenticated:
+        response.set_cookie('apeogpfoefYnoeneiz87et8aEz54fe5grR', 'zeffEzerT5zetE57zArer6554rZ')
+    return response
+
+
+
+
 
 def jtx(request, year):
     c = Category.objects.get(titre="Proj en .K")
@@ -153,6 +214,8 @@ def fil(request, page=1):
     return pagination(request, 'fil_temporel.html', context, projs, page, 'projs')
 
 def proj(request, proj_id):
+    if proj_id == "455":
+        return HttpResponseRedirect(reverse("add_2014"))
     proj = get_object_or_404(Proj, pk=proj_id)
     if proj.category.public or request.user.is_authenticated:
         n = Favorite_proj.objects.filter(proj = proj).count()
@@ -166,14 +229,14 @@ def proj(request, proj_id):
         suggestions = all_projs.all().order_by('?')[:n_suggestions]
         proj.views += 1
         proj.save()
-        if request.user.is_authenticated:
-        	a = open("/home/django/jtx/proj_logs.csv","a")
-        	a.write(str(request.user.id) + ";"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
-        	a.close()
-        else:
-        	a = open("/home/django/jtx/proj_logs.csv","a")
-        	a.write("0;"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
-        	a.close()
+      #  if request.user.is_authenticated:
+       # 	a = open("/home/django/jtx/proj_logs.csv","a")
+        #	a.write(str(request.user.id) + ";"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
+        #	a.close()
+        #else:
+        #	a = open("/home/django/jtx/proj_logs.csv","a")
+        #	a.write("0;"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
+        #	a.close()
         context = {
             'can_proj': can_proj(request),
             'proj': proj,
@@ -183,7 +246,8 @@ def proj(request, proj_id):
             'nb_jaimes': n,
         }
         return render(request, 'proj_new.html', context)
-    return index(request)
+    else:
+        return redirect("https://binet-jtx.com/org?nexturl=/proj/"+str(proj.id))
 
 def favorites(request, page=1):
     if (request.user.is_authenticated):
@@ -231,7 +295,9 @@ def video(request, video_id):
             'playlists': playlists,
         }
         return render(request, 'video.html', context)
-    return index(request)
+    else:
+
+        return redirect("https://binet-jtx.com/org?nexturl=/video/"+str(video.id))
 
 def tags(request):
     tags = Tag.objects.all()
@@ -268,20 +334,27 @@ def comment_proj(request, proj_id):
         c.save()
     return HttpResponseRedirect(reverse('proj', args=(proj.id,)))
 
+def pas_un_fdp(user,video):
+    videos_vues = Videovue.objects.filter(user=user,video=video,date__gt=datetime.datetime.now()-datetime.timedelta(days=1))
+    if len(videos_vues) > 5:
+        return False
+    else:
+        return True
+
 
 def video_vue(request, video_id):
-	video = get_object_or_404(Video,pk=video_id)
-	video.views += 1
-	video.save()
-	if request.user.is_authenticated:
-		a = open("/home/django/jtx/video_logs.csv","a")
-		a.write(str(request.user.id) + ";"+ str(video_id) + ";" + str(datetime.datetime.now()) + "\n")
-		a.close()
-	else:
-		a = open("/home/django/jtx/proj_logs.csv","a")
-		a.write("0;"+ str(proj_id) + ";"+ str(datetime.datetime.now()) + "\n")
-		a.close()
-	return HttpResponse("fais_pas_le_fou")
+    video = get_object_or_404(Video,pk=video_id)
+    user = request.user
+    if request.user.is_authenticated and pas_un_fdp(user,video):
+        video.views += 1
+        video.save()
+        v = Videovue(user=user,video=video,credibilite=1)
+        v.save()
+    else:
+        if not(user.is_authenticated):
+            video.views += 1
+            video.save()
+    return HttpResponse("fais_pas_le_fou")
 
 
 
@@ -300,6 +373,7 @@ def delete_comment_proj(request, comment_id):
         if user == comment.author:
             comment.delete()
     return HttpResponseRedirect(reverse('proj', args=(comment.proj.id,)))
+
 
 
 

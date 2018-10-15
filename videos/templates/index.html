@@ -20,22 +20,6 @@
 		Tant que vous n'êtes pas connecté, vous ne pouvez voir que les videos ouvertes au public.
 		</div>
 
-		{% else %}
-
-		{% if can_proj %}
-		<div class="alert alert-warning alert-dismissible fade show" role="alert">
-		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    	<span aria-hidden="true">&times;</span>
-  		</button>
-			<h4><strong>Changelog</strong></h4>
-			<p>- Un onglet statistiques est apparu dans le menu de gauche, dedans, des statistiques sur le site. Attention la cinquième va vous surprendre</p>
-			<p>- Maintenant dans une proj cliquer sur une vidéo ramène en haut de la page</p>
-			<p>- Ajout d'un petit loader tout mignon</p>
-			<p>- Something big is coming ...</p>
-
-		</div>
-
-		{% endif %}
 		{% endif %}
 		
     
@@ -45,7 +29,7 @@
 		
 			<div class="col-12 col-md-6" style="padding-left:0;">
 				<div class="card">
-					<h2 class="card-header">Vidéo du jour</h2>
+					<h2>Vidéo du jour</h2>
 					<div class="card-body">
 						<video style="width:100%;" controls >
 								<source src="/vdj/vdj.mp4">
@@ -57,7 +41,7 @@
 
 			<div class="col-12 col-md-6" style="padding-right:0;">
 				<div class="card">
-					<h2 class="card-header">Tendances <small>ce mois ci</small></h2>
+					<h2>Tendances <small>ce mois ci</small></h2>
 					<div class="card-body">
 
 						{% for elmt in video_tendances|dictsortreversed:'jaime_du_mois'|slice:"5" %}
@@ -99,12 +83,11 @@
 {% if projs %}
 <br>
 <div class="card">
-	<div class="card-header" >
+	<div class="card-body" >
 		<h2 class="">Projections</h2>
 		{% if categories %}
 
-			<div class="d-none d-sm-block">
-				<ul class=" nav nav-tabs card-header-tabs no-wrap">
+				<ul class=" nav nav-tabs card-header-tabs no-wrap customtab" role="tablist">
 
 					<li class="nav-item">
 						<a class="nav-link active" href="#recent" data-toggle="tab" role="tab">Les plus récentes</a>
@@ -116,15 +99,12 @@
 					{% endfor %}
 					
 				</ul>
-			</div>
 
 		{% endif %}
-	</div>
 	
-	<div class="card-body">
 
 		<div class="tab-content">
-			<div class="tab-pane fade show active" id="recent">
+			<div class="tab-pane active" id="recent" role="tabpanel">
 				<div class="d-none  d-sm-block">
 						<div class="row ">
 							{% for p in projs|dictsortreversed:'date'%}
@@ -145,7 +125,7 @@
 
 			{% for c in categories %}
 			
-				<div class="tab-pane fade" id="{{c.id}}">
+				<div class="tab-pane" id="{{c.id}}" role="tabpanel">
 						<div class="d-none  d-sm-block">
 								<div class="row ">
 									{% for p in projs|dictsortreversed:'date'%}
@@ -181,7 +161,7 @@
 {% if videos %}
 <br>
 <div class="card">
-	<h2 class="card-header">Vidéos</h2>
+	<h2>Vidéos</h2>
 	<div class="card-body">
 		<div class="d-none  d-sm-block">
 			<div class="row ">

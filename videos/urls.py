@@ -67,9 +67,23 @@ urlpatterns = [
     url(r'^search/$', views.search, name='search'),
     url(r'^suggestions/(?P<q>[\w|\W]*)/$', views.suggestions, name='suggestions'),
 
-    url(r'^connection/$', views.connection, name='connection'),
+    url(r'^connection/', views.connection, name='connection'),
+
+    #URLs des add
+
+    url(r'^add_2013/$', views.add_2013, name='add_2013'),
+    url(r'^add_2014/$', views.add_2014, name='add_2014'),
+    url(r'^jsadd_2013/$', views.jsadd_2013, name='jsadd_2013'),
+    url(r'^jsadd_2014/$', views.jsadd_2014, name='jsadd_2014'),
 
     url(r'^video_vue/(?P<video_id>[0-9]+)/$', views.video_vue, name='video_vue'),
+
+    url(r'^direct/$', views.socialwall, name='socialwall'),
+    url(r'^jssocialwall/$', views.jssocialwall, name='jssocialwall'),
+    url(r'^adminsocialwall/$', views.adminsocialwall, name='adminsocialwall'),
+    url(r'^jsadminsocialwall/$', views.jsadminsocialwall, name='jsadminsocialwall'),
+    url(r'^printsocialwall/$', views.printsocialwall, name='printsocialwall'),
+    url(r'^messageurgent/$', views.messageurgent, name='messageurgent'),
 
 
 ]

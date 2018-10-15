@@ -2,26 +2,31 @@
 {% load static %}
 {% block body %}
 <div class="d-flex justify-content-center">
-<div class="col-12 col-md-4">
-<div class="card ">
-	<h1 class="card-header">Se connecter</h1>
-	<form method="post" class="form card-body  ">
-		{% csrf_token %}
-		
-		
-		<div class="input-group" style="margin-bottom:10px;">
-			<span class="input-group-addon"><img src="{% static 'admin/img/opticons/person.svg' %}" alt="ID"></span>
-			<input class="form-control" id="id_username" maxlength="30" name="username" placeholder="Identifiant" type="text"> 
-		</div>
+	
 
-		<div class="input-group" style="margin-bottom:10px;">
-			<span class="input-group-addon"><img src="{% static 'admin/img/opticons/key.svg' %}" alt="PW"></span>
-			<input class="form-control" id="id_password" maxlength="30" name="password"  placeholder="Mot de passe" type="password"> 
-		</div>
-		<div style="text-align:right;"><button type="submit" class="btn btn-success">Ça part</button></div>
-		
-	</form>
-</div>
-</div>
+	  <div class="login-content card">
+        <div class="login-form">
+            <h4>Se connecter</h4>
+            <form method="post">
+
+            	{% csrf_token %}
+
+                <div class="form-group">
+                    <label>Identifiant</label>
+                    <input type="text" class="form-control" placeholder="Identifiant" name="username" alt="ID">
+                </div>
+                <div class="form-group">
+                    <label>Mot de passe</label>
+                    <input type="password" class="form-control" placeholder="Mot de passe" name="password" alt="PW">
+                </div>
+             
+                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Ça part</button>
+        
+            </form>
+        </div>
+    </div>
+
+
+
 </div>
 {% endblock %}

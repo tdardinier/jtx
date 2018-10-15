@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>SocialWall JTX</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'socialwall/css/socialwall.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=OpenSans">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+</head>
+
+<script>
+
+var messages = ["oijoij","p^plpl","pijpijpi","pokpokpok","poipoipoi","oôp"];
+    function vh2px(value) {
+        var w = window,
+            d = document,
+            e = d.documentElement,
+            g = d.getElementsByTagName('body')[0],
+            x = w.innerHeight || e.clientHeight || g.clientHeight;
+        var result = (x*value)/100;
+        return(result);
+    }
+
+    function len2fs(length) {
+        if (length < 90) {
+            return "4vw";
+        } else if (length < 160) {
+            return "3vw";
+        } else if (length < 260 ) {
+            return "2.5vw";
+        } else {
+            return "2vw";
+        }
+    }
+
+    function leave(newMessage) {
+        var elem = document.getElementById("message");
+        var basis = vh2px(8);
+        var pos = 0;
+        var timeout = false;
+        var id = setInterval(frame, 1);
+        function frame() {
+            if (pos >= 7) {
+                if (timeout) {
+                    clearInterval(id);
+                } else {
+                    timeout = true;
+                    pos = 0;
+                    $("#message").html(newMessage);
+                    elem.style.fontSize = len2fs(newMessage.length);
+                    elem.style.opacity = "1";
+                }
+            } else {
+                pos += 0.03;
+                if (timeout) {
+                    b = -150*Math.exp(-pos) + basis;
+                    elem.style.bottom = b + "px";
+                    elem.style.opacity = (-Math.exp(-pos)+1) / (-Math.exp(-7)+1);
+                } else {
+                    elem.style.bottom = Math.exp(pos)-1 + basis + "px";
+                    elem.style.opacity = (Math.exp(pos)-Math.exp(6)) / (1-Math.exp(6));
+                }
+            }
+        }
+    }
+
+
+    function recup_messages(){
+
+        $.get('{% url "recup_messages" %}','rien',retour_recup_messages,'text');
+
+    }
+
+
+    function retour_recup_messages(reponse){
+        var new_messages = reponse['messages'];
+        for(var i = 0;i < new_messages.length;i++){
+            messages.push(new_messages[i]);
+        }  
+    }
+
+
+    function afficher_messages(){
+        recup_messages();
+        if(messages.length > 0){
+            var m = messages.pop();
+            setTimeout(function(){leave(m)},10000);
+        }
+        setTimeout(function(){afficher_messages();},10000);
+ 
+
+    }
+
+
+    $(document).ready(function() {
+        afficher_messages();
+    })
+</script>
+
+<body>
+
+<div class="header">
+    <h2 class="header">Pour envoyer vos messages : <span class="bold">www.binet-jtx.fr/jtx/socialwall</span></h2>
+</div>
+
+<div class="content">
+    <div class="col-sm-4 programm">
+        <div class="programm-content">
+            <h3 class="programm">Programme de la soirée</h3>
+            <ul class="programm list-group">
+                <li class="list-group-item">
+                    Activité 1
+                </li>
+                <li class="list-group-item">
+                    Surprise
+                </li>
+                <li class="list-group-item">
+                    Activité 2
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-sm-8 message">
+        <span class="message" id="message">Envoyez vos messages</span>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="images">
+        <img src="{% static 'socialwall/images/jtx.png' %}"/>
+    </div>
+    <div class="credits">
+        <span>JTX 2016</span>
+    </div>
+</div>
+
+</body>
+</html>

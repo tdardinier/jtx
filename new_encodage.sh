@@ -28,6 +28,13 @@ do
     mv "$fic.vtt" sub
 done
 
+for fic in *.mov
+do
+    ffmpeg -i "${fic}" -threads 0 -c:v libx264 -b:v 10M -r 25 -s 1920x1080 -x264opts level=3.1 -pix_fmt yuv420p -c:a aac -strict experimental -b:a 192k -y "$fic.mp4"
+done
+
+
+
 for fic in *.mp4 *.avi *.webm *.mkv
 do
 

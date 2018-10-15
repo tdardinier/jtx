@@ -1,0 +1,205 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+      <meta property="og:type" content="video"/>
+      <meta property="og:title" content="SocialWall JTX Administration"/>
+      <meta property="og:description" content="Binet JTX | SocialWall"/>
+      <meta property="og:image" content="https://binet-jtx.com/videos/affiches/JTX%202016/logo%202016.png"/>
+
+
+    <meta charset="UTF-8">
+    <title>SocialWall JTX - Administration</title>
+    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=OpenSans">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="{% static 'bootstrap-notify.min.js' %}"></script>
+
+</head>
+
+<style type="text/css">
+
+.card {
+ border-width:1px;
+ border-style:solid;
+ border-color:black;
+ margin: 10px;
+ padding: 10px
+ }
+
+</style>
+
+<body>
+
+
+
+
+<div class="container">
+    <div class="row" style="text-align: center">
+        <h1 style="text-transform: uppercase">Administration du SocialWall (accès réservé)</h1>
+
+        <a href="{% url 'messageurgent' %}" class="btn btn-danger" target="_blank">Envoyer un message urgent</a>
+        {% csrf_token %}
+
+        {% for message in messages %}
+
+
+        <div class="col-md-12" id="{{message.id}}">
+
+            <div class="card">
+                <div class="card-header">
+                    {{message.message}}
+                </div>
+                <div class="card-content">
+
+                    <button class="btn btn-success approve">Approuver</button>
+                    <button class="btn btn-danger delete">Supprimer</button>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+
+        {% endfor %}
+
+
+        <a href="{% url 'adminsocialwall' %}" class="btn btn-info" style="margin:10px">Recharger les messages</a>
+
+
+
+    </div>
+</div>
+
+
+</body>
+
+<script>
+
+crsftoken = $("[name='csrfmiddlewaretoken']").val();
+
+$(".approve").click(function(){
+    div = $(this).parent().parent().parent();
+    id = div.attr("id");
+
+    $.post('{% url "jsadminsocialwall" %}',{'csrfmiddlewaretoken':crsftoken,'id':id,'statut':"valide"},function(){console.log('post validé');},'json');
+
+    div.hide();
+
+   $.notify({
+        // options
+
+        message: 'Message validé !'
+    },{
+        // settings
+        element: 'body',
+        position: null,
+        type: "success",
+        allow_dismiss: true,
+        newest_on_top: false,
+        showProgressbar: false,
+        placement: {
+            from: "top",
+            align: "right"
+        },
+        offset: 20,
+        spacing: 10,
+        z_index: 1031,
+        delay: 5000,
+        timer: 1000,
+        url_target: '_blank',
+        mouse_over: null,
+        animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+        },
+        onShow: null,
+        onShown: null,
+        onClose: null,
+        onClosed: null,
+        icon_type: 'class',
+        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+            '<span data-notify="icon"></span> ' +
+            '<span data-notify="title">{1}</span> ' +
+            '<span data-notify="message">{2}</span>' +
+            '<div class="progress" data-notify="progressbar">' +
+                '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+            '</div>' +
+            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+        '</div>' 
+    });
+
+
+
+
+})
+
+$(".delete").click(function(){
+    div = $(this).parent().parent().parent();
+    id = div.attr("id");
+
+    $.post('{% url "jsadminsocialwall" %}',{csrfmiddlewaretoken:crsftoken,id:id,statut:"delete"},function(){console.log('post supprimé');},'json');
+
+    div.hide();
+
+   $.notify({
+        // options
+
+        message: 'Message supprimé !'
+    },{
+        // settings
+        element: 'body',
+        position: null,
+        type: "danger",
+        allow_dismiss: true,
+        newest_on_top: false,
+        showProgressbar: false,
+        placement: {
+            from: "top",
+            align: "right"
+        },
+        offset: 20,
+        spacing: 10,
+        z_index: 1031,
+        delay: 5000,
+        timer: 1000,
+        url_target: '_blank',
+        mouse_over: null,
+        animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+        },
+        onShow: null,
+        onShown: null,
+        onClose: null,
+        onClosed: null,
+        icon_type: 'class',
+        template: '<div data-notify="container" class="col-xs-11 col-sm-3 alert alert-{0}" role="alert">' +
+            '<button type="button" aria-hidden="true" class="close" data-notify="dismiss">×</button>' +
+            '<span data-notify="icon"></span> ' +
+            '<span data-notify="title">{1}</span> ' +
+            '<span data-notify="message">{2}</span>' +
+            '<div class="progress" data-notify="progressbar">' +
+                '<div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div>' +
+            '</div>' +
+            '<a href="{3}" target="{4}" data-notify="url"></a>' +
+        '</div>' 
+    });
+    
+})
+
+
+
+</script>
+
+
+</html>

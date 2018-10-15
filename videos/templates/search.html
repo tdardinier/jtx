@@ -3,15 +3,15 @@
 {% block body %}
 {% load app_filters %}
 
-
+ 
 
 <div class="d-flex justify-content-center" style="margin-bottom:15px;">
 <div class="col-12 col-md-10 col-lg-6">
 <div class="card">
-	<div class="card-header">
+	<div class="">
 		<h2>{{titre}}</h2>
 			<div class="d-none d-sm-block">
-					<ul class=" nav nav-tabs card-header-tabs no-wrap">
+					<ul class=" nav nav-tabs card-header-tabs no-wrap customtab" role="tablist">
 	
 						{% if elements_proj %}
 						<li class="nav-item" >
@@ -41,7 +41,7 @@
 			<div class="tab-content">
 
 					{% if elements_proj %}
-					<div class="tab-pane fade show active" id="affiche_projs">
+					<div class="tab-pane active" id="affiche_projs" role="tabpanel">
 
 						<table id="table_projs" class="table dt-responsive nowrap " width="100%" cellspacing="0">
 							<thead>
@@ -87,7 +87,7 @@
 
 
 					{% if elements_vid %}
-					<div class="tab-pane fade show {% if not elements_proj %} active {% endif %}" id="affiche_vids">
+					<div class="tab-pane {% if not elements_proj %} active {% endif %}" id="affiche_vids" role="tabpanel">
 							<table id="table_vids" class="table dt-responsive nowrap " width="100%" cellspacing="0">
 									<thead>
 										<tr>
@@ -130,7 +130,7 @@
 
 
 					{% if elements_auteurs %}
-					<div class="tab-pane fade show {% if not elements_proj%} {% if not elements_vid %} active {% endif %} {% endif %}" id="affiche_auteurs">
+					<div class="tab-pane {% if not elements_proj%} {% if not elements_vid %} active {% endif %} {% endif %}" id="affiche_auteurs" role="tabpanel">
 						{% for a in elements_auteurs %}
 							<div style="margin-bottom:5px;">
 								<div class="d-flex align-items-center">

@@ -1,0 +1,661 @@
+  {% load static %}
+{% load app_filters %}
+
+<!DOCTYPE html>
+<html lang='fr'>
+
+<head>
+
+
+
+
+
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon.png' %}">
+  <title>Binet JTX | Association télévisuelle de l'Ecole polytechnique</title>
+  
+  <meta property="og:type" content="video"/>
+  <meta property="og:title" content="Binet JTX"/>
+  <meta property="og:description" content="Binet JTX | assocation télévisuelle de l'École polytechnique"/>
+  <meta property="og:image" content="https://binet-jtx.com/videos/affiches/JTX%202016/logo%202016.png"/>
+
+
+           <link href="{% static 'css/lib/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+
+    <link href="{% static 'css/lib/calendar2/semantic.ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/calendar2/pignose.calendar.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/owl.carousel.min.css" rel="stylesheet' %}" />
+    <link href="{% static 'css/lib/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/helper.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+       <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap4.min.css" />
+
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/lib/nestable/nestable.css' %}" rel="stylesheet">
+
+   <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
+
+</head>
+
+  <style>
+    {% for c in "categories"|get_list %}
+      .cat_{{c.id}}{
+        color:{{c.color}};
+        border-color:{{c.color|replace_opacity:'0.7'}};
+        width:10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .cat_{{c.id}}:hover{
+        color:{{c.color}};
+        background-color: {{c.color|replace_opacity:'0.07'}};
+        text-decoration: none;
+      }
+    {% endfor %}
+  </style>
+
+<body class="fix-header fix-sidebar">
+
+    <script src="{% static 'js/lib/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'js/lib/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'js/lib/bootstrap/js/bootstrap.min.js' %}"></script>
+
+
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'js/sidebarmenu.js' %}"></script>
+    <!--stickey kit -->
+    <script src="{% static 'js/lib/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+    <!--Custom JavaScript -->
+
+
+    <!-- Amchart -->
+     <!-- <script src="{% static 'js/lib/morris-chart/raphael-min.js' %}"></script>
+    <script src="{% static 'js/lib/morris-chart/morris.js' %}"></script>
+    <script src="{% static 'js/lib/morris-chart/dashboard1-init.js' %}"></script>
+-->
+
+  <script src="{% static 'js/lib/calendar-2/moment.latest.min.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/calendar-2/semantic.ui.min.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/calendar-2/prism.min.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/calendar-2/pignose.calendar.min.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/calendar-2/pignose.init.js' %}"></script>
+
+    <script src="{% static 'js/lib/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/lib/owl-carousel/owl.carousel-init.js' %}"></script>
+
+    <script src="{% static 'js/lib/nestable/jquery.nestable.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/nestable/nestable.init.js' %}"></script>
+    <!--Custom JavaScript -->
+
+    <!-- scripit init-->
+
+    <script src="{% static 'js/scripts.js' %}"></script>
+
+
+            <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap4.min.js"></script>
+
+
+
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper id">
+        <!-- header header  -->
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" id="titre_site" href="{% url 'index' %}">
+                        <!-- Logo icon -->
+                        <span id="titre_site_h1" class="" style="" > JTX </span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <div class="navbar-collapse">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <!-- Messages -->
+                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-help"></i></a>
+                            <div class="dropdown-menu animated zoomIn">
+                                <ul class="mega-dropdown-menu row">
+
+
+                                    <li class="col-lg-12  m-b-30">
+                                        <h4 class="m-b-20">Souci ? Problème ? Angoisse ? Dites-nous tout</h4>
+                                        <!-- Contact -->
+                                        <form>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="exampleInputname1" placeholder="Nom"> </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" placeholder="Email"> </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="exampleTextarea" rows="3" placeholder="Message"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-info">Envoyer</button>
+                                        </form>
+                                    </li>                                   
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Messages -->
+                    </ul>
+                    <!-- User profile and search -->
+                    <ul class="navbar-nav my-lg-0">
+
+                        <!-- Search -->
+                        <li class="nav-item search-box"> <a class="nav-link text-muted  " href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search form-inline" method="get" action="{% url 'search' %}">
+                                <input class="form-control"
+                                   autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" 
+                                  onfocus="afficher_results()" name="q" class="form-control m-2 " onkeydown="select_lien(event)" 
+                                  onkeyup="showHint(event,this.value)" type="text" style="width:100%;">
+                                   <a class="srh-btn"><i class="ti-close"></i></a> 
+                            </form>
+                            <div id="txtHint" role="listbox" class="m-2  shadow-div dropdown-menu dropdown-menu-right animated zoomIn show" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)"
+                            style="position:absolute;background-color:white;z-index:200;width:100%;display:none"></div>
+                            
+                            </div>
+                        </li>
+                        <!-- Comment -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
+                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+              </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">Notifications</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
+                                                <div class="mail-content">
+                                                    <h5>Il est pas beau le site comme ça ?</h5> <span class="mail-desc">Salut camarade, tu as sans doute remarqué un petit changement dans le design de ce site internet. J'espère que cela améliorera l'expérience utilisateur. Tu y vois aussi l'apparition de notifications qui t'avertirons de nouvelles qui concernent le JTX ou plus généralement notre école.
+                                                    N'hésite pas à me dire ce que tu en penses (en cliquant sur le point d'interrogation juste à côté du bouton du menu)</span> <span class="time"></span>
+                                                </div>
+                                            </a>                                           
+                                        </div>
+                                    </li>                                   
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Comment -->
+                        
+                        <!-- Profile -->
+                        <li class="nav-item dropdown">
+
+                          {% if request.user.is_authenticated %}
+
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-user" alt="{{ request.user.first_name }} {{ request.user.last_name }}" class="profile-pic"></i></a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="#"><i class="ti-user"></i> Profile</a></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
+                                    <li><a href="{% url 'logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+
+                            {% else %}
+
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Se connecter</a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="/org"><i class="ti-user"></i> Connection via Polytechnique.org</a></li>
+                                    <li><a href="{% url 'login' %}?next={% url 'index' %}"><i class="ti-settings"></i> Connection manuelle</a></li>
+                                </ul>
+                            </div>
+
+
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Accueil</li>
+                        <li> <a class="" href="{% url 'index' %}" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Accueil</span></a>
+                        </li>
+                        <li class="nav-label">Parcourir</li>
+                        <li> <a class="" href="{% url 'projs' 1 %}" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Projections</span></a>
+                        </li>
+                        <li> <a class="" href="{% url 'videos' 1 %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Vidéos</span>
+                        </a>
+                        {% if request.user.is_authenticated %}
+                        <li> <a class="" href="{% url 'favorites' 1 %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Favoris</span></a>
+                       
+                        <li> <a class="" href="{% url 'tags' %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Tags</span></a>
+                        <li> <a class="" href="{% url 'playlists' %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Playlists</span></a>
+                        {% endif %}
+                        <li> <a class="" href="{% url 'jtx' 2015 %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">JTX 2015</span></a>
+                        <li> <a class="" href="{% url 'jtx' 2016 %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">JTX 2016</span></a>
+                           
+                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-label">Épingles</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Projections épinglées</span></a>
+                            <ul aria-expanded="false" class="collapse">
+
+                                {% for f in request.user.favorite_proj_set.all %}
+                                    {% if f.epingle %}
+                                        <li><a href="{% url 'proj' f.proj.id %}">{{ f.proj.titre }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+            <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-suitcase"></i><span class="hide-menu">Vidéos épinglées</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                
+                                {% for f in request.user.favorite_set.all %}
+                                    {% if f.epingle %}
+                                        <li><a href="{% url 'video' f.video.id %}">{{ f.video.titre }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                         {% if request.user.is_authenticated %}
+                       {% if request.user.utilisateur.can_proj %}
+                        <li class="nav-label">Administration</li>
+                        <li> <a class="" href="{% url 'messages_facade' %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Regarder les messages reçus</span></a>
+                         <li> <a class="" href="{% url 'stats' %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Statistiques</span></a>
+                         <li> <a class="" href="{% url 'create_playlist' %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Créer une playlist</span></a>
+
+                        {% endif %}
+                        {% endif %}
+                        
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <!-- Bread crumb -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">{{ titre_page }}</h3> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Accueil</a></li>
+                        <li class="breadcrumb-item active">Vidéos</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- End Bread crumb -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+
+             {% block body %} 
+              {% endblock %}
+
+                
+                    {% if pages and page and adress %}
+                    <br>    
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                         
+                         
+                          {% for p in pages %} 
+                            {% if p|page_toujours:pages %}
+                            
+                              {% if p == pages|length|add:"-1" and page < pages|length|add:"-4"%}
+                              <li class="page-item"><a class="page-link" href="">...</a></li>
+                              {% endif %}
+
+                              {% if id %}
+                              <li class="page-item {% if p == page %} active {% endif %}"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
+                              {% else %}
+                                <li class="page-item {% if p == page %} active {% endif %}"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
+                              {% endif %}
+                              
+                              {% if p == 2 and page > 5%}
+                              <li class="page-item"><a class="page-link" href="">...</a></li>
+                              {% endif %}
+
+                            {% else %}
+                              {% if p != page and p|abs_minus:page  %} 
+                                {% if id %}
+                                  <li class="page-item"><a class="page-link" href="{% url adress id p %}">{{p}}</a></li>
+                                  
+                                {% else %}
+                                  <li class="page-item"><a class="page-link" href="{% url adress p %}">{{p}}</a></li>
+                                
+                                {% endif %} 
+                              {% elif p == page %}
+                                <li class="page-item active"><a class="page-link" href="#">{{p}}</a></li>
+                              {% endif %}   
+                            {% endif %}
+                          {% endfor %}
+      
+                          
+                        </ul>
+                    </nav>
+                    {% endif %}
+
+
+                <!-- End PAge Content -->
+            </div>
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <footer class="footer"> © 2018 Site réalisé par Thibault Dardinier (JTX2015), Guillaume Vidon (JTX2015), et Benoît Durand (JTX2016).</footer>
+            <!-- End footer -->
+        </div>
+        <!-- End Page wrapper  -->
+    </div>
+    <!-- End Wrapper -->
+
+        
+
+
+
+
+        
+     
+</body>
+
+
+<script>
+
+
+
+
+  
+  function highlight(phrase,mot){
+    var val=phrase.search(new RegExp(mot, 'gi'));
+    var correct=phrase.slice(val,val+mot.length);
+    return phrase.replace(new RegExp(mot, 'gi'), "<span class='highlight_word'>"+correct+"</span>");
+  }
+  
+
+  function showHint(e, str) {
+    var keycode;
+   
+    if (window.event) {
+      keycode = window.event.keyCode;
+    }
+    else if (e) {
+      keycode = e.which;
+    }
+
+    if (keycode == 40 || keycode == 38) {
+
+    }
+    else {
+
+
+
+      if (str.length == 0) {
+        document.getElementById("txtHint").innerHTML = "";
+        document.getElementById("txtHint").style.display = "none";
+        return;
+      } else {
+        
+        var showData = $('#txtHint');
+
+        var url = "{% url 'suggestions' '' %}";
+        url = url.substring(0, url.length - 1);
+        $.getJSON(url + str, function (data) {
+
+          var videos = data.videos.map(function (video) {
+            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + video.url + '"><div class="">' + highlight(video.titre,str) + "</div></a>";
+
+          });
+
+
+          var jtxmen = data.auteurs.map(function (jtxman) {
+            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + jtxman.url + '"><div class="">' + highlight(jtxman.firstname + " " + jtxman.lastname + " (" + jtxman.promo,str) + ")</div></a>";
+
+          });
+
+          var jtx = data.jtx.map(function (jtx) {
+            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + jtx.url + '"><div class="">' + highlight(jtx.titre,str) + "</div></a>";
+
+          });
+
+          var projs = data.projs.map(function (proj) {
+            var s = proj.titre;
+            if (proj.titre.length > 80) {
+              s = proj.titre.substring(0, 80);
+            }
+            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + proj.url + '"><div class=""> ' + highlight(s,str)+ "</div></a>";
+
+          });
+
+          showData.empty();
+          
+          if(jtxmen.length>0){
+            jtxmen=["<div class='dropdown-header' style='color:#3498db'>JTXWomen.Men</div>"].concat(jtxmen);
+          }
+
+          if(videos.length>0){
+            videos=["<div class='dropdown-header' style='color:#27ae60'>Vidéos</div>"].concat(videos);
+            if(projs.length>0){
+              videos=["<div class='dropdown-divider'></div>"].concat(videos);
+            }
+            if(jtxmen.length>0){
+              videos=videos.concat(["<div class='dropdown-divider'></div>"]);
+            }
+          }
+          else{
+            if(jtxmen.length>0 && projs.length>0){
+              jtxmen=["<div class='dropdown-divider'></div>"].concat(jtxmen);
+            }
+          }
+
+          if(projs.length>0){
+            projs=["<div class='dropdown-header' style='color:#CC181E'>Projections</div>"].concat(projs);
+          }
+
+          if(jtx.length>0){
+            jtx=["<div class='dropdown-header' style='color:#FDC500;'>Pages JTX</div>"].concat(jtx);
+          }
+          
+
+          if (videos.length + jtxmen.length + projs.length + jtx.length) {
+            elements = projs.concat(videos).concat(jtxmen).concat(jtx);
+
+            document.getElementById("txtHint").style.display = "unset";
+            var content = elements.join(' ');
+            //var list = $('<ul />').html(cont  ent);
+            showData.append(content);
+
+          }
+          else {
+            document.getElementById("txtHint").style.display = "none";
+          }
+        });
+
+      }
+    }
+  }
+
+  function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+
+  function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  function afficher_results() {
+    var x = document.getElementById("search_input").value;
+    var y = document.getElementById("txtHint").innerHTML;
+    if (suivre_lien == 0 && x != "" && y != "") { document.getElementById("txtHint").style.display = "unset"; }
+  }
+
+  function cacher_results() {
+    if (suivre_lien == 0) { document.getElementById("txtHint").style.display = "none"; }
+  }
+
+  function h_r_lateral_bar() {
+
+    lateral_bar=$("#lateral_bar");
+
+    if (lateral_bar.is(":visible")) {
+
+      lateral_bar.hide(200),
+
+      setCookie("show", "non", 365);
+    }
+
+    else {
+      lateral_bar.show(200);
+
+      setCookie("show", "oui", 365);
+    }
+
+  }
+
+  function positionne_suggestions() {
+    console.log("hello");
+    var x = document.getElementById("search_input");
+    var y = document.getElementById("txtHint");
+    
+
+  }
+
+  function lien_ok(i) {
+    suivre_lien = i;
+  }
+
+  function create_select() {
+    select = -1;
+  }
+  create_select();
+
+  function mouse_select(y) {
+    var x = document.getElementsByClassName('search_result');
+    if (select >= 0 && select < x.length) { x[select].style.backgroundColor = "white"; }
+    
+    y.style.backgroundColor = "#c8c8c8";
+
+    for (var i = 0; i < x.length; i++) {
+      if (y == x[i]) { select = i; }
+    }
+  }
+
+  function mouse_deselect(y) {
+    var x = document.getElementsByClassName('search_result');
+    y.style.backgroundColor = "white";
+    if (select >= 0 && select < x.length) { x[select].style.backgroundColor = "white"; }
+    select = -1;
+  }
+
+
+  function select_lien(e) {
+    var keycode;
+    if (window.event) {
+      keycode = window.event.keyCode;
+    }
+    else if (e) {
+      keycode = e.which;
+    }
+
+    if (keycode == 40) {
+
+      var x = document.getElementsByClassName('search_result');
+
+
+      if (select < (x.length - 1)) {
+
+        if (select >= 0) { x[select].style.backgroundColor = "white"; }
+
+        select = 1 + select;
+
+        x[select].style.backgroundColor = "#c8c8c8";
+
+      }
+    }
+    else if (keycode == 38) {
+      var x = document.getElementsByClassName('search_result');
+
+
+      if (0 < select) {
+
+        if (select < x.length) { x[select].style.backgroundColor = "white"; }
+
+        select = select - 1;
+
+        x[select].style.backgroundColor = "#c8c8c8";
+
+
+      }
+    }
+    else if (keycode == 13) {
+      var x = document.getElementsByClassName('search_result');
+
+      //x[select].click();
+      x[select].click();
+      e.preventDefault();
+    }
+  }
+
+
+
+  var suivre_lien = 0;
+
+  window.onresize = positionne_suggestions;
+  positionne_suggestions();
+  console.log(suivre_lien);
+
+</script>
+
+
+</html>

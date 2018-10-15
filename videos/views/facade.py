@@ -29,6 +29,8 @@ def facade(request):
 	#a.close()
 	#a = open("facade.txt","r")
 	#videos = a.read().split(";")
+	if request.user.is_authenticated:
+		return HttpResponseRedirect(reverse("index"))
 	a = open("/home/django/jtx/facade.txt","r")
 	videos = a.read().decode('utf-8').split(u";")
 		

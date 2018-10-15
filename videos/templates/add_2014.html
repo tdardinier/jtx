@@ -1,0 +1,580 @@
+<html>
+<head>
+    <title>I Have ADDream - ADD 2014</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.11.2/lodash.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,700|Ubuntu+Mono:400,700' rel='stylesheet' type='text/css'>
+    <style type="text/css">
+    body {
+        font-family: 'Ubuntu', sans-serif;
+    }
+    #background {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    #loading {
+        position: fixed;
+        font-family: "Ubuntu Mono";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        font-size: 4em;
+        font-variant: small-caps;
+        flex-direction: column;
+    }
+    #loading-progress {
+        font-size: 0.5em;
+    }
+    #loading-bar {
+        height: 10px;
+        border-top: 2px solid white;
+        width: 20px;
+    }
+    #intro {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        z-index: 50;
+        font-size: 2em;
+    }
+    #clips {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        z-index: 40;
+    }
+    .awesomebg {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        text-align: center;
+        font-size: 10em;
+        background-image: url('http://binet-jtx.com/videos/Evenements/ADD/ADD_2014/assets/background.jpg');
+        color: white;
+        background-position: center center;
+        background-size: cover;
+    }
+    .video {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 30%;
+        color: white;
+    }
+    .video__date {
+        display: inline-block;
+        text-align: right;
+        padding-right: 20px;
+        padding-top: 50px;
+        font-family: 'Ubuntu Mono';
+        width: calc(20% - 20px);
+        vertical-align: top;
+    }
+    .video__date__hour {
+        font-weight: bold;
+    }
+    .video__date__duration {
+        font-size: 0.7em;
+    }
+    .video__point {
+        position: relative;
+        height: 9px;
+        width: 9px;
+        background-color: white;
+        border-radius: 4.5px;
+        float: right;
+        right: -26px;
+        top: -1.5em;
+    }
+    .video-active .video__point {
+        background-color: rgb(168, 0, 16);
+    }
+    .video__content {
+        display: inline-block;
+        width: calc(80% - 44px);
+        vertical-align: top;
+        padding: 20px;
+        border-left: 4px solid black;
+    }
+    .video__container {
+        position: relative;
+        cursor: pointer;
+    }
+    .thumbnail__hover {
+        position: absolute;
+        width: 100%;
+        text-align: center;
+        margin-top: 24px;
+    }
+    .thumbnail__title {
+        display: inline-block;
+        width: 60%;
+        padding: 5px;
+        border: 1px solid white;
+        background-color: rgba(0, 0, 0, 0.6);
+        font-variant: small-caps;
+    }
+    .video-active .thumbnail__title {
+        border: 1px solid rgb(168, 0, 16);
+    }
+    .thumbnail {
+        width: 100%;
+    }
+    #player-title {
+        background-color: rgba(0, 0, 0, 0.6);
+        border: 1px solid white;
+        font-variant: small-caps;
+        text-align: center;
+        font-size: 2em;
+        padding: 5px;
+        margin-bottom: 20px;
+        color: white;
+    }
+    .player-button {
+        background-color: rgba(0, 0, 0, 0.6);
+        border: 1px solid white;
+        text-transform: uppercase;
+        text-align: center;
+        padding: 2px;
+        color: white;
+        display: inline-block;
+        cursor: pointer;
+        margin-top: 20px;
+        width: 140px;
+    }
+    .text-center {
+        text-align: center;
+    }
+    #circle-position {
+        position: fixed;
+        left: calc(6% - 9px);
+        top: 50%;
+        z-index: 49;
+        width: 15px;
+        height: 15px;
+        border: 3px solid white;
+        border-radius: 10.5px;
+    }
+    #player-div {
+        position: fixed;
+        z-index: 49;
+        left: calc(30% + 40px);
+        width: calc(70% - 160px);
+        top: 20px;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 40px;
+    }
+    a {
+        color: white;
+        text-decoration: none;
+        opacity: 0.8;
+    }
+    a:hover {
+        opacity: 1;
+    }
+    @media only screen and (max-width: 760px) {
+        .video {
+            width: 100%;
+        }
+        #circle-position {
+            left: calc(20% - 9px);
+        }
+        #player-div {
+            display: none;
+        }
+        #player-div {
+            position: fixed;
+            z-index: 50;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            background-color: black;
+            padding: 0px;
+            padding-bottom: 10px;
+        }
+        .player-button {
+            border: 1px solid white;
+            text-transform: uppercase;
+            font-size: 0.7em;
+            text-align: center;
+            padding: 2px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div id="set-height"></div>
+    <div id="loading" class="awesomebg">
+        <div class="animated flipInX" id="loading-message">
+            Chargement en cours
+        </div>
+        <div id="loading-bar"></div>
+        <div id="loading-progress"></div>
+        <div id="connexion">
+            <a href="http://binet-jtx.com/org" title="Se connecter via Polytechnique.org" id="connexion-link" target="_blank">Connexion</a><br />
+            <div style="font-size: 15px; font-variant: normal;">Connectez-vous sur le site du JTX puis actualisez cette page</div>
+        </div>
+    </div>
+    <div id="intro" class="awesomebg">
+        <div style="border: 5px solid white; border-radius: 20px; width: 300px; padding: 30px; cursor: pointer;" onclick="launchPlay()">
+            <div style="font-size: 100px;">▶</div>
+            Lire l'ADD
+        </div>
+        <a style="border: 5px solid white; border-radius: 20px; width: 300px; padding: 20px; padding-left: 30px; padding-right: 30px; display: block; margin-top: 60px; cursor: pointer; background-color: rgba(0, 0, 0, 0.3); font-size: 20px;" href=""> 
+            Télécharger l'ADD
+        </a>
+    </div>
+    <div id="clips">
+    </div>
+    <div id="circle-position">
+    </div>
+
+    <div id="player-div">
+        <div id="player-title"></div>
+        <video autoplay controls id="player" style="width: 100%;">
+        </video>
+        <div class="text-center">
+        	<div class="player-button" onclick="playPrevious()">
+                &laquo; Précédent
+            </div>
+            <div class="player-button" id="bplaypause" onclick="playPause()">
+                Pause
+            </div>
+            <div class="player-button" onclick="playNext()">
+                Suivant &raquo;
+            </div><br /><div class="player-button" id="player-quality" onclick="toggleQuality()">
+                Qualité : <span id="quality-name">Basse</span>
+            </div><br /><div class="player-button " id="player-close">
+                Fermer
+            </div>
+        </div>
+    </div>
+
+    <canvas id="background" width="1280" height="720"></canvas>
+    <script type="text/javascript">
+    var mobileTest = window.matchMedia("only screen and (max-width: 760px)");
+    var isMobile = mobileTest.matches;
+
+    // Parameters
+    var quality = 'http://binet-jtx.com/videos/Evenements/ADD/ADD_2014/assets/still_lq';
+    var qualityHDpath = 'http://binet-jtx.com/videos/Evenements/ADD/ADD_2014/assets/still_hq';
+    var speed = 15; // vitesse de défilement : plus la valeur est élevée, puis la vidéo avancera vite quand on scroll
+    var speedHD = 15;
+    var fraction = 1; // on charge une image sur 40
+    var fractionHD = 1; // on charge une image sur 20
+    var totalImages = 200;
+
+    var canv = document.getElementById('background');
+    var setHeight = document.getElementById('set-height');
+    var player = document.getElementById('player');
+    var playerDiv = $('#player-div');
+    var playerTitle = $('#player-title');
+    var playerClose = $('#player-close');
+    var playerButtonPlayPause = $('#bplaypause');
+    var qualityName = $('#quality-name');
+    var dclips = $('#clips');
+    var context = canv.getContext('2d');
+    var remaining = 1;
+    var total = 1;
+    var clips, pathThumbnails, pathClipsLQ, pathClipsHQ, pathClips;
+    var qualityHD = false;
+    var frameDisplayed;
+    var frameDisplayedHD = false;
+    var beginLoad = new Date();
+    $('#connexion').hide();
+
+    var lastVideo = 0;
+    var currentVideo = null;
+
+    var beginTop = -150;
+    var heightVideo = 280;
+
+    playerDiv.hide();
+    playerClose.click(function() {
+        player.pause();
+        delete player.src;
+        playerDiv.fadeOut();
+        currentVideo = null;
+    });
+
+    function launchPlay() {
+        $('html, body').animate({ scrollTop: document.body.clientHeight }, 1000);
+        playerDiv.fadeIn();
+        playVideoa(clips[0], 0);
+        currentVideo = 0;
+    }
+
+    function playPause() {
+        if (player.paused) {
+            player.play();
+        } else {
+            player.pause();
+        }
+    }
+    function playVideoa(c, i) {
+        player.src = choosePath(pathClips) + '/' + c.name;
+        player.poster = c.thumbnails[0].src;
+        playerTitle.text(c.title);
+        player.play();
+        $('.video-active').removeClass('video-active');
+        $('#video-' + i).addClass('video-active');
+    }
+    function playNext() {
+        if (currentVideo !== null && currentVideo < lastVideo) {
+            player.pause();
+            currentVideo++;
+            var c = clips[currentVideo];
+            playVideoa(c, currentVideo);
+        }
+    }
+    function playPrevious() {
+        if (currentVideo !== null && currentVideo > 0) {
+            player.pause();
+            currentVideo--;
+            var c = clips[currentVideo];
+            playVideoa(c, currentVideo);
+        }
+    }
+    function toggleQuality() {
+        qualityHD = !qualityHD;
+        updateQuality();
+    }
+    function updateQuality() {
+        if (qualityHD) {
+            pathClips = pathClipsHQ;
+            qualityName.text('Haute');
+        } else {
+            pathClips = pathClipsLQ;
+            qualityName.text('Basse');
+        }
+        if (currentVideo !== null) {
+            player.pause();
+            var currentTime = player.currentTime;
+            player.src = choosePath(pathClips) + '/' + clips[currentVideo].name;
+            player.play();
+            function resumeTime() {
+                player.currentTime = currentTime;
+                console.log('yo');
+                player.removeEventListener('playing', resumeTime);
+            }
+            player.addEventListener('playing', resumeTime);
+        }
+    }
+
+    document.body.onkeydown = function(e) {
+        if(e.keyCode == 32 || e.keyCode == 75) {
+            if (currentVideo !== null) {
+                playPause();
+                return false;
+            }
+        }
+    }
+
+    player.onpause = function() {
+        playerButtonPlayPause.text('Play');
+    };
+    player.onplay = function() {
+        playerButtonPlayPause.text('Pause');
+    };
+    player.onended = playNext;
+
+    // setHeight.style.height = Math.ceil(totalImages/fraction) * speed;
+    var images = new Array();
+    var imagesHD = new Array();
+
+    function updateLoad() {
+        --remaining;
+        var prog = (total - remaining)/total*100;
+        $('#loading-progress').text(Math.ceil(prog) + ' %');
+        $('#loading-bar').css('width', 4*prog + 'px');
+        // console.log(remaining);
+        if (remaining <= 0) {
+            endLoad();
+        }
+    }
+
+    function endLoad() {
+        console.log('Chargement termine');
+        if ((new Date() - beginLoad) < 10000) { // less than 10s to load everything
+            for(var i = 1; i <= totalImages; i += fractionHD) {
+				if (i<10)
+					var j = '00' + i;
+				else if (i<100)
+					var j = '0' + i;
+				else
+					var j = i;
+                var filename = qualityHDpath + '/still_hq_' + j + '.jpg';
+                imagesHD.push(loadImgHD(filename));
+            }
+        }
+
+        function playVideo(c, i) {
+            return function() {
+                player.src = choosePath(pathClips) + '/' + c.name;
+                player.poster = c.thumbnails[0].src;
+                playerTitle.text(c.title);
+                playerDiv.fadeIn();
+                player.play();
+                currentVideo = i;
+                $('.video-active').removeClass('video-active');
+                $('#video-' + i).addClass('video-active');
+            };
+        }
+
+        // On affiche les clips
+        var top = beginTop;
+        lastVideo = clips.length-1;
+        _.forEach(clips, function (c, i) {
+            c.currentThumbnail = 0;
+
+            var dmin = Math.floor(c.duration/60);
+            var dsec = c.duration%60;
+
+            var ev = $('<div class="video" id="video-' + i + '"></div>');
+            var evd = $('<div class="video__date"><div class="video__date__hour">' + c.start + '</div><div class="video__date__duration">' + dmin + ':' + dsec + '</div><div class="video__point"></div></div>');
+            ev.append(evd);
+            var evc = $('<div class="video__content"></div>');
+            var evcc = $('<div class="video__container"></div>');
+            evcc.click(playVideo(c, i));
+            var eth = $('<div class="thumbnail__hover"><div class="thumbnail__title">' + c.title + '</div></div>');
+            evcc.append(eth);
+            var eimg = $(c.thumbnails[0]);
+            eimg.addClass('thumbnail');
+            evcc.append(eimg);
+            evc.append(evcc);
+            ev.append(evc);
+            dclips.append(ev);
+
+            top += heightVideo;
+        });
+
+        $('#loading').fadeOut();
+
+        speed = $(document).height()/totalImages*fraction;
+        speedHD = $(document).height()/totalImages*fractionHD;
+        // On met en place le fond animé
+        function scollPlay() {
+            var frameNumber  = Math.floor((document.body.clientHeight + window.pageYOffset)/speed);
+            var frameNumberHD  = Math.floor((document.body.clientHeight + window.pageYOffset)/speedHD);
+            if (imagesHD[frameNumberHD] && imagesHD[frameNumberHD].complete) {
+                if (!frameDisplayedHD || frameNumberHD != frameDisplayed) {
+                    context.drawImage(imagesHD[frameNumberHD], 0, 0, 1280, 720);
+                    frameDisplayedHD = true;
+                    frameDisplayed = frameNumber;
+                }
+            } else if (images[frameNumber] && (frameDisplayedHD || frameNumber != frameDisplayed)) {
+                context.drawImage(images[frameNumber], 0, 0, 1280, 720);
+                frameDisplayedHD = false;
+                frameDisplayed = frameNumber;
+            }
+            window.requestAnimationFrame(scollPlay);
+        }
+        if (!isMobile) {
+            window.requestAnimationFrame(scollPlay);
+        }
+    }
+
+    function loadImg(filename) {
+        remaining++;
+        total++;
+        var img = new Image;
+        img.onload = updateLoad;
+        img.onerror = updateLoad;
+        img.src = filename;
+        return img;
+    }
+    function loadImgHD(filename) {
+        var img = new Image;
+        img.src = filename;
+        return img;
+    }
+
+    function choosePath(paths) {
+        return paths[Math.floor(Math.random() * paths.length)];
+    }
+
+    function loadData() {
+        $.get("{% url 'jsadd_2014' %}", function (data) {
+            pathThumbnails = data.pathThumbnails;
+            pathClipsLQ = data.pathClipsLQ;
+            pathClipsHQ = data.pathClipsHQ;
+            pathClips = pathClipsLQ;
+            clips = data.clips;
+
+            _.forEach(clips, function (c) {
+                if (isMobile) {
+                    c.thumbnails[0] = loadImg(pathThumbnails + '/' + c.thumbnails[0]);
+                } else {
+                    _.forEach(c.thumbnails, function (thumbnail, k) {
+                        // console.log(thumbnail);
+                        c.thumbnails[k] = loadImg(pathThumbnails + '/' + thumbnail);
+                    });
+                }
+            });
+            updateLoad();
+            if (!isMobile) {
+                beginLoad = new Date();
+                for(var i = 1; i <= totalImages; i += fraction) {
+					if (i<10)
+						var j = '00' + i;
+					else if (i<100)
+						var j = '0' + i;
+					else
+						var j = i;
+                    var filename = quality + '/still_lq' + j + '.jpg';
+                    images.push(loadImg(filename));
+                }
+            }
+        }).fail(function() {
+            displayConnect();
+        });
+    }
+
+    var QueryString = function () {
+        // This function is anonymous, is executed immediately and
+        // the return value is assigned to QueryString!
+        var query_string = {};
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            // If first entry with this name
+            if (typeof query_string[pair[0]] === "undefined") {
+                query_string[pair[0]] = decodeURIComponent(pair[1]);
+                // If second entry with this name
+            } else if (typeof query_string[pair[0]] === "string") {
+                var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+                query_string[pair[0]] = arr;
+                // If third or later entry with this name
+            } else {
+                query_string[pair[0]].push(decodeURIComponent(pair[1]));
+            }
+        }
+        return query_string;
+    }();
+
+    function displayConnect() {
+        // We display a link to connect
+        $('#loading-message').hide();
+        $('#loading-bar').hide();
+        $('#loading-progress').hide();
+        $('#connexion').fadeIn();
+    }
+
+    loadData();
+    </script>
+</body>
+</html>

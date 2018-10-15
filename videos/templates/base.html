@@ -7,54 +7,44 @@
 <head>
 
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-115095479-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-115095479-1');
-</script>
 
 
 
 
-	<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-KX8MT5L');</script>
-<!-- End Google Tag Manager -->
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon.png' %}">
-  <link href='//fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700,800,900' rel='stylesheet'>
   <title>Binet JTX | Association télévisuelle de l'Ecole polytechnique</title>
   
   <meta property="og:type" content="video"/>
   <meta property="og:title" content="Binet JTX"/>
   <meta property="og:description" content="Binet JTX | assocation télévisuelle de l'École polytechnique"/>
-  <meta property="og:image" content="http://binet-jtx.com/videos/affiches/JTX%202016/logo%202016.png"/>
+  <meta property="og:image" content="https://binet-jtx.com/videos/affiches/JTX%202016/logo%202016.png"/>
 
-  
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
-  <link rel="stylesheet" href="{% static 'style.css' %}" />
-   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
+
+           <link href="{% static 'css/lib/bootstrap/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom CSS -->
+
+    <link href="{% static 'css/lib/calendar2/semantic.ui.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/calendar2/pignose.calendar.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/lib/owl.carousel.min.css" rel="stylesheet' %}" />
+    <link href="{% static 'css/lib/owl.theme.default.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/helper.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+       <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css" />
    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap4.min.css" />
-   <link href="http://vjs.zencdn.net/6.2.7/video-js.css" rel="stylesheet">
-   <!-- <link href="{% static 'admin/css/videojs-qualityselector.css'%}"  rel="stylesheet"> -->
 
-       
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/lib/nestable/nestable.css' %}" rel="stylesheet">
 
    <script src="https://cdn.plot.ly/plotly-1.2.0.min.js"></script>
 
 </head>
-
-<!-- <body onload="checkbar()"> -->
 
   <style>
     {% for c in "categories"|get_list %}
@@ -75,360 +65,276 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     {% endfor %}
   </style>
 
-<body>
+<body class="fix-header fix-sidebar">
 
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KX8MT5L"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
+    <script src="{% static 'js/lib/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="{% static 'js/lib/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'js/lib/bootstrap/js/bootstrap.min.js' %}"></script>
 
-  
 
-    
+    <!-- slimscrollbar scrollbar JavaScript -->
+    <script src="{% static 'js/jquery.slimscroll.js' %}"></script>
+    <!--Menu sidebar -->
+    <script src="{% static 'js/sidebarmenu.js' %}"></script>
+    <!--stickey kit -->
+    <script src="{% static 'js/lib/sticky-kit-master/dist/sticky-kit.min.js' %}"></script>
+    <!--Custom JavaScript -->
 
-      <div id="central" >
-         
-        <div id="navigation_bar" class="d-flex justify-content-start align-items-center" style="z-index:100;">
 
+    <!-- Amchart -->
+     <!-- <script src="{% static 'js/lib/morris-chart/raphael-min.js' %}"></script>
+    <script src="{% static 'js/lib/morris-chart/morris.js' %}"></script>
+    <script src="{% static 'js/lib/morris-chart/dashboard1-init.js' %}"></script>
+-->
 
-          
-            <a  class="p-2" onclick="h_r_lateral_bar()" style="cursor:pointer">
-              <img class="" style="width:25px;" src='{% static "admin/img/opticons/three-bars.svg" %}' alt="Menu">
-            </a>
-          
+  <script src="{% static 'js/lib/calendar-2/moment.latest.min.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/calendar-2/semantic.ui.min.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/calendar-2/prism.min.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/calendar-2/pignose.calendar.min.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/calendar-2/pignose.init.js' %}"></script>
 
-       
-          <a href="{% url 'index' %}" id="titre_site" class="d-none  d-md-block" style="width:150px;text-align:center;padding-bottom:5px;">
-              <!-- <div id="entourer_titre"></div> -->
-               <span id="titre_site_h1" class="" style="" > JTX </span>
-           
-          </a>
+    <script src="{% static 'js/lib/owl-carousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/lib/owl-carousel/owl.carousel-init.js' %}"></script>
 
-          <div id="search_bar" class="" style="width:100%;max-width:600px;">
-              <form method="get" class="form-inline" action="{% url 'index' %}search/">
-                <input autocomplete="off" id="search_input" placeholder="Rechercher" onblur="cacher_results()" 
-                onfocus="afficher_results()" name="q" class="form-control m-2 " onkeydown="select_lien(event)" 
-                onkeyup="showHint(event,this.value)" type="text" style="width:100%;min-width:0px;"
-                
-                >
-              
-                
-              </form>
-            <div id="txtHint" role="listbox" class="m-2  shadow-div"  onmouseover="lien_ok(1)" onmouseout="lien_ok(0)"
-            style="position:absolute;background-color:white;z-index:200;top:40px;"></div>
-            
-            </div>
-          <!-- <div id="txtHint" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)" style="margin-left: 221.067px;"> -->
-          <!-- </div> -->
-          {% if request.user.is_authenticated == False %}
-          <a class="ml-auto btn btn-primary m-1 d-none d-md-block" href="/org">
-            
-              Se connecter
-          </a>
+    <script src="{% static 'js/lib/nestable/jquery.nestable.js' %}"></script>
+    <!-- scripit init-->
+    <script src="{% static 'js/lib/nestable/nestable.init.js' %}"></script>
+    <!--Custom JavaScript -->
 
-          {% endif %}
+    <!-- scripit init-->
 
+    <script src="{% static 'js/scripts.js' %}"></script>
 
-         
- 
 
-        </div>
-
- 
-  <!-- A changer pour mettre un lien absolu! -->
-
-  
-
-  <div id="lateral_bar">
-
-      
-      
-      {% if request.user.is_authenticated %}
-          <h3 class="dropdown-header" style="margin-top:10px;">Bonjour {{ request.user.first_name }} {{ request.user.last_name }}</h3>
-           
-          
-
-          <a class="dropdown-item" href="{% url 'logout' %}">
-              <div class="d-flex ">
-                  
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/sign-out.svg" %}" alt="hello"></div>
-            <div class="">
-              <!-- <img src={% static "admin/img/deconnexion.png" %} alt="->" style="width:10px;">  -->
-              Se déconnecter
-            </div>
-          </div>
-          </a>
-
-         
-
-          {% else %}
-          <h3 class="dropdown-header" style="margin-top:10px;">  
-            <div class="d-flex justify-content-between">
-              <div>Connexion</div>
-              <div><img src="{% static "admin/img/opticons/key.svg" %}" alt="hello"></div>
-            </div>
-          </h3>
-        <a class="dropdown-item" href="/org">
-          <div class="" id="connexion">
-              Connexion (polytechnique.org)
-          </div>
-        </a>
-
-
-        <a class="dropdown-item" href="{% url 'login' %}?next={% url 'index' %}">
-          <div class="" id="connexion">
-              Connexion manuelle
-          </div>
-        </a>
-
-      {% endif %}
-       
-          <div class="dropdown-divider"></div>
-          <h3 class="dropdown-header"> <span class="glyphicon glyphicon-option-vertical" ></span>Menu</h3>
-
-          <a href="{% url 'index'  %}" class="dropdown-item">
-              <div class="d-flex ">
-                  
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/home.svg" %}" alt="hello"></div>
-                  <div class="">
-                    Accueil
-                  </div>
-          </div>
-          </a>
-
-          <a href="{% url 'projs' 1 %}" class="dropdown-item">
-            <div class="d-flex ">
-              
-              <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/eye.svg" %}" alt="hello"></div>
-              <div>Projections</div> 
-            </div>
-          </a>
-
-          
-          <a href="{% url 'videos' 1 %}" class="dropdown-item">
-
-            <div class="d-flex ">
-              <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/device-camera-video.svg" %}" alt="hello"></div>
-              <div>Vidéos</div>
-              
-            </div>
-          </a>
-
-          {% if request.user.is_authenticated %}
-          <a href="{% url 'favorites' 1 %}" class="dropdown-item">
-              <div class="d-flex ">
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/star.svg" %}" alt="hello"></div>
-                  <div >
-                      Favoris
-                  </div>
-                </div>
-          </a>
-          
-
-
-
-          <a href="{% url 'tags' %}" class="dropdown-item">
-              <div class="d-flex ">
-                  
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/code.svg" %}" alt="hello"></div>
-                <div class="">
-                  <span class="glyphicon glyphicon-text-background"></span> Tags
-                </div>
-          </div>
-          </a>
-
-          <a href="{% url 'playlists' %}" class="dropdown-item">
-              <div class="d-flex ">
-                  
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/code.svg" %}" alt="hello"></div>
-                <div class="">
-                  <span class="glyphicon glyphicon-text-background"></span> Playlists
-                </div>
-          </div>
-          </a>
-
-          {% endif %}
-
-          <a href="{% url 'jtx' 2015 %}" class="dropdown-item">
-              <div class="d-flex ">
-                  
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/bookmark.svg" %}" alt="hello"></div>
-            <div class="">
-              JTX 2015
-            </div>
-          </div>
-          </a>
-
-          <a href="{% url 'jtx' 2016 %}" class="dropdown-item">
-              <div class="d-flex ">
-                  
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/bookmark.svg" %}" alt="hello"></div>
-            <div class="">
-              JTX 2016
-            </div>
-          </div>
-          </a>
-          {% if request.user.is_authenticated %}
-            {% if request.user.utilisateur.can_proj %}
-          <a href="{% url 'create_playlist' %}" class="dropdown-item">
-              <div class="d-flex ">
-                  
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/bookmark.svg" %}" alt="hello"></div>
-            <div class="">
-              Créer une playlist
-            </div>
-          </div>
-          </a>
-          <a href="{% url 'messages_facade' %}" class="dropdown-item">
-              <div class="d-flex ">
-                  
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/mail.svg" %}" alt="hello"></div>
-            <div class="">
-              Regarder les messages reçus
-            </div>
-          </div>
-          </a>
-          <a href="{% url 'stats' %}" class="dropdown-item">
-              <div class="d-flex ">
-                  
-                  <div style='margin-right:5px;'><img src="{% static "admin/img/opticons/dashboard.svg" %}" alt="hello"></div>
-            <div class="">
-              Statistiques
-            </div>
-          </div>
-          </a>
-
-            {% endif %}
-          {% endif %}
-
-          {% if request.user.is_authenticated %}
-          <div class="dropdown-divider"></div>
-
-          <h3 class="dropdown-header"> Projections épinglées</h3>
-          <span id='proj_epingle_liste'>
-          {% for f in request.user.favorite_proj_set.all %}
-          {% if f.epingle %}
-          <span id='proj_epingle_id_+{{f.proj.id}}'>
-          <a class="dropdown-item" href="{% url 'proj' f.proj.id %}">
-              <div class="">
-                  {{ f.proj.titre }}
-                  <!--
-                  <a href="{% url 'remove_favorite_proj' proj_id=f.proj.id home=1 %}" class="lateral_bar_supprimer">X</a>
-                  -->
-              </div>
-          </a>
-          </span> {% endif %} {% endfor %}
-          </span>
-         
-          <div class="dropdown-divider"></div>
-
-          <h3 class="dropdown-header"> Vidéos épinglées</h3>
-          <span id='video_epingle_liste'>
-          {% for f in request.user.favorite_set.all %}
-
-          {% if f.epingle %}
-            <span id='video_epingle_id_+{{f.video.id}}'>
-              <a class="dropdown-item" href="{% url 'video' f.video.id %}">
-                <div class="">
-
-                  <div class="lateral_bar_button_text">
-                      {{ f.video.titre }}
-                  </div>
-
-                </div>
-              </a>
-            </span> {% endif %} {% endfor %}
-          </span>
-
-                 {% endif %}
-
-           <div class="dropdown-divider"></div>
-
-           <span>
-            <span id='video_epingle_id_+{{f.video.id}}'>
-              <a class="dropdown-item" href="https://docs.google.com/forms/u/0/d/e/1FAIpQLScnWrGA33Z6HbHlhkl-g0sqKDzbGaz16Yd0MVAl8hHbbWc_5g/viewform?usp=sf_link" target="_newtab">
-                <div class="">
-
-                  <div class="lateral_bar_button_text">
-                     	Signaler un Bug
-                  </div>
-
-                </div>
-              </a>
-            </span>
-          </span>
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-         
-        </div>
-
-
-
-          <script
-			  src="https://code.jquery.com/jquery-3.2.1.min.js"
-			  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-			  crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
-
-        
-        
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+            <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/dataTables.responsive.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/responsive/2.1.1/js/responsive.bootstrap4.min.js"></script>
 
-        
-        
 
 
+    <!-- Preloader - style you can find in spinners.css -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <!-- Main wrapper  -->
+    <div id="main-wrapper id">
+        <!-- header header  -->
+        <div class="header">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- Logo -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" id="titre_site" href="{% url 'index' %}">
+                        <!-- Logo icon -->
+                        <b><img src="{% static 'favicon.png' %}" alt="homepage" style="width:40px;height:40px" class="dark-logo" /></b>
 
-        <div id="body" >
+
+                        <span id="titre_site_h1" class="" style="" > JTX </span>
+                    </a>
+                </div>
+                <!-- End Logo -->
+                <div class="navbar-collapse">
+                    <!-- toggle and nav items -->
+                    <ul class="navbar-nav mr-auto mt-md-0">
+                        <!-- This is  -->
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted  " href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item m-l-10"> <a class="nav-link sidebartoggler hidden-sm-down text-muted  " href="javascript:void(0)"><i class="ti-menu"></i></a> </li>
+                        <!-- Messages -->
+                        <li class="nav-item dropdown mega-dropdown"> <a class="nav-link dropdown-toggle text-muted" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-help"></i></a>
+                            <div class="dropdown-menu animated zoomIn">
+                                <ul class="mega-dropdown-menu row">
 
 
+                                    <li class="col-lg-12  m-b-30">
+                                        <h4 class="m-b-20">Souci ? Problème ? Angoisse ? Dites-nous tout</h4>
+                                        <!-- Contact -->
+                                        <form method="post" action="{% url 'treat_facade'%}">
+                                            {% csrf_token %}
 
-              <div class="container-fluid" style="max-width:1400px;padding-right:10px;padding-left:10px;" >
-                    {% if titre_tag %}
-                    <div class="card">
-                      <div class="card-header" >
-                        <h2 class="">Tag affiché : <span class="tag" style="font-size:20px;">{{titre}}</span></h2>
-                      </div>
-                      <div class="card-body container-fluid" style="background-color:white;">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" name="name" id="exampleInputname1" placeholder="Nom"> </div>
+                                            <div class="form-group">
+                                                <input type="email" class="form-control" name="email" placeholder="Email"> </div>
+                                            <div class="form-group">
+                                                <textarea class="form-control" id="exampleTextarea" name="message" rows="3" placeholder="Message"></textarea>
+                                            </div>
+                                            <button type="submit" class="btn btn-info">Envoyer</button>
+                                        </form>
+                                    </li>                                   
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Messages -->
+                    </ul>
+                    <!-- User profile and search -->
+                    <ul class="navbar-nav my-lg-0">
 
-         
-                    {% elif titre and not titre_search %}
-                    <div class="card">
-                        <div class="card-header" >
-                          <h2 class="">{{titre}}</h2>
-                        </div>
-                        <div class="card-body container-fluid" style="background-color:white;">
+                        <!-- Search -->
+                        <li class="nav-item search-box"> <a class="nav-link text-muted" id="search-button" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <form class="app-search form-inline" method="get" action="{% url 'search' %}">
+                                <input class="form-control"
+                                   autocomplete="off" id="search-input" placeholder="Rechercher" onblur="cacher_results()" 
+                                  onfocus="afficher_results()" name="q" class="form-control m-2 " onkeydown="select_lien(event)" 
+                                  onkeyup="showHint(event,this.value)" type="text" style="width:100%;">
+                                   <a class="srh-btn"><i class="ti-close"></i></a> 
+                            </form>
+                            <div id="txtHint" role="listbox" class="m-2  shadow-div dropdown-menu dropdown-menu-right animated zoomIn show" onmouseover="lien_ok(1)" onmouseout="lien_ok(0)"
+                            style="position:absolute;background-color:white;z-index:200;width:100%;display:none"></div>
+                            
+                            </div>
+                        </li>
+                        <!-- Comment -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-bell"></i>
+                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
+              </a>
+                            <div class="dropdown-menu dropdown-menu-right mailbox animated zoomIn">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">Notifications</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-danger btn-circle m-r-10"><i class="fa fa-link"></i></div>
+                                                <div class="mail-content">
+                                                    <h5>Il est pas beau le site comme ça ?</h5> <span class="mail-desc">Salut camarade, tu as sans doute remarqué un petit changement dans le design de ce site internet. J'espère que cela améliorera l'expérience utilisateur. Tu y vois aussi l'apparition de notifications qui t'avertirons de nouvelles qui concernent le JTX ou plus généralement notre école.
+                                                    N'hésite pas à me dire ce que tu en penses (en cliquant sur le point d'interrogation juste à côté du bouton du menu)</span> <span class="time"></span>
+                                                </div>
+                                            </a>                                           
+                                        </div>
+                                    </li>                                   
+                                </ul>
+                            </div>
+                        </li>
+                        <!-- End Comment -->
                         
-                    {% endif %} 
+                        <!-- Profile -->
+                        <li class="nav-item dropdown">
 
-              {% block body %} 
+                          {% if request.user.is_authenticated %}
+
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ti ti-user" alt="{{ request.user.first_name }} {{ request.user.last_name }}" class="profile-pic"></i></a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="{% url 'profil' request.user.id %}"><i class="ti-user"></i> Profile</a></li>
+                                    <li><a href="#"><i class="ti-settings"></i> Setting</a></li>
+                                    <li><a href="{% url 'logout' %}"><i class="fa fa-power-off"></i> Logout</a></li>
+                                </ul>
+                            </div>
+
+                            {% else %}
+
+                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Se connecter</a>
+                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                <ul class="dropdown-user">
+                                    <li><a href="/org"><i class="ti-user"></i> Connection via Polytechnique.org</a></li>
+                                    <li><a href="{% url 'login' %}?next={% url 'index' %}"><i class="ti-settings"></i> Connection manuelle</a></li>
+                                </ul>
+                            </div>
+
+
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- End header header -->
+        <!-- Left Sidebar  -->
+        <div class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li class="nav-devider"></li>
+                        <li class="nav-label">Accueil</li>
+                        <li> <a class="" href="{% url 'index' %}" aria-expanded="false"><i class="fa fa-home"></i><span class="hide-menu">Accueil</span></a>
+                        </li>
+                        <li class="nav-label">Parcourir</li>
+                        <li> <a class="" href="{% url 'projs' 1 %}" aria-expanded="false"><i class="fa fa-play"></i><span class="hide-menu">Projections</span></a>
+                        </li>
+                        <li> <a class="" href="{% url 'videos' 1 %}" aria-expanded="false"><i class="fa fa-film"></i><span class="hide-menu">Vidéos</span>
+                        </a>
+                        {% if request.user.is_authenticated %}
+                        <li> <a class="" href="{% url 'favorites' 1 %}" aria-expanded="false"><i class="fa fa-heart"></i><span class="hide-menu">Favoris</span></a>
+                       
+                        <li> <a class="" href="{% url 'tags' %}" aria-expanded="false"><i class="fa fa-hashtag"></i><span class="hide-menu">Tags</span></a>
+                        <li> <a class="" href="{% url 'playlists' %}" aria-expanded="false"><i class="fa fa-list-ul"></i><span class="hide-menu">Playlists</span></a>
+                        {% endif %}
+                        <li> <a class="" href="{% url 'jtx' 2015 %}" aria-expanded="false"><i class="fa fa-globe"></i><span class="hide-menu">JTX 2015</span></a>
+                        <li> <a class="" href="{% url 'jtx' 2016 %}" aria-expanded="false"><i class="fa fa-globe"></i><span class="hide-menu">JTX 2016</span></a>
+                           
+                        </li>
+                        {% if request.user.is_authenticated %}
+                        <li class="nav-label">Épingles</li>
+                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-map-pin"></i><span class="hide-menu">Projections épinglées</span></a>
+                            <ul aria-expanded="false" class="collapse">
+
+                                {% for f in request.user.favorite_proj_set.all %}
+                                    {% if f.epingle %}
+                                        <li><a href="{% url 'proj' f.proj.id %}">{{ f.proj.titre }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+            <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-map-pin"></i><span class="hide-menu">Vidéos épinglées</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                
+                                {% for f in request.user.favorite_set.all %}
+                                    {% if f.epingle %}
+                                        <li><a href="{% url 'video' f.video.id %}">{{ f.video.titre }}</a></li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        {% endif %}
+                         {% if request.user.is_authenticated %}
+                       {% if request.user.utilisateur.can_proj %}
+                        <li class="nav-label">Administration</li>
+                        <li> <a class="" href="{% url 'messages_facade' %}" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Messages reçus</span></a>
+                         <li> <a class="" href="{% url 'stats' %}" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Statistiques</span></a>
+                         <li> <a class="" href="{% url 'create_playlist' %}" aria-expanded="false"><i class="fa fa-list-ul"></i><span class="hide-menu">Créer une playlist</span></a>
+
+                        {% endif %}
+                        {% endif %}
+                        
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </div>
+        <!-- End Left Sidebar  -->
+        <!-- Page wrapper  -->
+        <div class="page-wrapper">
+            <!-- Bread crumb -->
+            <div class="row page-titles">
+                <div class="col-md-5 align-self-center">
+                    <h3 class="text-primary">{{ titre_page }}</h3> </div>
+                <div class="col-md-7 align-self-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0)">Accueil</a></li>
+                        <li class="breadcrumb-item active">Vidéos</li>
+                    </ol>
+                </div>
+            </div>
+            <!-- End Bread crumb -->
+            <!-- Container fluid  -->
+            <div class="container-fluid">
+                <!-- Start Page Content -->
+
+             {% block body %} 
               {% endblock %}
 
-                    {% if titre_tag %}
-                    </div>
-                  </div>
-                    {% elif titre and not titre_search %}
-                      </div>     
-                    </div>        
-                    {% endif %} 
                 
                     {% if pages and page and adress %}
                     <br>    
@@ -471,39 +377,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                           
                         </ul>
                     </nav>
-      
-                    <!-- <div class="choisir_page">
-                      Page : {% for p in pages %} {% if p != page %} {% if id %}
-                      <a href="{% url adress id p %}">{{p}}</a> {% else %}
-                      <a href="{% url adress p %}">{{p}}</a> {% endif %} {% else %}
-                      <b style="color:black">{{p}}</b> {% endif %} {% endfor %}
-      
-                    </div> -->
                     {% endif %}
-                <div class="alert alert-secondary" role="alert" style='margin-top:50px; '>
-                        Site codé par Thibault Dardinier et Guillaume Vidon du JTX2015.
-                </div>
-              </div>
 
 
-             
-
-              
-
-
-
+                <!-- End PAge Content -->
             </div>
-          </div>
+            <!-- End Container fluid  -->
+            <!-- footer -->
+            <footer class="footer"> © 2018 Site réalisé par Thibault Dardinier (JTX2015), Guillaume Vidon (JTX2015), et Benoît Durand (JTX2016).</footer>
+            <!-- End footer -->
         </div>
-      </div>
+        <!-- End Page wrapper  -->
     </div>
-       
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <!-- End Wrapper -->
 
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-      crossorigin="anonymous"></script> -->
+        
 
+
+
+
+        
      
 </body>
 
@@ -511,9 +404,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <script>
 
 
-
-
-  checkbar();
 
 
   
@@ -526,6 +416,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   function showHint(e, str) {
     var keycode;
+   
     if (window.event) {
       keycode = window.event.keyCode;
     }
@@ -545,7 +436,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         document.getElementById("txtHint").style.display = "none";
         return;
       } else {
-
+        
         var showData = $('#txtHint');
 
         var url = "{% url 'suggestions' '' %}";
@@ -553,11 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         $.getJSON(url + str, function (data) {
 
           var videos = data.videos.map(function (video) {
-            var s = video.titre;
-            if (video.titre.length > 80) {
-              s = video.titre.substring(0, 80);
-            }
-            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + video.url + '"><div class="">' + highlight(s,str) + "</div></a>";
+            return '<a onmouseover="mouse_select(this)" role="option" onmouseout="mouse_deselect(this)" class="dropdown-item search_result" style="white-space: normal;" href="' + video.url + '"><div class="">' + highlight(video.titre,str) + "</div></a>";
 
           });
 
@@ -629,29 +516,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
   }
 
-
-  function checkbar() {
-
-    // positionne_suggestions();
-
-    var show = getCookie("show");
-    var taille=$(window).width();
-
-    if (show != "") {
-      if (show == 'oui' && taille>1800) {
-
-        $("#lateral_bar").show();
-      }
-      else {
-        $("#lateral_bar").hide();
-      }
-    }
-    else {
-      $("#lateral_bar").hide();
-
-    }
-  }
-
   function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -705,16 +569,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   }
 
   function positionne_suggestions() {
-    console.log("hello");
     var x = document.getElementById("search_input");
     var y = document.getElementById("txtHint");
-    y.style.width=x.clientWidth+"px";
     
-    console.log(y.style.width);
-    // if (typeof x != "undefined") {
-    //   var rect = x.getBoundingClientRect();
-    //   document.getElementById("txtHint").style.marginLeft = (rect.left + 6).toString() + "px";
-    // }
 
   }
 
@@ -800,7 +657,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   window.onresize = positionne_suggestions;
   positionne_suggestions();
-  console.log(suivre_lien);
+
+  $("#search-button").click(function(){
+
+       setTimeout(function(){$("#search-input").focus();},200);
+
+
+  });
 
 </script>
 

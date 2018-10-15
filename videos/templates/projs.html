@@ -4,27 +4,29 @@
 
 {% load app_filters %}
 
-<div style="margin-bottom:15px;">
-	<ul class="nav nav-pills justify-content-center">
-			<li class="nav-item">
-				<a class="nav-link {% if current_cat == -1 %} active {% endif %}" href="{% url 'projs'  1 %}">Toutes</a>
-			</li>
-		{% for c in categories %}
-			<li class="nav-item">
-			<a class="nav-link {% if c == current_cat %} active {% endif %}" href="{% url 'category' c.id 1 %}">{{c.titre}}</a>
-			</li>
+<div class="card">
+	<div style="margin-bottom:15px;" class="card-header-tabs">
+		<ul class="nav nav-tabs card-header-tabs no-wrap customtab" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link {% if current_cat == -1 %} active {% endif %}" href="{% url 'projs'  1 %}">Toutes</a>
+				</li>
+			{% for c in categories %}
+				<li class="nav-item">
+				<a class="nav-link {% if c == current_cat %} active {% endif %}" href="{% url 'category' c.id 1 %}">{{c.titre}}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+
+
+
+	<div class="row">
+		{% for p in elements %}
+			{% include "block_video_proj_liste.html" with video=0 elmt=p %}
+
 		{% endfor %}
-	</ul>
+	</div>
 </div>
-
-
-<div class="row">
-	{% for p in elements %}
-		{% include "block_video_proj_liste.html" with video=0 elmt=p %}
-
-	{% endfor %}
-</div>
-
 
 
 

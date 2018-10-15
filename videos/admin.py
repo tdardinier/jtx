@@ -17,6 +17,11 @@ class UserAdmin(admin.ModelAdmin):
     search_fields = ['username', 'email', 'first_name', 'last_name']
     inlines = [FavoriteInline]
 
+class UtilisateurAdmin(admin.ModelAdmin):
+    list_display = ["user","profil","promo"]
+    search_fields = ["user__username"]
+    list_filter=["promo","profil"]
+
 class CommentProjAdmin(admin.ModelAdmin):
     list_display = ['id', 'comment', 'proj', 'date']
     list_filter = ['proj', 'date']
@@ -26,6 +31,17 @@ class CommentAdmin(admin.ModelAdmin):
     list_display = ['id', 'comment', 'video', 'date']
     list_filter = ['video', 'date']
     search_fields = ['comment', 'video__titre']
+
+class RelationprojAdmin(admin.ModelAdmin):
+    list_display = ['proj', 'video', 'ordre']
+    list_filter = ['proj']
+    search_fields = ['proj__titre', 'video__titre']
+
+admin.site.unregister(Relation_proj)
+admin.site.register(Relation_proj, RelationprojAdmin)
+
+admin.site.unregister(Utilisateur)
+admin.site.register(Utilisateur,UtilisateurAdmin)
 
 admin.site.unregister(Relation_comment)
 admin.site.register(Relation_comment, CommentAdmin)
@@ -84,3 +100,13 @@ class CategoryAdmin(admin.ModelAdmin):
 
 admin.site.unregister(Category)
 admin.site.register(Category, CategoryAdmin)
+
+
+class VideovueAdmin(admin.ModelAdmin):
+    list_display = ["user","video","date"]
+    list_filter = ["user","video","date"]
+    search_fields = ["user","video"]
+
+admin.site.unregister(Videovue)
+admin.site.register(Videovue, VideovueAdmin)
+

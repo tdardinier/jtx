@@ -9,10 +9,10 @@
   
   
   
-  <h2 class="card-header">Édition d'une vidéo</h2>
+  <h2 class="">Édition d'une vidéo</h2>
 
 <div class="card-body">
-  <form action="{% url 'edit_proj' p.id %}" method="post" >
+  <form action="{% url 'edit_proj' p.id %}" id="valid_ordre" method="post" >
   
       {% csrf_token %}
   
@@ -55,79 +55,49 @@
           <textarea class="form-control" id="" name="description">{{p.description}}</textarea>
       </div>
     </div>
-  
-
-<!-- 
-<div class="container">
-
-
-<h1>Édition d'une proj</h1>
-
-{% if p %}
-
-
-
-
-<form action="{% url 'edit_proj' p.id %}" metdod="post" class='edit_form'>
-  <table class="table_edit_proj_haut" class="edit_video">
-
-    {% csrf_token %}
-<tr>
-  <th><label for="titre">Titre :</label></th>
-  <td>  <input class="input_edit" id="titre" size="50" type="text" value="{{p.titre}}" onfocus="ffocus('titre')" onblur="defocus('titre')" name="titre"/></td>
-</tr>
-
-<tr>
-  <th>  <label for="image">Image (URL) :<label></th>
-  <td>
-    <input class="input_edit" id="image" size="100" type="text" name="image" onfocus="ffocus('image')" onblur="defocus('image')" value="{{p.image}}"/></td>
-</tr>
-
-<tr>
-  <th>  <label for="promo">Promo :<label></th>
-  <td><input class="input_edit" id="promo" type="number" name="promo" value="{{p.promo}}" min="1991" max="2030" step="1"/></td>
-</tr>
-
-<tr>
-  <th>  <label for="category">Catégorie :<label></th  >
-  <td><select class="input_edit" name="category" id="cat_egory">
-  {% for c in categories %}
-      <option {% if p.category == c %} selected {% endif %} value="{{c.id}}">{{c.titre}}</option>
-  {% endfor %}
-  </select></td>
-</tr>
-
-<tr>
-  <th class="col1"><label for="description">Description :</label><br>  </th>
-  <th>    <textarea class="input_edit" id="description_edit" name="description">{{p.description}}</textarea></th>
-</tr>
-
-</table>
-
-<table class="edit_proj_table_vid">
-
-
-    {% for r in p.relation_proj_set.all %}
-    <tr>
-      <td><input class="input_edit" type="number" id="r_video_{{r.id}}" name ="r_video_{{r.id}}" value="{{r.ordre}}" max="999" min="-999"/></td>
-      <td>  <label for="r_video_{{r.id}}">{{r.video.titre}}</label></td>
-    </tr>
-
-    {% endfor %}
-
-</table> -->
-
+ 
 <hr>
 
+<h2>Modifier l'ordre des clips</h2>
+
+
+ <div class="nestable">
+    <div class="dd" id="nestable">
+        <ol class="dd-list">
+
+          {% for r in p.relation_proj_set.all %}
+
+            <li class="dd-item dd3-item" data-id="r_video_{{r.id}}" id="{{r.id}}">
+                <div class="dd-handle dd3-handle"></div>
+                <div class="dd3-content">{{r.video.titre}}</div>
+            </li>
+            
+            {% endfor %}
+
+        </ol>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 {% for r in p.relation_proj_set.all %}
-<div class="form-group row justify-content-center">
+<div class="form-group row justify-content-center" hidden>
   <label class="col-10 col-md-4 col-form-label">{{r.video.titre}}</label> 
   <input class="form-control col-2" type="number" id="r_video_{{r.id}}" name ="r_video_{{r.id}}" value="{{r.ordre}}" max="999" min="-999"/>
 </div>
 {% endfor %}
 
 
-<input type="submit" value="Modifier la proj" class="btn btn-success float-right"/>
+<input type="submit" value="Valider les changements" class="btn btn-success float-right"/>
 </form>
 
 </div>
@@ -138,94 +108,26 @@
   <p id="hidden_titre" style="display:inline-block;font-size:14px;color:#f1f1f1;position:relative; top:-100000px;" style="display:hidden;"></p>
     <p id="hidden_image" style="display:inline-block;font-size:14px;color:#f1f1f1;position:relative; top:-100000px;" style="display:hidden;"></p>
 </div>
-<script type="text/javascript">
-var element=document.getElementById("cat_egory");
-var style = window.getComputedStyle(element);
-var width_promo= parseInt(style.getPropertyValue('width'))-7;
-
-document.getElementById("promo").style.width=width_promo+"px";
 
 
-defocus('titre');
-defocus('image');
+<script>
 
-function linear(i){
-  return i;
-}
+$("#valid_ordre").submit(function(event){
 
-function ffocus(element_namee){
-  var element=document.getElementById("description_edit");
-  var style = window.getComputedStyle(element);
-  var max_width= parseInt(style.getPropertyValue('width'));
+  video_list = $(".dd3-item");
+  console.log(video_list.length);
+  for (i=0;i<video_list.length;i++){
+    console.log($("#" + $(video_list[i]).data("id")).val());
+    $("#" + $(video_list[i]).data("id")).val(i+1);
+    console.log($("#" + $(video_list[i]).data("id")).val());
 
-  var element=document.getElementById(element_namee);
-  var style = window.getComputedStyle(element);
-  var debut= parseInt(style.getPropertyValue('width'));
-  var fin =max_width;
-  animate({
-duration: 200,
-timing:makeEaseInOut(linear),
-draw: function(progress) {
-document.getElementById(element_namee).style.width  = debut+progress*(fin-debut)+ 'px';
-}
-});
-
-}
-
-function defocus(element_name){
-  var element=document.getElementById(element_name);
-  var style = window.getComputedStyle(element);
-  var debut= parseInt(style.getPropertyValue('width'));
-
-  document.getElementById("hidden_"+element_name).innerHTML=document.getElementById(element_name).value;
-
-
-  var element2=document.getElementById("hidden_"+element_name);
-  var style2 = window.getComputedStyle(element2);
-  var fin= parseInt(style2.getPropertyValue('width'))+3;
-
-  document.getElementById("hidden_"+element_name).style.dislay="hidden";
-
-  animate({
-duration: 200,
-timing:makeEaseInOut(linear),
-draw: function(progress) {
-document.getElementById(element_name).style.width  = debut+progress*(fin-debut)+ 'px';
-}
-});
-
-}
-
-function animate({timing, draw, duration}) {
-
-let start = performance.now();
-
-requestAnimationFrame(function animate(time) {
-  // timeFraction goes from 0 to 1
-  let timeFraction = (time - start) / duration;
-  if (timeFraction > 1) timeFraction = 1;
-
-  // calculate the current animation state
-  let progress = timing(timeFraction);
-
-  draw(progress); // draw it
-
-  if (timeFraction < 1) {
-    requestAnimationFrame(animate);
   }
 
-});
-}
 
-function makeEaseInOut(timing) {
-return function(timeFraction) {
-  if (timeFraction < .5)
-    return timing(2 * timeFraction) / 2;
-  else
-    return (2 - timing(2 * (1 - timeFraction))) / 2;
-}
-}
+
+});
+
 </script>
-{% endif %}
+
 
 {% endblock %}

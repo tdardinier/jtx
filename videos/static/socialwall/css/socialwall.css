@@ -1,0 +1,154 @@
+/* Main stuff */
+
+body {
+    margin : 0;
+    background-image: url(../images/bg2.png);
+    background-size: cover;
+}
+
+html {
+    font-family: "Open Sans";
+}
+html,body {padding:0;margin:0;overflow:hidden;}
+
+div.header {
+    width : 100%;
+    padding-top: 2.1vw;
+    padding-bottom: 2.1vw;
+}
+
+div.content {
+    height : calc(100vh - 7vw - 150px);
+    width : 100%;
+}
+
+div.footer {
+    height: 150px;
+    width : 100%;
+}
+
+h2.header {
+    margin: 0;
+    text-align: center;
+    padding: 0px 0px 0px 0px;
+    text-transform: uppercase;
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 2.3vw;
+    font-weight: 500;
+    line-height: 2.8vw;
+    color: white;
+}
+
+span.bold {
+    font-weight: 600;
+}
+
+
+/* Programme */
+
+div.programm {
+    height: 100%;
+    padding-top: 18vw;
+    padding-left: 2vw;
+    color:white;
+    position: relative;
+}
+
+div.programm-content {
+    position: absolute;
+    bottom: 8vh;
+}
+
+ul.programm {
+    width : 80%;
+    margin-left: 5%;
+    margin-right: 15%;
+    margin-top: 30px;
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+ul.programm >li {
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: #fff0;
+    border-style: solid;
+    border-color: #f7f7f7;
+    border-left-style: none;
+    border-right-style: none;
+    font-size: 1.6vw;
+}
+
+ul.programm >li:first-child {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+ul.programm >li:last-child {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+h3.programm {
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 2.3vw;
+}
+
+
+/* Messages */
+
+div.message {
+    height:100%;
+    position: relative;
+}
+
+span.message {
+    z-index: -10;
+    position: absolute;
+    left: 50%;
+    top: 8vh;
+    width: 80%;
+    transform: translate(-50%,0%);
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 4vw;
+    font-weight: 500;
+    color: black;
+    background-color: rgba(247, 236, 234, 0.77);
+    padding: 1vw 4vw 2vw 4vw;
+    -webkit-transition: all 600ms "easeInExpo";
+    transition: all 600ms "easeInExpo";
+}
+
+
+/* Logos et footer */
+
+div.footer {
+    text-align: center;
+    background-color: #fff5;
+}
+
+div.images {
+    padding:10px;
+}
+
+div.images > img {
+    height: 60px;
+    margin: 0px 10px -5px 10px;
+}
+
+div.credits > span {
+    font-weight: 600;
+    font-size: 14px;
+    font-color: white;
+}
+
+#bienvenue > span{
+    margin:20px;
+    padding:10px;
+    text-transform:uppercase;
+    font-weight: 600;
+    font-size: 40px;
+
+
+}

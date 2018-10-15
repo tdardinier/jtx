@@ -222,3 +222,28 @@ class Playlist(models.Model):
     video_suivante = models.ForeignKey(Video, related_name = "video_suivante")
     def __unicode__(self):
         return self.titre_playlist.label + u" : " + self.video_precedente.titre + u" => " + self.video_suivante.titre
+
+
+class Messagelive(models.Model):
+    message = models.CharField(max_length=1000)
+    aprrouve = models.BooleanField()
+    deja_envoye = models.BooleanField()
+    prio = models.BooleanField(default=False)
+    def __unicode__(self):
+        return self.message
+
+class Videovue(models.Model):
+    video=models.ForeignKey(Video)
+    user=models.ForeignKey(User)
+    date = models.DateTimeField(auto_now=True)
+    credibilite=models.IntegerField(default=0)
+
+    def __unicode__(self):
+        return unicode(self.user) + u' sur ' + unicode(self.video)
+
+class Projvue(models.Model):
+    video=models.ForeignKey(Proj)
+    user=models.ForeignKey(User)
+    date = models.DateTimeField(default=datetime.date.today)
+    credibilite=models.IntegerField(default=0)
+
